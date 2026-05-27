@@ -132,6 +132,8 @@
     @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
     @keyframes riseA { 0%{transform:translateY(0);opacity:0} 12%{opacity:.88} 88%{opacity:.22} 100%{transform:translateY(-32px);opacity:0} }
     @keyframes riseB { 0%{transform:translateY(0);opacity:0} 18%{opacity:.30} 82%{opacity:.07} 100%{transform:translateY(-24px);opacity:0} }
+    @keyframes waterBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-2px)} }
+    #hclip-group { animation:waterBob 8s ease-in-out infinite; transform-origin:center top; }
 
     /* ── Services ── */
     #services { background: var(--surface); }
@@ -402,7 +404,7 @@
         <text x="10" y="82" font-size="88" font-weight="900"
           font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif"
           letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text>
-        <g clip-path="url(#hclip)">
+        <g id="hclip-group" clip-path="url(#hclip)">
           <path id="hbz" d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#hb)" opacity=".88"/>
           <path id="hgz" d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#hg)" opacity=".90"/>
           <path id="hlt" d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/>
