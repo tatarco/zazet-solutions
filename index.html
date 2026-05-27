@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gal Tidhar · ZaZet Solutions — Staff Engineer, Zagreb</title>
-  <meta name="description" content="Staff Software Engineer with 10 years building at scale. Platform engineering, full-stack architecture, developer experience. Zagreb, Croatia.">
+  <title>Gal Tidhar · ZaZet Solutions — Automation, Websites & Systems for Your Business</title>
+  <meta name="description" content="Zagreb-based software engineer helping businesses automate, build websites, and create custom systems. 10 years of experience, prst prst approach.">
   <meta property="og:title" content="Gal Tidhar · ZaZet Solutions">
-  <meta property="og:description" content="Staff Software Engineer · Platform Engineering · DX · Full-Stack · Zagreb">
+  <meta property="og:description" content="Automation · Websites · Custom Systems · Zagreb, Croatia">
+  <meta property="og:image" content="https://zazet-solutions.hr/gal-photo.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zazet-solutions.hr">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230d0d1a'/><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='30%25' stop-color='%237ac8ff'/><stop offset='30%25' stop-color='%23f5d84a'/></linearGradient></defs><text x='3' y='27' font-size='28' font-weight='900' font-family='system-ui' fill='url(%23g)'>Z</text></svg>">
@@ -260,6 +261,93 @@
     @media (max-width: 480px) {
       .hero-ctas { flex-direction: column; align-items: center; }
     }
+
+    /* ── About photo ── */
+    .about-avatar-photo {
+      width: 260px; height: 310px; object-fit: cover; object-position: center 15%;
+      border-radius: 16px; border: 2px solid var(--borderh); flex-shrink: 0; display: block;
+    }
+
+    /* ── Gemišt quote ── */
+    .gemist-quote {
+      margin-top: 2rem; padding: 1.5rem 1.75rem; border-radius: var(--r);
+      border-left: 3px solid rgba(245,216,74,.5); background: rgba(245,216,74,.04);
+    }
+    .gemist-header { display: flex; align-items: flex-start; gap: 1rem; }
+    .gemist-glass {
+      width: 20px; height: 46px; flex-shrink: 0; margin-top: 3px;
+      background: linear-gradient(to bottom,
+        rgba(122,200,255,.7) 0%, rgba(122,200,255,.7) 20%,
+        rgba(245,216,74,.8) 20%, rgba(245,216,74,.8) 100%
+      );
+      border-radius: 2px 2px 6px 6px; border: 1px solid rgba(255,255,255,.18); position: relative;
+    }
+    .gemist-glass::after {
+      content: ''; position: absolute; top: 20%; left: -3px; right: -3px;
+      height: 1px; background: rgba(255,255,255,.25);
+    }
+    .gemist-quote p { font-size: .87rem; color: rgba(245,216,74,.8); line-height: 1.78; margin: 0; font-style: italic; }
+    .gemist-quote strong { color: var(--gold); font-style: normal; }
+    .gemist-quote a { color: rgba(245,216,74,.6); text-decoration: underline; text-underline-offset: 2px; }
+    .gemist-quote a:hover { color: var(--gold); }
+
+    /* ── Projects ── */
+    #projects { background: var(--surface); }
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.15rem; margin-top: 3rem; }
+    .proj-card {
+      padding: 1.75rem; border-radius: var(--r); border: 1px solid var(--border);
+      background: rgba(255,255,255,.02); display: flex; flex-direction: column;
+      transition: border-color .2s, background .2s;
+    }
+    .proj-card:hover { border-color: var(--borderh); background: rgba(255,255,255,.04); }
+    .proj-card-cta { border-style: dashed; border-color: rgba(122,200,255,.2); background: rgba(122,200,255,.03); }
+    .proj-card-cta:hover { border-color: rgba(122,200,255,.4); background: rgba(122,200,255,.06); }
+    .proj-tag { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: .75rem; }
+    .proj-tag-g { color: var(--gold); }
+    .proj-tag-r { color: var(--red); }
+    .proj-name { font-size: 1.05rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .5rem; }
+    .proj-desc { font-size: .86rem; color: var(--text2); line-height: 1.65; flex: 1; }
+    .proj-desc strong { color: var(--text); }
+    .proj-meta { font-size: .7rem; color: var(--text3); margin-top: .85rem; letter-spacing: .02em; }
+    .proj-link { display: inline-flex; align-items: center; gap: .3rem; font-size: .8rem; font-weight: 600; color: var(--blue); margin-top: 1rem; transition: gap .15s; }
+    .proj-link:hover { gap: .5rem; }
+
+    /* ── Social / LinkedIn ── */
+    #social { background: var(--surface2); }
+    .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+    .linkedin-card {
+      padding: 1.75rem; border-radius: var(--r);
+      border: 1px solid rgba(10,102,194,.35); background: rgba(10,102,194,.05);
+      display: flex; flex-direction: column; gap: 1.1rem;
+    }
+    .linkedin-hd { display: flex; align-items: center; gap: 1rem; }
+    .linkedin-photo { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: center 10%; border: 2px solid rgba(122,200,255,.3); flex-shrink: 0; }
+    .linkedin-name { font-size: .98rem; font-weight: 800; }
+    .linkedin-role { font-size: .76rem; color: var(--text2); line-height: 1.4; margin-top: .2rem; }
+    .linkedin-bio { font-size: .82rem; color: var(--text3); line-height: 1.6; }
+    .linkedin-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .82rem; font-weight: 700; color: #fff;
+      padding: .55rem 1.1rem; border-radius: 100px;
+      background: #0a66c2; transition: background .2s; width: fit-content;
+    }
+    .linkedin-btn:hover { background: #004182; }
+    .social-links { display: flex; flex-direction: column; gap: .75rem; }
+    .social-link-row {
+      display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem;
+      border-radius: var(--r); border: 1px solid var(--border);
+      background: rgba(255,255,255,.02); transition: all .2s;
+    }
+    .social-link-row:hover { border-color: var(--borderh); background: rgba(255,255,255,.04); }
+    .social-link-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .social-link-body { flex: 1; }
+    .social-link-label { font-size: .88rem; font-weight: 600; }
+    .social-link-sub { font-size: .73rem; color: var(--text3); }
+    .social-link-arr { color: var(--text3); font-size: .9rem; }
+    @media (max-width: 700px) {
+      .social-grid { grid-template-columns: 1fr; }
+      .about-avatar-photo { width: 180px; height: 220px; margin: 0 auto; }
+    }
   </style>
 </head>
 <body>
@@ -274,6 +362,7 @@
     <div class="nav-links">
       <a href="#services" data-i18n="nav.services">Services</a>
       <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#projects" data-i18n="nav.projects">Projects</a>
       <a href="#career" data-i18n="nav.work">Work</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
     </div>
@@ -291,7 +380,7 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="hero-pre" data-i18n-html="hero.pre">Zagreb · Croatia &nbsp;·&nbsp; Staff Software Engineer</div>
+    <div class="hero-pre" data-i18n="hero.pre">Zagreb · Croatia · Software Engineer & Builder</div>
 
     <div class="hero-svg-wrap">
       <svg id="hero-svg" viewBox="0 0 300 118" xmlns="http://www.w3.org/2000/svg" aria-label="ZaZet Solutions">
@@ -344,12 +433,12 @@
     </div>
 
     <p class="hero-tagline" data-i18n-html="hero.tagline">
-      I <strong>architect systems</strong> that scale<br>and <strong>build teams</strong> that ship.
+      I build the <strong>systems</strong><br>that run your <strong>business</strong>.
     </p>
-    <div class="hero-meta" data-i18n="hero.meta">10 years · Startups to enterprise · Full-stack to staff</div>
+    <div class="hero-meta" data-i18n="hero.meta">Automation · Websites · Custom tools · 10 years experience</div>
     <div class="hero-ctas">
       <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Get in touch</a>
-      <a href="#career" class="btn btn-ghost" data-i18n="hero.cta2">See my work</a>
+      <a href="#projects" class="btn btn-ghost" data-i18n="hero.cta2">See my work</a>
     </div>
   </div>
   <div class="hero-scroll" aria-hidden="true">
@@ -365,27 +454,27 @@
   <div class="container">
     <div class="eyebrow" data-i18n="svc.eyebrow">What I do</div>
     <h2 class="h2" data-i18n="svc.h2">Services</h2>
-    <p class="lead" data-i18n="svc.lead">Staff-level engineering, available to your team. From architecture reviews to hands-on builds.</p>
+    <p class="lead" data-i18n="svc.lead">From automating Monday's tasks to building the system your whole operation runs on.</p>
     <div class="services-grid">
       <div class="svc-card">
-        <div class="svc-icon svc-icon-b">⚙️</div>
-        <div class="svc-title" data-i18n="svc.plat.t">Platform Engineering</div>
-        <p class="svc-desc" data-i18n="svc.plat.d">CI/CD pipelines, internal tooling, and developer infrastructure that make your whole team faster — not just one service.</p>
+        <div class="svc-icon svc-icon-g">🔄</div>
+        <div class="svc-title" data-i18n="svc.auto.t">Automate the repetitive stuff</div>
+        <p class="svc-desc" data-i18n="svc.auto.d">Invoices, follow-ups, spreadsheet updates — if you do it every week, we can probably automate it. WhatsApp, email, Make.com, custom scripts.</p>
       </div>
       <div class="svc-card">
-        <div class="svc-icon svc-icon-b">🏛️</div>
-        <div class="svc-title" data-i18n="svc.arch.t">System Architecture</div>
-        <p class="svc-desc" data-i18n="svc.arch.d">API design, service decomposition, database modelling, scalability reviews. Monolith migrations done without burning the house down.</p>
+        <div class="svc-icon svc-icon-b">🌐</div>
+        <div class="svc-title" data-i18n="svc.web.t">Websites that work</div>
+        <p class="svc-desc" data-i18n="svc.web.d">Clean, fast, mobile-first websites for small businesses. No templates that look like 10 others on your street.</p>
       </div>
       <div class="svc-card">
-        <div class="svc-icon svc-icon-g">⚡</div>
-        <div class="svc-title" data-i18n="svc.dx.t">Developer Experience</div>
-        <p class="svc-desc" data-i18n="svc.dx.d">Reducing dev friction, tightening feedback loops, standardising workflows. Shipped 90% dev overhead reduction at Sedric.ai.</p>
+        <div class="svc-icon svc-icon-b">🛠️</div>
+        <div class="svc-title" data-i18n="svc.sys.t">Custom systems</div>
+        <p class="svc-desc" data-i18n="svc.sys.d">Need something that doesn't exist yet? Order management, booking flows, client portals — built around how your business actually works.</p>
       </div>
       <div class="svc-card">
         <div class="svc-icon svc-icon-g">🔗</div>
         <div class="svc-title" data-i18n="svc.fs.t">Full-Stack Engineering</div>
-        <p class="svc-desc" data-i18n="svc.fs.d">TypeScript · Node.js · React · Java. I ship from database schema to UI — no handoff gaps, no context lost between layers.</p>
+        <p class="svc-desc" data-i18n="svc.fs.d">TypeScript · Node.js · React · Java. From database schema to UI, no handoff gaps, no context lost between layers.</p>
       </div>
       <div class="svc-card">
         <div class="svc-icon svc-icon-r">📉</div>
@@ -410,25 +499,24 @@
     <h2 class="h2" data-i18n="about.h2">About</h2>
     <div class="about-grid">
       <div>
-        <div class="about-avatar">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-            <circle cx="40" cy="30" r="18" fill="white"/>
-            <ellipse cx="40" cy="72" rx="28" ry="20" fill="white"/>
-          </svg>
-        </div>
+        <img src="gal-photo.jpg" alt="Gal Tidhar with Adam and Ella" class="about-avatar-photo">
         <div class="about-chips">
           <span class="chip" data-i18n="about.c1">📍 Zagreb, Croatia</span>
           <span class="chip" data-i18n="about.c2">🇮🇱 Israeli</span>
-          <span class="chip" data-i18n="about.c3">10 yrs experience</span>
-          <span class="chip" data-i18n="about.c4">Staff Engineer</span>
+          <span class="chip" data-i18n="about.c3">👨‍👧‍👦 Father of Adam &amp; Ella</span>
+          <span class="chip" data-i18n="about.c4">10 yrs experience</span>
+          <span class="chip" data-i18n="about.c5">🤝 Available for projects</span>
         </div>
       </div>
       <div class="about-body">
-        <p data-i18n-html="about.p1">I'm <strong>Gal Tidhar</strong> — an Israeli software engineer living in Zagreb, Croatia. Over the past decade I've worked across the stack at companies ranging from <strong>Siemens PLM</strong> and <strong>Shopify/Flexport</strong> to early-stage startups like <strong>Novu</strong> and <strong>Sedric.ai</strong>.</p>
-        <p data-i18n-html="about.p2">I operate at staff level: I write code, design systems, shape roadmaps, and grow engineers. My focus is the intersection of <strong>platform engineering</strong>, <strong>developer experience</strong>, and <strong>full-stack architecture</strong> — the work that makes everyone on the team faster, not just one feature.</p>
-        <p data-i18n-html="about.p3">ZaZet Solutions is how I work with companies who need that kind of leverage — whether it's a focused engagement on a specific system, or an ongoing staff engineer presence embedded in your team.</p>
-        <div class="pull-quote">
-          <p data-i18n-html="about.pq">"ZaZet" — <em>Zagorski Zet</em> — Croatian for "the foreigner who married a local." Two cultures, one engineer, one company. Like a gemišt: two things that shouldn't mix, but taste better together.</p>
+        <p data-i18n-html="about.p1">I'm <strong>Gal Tidhar</strong> — an Israeli software engineer who moved to Zagreb, married a Zagorka, and never left. Father of <strong>Adam</strong> and <strong>Ella</strong>. For over a decade I've built systems that run at scale, at companies from Siemens to Shopify to early-stage startups.</p>
+        <p data-i18n-html="about.p2">Today I work with businesses who want to operate smarter — whether that means automating the tasks that eat your Mondays, building a website that actually brings in customers, or creating a system built around how your business really works.</p>
+        <p data-i18n-html="about.p3">ZaZet Solutions is named after me. <em>Zagorski Zet</em> — a Croatian term for the foreigner who married into a Zagorje family. I brought the engineering. Croatia gave me the context, the perspective, and the two best kids in the world.</p>
+        <div class="gemist-quote">
+          <div class="gemist-header">
+            <div class="gemist-glass"></div>
+            <p data-i18n-html="about.pq">In Zagorje, ordering a gemišt is not just choosing a drink. You hold up two fingers. One <strong>vertical</strong> — the wine, the dominant force. One <strong>horizontal</strong> — the water, just enough to make it work. That ratio, <em>prst prst</em>, is the local name for the strong version: 8 parts wine, 2 parts water. Not the tourist pour. The real one. <a href="https://travelhonestly.com/watered-wine/" target="_blank" rel="noopener">What's gemišt? →</a><br><br>Look at the ZaZet logo. Blue at the top — precise, technical, the 20%. Gold fills the rest — warm, decisive, the impact. That is the ratio of what I bring to your project.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -627,6 +715,112 @@
   </div>
 </section>
 
+<!-- ══ PROJECTS ═══════════════════════════════════════════ -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="eyebrow" data-i18n="proj.eyebrow">Work</div>
+    <h2 class="h2" data-i18n="proj.h2">Projects</h2>
+    <p class="lead" data-i18n="proj.lead">Selected projects and client work.</p>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-tag">Open Source · 34k+ ⭐</div>
+        <div class="proj-name">Novu</div>
+        <p class="proj-desc">Notification infrastructure platform used by <strong>34,000+ developers</strong> worldwide. Full-stack contributions: notification engine, multi-step workflow builder, and provider integrations layer.</p>
+        <div class="proj-meta">TypeScript · NestJS · React · MongoDB</div>
+        <a href="https://github.com/novuhq/novu" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag proj-tag-g">Platform Engineering</div>
+        <div class="proj-name">Developer Platform @ Sedric.ai</div>
+        <p class="proj-desc">Rebuilt the engineering platform from scratch. CI build time down <strong>78%</strong>. Dev overhead down <strong>90%</strong>. Architected the AI-native product delivery layer that the whole company now ships on.</p>
+        <div class="proj-meta">AWS · TypeScript · Node.js · CI/CD · AI</div>
+        <a href="https://sedric.ai" target="_blank" rel="noopener" class="proj-link">Visit Sedric.ai →</a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag proj-tag-r">Infrastructure</div>
+        <div class="proj-name">Video Platform Infrastructure @ Wochit</div>
+        <p class="proj-desc">Led full engineering for a video creation and publishing platform. Rebuilt the cloud infrastructure, cutting AWS costs by <strong>46%</strong> through strategic caching and architecture redesign.</p>
+        <div class="proj-meta">AWS · Node.js · React · Video processing</div>
+        <a href="https://wochit.com" target="_blank" rel="noopener" class="proj-link">Visit Wochit →</a>
+      </div>
+
+      <div class="proj-card proj-card-cta">
+        <div class="proj-tag">Your business</div>
+        <div class="proj-name" data-i18n="proj.cta.t">Let's build something</div>
+        <p class="proj-desc" data-i18n="proj.cta.d">Got a process that's eating too much time? A website that isn't working hard enough? A system that doesn't quite fit? Let's talk about it.</p>
+        <a href="#contact" class="proj-link" data-i18n="proj.cta.link">Get in touch →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ SOCIAL ════════════════════════════════════════════ -->
+<section id="social" class="section-sm">
+  <div class="container">
+    <div class="eyebrow" data-i18n="social.eyebrow">Connect</div>
+    <h2 class="h2" data-i18n="social.h2">Find me online</h2>
+    <div class="social-grid">
+
+      <div class="linkedin-card">
+        <div class="linkedin-hd">
+          <img src="gal-photo.jpg" alt="Gal Tidhar" class="linkedin-photo">
+          <div>
+            <div class="linkedin-name">Gal Tidhar</div>
+            <div class="linkedin-role">Staff Software Engineer · Automation &amp; Systems · Zagreb</div>
+          </div>
+        </div>
+        <div class="linkedin-bio" data-i18n="social.linkedin.bio">Professional updates, engineering takes, and occasional Zagorje wine recommendations.</div>
+        <a href="https://www.linkedin.com/in/galtidhar/" target="_blank" rel="noopener" class="linkedin-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/galtidhar" target="_blank" rel="noopener" class="social-link-row">
+          <div class="social-link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </div>
+          <div class="social-link-body">
+            <div class="social-link-label">GitHub</div>
+            <div class="social-link-sub">@galtidhar · open source &amp; side projects</div>
+          </div>
+          <span class="social-link-arr">↗</span>
+        </a>
+        <a href="mailto:gal@zazet-solutions.hr" class="social-link-row">
+          <div class="social-link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="social-link-body">
+            <div class="social-link-label">Email</div>
+            <div class="social-link-sub">gal@zazet-solutions.hr</div>
+          </div>
+          <span class="social-link-arr">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/galtidhar/" target="_blank" rel="noopener" class="social-link-row">
+          <div class="social-link-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div class="social-link-body">
+            <div class="social-link-label">LinkedIn</div>
+            <div class="social-link-sub">linkedin.com/in/galtidhar</div>
+          </div>
+          <span class="social-link-arr">↗</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ══ CONTACT ════════════════════════════════════════════ -->
 <section id="contact" class="section">
   <div class="container">
@@ -700,7 +894,7 @@
   });
 
   // ── i18n ──────────────────────────────────────────────
-  const T = {"en":{"nav.services":"Services","nav.about":"About","nav.work":"Work","nav.contact":"Contact","nav.cta":"Let's talk","hero.pre":"Zagreb · Croatia \u00a0·\u00a0 Staff Software Engineer","hero.tagline":"I <strong>architect systems<\/strong> that scale<br>and <strong>build teams<\/strong> that ship.","hero.meta":"10 years · Startups to enterprise · Full-stack to staff","hero.cta1":"Get in touch","hero.cta2":"See my work","hero.scroll":"scroll","svc.eyebrow":"What I do","svc.h2":"Services","svc.lead":"Staff-level engineering, available to your team. From architecture reviews to hands-on builds.","svc.plat.t":"Platform Engineering","svc.plat.d":"CI\/CD pipelines, internal tooling, and developer infrastructure that make your whole team faster — not just one service.","svc.arch.t":"System Architecture","svc.arch.d":"API design, service decomposition, database modelling, scalability reviews. Monolith migrations done without burning the house down.","svc.dx.t":"Developer Experience","svc.dx.d":"Reducing dev friction, tightening feedback loops, standardising workflows. Shipped 90% dev overhead reduction at Sedric.ai.","svc.fs.t":"Full-Stack Engineering","svc.fs.d":"TypeScript · Node.js · React · Java. I ship from database schema to UI — no handoff gaps, no context lost between layers.","svc.perf.t":"Performance & Cost","svc.perf.d":"AWS cost optimisation, query tuning, caching strategy, load profiling. Delivered 46% infra cost reduction in under 6 months.","svc.lead2.t":"Engineering Leadership","svc.lead2.d":"Interim staff engineer presence, technical roadmap alignment, team structure, and mentorship for senior engineers.","about.eyebrow":"Who I am","about.h2":"About","about.c1":"📍 Zagreb, Croatia","about.c2":"🇮🇱 Israeli","about.c3":"10 yrs experience","about.c4":"Staff Engineer","about.p1":"I'm <strong>Gal Tidhar<\/strong> — an Israeli software engineer living in Zagreb, Croatia. Over the past decade I've worked across the stack at companies ranging from <strong>Siemens PLM<\/strong> and <strong>Shopify\/Flexport<\/strong> to early-stage startups like <strong>Novu<\/strong> and <strong>Sedric.ai<\/strong>.","about.p2":"I operate at staff level: I write code, design systems, shape roadmaps, and grow engineers. My focus is the intersection of <strong>platform engineering<\/strong>, <strong>developer experience<\/strong>, and <strong>full-stack architecture<\/strong> — the work that makes everyone on the team faster, not just one feature.","about.p3":"ZaZet Solutions is how I work with companies who need that kind of leverage — whether it's a focused engagement on a specific system, or an ongoing staff engineer presence embedded in your team.","about.pq":"\"ZaZet\" — <em>Zagorski Zet<\/em> — Croatian for \"the foreigner who married a local.\" Two cultures, one engineer, one company. Like a gemišt: two things that shouldn't mix, but taste better together.","career.eyebrow":"Experience","career.h2":"Career Changelog","career.lead":"10 years. Seven companies. One thread: shipping systems that matter at scale.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Building AI-assisted engineering workflows and developer tooling. Reduced CI build time by <strong style=\"color:var(--text)\">78%<\/strong> and dev overhead by <strong style=\"color:var(--text)\">90%<\/strong>. Architecting the platform layer for AI-native product delivery.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source notification infrastructure platform. Full-stack feature work across the notification engine, multi-step workflow builder, and provider integrations.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Commerce logistics infrastructure at global scale. Reduced deployment delays by <strong style=\"color:var(--text)\">70%<\/strong>. Distributed systems spanning supply chain orchestration after Flexport's acquisition of Shopify Logistics.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Last-mile fulfilment platform acquired by Shopify. Built order routing and warehouse management integrations, then transitioned into the unified Shopify\/Flexport engineering org.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Led engineering for the video creation and publishing platform. Full-stack from video processing pipeline to React editor. Reduced infrastructure cost by <strong style=\"color:var(--text)\">46%<\/strong> through caching and cloud optimisation.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM software. Java backend and web frontend for manufacturing lifecycle tools. Introduced modern JavaScript tooling into legacy systems serving global manufacturing customers.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"First engineering role — built full-stack web applications from scratch. Transitioned from junior to mid-level while shipping production systems used across Germany and Austria.","num.eyebrow":"By the numbers","num.ci":"faster CI<br>builds","num.ov":"dev overhead<br>reduced","num.dep":"fewer deploy<br>delays","num.cost":"infra cost<br>cut","num.yrs":"years<br>experience","num.co":"companies<br>scaled","stack.eyebrow":"Tools","stack.h2":"Tech Stack","stack.lang":"Languages","stack.fw":"Frameworks","stack.cloud":"Cloud & Infra","stack.db":"Databases","stack.prac":"Practices","stack.design":"System Design","stack.dx":"DX Engineering","stack.review":"Code Review","stack.mentor":"Mentorship","stack.write":"Tech Writing","oss.eyebrow":"Open Source","oss.h2":"What I've shipped publicly","oss.novu.d":"Open-source notification infrastructure for developers — multi-channel (email, SMS, push, in-app), workflow-driven, with a growing ecosystem of provider integrations. Contributed full-stack features to the core engine, workflow builder, and integration layer.","oss.stars":"GitHub stars","oss.prod":"<strong>Production<\/strong> at scale","contact.eyebrow":"Let's work together","contact.h2":"Get in touch","contact.lead":"Available for staff engineer engagements, architecture consulting, and DX projects. Drop me a line.","contact.email":"Email","footer.copy":"© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Croatia"},"hr":{"nav.services":"Usluge","nav.about":"O meni","nav.work":"Iskustvo","nav.contact":"Kontakt","nav.cta":"Razgovarajmo","hero.pre":"Zagreb · Hrvatska \u00a0·\u00a0 Staff Software Engineer","hero.tagline":"Arhitektiram <strong>sustave koji rastu<\/strong><br>i gradim <strong>timove koji isporučuju<\/strong>.","hero.meta":"10 godina · Od startupova do korporacija · Full-stack do staff","hero.cta1":"Javite se","hero.cta2":"Pogledajte moj rad","hero.scroll":"nastavi","svc.eyebrow":"Što radim","svc.h2":"Usluge","svc.lead":"Inženjerstvo na staff razini, dostupno vašem timu. Od pregleda arhitekture do izravne izgradnje.","svc.plat.t":"Platformno inženjerstvo","svc.plat.d":"CI\/CD pipeline, interni alati i razvojna infrastruktura koja ubrzava cijeli tim — ne samo jednu uslugu.","svc.arch.t":"Arhitektura sustava","svc.arch.d":"Dizajn API-ja, dekompozicija usluga, modeliranje baze podataka, pregledi skalabilnosti. Migracije monolita bez rušenja postojećeg sustava.","svc.dx.t":"Developer Experience","svc.dx.d":"Smanjenje trenja u razvoju, skraćivanje povratnih petlji, standardizacija tokova rada. Postigao 90% smanjenje razvojnog opterećenja u Sedric.ai.","svc.fs.t":"Full-Stack inženjerstvo","svc.fs.d":"TypeScript · Node.js · React · Java. Isporučujem od sheme baze podataka do korisničkog sučelja — bez gubitka konteksta između slojeva.","svc.perf.t":"Performanse i troškovi","svc.perf.d":"Optimizacija AWS troškova, podešavanje upita, strategija cachea, profiliranje opterećenja. Postigao 46% smanjenje infrastrukturnih troškova u manje od 6 mjeseci.","svc.lead2.t":"Inženjersko vodstvo","svc.lead2.d":"Privremena prisutnost staff inženjera, usklađivanje tehničke roadmape, struktura tima i mentorstvo za starije inženjere.","about.eyebrow":"Tko sam","about.h2":"O meni","about.c1":"📍 Zagreb, Hrvatska","about.c2":"🇮🇱 Izraelac","about.c3":"10 god. iskustva","about.c4":"Staff inženjer","about.p1":"Ja sam <strong>Gal Tidhar<\/strong> — izraelski softverski inženjer koji živi u Zagrebu. Zadnje desetljeće radio sam na svim razinama <strong>tehnološkog stoga<\/strong> u tvrtkama od <strong>Siemens PLM<\/strong> i <strong>Shopify\/Flexport<\/strong> do ranih startupova poput <strong>Novu<\/strong> i <strong>Sedric.ai<\/strong>.","about.p2":"Radim na staff razini: pišem kod, dizajniram sustave, oblikujem roadmape i razvijam inženjere. Moj fokus je sjecište <strong>platformnog inženjerstva<\/strong>, <strong>Developer Experiencea<\/strong> i <strong>full-stack arhitekture<\/strong> — rad koji ubrzava cijeli tim, ne samo jednu značajku.","about.p3":"ZaZet Solutions je način na koji surađujem s tvrtkama kojima treba ta vrsta stručnosti — bilo da se radi o fokusiranom angažmanu na određenom sustavu, ili o trajnoj prisutnosti staff inženjera ugrađenog u vaš tim.","about.pq":"\"ZaZet\" — <em>Zagorski Zet<\/em> — na hrvatskom: \"stranac koji se oženio Zagorkom.\" Dvije kulture, jedan inženjer, jedna tvrtka. Kao gemišt: dvije stvari koje naizgled ne idu zajedno — a zajedno su savršene.","career.eyebrow":"Iskustvo","career.h2":"Karijera","career.lead":"10 godina. Sedam tvrtki. Jedna nit: isporuka sustava koji su bitni u velikom obimu.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Izgradnja inženjerskih tokova rada potpomognutih AI-jem i alata za developere. Smanjio vrijeme CI builda za <strong style=\"color:var(--text)\">78%<\/strong> i razvojno opterećenje za <strong style=\"color:var(--text)\">90%<\/strong>. Gradi platformni sloj za isporuku AI-nativnih proizvoda.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source platforma za notifikacijsku infrastrukturu. Full-stack rad na notifikacijskom motoru, graditelju multi-step workflowa i integracijama s pružateljima.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Infrastruktura za logistiku trgovine na globalnoj razini. Smanjio kašnjenja pri deployu za <strong style=\"color:var(--text)\">70%<\/strong>. Distribuirani sustavi koji obuhvaćaju orkestraciju opskrbnog lanca nakon Flexport-ovog preuzimanja Shopify Logistics.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Platforma za isporuku posljednje milje koju je preuzeo Shopify. Izgradio integracije za usmjeravanje narudžbi i upravljanje skladištem, zatim prešao u ujedinjenu Shopify\/Flexport inženjersku organizaciju.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Vodio inženjerstvo za platformu za izradu i objavljivanje videa. Full-stack od video processing pipelinea do React editora. Smanjio infrastrukturne troškove za <strong style=\"color:var(--text)\">46%<\/strong> kroz caching i optimizaciju oblaka.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM softver. Java backend i web sučelje za alate upravljanja životnim ciklusom u proizvodnji. Uveo moderne JavaScript alate u naslijeđene sustave koji opslužuju globalne proizvodne klijente.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"Prva inženjerska uloga — izgradnja full-stack web aplikacija od nule. Napredovao od junior do mid razine isporučujući produkcijske sustave koji se koriste u Njemačkoj i Austriji.","num.eyebrow":"Brojevi govore","num.ci":"brži CI<br>buildovi","num.ov":"razvojno opterećenje<br>smanjeno","num.dep":"manje deploy<br>kašnjenja","num.cost":"ušteda na<br>infrastrukturi","num.yrs":"godina<br>iskustva","num.co":"skaliranih<br>tvrtki","stack.eyebrow":"Alati","stack.h2":"Tech Stack","stack.lang":"Jezici","stack.fw":"Frameworks","stack.cloud":"Cloud i Infra","stack.db":"Baze podataka","stack.prac":"Prakse","stack.design":"Dizajn sustava","stack.dx":"DX inženjerstvo","stack.review":"Pregled koda","stack.mentor":"Mentorstvo","stack.write":"Tehnička dokumentacija","oss.eyebrow":"Otvoreni kod","oss.h2":"Što sam javno objavio","oss.novu.d":"Open-source notifikacijska infrastruktura za developere — višekanalna (e-mail, SMS, push, in-app), workflow-orijentirana, s rastućim ekosustavom integracija pružatelja. Doprinio full-stack značajkama u jezgru motora, graditelju workflowa i integracijskom sloju.","oss.stars":"GitHub zvjezdice","oss.prod":"<strong>Produkcija<\/strong> u velikom obimu","contact.eyebrow":"Radimo zajedno","contact.h2":"Javite se","contact.lead":"Dostupan za staff inženjerske angažmane, arhitektonsko savjetovanje i DX projekte. Javite se.","contact.email":"E-mail","footer.copy":"© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Hrvatska"}};
+  const T = {"en":{"nav.services":"Services","nav.about":"About","nav.projects":"Projects","nav.work":"Work","nav.contact":"Contact","nav.cta":"Let's talk","hero.pre":"Zagreb · Croatia · Software Engineer & Builder","hero.tagline":"I build the <strong>systems<\/strong><br>that run your <strong>business<\/strong>.","hero.meta":"Automation · Websites · Custom tools · 10 years experience","hero.cta1":"Get in touch","hero.cta2":"See my work","hero.scroll":"scroll","svc.eyebrow":"What I do","svc.h2":"Services","svc.lead":"From automating Monday\u2019s tasks to building the system your whole operation runs on.","svc.auto.t":"Automate the repetitive stuff","svc.auto.d":"Invoices, follow-ups, spreadsheet updates \u2014 if you do it every week, we can probably automate it. WhatsApp, email, Make.com, custom scripts.","svc.web.t":"Websites that work","svc.web.d":"Clean, fast, mobile-first websites for small businesses. No templates that look like 10 others on your street.","svc.sys.t":"Custom systems","svc.sys.d":"Need something that doesn\u2019t exist yet? Order management, booking flows, client portals \u2014 built around how your business actually works.","svc.fs.t":"Full-Stack Engineering","svc.fs.d":"TypeScript \u00b7 Node.js \u00b7 React \u00b7 Java. From database schema to UI, no handoff gaps, no context lost between layers.","svc.perf.t":"Performance & Cost","svc.perf.d":"AWS cost optimisation, query tuning, caching strategy, load profiling. Delivered 46% infra cost reduction in under 6 months.","svc.lead2.t":"Engineering Leadership","svc.lead2.d":"Interim staff engineer presence, technical roadmap alignment, team structure, and mentorship for senior engineers.","about.eyebrow":"Who I am","about.h2":"About","about.c1":"\ud83d\udccd Zagreb, Croatia","about.c2":"\ud83c\uddee\ud83c\uddf1 Israeli","about.c3":"\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d\udc66 Father of Adam & Ella","about.c4":"10 yrs experience","about.c5":"\ud83e\udd1d Available for projects","about.p1":"I\u2019m <strong>Gal Tidhar<\/strong> \u2014 an Israeli software engineer who moved to Zagreb, married a Zagorka, and never left. Father of <strong>Adam<\/strong> and <strong>Ella<\/strong>. For over a decade I\u2019ve built systems that run at scale, at companies from Siemens to Shopify to early-stage startups.","about.p2":"Today I work with businesses who want to operate smarter \u2014 whether that means automating the tasks that eat your Mondays, building a website that actually brings in customers, or creating a system built around how your business really works.","about.p3":"ZaZet Solutions is named after me. <em>Zagorski Zet<\/em> \u2014 a Croatian term for the foreigner who married into a Zagorje family. I brought the engineering. Croatia gave me the context, the perspective, and the two best kids in the world.","about.pq":"In Zagorje, ordering a gemi\u0161t is not just choosing a drink. You hold up two fingers. One <strong>vertical<\/strong> \u2014 the wine, the dominant force. One <strong>horizontal<\/strong> \u2014 the water, just enough to make it work. That ratio, <em>prst prst<\/em>, is the local name for the strong version: 8 parts wine, 2 parts water. Not the tourist pour. The real one. <a href=\"https:\/\/travelhonestly.com\/watered-wine\/\" target=\"_blank\" rel=\"noopener\">What\u2019s gemi\u0161t? \u2192<\/a><br><br>Look at the ZaZet logo. Blue at the top \u2014 precise, technical, the 20%. Gold fills the rest \u2014 warm, decisive, the impact. That is the ratio of what I bring to your project.","career.eyebrow":"Experience","career.h2":"Career Changelog","career.lead":"10 years. Seven companies. One thread: shipping systems that matter at scale.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Building AI-assisted engineering workflows and developer tooling. Reduced CI build time by <strong style=\"color:var(--text)\">78%<\/strong> and dev overhead by <strong style=\"color:var(--text)\">90%<\/strong>. Architecting the platform layer for AI-native product delivery.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source notification infrastructure platform. Full-stack feature work across the notification engine, multi-step workflow builder, and provider integrations.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Commerce logistics infrastructure at global scale. Reduced deployment delays by <strong style=\"color:var(--text)\">70%<\/strong>. Distributed systems spanning supply chain orchestration after Flexport\u2019s acquisition of Shopify Logistics.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Last-mile fulfilment platform acquired by Shopify. Built order routing and warehouse management integrations, then transitioned into the unified Shopify\/Flexport engineering org.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Led engineering for the video creation and publishing platform. Full-stack from video processing pipeline to React editor. Reduced infrastructure cost by <strong style=\"color:var(--text)\">46%<\/strong> through caching and cloud optimisation.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM software. Java backend and web frontend for manufacturing lifecycle tools. Introduced modern JavaScript tooling into legacy systems serving global manufacturing customers.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"First engineering role \u2014 built full-stack web applications from scratch. Transitioned from junior to mid-level while shipping production systems used across Germany and Austria.","num.eyebrow":"By the numbers","num.ci":"faster CI<br>builds","num.ov":"dev overhead<br>reduced","num.dep":"fewer deploy<br>delays","num.cost":"infra cost<br>cut","num.yrs":"years<br>experience","num.co":"companies<br>scaled","stack.eyebrow":"Tools","stack.h2":"Tech Stack","stack.lang":"Languages","stack.fw":"Frameworks","stack.cloud":"Cloud & Infra","stack.db":"Databases","stack.prac":"Practices","stack.design":"System Design","stack.dx":"DX Engineering","stack.review":"Code Review","stack.mentor":"Mentorship","stack.write":"Tech Writing","oss.eyebrow":"Open Source","oss.h2":"What I\u2019ve shipped publicly","oss.novu.d":"Open-source notification infrastructure for developers \u2014 multi-channel (email, SMS, push, in-app), workflow-driven, with a growing ecosystem of provider integrations. Contributed full-stack features to the core engine, workflow builder, and integration layer.","oss.stars":"GitHub stars","oss.prod":"<strong>Production<\/strong> at scale","proj.eyebrow":"Work","proj.h2":"Projects","proj.lead":"Selected projects and client work.","proj.cta.t":"Let\u2019s build something","proj.cta.d":"Got a process that\u2019s eating too much time? A website that isn\u2019t working hard enough? A system that doesn\u2019t quite fit? Let\u2019s talk about it.","proj.cta.link":"Get in touch \u2192","social.eyebrow":"Connect","social.h2":"Find me online","social.linkedin.bio":"Professional updates, engineering takes, and occasional Zagorje wine recommendations.","contact.eyebrow":"Let\u2019s work together","contact.h2":"Get in touch","contact.lead":"Available for staff engineer engagements, architecture consulting, and DX projects. Drop me a line.","contact.email":"Email","footer.copy":"\u00a9 2026 ZaZet Solutions \u00b7 Gal Tidhar \u00b7 Zagreb, Croatia"},"hr":{"nav.services":"Usluge","nav.about":"O meni","nav.projects":"Projekti","nav.work":"Iskustvo","nav.contact":"Kontakt","nav.cta":"Razgovarajmo","hero.pre":"Zagreb \u00b7 Hrvatska \u00b7 Softverski inženjer i graditelj","hero.tagline":"Gradim <strong>sustave<\/strong><br>koji pokreću vaše <strong>poslovanje<\/strong>.","hero.meta":"Automatizacija \u00b7 Web stranice \u00b7 Prilagođeni alati \u00b7 10 godina iskustva","hero.cta1":"Javite se","hero.cta2":"Pogledajte moj rad","hero.scroll":"nastavi","svc.eyebrow":"Što radim","svc.h2":"Usluge","svc.lead":"Od automatizacije ponedjeljnih zadataka do izgradnje sustava na kojemu radi cijela vaša organizacija.","svc.auto.t":"Automatizirajte ponavljajuće zadatke","svc.auto.d":"Fakture, podsjetnici, ažuriranje tablica \u2014 ako to radite svaki tjedan, vjerojatno možemo automatizirati. WhatsApp, email, Make.com, prilagođene skripte.","svc.web.t":"Web stranice koje donose rezultate","svc.web.d":"Čiste, brze web stranice prilagođene mobilnim uređajima za male tvrtke. Bez predložaka koji izgledaju kao deset drugih na vašoj ulici.","svc.sys.t":"Prilagođeni sustavi","svc.sys.d":"Trebate nešto što ne postoji? Upravljanje narudžbama, sustavi rezervacija, portali za klijente \u2014 izgrađeno za vaš način rada.","svc.fs.t":"Full-Stack inženjerstvo","svc.fs.d":"TypeScript \u00b7 Node.js \u00b7 React \u00b7 Java. Od sheme baze podataka do korisničkog sučelja, bez gubitka konteksta između slojeva.","svc.perf.t":"Performanse i troškovi","svc.perf.d":"Optimizacija AWS troškova, podešavanje upita, strategija cachea, profiliranje opterećenja. Postigao 46% smanjenje infrastrukturnih troškova u manje od 6 mjeseci.","svc.lead2.t":"Inženjersko vodstvo","svc.lead2.d":"Privremena prisutnost staff inženjera, usklađivanje tehničke roadmape, struktura tima i mentorstvo za starije inženjere.","about.eyebrow":"Tko sam","about.h2":"O meni","about.c1":"\ud83d\udccd Zagreb, Hrvatska","about.c2":"\ud83c\uddee\ud83c\uddf1 Izraelac","about.c3":"\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d\udc66 Otac Adama i Elle","about.c4":"10 god. iskustva","about.c5":"\ud83e\udd1d Dostupan za projekte","about.p1":"Ja sam <strong>Gal Tidhar<\/strong> \u2014 izraelski softverski inženjer koji se preselio u Zagreb, oženio Zagorku i nikad otišao. Otac <strong>Adama<\/strong> i <strong>Elle<\/strong>. Više od desetljeća gradim sustave koji rade u velikom obimu, u tvrtkama od Siemensa do Shopifyja i ranih startupova.","about.p2":"Danas radim s tvrtkama koje žele pametnije poslovati \u2014 bilo da to znači automatiziranje zadataka koji troše vaše ponedjeljke, izgradnju web stranice koja privlači klijente, ili stvaranje sustava prilagođenog vašem načinu rada.","about.p3":"ZaZet Solutions je nazvan po meni. <em>Zagorski Zet<\/em> \u2014 hrvatski izraz za stranca koji se oženio u Zagorje. Donio sam inženjerstvo. Hrvatska mi je dala kontekst, perspektivu i dvoje najljepše djece na svijetu.","about.pq":"U Zagorju, naručivanje gemi\u0161ta nije samo odabir pića. Podignete dva prsta. Jedan <strong>vertikalni<\/strong> \u2014 vino, dominantna sila. Jedan <strong>horizontalni<\/strong> \u2014 voda, tek toliko da ga podigne. Taj omjer, <em>prst prst<\/em>, lokalni je naziv za jaku varijantu: 8 dijelova vina, 2 dijela vode. Ne turistička razrijeđena verzija. Prava. <a href=\"https:\/\/zagorje-international.hr\/2025\/02\/28\/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode\/\" target=\"_blank\" rel=\"noopener\">Što je gemi\u0161t? \u2192<\/a><br><br>Pogledajte ZaZet logo. Plava je gore \u2014 precizna, tehnička, tih 20%. Zlatna ispunjava ostatak \u2014 topla, izravna, impakt. To je omjer onoga što donosim vašem projektu.","career.eyebrow":"Iskustvo","career.h2":"Karijera","career.lead":"10 godina. Sedam tvrtki. Jedna nit: isporuka sustava koji su bitni u velikom obimu.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Izgradnja inženjerskih tokova rada potpomognutih AI-jem i alata za developere. Smanjio vrijeme CI builda za <strong style=\"color:var(--text)\">78%<\/strong> i razvojno opterećenje za <strong style=\"color:var(--text)\">90%<\/strong>. Gradi platformni sloj za isporuku AI-nativnih proizvoda.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source platforma za notifikacijsku infrastrukturu. Full-stack rad na notifikacijskom motoru, graditelju multi-step workflowa i integracijama s pružateljima.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Infrastruktura za logistiku trgovine na globalnoj razini. Smanjio kašnjenja pri deployu za <strong style=\"color:var(--text)\">70%<\/strong>. Distribuirani sustavi koji obuhvaćaju orkestraciju opskrbnog lanca nakon Flexport-ovog preuzimanja Shopify Logistics.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Platforma za isporuku posljednje milje koju je preuzeo Shopify. Izgradio integracije za usmjeravanje narudžbi i upravljanje skladištem, zatim prešao u ujedinjenu Shopify\/Flexport inženjersku organizaciju.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Vodio inženjerstvo za platformu za izradu i objavljivanje videa. Full-stack od video processing pipelinea do React editora. Smanjio infrastrukturne troškove za <strong style=\"color:var(--text)\">46%<\/strong> kroz caching i optimizaciju oblaka.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM softver. Java backend i web sučelje za alate upravljanja životnim ciklusom u proizvodnji. Uveo moderne JavaScript alate u naslijeđene sustave koji opslužuju globalne proizvodne klijente.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"Prva inženjerska uloga \u2014 izgradnja full-stack web aplikacija od nule. Napredovao od junior do mid razine isporučujući produkcijske sustave koji se koriste u Njemačkoj i Austriji.","num.eyebrow":"Brojevi govore","num.ci":"brži CI<br>buildovi","num.ov":"razvojno opterećenje<br>smanjeno","num.dep":"manje deploy<br>kašnjenja","num.cost":"ušteda na<br>infrastrukturi","num.yrs":"godina<br>iskustva","num.co":"skaliranih<br>tvrtki","stack.eyebrow":"Alati","stack.h2":"Tech Stack","stack.lang":"Jezici","stack.fw":"Frameworks","stack.cloud":"Cloud i Infra","stack.db":"Baze podataka","stack.prac":"Prakse","stack.design":"Dizajn sustava","stack.dx":"DX inženjerstvo","stack.review":"Pregled koda","stack.mentor":"Mentorstvo","stack.write":"Tehnička dokumentacija","oss.eyebrow":"Otvoreni kod","oss.h2":"Što sam javno objavio","oss.novu.d":"Open-source notifikacijska infrastruktura za developere \u2014 višekanalna (e-mail, SMS, push, in-app), workflow-orijentirana, s rastućim ekosustavom integracija pružatelja. Doprinio full-stack značajkama u jezgru motora, graditelju workflowa i integracijskom sloju.","oss.stars":"GitHub zvjezdice","oss.prod":"<strong>Produkcija<\/strong> u velikom obimu","proj.eyebrow":"Rad","proj.h2":"Projekti","proj.lead":"Odabrani projekti i klijentski rad.","proj.cta.t":"Izgradimo nešto zajedno","proj.cta.d":"Imate proces koji oduzima previše vremena? Web stranicu koja ne donosi dovoljno? Sustav koji ne odgovara vašim potrebama? Razgovarajmo.","proj.cta.link":"Javite se \u2192","social.eyebrow":"Povežimo se","social.h2":"Pronađite me online","social.linkedin.bio":"Stručne objave, inženjerske perspektive i povremene preporuke zagorskih vina.","contact.eyebrow":"Radimo zajedno","contact.h2":"Javite se","contact.lead":"Dostupan za staff inženjerske angažmane, arhitektonsko savjetovanje i DX projekte. Javite se.","contact.email":"E-mail","footer.copy":"\u00a9 2026 ZaZet Solutions \u00b7 Gal Tidhar \u00b7 Zagreb, Hrvatska"}};
 
   function setLang(lang) {
     document.documentElement.lang = lang;
