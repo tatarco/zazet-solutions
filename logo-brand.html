@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ZaZet — SOLUTIONS Placement v2</title>
+  <title>ZaZet — SOLUTIONS Distance Study</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #0a0a18; color: #fff; }
@@ -10,336 +10,151 @@
     .header h1 { font-size: 0.85rem; font-weight: 500; color: #86868b; }
     #content { padding: 2rem; max-width: 1100px; margin: 0 auto; }
     h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .subtitle { color: #86868b; margin-bottom: 2rem; font-size: 0.88rem; }
+    .subtitle { color: #86868b; font-size: 0.88rem; margin-bottom: 2rem; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .card { border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
-    .stage { display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; background: #0d0d1a; min-height: 200px; }
-    .stage svg { max-width: 100%; }
-    .info { padding: 1rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
-    .num { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5ab0f0; margin-bottom: 0.25rem; }
-    .info h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
-    .info p { font-size: 0.78rem; color: #86868b; line-height: 1.5; }
-    .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #86868b; margin: 2.5rem 0 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
+    .stage { display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; background: #0d0d1a; min-height: 160px; }
+    .stage svg { max-width: 100%; height: auto; display: block; }
+    .info { padding: 0.9rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+    .num  { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5ab0f0; margin-bottom: 0.2rem; }
+    .info h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .info p { font-size: 0.76rem; color: #86868b; line-height: 1.5; }
+    @keyframes riseA { 0%{transform:translateY(0);opacity:0} 12%{opacity:.88} 88%{opacity:.22} 100%{transform:translateY(-28px);opacity:0} }
+    @keyframes riseB { 0%{transform:translateY(0);opacity:0} 18%{opacity:.30} 82%{opacity:.07} 100%{transform:translateY(-20px);opacity:0} }
   </style>
 </head>
 <body>
-  <div class="header"><h1>ZaZet Solutions — SOLUTIONS Placement (corrected)</h1></div>
+  <div class="header"><h1>ZaZet — SOLUTIONS Distance &amp; Style Study</h1></div>
   <div id="content">
-    <h2>Where does "SOLUTIONS" live?</h2>
-    <p class="subtitle">Measured positions — JavaScript calculates exact glyph bounds for the second Z</p>
+    <h2>10 options — distance, size, weight</h2>
+    <p class="subtitle">All use gold SOLUTIONS. Varying vertical proximity and type treatment. Positions corrected by JS measurement.</p>
 
-    <!-- Hidden measurement SVG -->
-    <svg id="measure-svg" style="position:absolute;visibility:hidden;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
-      <text id="m-Za"   font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">Za</text>
-      <text id="m-ZaZ"  font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZ</text>
-      <text id="m-ZaZet" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text>
+    <!-- Hidden measurement -->
+    <svg id="msv" style="position:absolute;visibility:hidden;pointer-events:none;top:-9999px">
+      <text id="mtx" x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text>
     </svg>
 
-    <div class="section-label">Option 1 — Inside the second Z</div>
     <div class="grid">
 
-      <!-- A: Diagonal -->
-      <div class="card">
-        <div class="stage">
-          <svg id="svg-a" width="320" height="100" viewBox="0 0 320 100">
-            <defs>
-              <linearGradient id="a-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
-              </linearGradient>
-              <linearGradient id="a-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
-              </linearGradient>
-              <clipPath id="a-clip">
-                <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#a-clip)">
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#a-b)" opacity="0.88"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#a-g)" opacity="0.90"/>
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
-              <circle cx="25"  cy="36" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="62"  cy="31" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="98"  cy="36" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="135" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="172" cy="36" r="2.8" fill="white" opacity="0.85"/>
-              <circle cx="208" cy="31" r="2.2" fill="white" opacity="0.81"/>
-              <circle cx="245" cy="36" r="2.5" fill="white" opacity="0.84"/>
-              <circle cx="282" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="308" cy="36" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="40"  cy="65" r="1.8" fill="white" opacity="0.36"/>
-              <circle cx="115" cy="72" r="1.6" fill="white" opacity="0.30"/>
-              <circle cx="190" cy="60" r="2.0" fill="white" opacity="0.34"/>
-              <circle cx="265" cy="75" r="1.6" fill="white" opacity="0.28"/>
-            </g>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
-            <!-- SOLUTIONS diagonal — position set by JS -->
-            <text id="sol-a" class="sol-diagonal"
-              font-size="9" font-weight="700"
-              font-family="system-ui,-apple-system,sans-serif"
-              letter-spacing="2.5"
-              fill="rgba(255,255,255,0.60)"
-              text-anchor="middle"
-            >SOLUTIONS</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">Option A · Diagonal in Z</div>
-          <h3>Along the slash of the second Z</h3>
-          <p>SOLUTIONS follows the diagonal stroke of the second Z — hidden inside the letter. An easter egg for those who look closely.</p>
-        </div>
+      <!-- Each card has a data-sol-y, data-sep-y, and the SVG is adjusted by JS -->
+
+      <!-- 01 Flush 3px -->
+      <div class="card" data-sol-y="85" data-sep-y="" data-fs="11" data-fw="800" data-ls="4.5" data-op="1" data-vbh="100">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 100"><defs><linearGradient id="hb1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp1"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp1)"><path class="bz" fill="url(#hb1)" opacity=".88"/><path class="gz" fill="url(#hg1)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="11" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="4.5" fill="url(#hg1)" text-anchor="middle" y="85" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">01</div><h3>Flush — 3px gap</h3><p>SOLUTIONS sits 3px below the letter baseline. Reads as one tight unit with the wordmark.</p></div>
       </div>
 
-      <!-- B: Bottom bar of Z -->
-      <div class="card">
-        <div class="stage">
-          <svg id="svg-b" width="320" height="100" viewBox="0 0 320 100">
-            <defs>
-              <linearGradient id="b-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
-              </linearGradient>
-              <linearGradient id="b-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
-              </linearGradient>
-              <clipPath id="b-clip">
-                <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#b-clip)">
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#b-b)" opacity="0.88"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#b-g)" opacity="0.90"/>
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
-              <circle cx="25"  cy="36" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="62"  cy="31" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="98"  cy="36" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="135" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="172" cy="36" r="2.8" fill="white" opacity="0.85"/>
-              <circle cx="208" cy="31" r="2.2" fill="white" opacity="0.81"/>
-              <circle cx="245" cy="36" r="2.5" fill="white" opacity="0.84"/>
-              <circle cx="282" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="308" cy="36" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="40"  cy="65" r="1.8" fill="white" opacity="0.36"/>
-              <circle cx="115" cy="72" r="1.6" fill="white" opacity="0.30"/>
-              <circle cx="190" cy="60" r="2.0" fill="white" opacity="0.34"/>
-              <circle cx="265" cy="75" r="1.6" fill="white" opacity="0.28"/>
-            </g>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
-            <!-- SOLUTIONS on bottom bar — position set by JS -->
-            <text id="sol-b" class="sol-bottombar"
-              font-size="8" font-weight="700"
-              font-family="system-ui,-apple-system,sans-serif"
-              letter-spacing="1.5"
-              fill="rgba(255,255,255,0.65)"
-              text-anchor="middle"
-              y="79"
-            >SOLUTIONS</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">Option B · Bottom bar of Z</div>
-          <h3>Riding the Z's base stroke</h3>
-          <p>SOLUTIONS sits on the bottom horizontal of the second Z — centred inside that single stroke. Horizontal, tight, embedded in the gold zone.</p>
-        </div>
+      <!-- 02 Overlap into gold -->
+      <div class="card" data-sol-y="79" data-sep-y="" data-fs="10" data-fw="800" data-ls="4" data-op=".80" data-vbh="92">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 92"><defs><linearGradient id="hb2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp2"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp2)"><path class="bz" fill="url(#hb2)" opacity=".88"/><path class="gz" fill="url(#hg2)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="10" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="4" fill="url(#hg2)" text-anchor="middle" y="79" opacity=".80">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">02</div><h3>Overlap — inside baseline</h3><p>Tucked into the base of the gold zone. Feels fused with the letterforms. Bold.</p></div>
+      </div>
+
+      <!-- 03 Tight + separator -->
+      <div class="card" data-sol-y="100" data-sep-y="91" data-fs="11" data-fw="800" data-ls="5" data-op="1" data-vbh="114">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 114"><defs><linearGradient id="hb3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp3"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp3)"><path class="bz" fill="url(#hb3)" opacity=".88"/><path class="gz" fill="url(#hg3)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="91" y2="91" stroke="rgba(245,216,74,0.22)" stroke-width=".7"/><text class="sol" font-size="11" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="5" fill="url(#hg3)" text-anchor="middle" y="100" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">03</div><h3>Tight + gold rule</h3><p>8px gap with a gold hairline separator. Classic wordmark logic, close together.</p></div>
+      </div>
+
+      <!-- 04 Current live (109px) -->
+      <div class="card" data-sol-y="109" data-sep-y="91" data-fs="11" data-fw="800" data-ls="5" data-op="1" data-vbh="122">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 122"><defs><linearGradient id="hb4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp4"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp4)"><path class="bz" fill="url(#hb4)" opacity=".88"/><path class="gz" fill="url(#hg4)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="91" y2="91" stroke="rgba(245,216,74,0.20)" stroke-width=".7"/><text class="sol" font-size="11" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="5" fill="url(#hg4)" text-anchor="middle" y="109" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">04 ← live now</div><h3>Current site (27px gap)</h3><p>Reference — the version currently deployed. Compare against the tighter options.</p></div>
+      </div>
+
+      <!-- 05 Flush + bigger 13px -->
+      <div class="card" data-sol-y="87" data-sep-y="" data-fs="13" data-fw="800" data-ls="4" data-op="1" data-vbh="102">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 102"><defs><linearGradient id="hb5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp5"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp5)"><path class="bz" fill="url(#hb5)" opacity=".88"/><path class="gz" fill="url(#hg5)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="13" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="4" fill="url(#hg5)" text-anchor="middle" y="87" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">05</div><h3>Flush, larger (13px)</h3><p>No gap, bigger type. SOLUTIONS feels like a confident subtitle, not a whisper.</p></div>
+      </div>
+
+      <!-- 06 Flush tiny 8px -->
+      <div class="card" data-sol-y="84" data-sep-y="" data-fs="8" data-fw="700" data-ls="5.5" data-op=".70" data-vbh="96">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 96"><defs><linearGradient id="hb6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp6"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp6)"><path class="bz" fill="url(#hb6)" opacity=".88"/><path class="gz" fill="url(#hg6)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="8" font-weight="700" font-family="system-ui,-apple-system,sans-serif" letter-spacing="5.5" fill="url(#hg6)" text-anchor="middle" y="84" opacity=".70">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">06</div><h3>Flush, whisper (8px)</h3><p>Maximum subtlety. Barely there — SOLUTIONS as a footnote. Very understated.</p></div>
+      </div>
+
+      <!-- 07 Flush + brighter gold -->
+      <div class="card" data-sol-y="85" data-sep-y="" data-fs="11" data-fw="900" data-ls="4.5" data-op="1" data-vbh="100">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 100"><defs><linearGradient id="hb7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ffe878"/><stop offset="100%" stop-color="#c8a020"/></linearGradient><clipPath id="cp7"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp7)"><path class="bz" fill="url(#hb7)" opacity=".88"/><path class="gz" fill="url(#hg7)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="11" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="4.5" fill="url(#hg7)" text-anchor="middle" y="85" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">07</div><h3>Flush + bright gold + 900w</h3><p>Same tight gap, lighter gold (#ffe878) and maximum weight. Punchy.</p></div>
+      </div>
+
+      <!-- 08 5px gap no separator -->
+      <div class="card" data-sol-y="89" data-sep-y="" data-fs="10.5" data-fw="800" data-ls="5" data-op="1" data-vbh="104">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 104"><defs><linearGradient id="hb8" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg8" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp8"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp8)"><path class="bz" fill="url(#hb8)" opacity=".88"/><path class="gz" fill="url(#hg8)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="10.5" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="5" fill="url(#hg8)" text-anchor="middle" y="89" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">08</div><h3>5px gap, no separator</h3><p>Breathes just a touch without the rule. Clean and direct.</p></div>
+      </div>
+
+      <!-- 09 Flush + gold hairline above -->
+      <div class="card" data-sol-y="90" data-sep-y="84" data-fs="11" data-fw="800" data-ls="5" data-op="1" data-vbh="105" data-sep-gold="1">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 105"><defs><linearGradient id="hb9" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg9" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp9"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp9)"><path class="bz" fill="url(#hb9)" opacity=".88"/><path class="gz" fill="url(#hg9)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="84" y2="84" stroke="rgba(245,216,74,0.35)" stroke-width=".7"/><text class="sol" font-size="11" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="5" fill="url(#hg9)" text-anchor="middle" y="90" opacity="1">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">09</div><h3>Gold rule + 6px gap</h3><p>Thin gold hairline just above, then SOLUTIONS 6px below it. Framed. Intentional.</p></div>
+      </div>
+
+      <!-- 10 Tight + wide tracking + dim -->
+      <div class="card" data-sol-y="93" data-sep-y="" data-fs="9" data-fw="700" data-ls="7" data-op=".60" data-vbh="106">
+        <div class="stage"><svg class="logo-svg" viewBox="0 0 300 106"><defs><linearGradient id="hb10" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient><linearGradient id="hg10" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient><clipPath id="cp10"><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text></clipPath></defs><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text><g clip-path="url(#cp10)"><path class="bz" fill="url(#hb10)" opacity=".88"/><path class="gz" fill="url(#hg10)" opacity=".90"/><path class="lt" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/><path class="lm" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/><circle class="bbl" cx="28" cy="35" r="2.8" fill="white" style="animation:riseA 4.2s 0s ease-in-out infinite"/><circle class="bbl" cx="65" cy="30" r="2.2" fill="white" style="animation:riseA 3.8s .7s ease-in-out infinite"/><circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/><circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s .3s ease-in-out infinite"/><circle class="bbl" cx="174" cy="35" r="2.8" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/><circle class="bbl" cx="210" cy="30" r="2.2" fill="white" style="animation:riseA 3.9s .5s ease-in-out infinite"/><circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/><circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/><circle class="gr1" cx="45" cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s .2s ease-in-out infinite"/><circle class="gr2" cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6s 1.3s ease-in-out infinite"/><circle class="gr3" cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/><circle class="gr4" cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s .8s ease-in-out infinite"/></g><text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,.06)" stroke-width=".5">ZaZet</text><line class="sep" y1="0" y2="0" stroke="rgba(245,216,74,0)" stroke-width=".7"/><text class="sol" font-size="9" font-weight="700" font-family="system-ui,-apple-system,sans-serif" letter-spacing="7" fill="url(#hg10)" text-anchor="middle" y="93" opacity=".60">SOLUTIONS</text></svg></div>
+        <div class="info"><div class="num">10</div><h3>11px gap, wide tracking, dim</h3><p>Max letter-spacing (7px), 60% opacity. Airy, super-refined. Almost invisible.</p></div>
       </div>
 
     </div>
-
-    <div class="section-label">Option 2 — Horizontal exactly under the wordmark</div>
-    <div class="grid">
-
-      <!-- C: Centered below -->
-      <div class="card">
-        <div class="stage">
-          <svg id="svg-c" width="320" height="122" viewBox="0 0 320 122">
-            <defs>
-              <linearGradient id="c-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
-              </linearGradient>
-              <linearGradient id="c-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
-              </linearGradient>
-              <clipPath id="c-clip">
-                <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#c-clip)">
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#c-b)" opacity="0.88"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#c-g)" opacity="0.90"/>
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
-              <circle cx="25"  cy="36" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="62"  cy="31" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="98"  cy="36" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="135" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="172" cy="36" r="2.8" fill="white" opacity="0.85"/>
-              <circle cx="208" cy="31" r="2.2" fill="white" opacity="0.81"/>
-              <circle cx="245" cy="36" r="2.5" fill="white" opacity="0.84"/>
-              <circle cx="282" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="308" cy="36" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="40"  cy="65" r="1.8" fill="white" opacity="0.36"/>
-              <circle cx="115" cy="72" r="1.6" fill="white" opacity="0.30"/>
-              <circle cx="190" cy="60" r="2.0" fill="white" opacity="0.34"/>
-              <circle cx="265" cy="75" r="1.6" fill="white" opacity="0.28"/>
-            </g>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
-            <!-- Separator line + SOLUTIONS — x/width set by JS -->
-            <line id="sep-c" y1="91" y2="91" stroke="rgba(255,255,255,0.09)" stroke-width="0.8"/>
-            <text id="sol-c" class="sol-below-center"
-              font-size="10.5" font-weight="600"
-              font-family="system-ui,-apple-system,sans-serif"
-              letter-spacing="5"
-              fill="rgba(255,255,255,0.40)"
-              text-anchor="middle"
-              y="110"
-            >SOLUTIONS</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">Option C · Below, centred</div>
-          <h3>Full-width, separator line</h3>
-          <p>SOLUTIONS spans the wordmark width below a hairline rule. Wide letter-spacing. Anchored to the exact left and right edges of ZaZet.</p>
-        </div>
-      </div>
-
-      <!-- D: Right-aligned -->
-      <div class="card">
-        <div class="stage">
-          <svg id="svg-d" width="320" height="122" viewBox="0 0 320 122">
-            <defs>
-              <linearGradient id="d-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
-              </linearGradient>
-              <linearGradient id="d-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
-              </linearGradient>
-              <clipPath id="d-clip">
-                <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#d-clip)">
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#d-b)" opacity="0.88"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#d-g)" opacity="0.90"/>
-              <path d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
-              <path d="M0 42 Q80 38 160 42 Q240 46 320 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
-              <circle cx="25"  cy="36" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="62"  cy="31" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="98"  cy="36" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="135" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="172" cy="36" r="2.8" fill="white" opacity="0.85"/>
-              <circle cx="208" cy="31" r="2.2" fill="white" opacity="0.81"/>
-              <circle cx="245" cy="36" r="2.5" fill="white" opacity="0.84"/>
-              <circle cx="282" cy="31" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="308" cy="36" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="40"  cy="65" r="1.8" fill="white" opacity="0.36"/>
-              <circle cx="115" cy="72" r="1.6" fill="white" opacity="0.30"/>
-              <circle cx="190" cy="60" r="2.0" fill="white" opacity="0.34"/>
-              <circle cx="265" cy="75" r="1.6" fill="white" opacity="0.28"/>
-            </g>
-            <text x="10" y="82" font-size="88" font-weight="900" font-family="system-ui,-apple-system,sans-serif" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
-            <!-- Gold tick left + SOLUTIONS right-aligned — x set by JS -->
-            <line id="tick-d" x1="10" x2="10" y1="94" y2="112" stroke="rgba(245,216,74,0.55)" stroke-width="1.8"/>
-            <text id="sol-d" class="sol-below-right"
-              font-size="10.5" font-weight="600"
-              font-family="system-ui,-apple-system,sans-serif"
-              letter-spacing="4"
-              fill="rgba(255,255,255,0.40)"
-              text-anchor="end"
-              y="110"
-            >SOLUTIONS</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">Option D · Below, right-aligned</div>
-          <h3>Flush right, gold tick on left</h3>
-          <p>SOLUTIONS aligns to the right edge of the wordmark. A gold vertical tick anchors the left — it echoes the Graševina colour and gives the row visual balance.</p>
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
   <script>
-    window.addEventListener('load', function() {
-      // Measure actual glyph bounds using getBBox()
-      const mSvg = document.getElementById('measure-svg');
-      const mZa    = document.getElementById('m-Za');
-      const mZaZ   = document.getElementById('m-ZaZ');
-      const mZaZet = document.getElementById('m-ZaZet');
+    // Measure actual text width and fix viewBoxes + bubble/separator x-positions
+    (function() {
+      const msv = document.getElementById('msv');
+      const mtx = document.getElementById('mtx');
+      let x1=10, x2=280, mid=145, vbW=295;
+      try {
+        const bb = mtx.getBBox();
+        x1  = 10 + bb.x;  // getBBox x is relative to element, text starts at x=10
+        x2  = x1 + bb.width;
+        mid = (x1 + x2) / 2;
+        vbW = Math.ceil(x2 + 12);
+      } catch(e) {}
 
-      // getBBox returns the tight bounding box of the rendered text
-      const bbZa    = mZa.getBBox();
-      const bbZaZ   = mZaZ.getBBox();
-      const bbZaZet = mZaZet.getBBox();
+      // wave path generators
+      const bz = `M0 26 Q${(vbW*.25).toFixed(1)} 22 ${(vbW*.5).toFixed(1)} 26 Q${(vbW*.75).toFixed(1)} 30 ${vbW} 26 L${vbW} 42 Q${(vbW*.75).toFixed(1)} 46 ${(vbW*.5).toFixed(1)} 42 Q${(vbW*.25).toFixed(1)} 38 0 42 Z`;
+      const gz = `M0 42 Q${(vbW*.25).toFixed(1)} 38 ${(vbW*.5).toFixed(1)} 42 Q${(vbW*.75).toFixed(1)} 46 ${vbW} 42 L${vbW} 100 L0 100 Z`;
+      const lt = `M0 26 Q${(vbW*.25).toFixed(1)} 22 ${(vbW*.5).toFixed(1)} 26 Q${(vbW*.75).toFixed(1)} 30 ${vbW} 26`;
+      const lm = `M0 42 Q${(vbW*.25).toFixed(1)} 38 ${(vbW*.5).toFixed(1)} 42 Q${(vbW*.75).toFixed(1)} 46 ${vbW} 42`;
+      const w  = x2 - x1;
 
-      // All our SVGs start text at x=10
-      const textStartX = 10;
+      document.querySelectorAll('.logo-svg').forEach(svg => {
+        const vbh = svg.getAttribute('viewBox').split(' ')[3];
 
-      // Width of "Za" = where the second Z starts (approximately)
-      const zaWidth   = bbZa.width;
-      // Width of "ZaZ" = where the second Z ends
-      const zazWidth  = bbZaZ.width;
-      // Full wordmark width
-      const fullWidth = bbZaZet.width;
+        // update viewBox width
+        svg.setAttribute('viewBox', `0 0 ${vbW} ${vbh}`);
+        svg.setAttribute('width', vbW);
 
-      // Second Z geometry
-      const z2Start  = textStartX + zaWidth;
-      const z2End    = textStartX + zazWidth;
-      const z2Center = (z2Start + z2End) / 2;
-      const wordEnd  = textStartX + fullWidth;
-      const wordMid  = textStartX + fullWidth / 2;
+        // fix wave paths
+        svg.querySelectorAll('.bz').forEach(el => el.setAttribute('d', bz));
+        svg.querySelectorAll('.gz').forEach(el => el.setAttribute('d', gz));
+        svg.querySelectorAll('.lt').forEach(el => el.setAttribute('d', lt));
+        svg.querySelectorAll('.lm').forEach(el => el.setAttribute('d', lm));
 
-      // Cap geometry (system-ui at 88px, cap height ≈ 71% of font-size)
-      const capTop    = 82 - 88 * 0.71;   // ≈ 19.5
-      const baseline  = 82;
-      const midY      = (capTop + baseline) / 2;   // ≈ 50.7
-      const bottomBar = baseline - 6;               // ≈ 76
+        // spread bright bubbles
+        const bbls = svg.querySelectorAll('.bbl');
+        const step = w / (bbls.length - 1);
+        bbls.forEach((b, i) => b.setAttribute('cx', (x1 + step * i).toFixed(1)));
 
-      // ── Option A: diagonal in second Z ────────────────────────
-      const solA = document.getElementById('sol-a');
-      solA.setAttribute('x', z2Center);
-      solA.setAttribute('y', midY);
-      solA.setAttribute('transform', `rotate(-52, ${z2Center}, ${midY})`);
+        // gold zone soft bubbles
+        const positions = [.12, .42, .72, .95];
+        svg.querySelectorAll('.gr1,.gr2,.gr3,.gr4').forEach((b, i) => {
+          b.setAttribute('cx', (x1 + w * positions[i]).toFixed(1));
+        });
 
-      // ── Option B: bottom bar of second Z ──────────────────────
-      const solB = document.getElementById('sol-b');
-      solB.setAttribute('x', z2Center);
-      // y stays at 79 (set in HTML), just fix x
+        // separator x-coords
+        const sep = svg.querySelector('.sep');
+        if (sep) { sep.setAttribute('x1', x1.toFixed(1)); sep.setAttribute('x2', x2.toFixed(1)); }
 
-      // ── Option C: centered below, separator full width ─────────
-      const sepC = document.getElementById('sep-c');
-      sepC.setAttribute('x1', textStartX);
-      sepC.setAttribute('x2', wordEnd);
-      const solC = document.getElementById('sol-c');
-      solC.setAttribute('x', wordMid);
-
-      // ── Option D: right-aligned + left tick ───────────────────
-      const solD = document.getElementById('sol-d');
-      solD.setAttribute('x', wordEnd);
-      // Tick x stays at 10 (set in HTML)
-
-      // ── Update viewBox widths to hug the text ─────────────────
-      // Add right padding of 10px after wordmark
-      const svgW = Math.ceil(wordEnd + 10);
-      ['svg-a','svg-b'].forEach(id => {
-        const el = document.getElementById(id);
-        el.setAttribute('width', svgW);
-        el.setAttribute('viewBox', `0 0 ${svgW} 100`);
-        // Re-centre the liquid wave paths to span this width
-        // (they already use 0 to 320 which may be wider — just clip is fine)
+        // SOLUTIONS x = mid
+        const sol = svg.querySelector('.sol');
+        if (sol) sol.setAttribute('x', mid.toFixed(1));
       });
-      ['svg-c','svg-d'].forEach(id => {
-        const el = document.getElementById(id);
-        el.setAttribute('width', svgW);
-        el.setAttribute('viewBox', `0 0 ${svgW} 122`);
-      });
-    });
+    })();
   </script>
-
 </body>
 </html>
