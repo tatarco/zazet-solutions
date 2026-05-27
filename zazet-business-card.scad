@@ -1,180 +1,181 @@
 // ═══════════════════════════════════════════════════════════════════
-// ZaZet Solutions — 3D Printed Business Card
+// ZaZet Solutions — 3D Printed Business Card  v2
 // ═══════════════════════════════════════════════════════════════════
 //
-//  Dimensions : 85.6 × 54 mm  (ISO 7810 ID-1 / standard)
-//  Thickness  : 1.6 mm total
+//  Standard ISO 7810 ID-1: 85.6 × 54 mm  |  Total: 1.6 mm thick
 //
-//  TWO-COLOR PRINT — single extruder with filament swap:
-//    Color 1 (Navy blue) : z = 0.0 → 0.8 mm  (layers 1-4)
-//    Color 2 (Gold/yellow): z = 0.8 → 1.6 mm  (layers 5-8)
+//  THREE COLORS — AMS / multi-material:
+//    COLOR 1  Navy blue  — card base  (z 0 → 0.8 mm)
+//    COLOR 2  Gold       — all raised text + logo bottom 70%
+//    COLOR 3  Blue       — logo "ZaZet" top 30%  ← faithful brand split
 //
-//  Slicer settings:
+//  How the logo split works:
+//    The real ZaZet brand gradient is 30% blue (top) / 70% gold (bottom).
+//    We cut the raised "ZaZet" wordmark at that y-axis ratio:
+//      gold object  = bottom 70% of cap height
+//      blue object  = top  30% of cap height
+//    Both sit at z = 0.8 → 1.6 mm; the AMS switches color within the
+//    same layer — exactly what AMS multi-color printing does.
+//
+//  Slicer settings (Bambu Studio / OrcaSlicer):
 //    Layer height : 0.2 mm
 //    Nozzle       : 0.4 mm
 //    Infill       : 100%
-//    Add PAUSE at z = 0.8 mm → swap filament to gold/yellow
-//    Print face-up, no supports required
-//
-//  Suggested filaments:
-//    Color 1: eSUN PLA+ Navy Blue / Prusament Prusa Galaxy Black
-//    Color 2: eSUN PLA+ Gold / Bambu PLA Basic Bambu Yellow
-//
-//  After printing: optional clear coat spray for rigidity
+//    Supports     : none
+//    Filament assignment:
+//      Object "Navy Base"   → AMS slot 1
+//      Object "Gold Raised" → AMS slot 2
+//      Object "Blue Logo"   → AMS slot 3
 // ═══════════════════════════════════════════════════════════════════
 
+// ── Export control ───────────────────────────────────────────────
+// Set COLOR = 1 / 2 / 3 before rendering / exporting each STL.
+// Or call with:  openscad -D COLOR=2 -o gold.stl zazet-business-card.scad
+COLOR = 1;
+
 // ── Dimensions ──────────────────────────────────────────────────
-CARD_W  = 85.6;   // width  (mm)
-CARD_H  = 54.0;   // height (mm)
-T_BASE  = 0.8;    // base layer  — Color 1 (navy)
-T_RAISE = 0.8;    // raised layer — Color 2 (gold)
-CORNER  = 3.2;    // corner radius
+CARD_W = 85.6;
+CARD_H = 54.0;
+T      = 0.8;   // layer thickness per color (total = 1.6 mm)
+CR     = 3.2;   // corner radius
+e      = 0.01;  // epsilon
 
 // ── Fonts ────────────────────────────────────────────────────────
-// Change if not installed:  openscad --info  lists available fonts
-FONT_BOLD = "Liberation Sans:style=Bold";
-FONT_REG  = "Liberation Sans:style=Regular";
-FONT_LIGHT = "Liberation Sans:style=Regular";
+FB  = "Liberation Sans:style=Bold";
+FR  = "Liberation Sans:style=Regular";
+FI  = "Liberation Sans:style=Italic";
 
-// ── Contact strings (edit here) ─────────────────────────────────
-NAME     = "Gal Tidhar";
-COMPANY  = "ZaZet Solutions";
-TITLE_1  = "Software Engineer & Builder";
-EMAIL    = "gal@zazet-solutions.hr";
-WEB      = "zazet-solutions.hr";
-LINKEDIN = "linkedin.com/in/galtidhar";
+// ── Content ──────────────────────────────────────────────────────
+NAME    = "Gal Tidhar";
+TITLE1  = "Software Engineer";
+TITLE2  = "& Builder";
+TAGLINE = "Less chaos. More business.";
+EMAIL   = "gal@zazet-solutions.hr";
+WEB     = "zazet-solutions.hr";
+LI      = "linkedin.com/in/galtidhar";
 
-// ────────────────────────────────────────────────────────────────
-// INTERNALS — no need to edit below
-// ────────────────────────────────────────────────────────────────
-e = 0.01;  // epsilon for boolean overlap
+// ── Logo geometry ────────────────────────────────────────────────
+// "ZaZet" wordmark position and colour-split parameters
+LX      = 6.5;    // left margin for logo
+LY      = 33.5;   // baseline y of "ZaZet"
+LSIZE   = 11;     // font size (≈ em height in mm)
+// Liberation Sans Bold cap height ≈ 72% of em size
+LCAP    = LSIZE * 0.72;            // ≈ 7.92 mm
+LSPLIT  = LY + LCAP * 0.70;       // y where gold ends / blue begins ≈ 39.1
 
-// Rounded card outline at given thickness
+
+// ─────────────────────────────────────────────────────────────────
+// MODULES
+// ─────────────────────────────────────────────────────────────────
+
 module card_outline(h) {
     hull()
-        for (x = [CORNER, CARD_W - CORNER],
-             y = [CORNER, CARD_H - CORNER])
+        for (x = [CR, CARD_W-CR], y = [CR, CARD_H-CR])
             translate([x, y, 0])
-                cylinder(r=CORNER, h=h, $fn=64);
+                cylinder(r=CR, h=h, $fn=64);
 }
 
-// ── LAYER 1: Card base (Color 1 — navy) ─────────────────────────
-module base_layer() {
-    card_outline(T_BASE);
+// "ZaZet" clipped to y < LSPLIT  →  gold (bottom 70%)
+module zazet_gold() {
+    intersection() {
+        translate([LX, LY, 0])
+            linear_extrude(T + e)
+                text("ZaZet", size=LSIZE, font=FB,
+                     halign="left", valign="bottom");
+        cube([CARD_W, LSPLIT, T + 2*e]);
+    }
 }
 
-// ── Logo mark (top-left) ─────────────────────────────────────────
-//
-//  The ZaZet logo is a vertical rectangle split:
-//    top 30% = blue  →  rendered as a CUT into the gold block,
-//                       exposing the navy base beneath
-//    bottom 70% = gold → solid raised gold block
-//
-//  This faithfully recreates the brand color ratio in 3D.
-//
-module logo_mark() {
-    lx = 6.5;    // left margin
-    ly = 32.5;   // bottom y of logo block
-    lw = 15.0;   // logo width
-    lh = 16.0;   // logo total height
-    r  = 1.5;    // logo corner radius
+// "ZaZet" clipped to y ≥ LSPLIT  →  blue (top 30%)
+module zazet_blue() {
+    intersection() {
+        translate([LX, LY, 0])
+            linear_extrude(T + e)
+                text("ZaZet", size=LSIZE, font=FB,
+                     halign="left", valign="bottom");
+        translate([0, LSPLIT, -e])
+            cube([CARD_W, CARD_H, T + 2*e]);
+    }
+}
 
-    split = 0.30;             // top 30% = blue (cut)
-    cut_h = lh * split;       // ~4.8 mm cut from top
-    gold_h = lh * (1 - split); // ~11.2 mm solid gold
+// All gold text and decorative elements (excluding logo wordmark)
+module gold_text() {
+    // "SOLUTIONS" subtitle under ZaZet
+    translate([LX, 28.2, 0])
+        linear_extrude(T * 0.7)
+            text("SOLUTIONS", size=3.0, font=FB, spacing=1.35,
+                 halign="left", valign="bottom");
 
-    translate([lx, ly, T_BASE]) {
-        // Gold block (bottom 70%)
-        hull()
-            for (x = [r, lw-r], y = [r, gold_h-r])
-                translate([x, y, 0])
-                    cylinder(r=r, h=T_RAISE, $fn=32);
+    // Vertical rule separating logo from name
+    translate([43.5, 26.5, 0])
+        cube([0.55, 23.5, T * 0.65]);
 
-        // Thin gold top cap — just the frame of the blue zone
-        // (left, right, and top borders, ~0.9 mm wide)
-        bw = 0.9;
-        union() {
-            // left border of blue zone
-            translate([0, gold_h, 0])
-                cube([bw, cut_h, T_RAISE]);
-            // right border
-            translate([lw - bw, gold_h, 0])
-                cube([bw, cut_h, T_RAISE]);
-            // top cap (with rounded corner)
-            hull()
-                for (x = [r, lw-r])
-                    translate([x, ly + lh - CORNER*0.5 - ly, 0])
-                        cylinder(r=r*0.6, h=T_RAISE, $fn=32);
+    // Name
+    translate([46.5, 44.0, 0])
+        linear_extrude(T)
+            text(NAME, size=5.0, font=FB,
+                 halign="left", valign="center");
+
+    // Title (two lines)
+    translate([46.5, 38.0, 0])
+        linear_extrude(T)
+            text(TITLE1, size=2.5, font=FR,
+                 halign="left", valign="center");
+    translate([46.5, 34.5, 0])
+        linear_extrude(T)
+            text(TITLE2, size=2.5, font=FR,
+                 halign="left", valign="center");
+
+    // Main horizontal rule
+    translate([6.5, 25.5, 0])
+        cube([CARD_W - 13, 0.5, T * 0.55]);
+
+    // Tagline — centered, italic
+    translate([CARD_W/2, 20.5, 0])
+        linear_extrude(T * 0.75)
+            text(TAGLINE, size=2.9, font=FI,
+                 halign="center", valign="center");
+
+    // Secondary rule
+    translate([6.5, 15.5, 0])
+        cube([CARD_W - 13, 0.32, T * 0.45]);
+
+    // Contact info
+    translate([6.5, 12.0, 0]) linear_extrude(T * 0.7)
+        text(EMAIL, size=2.2, font=FR, halign="left", valign="center");
+    translate([6.5,  8.0, 0]) linear_extrude(T * 0.7)
+        text(WEB,   size=2.2, font=FR, halign="left", valign="center");
+    translate([6.5,  4.0, 0]) linear_extrude(T * 0.7)
+        text(LI,    size=2.2, font=FR, halign="left", valign="center");
+}
+
+
+// ─────────────────────────────────────────────────────────────────
+// ASSEMBLY  (select via COLOR variable)
+// ─────────────────────────────────────────────────────────────────
+
+if (COLOR == 1) {
+    // ── Navy base ───────────────────────────────────────────────
+    card_outline(T);
+}
+
+if (COLOR == 2) {
+    // ── Gold raised layer ────────────────────────────────────────
+    translate([0, 0, T])
+        intersection() {
+            union() {
+                zazet_gold();
+                gold_text();
+            }
+            translate([0, 0, -e]) card_outline(T + 2*e);
         }
-
-        // Horizontal split line (visible divider between blue/gold)
-        translate([0, gold_h - 0.4, 0])
-            cube([lw, 0.8, T_RAISE * 0.6]);
-    }
 }
 
-// "ZZ" label inside the gold zone of the logo mark
-module logo_zz() {
-    lx = 7.8;
-    ly_gold_center = 32.5 + (16.0 * 0.70) / 2 - 2;
-    translate([lx, ly_gold_center, T_BASE])
-        linear_extrude(T_RAISE + e)
-            text("ZZ", size=8.0, font=FONT_BOLD,
-                 halign="left", valign="center");
-}
-
-// ── LAYER 2: All raised text (Color 2 — gold) ────────────────────
-module raised_elements() {
-    // Company name — top right
-    translate([27.5, 46.5, T_BASE])
-        linear_extrude(T_RAISE)
-            text(COMPANY, size=4.0, font=FONT_BOLD,
-                 halign="left", valign="center");
-
-    // Person name — large, prominent
-    translate([27.5, 40.0, T_BASE])
-        linear_extrude(T_RAISE)
-            text(NAME, size=5.6, font=FONT_BOLD,
-                 halign="left", valign="center");
-
-    // Title
-    translate([27.5, 34.5, T_BASE])
-        linear_extrude(T_RAISE)
-            text(TITLE_1, size=2.6, font=FONT_REG,
-                 halign="left", valign="center");
-
-    // Horizontal rule
-    translate([6.5, 29.8, T_BASE])
-        cube([CARD_W - 13, 0.55, T_RAISE * 0.55]);
-
-    // Contact block — bottom of card
-    translate([6.5, 14.5, T_BASE])
-        linear_extrude(T_RAISE)
-            text(EMAIL, size=2.3, font=FONT_REG,
-                 halign="left", valign="center");
-
-    translate([6.5, 10.5, T_BASE])
-        linear_extrude(T_RAISE)
-            text(WEB, size=2.3, font=FONT_REG,
-                 halign="left", valign="center");
-
-    translate([6.5, 6.5, T_BASE])
-        linear_extrude(T_RAISE)
-            text(LINKEDIN, size=2.2, font=FONT_REG,
-                 halign="left", valign="center");
-}
-
-// ── Assembly ─────────────────────────────────────────────────────
-base_layer();
-
-// Clip all raised geometry to card boundary
-intersection() {
-    union() {
-        logo_mark();
-        logo_zz();
-        raised_elements();
-    }
-    // Bounding volume = card footprint at raised height
-    translate([0, 0, T_BASE - e])
-        card_outline(T_RAISE + 2*e);
+if (COLOR == 3) {
+    // ── Blue logo accent (ZaZet top 30%) ────────────────────────
+    translate([0, 0, T])
+        intersection() {
+            zazet_blue();
+            translate([0, 0, -e]) card_outline(T + 2*e);
+        }
 }
