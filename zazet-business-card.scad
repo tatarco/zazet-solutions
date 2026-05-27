@@ -29,6 +29,7 @@ NAME    = "Gal Tidhar";
 TITLE1  = "Software Engineer";
 TITLE2  = "& Builder";
 TAGLINE = "Less chaos. More business.";
+PHONE   = "+385 99 190 4995";
 EMAIL   = "gal@zazet-solutions.hr";
 WEB     = "zazet-solutions.hr";
 LI      = "linkedin.com/in/galtidhar";
@@ -107,12 +108,14 @@ module gold_text() {
     // Thin rule between tagline and contact
     translate([6.5, 18.2, 0]) cube([47.5, 0.32, T * 0.45]);
 
-    // Contact info (left column, 3 lines)
-    translate([6.5, 14.5, 0]) linear_extrude(T * 0.7)
+    // Contact info (left column, 4 lines)
+    translate([6.5, 15.5, 0]) linear_extrude(T * 0.7)
+        text(PHONE, size=2.2, font=FR, halign="left", valign="center");
+    translate([6.5, 11.5, 0]) linear_extrude(T * 0.7)
         text(EMAIL, size=2.2, font=FR, halign="left", valign="center");
-    translate([6.5, 10.5, 0]) linear_extrude(T * 0.7)
+    translate([6.5,  7.5, 0]) linear_extrude(T * 0.7)
         text(WEB,   size=2.2, font=FR, halign="left", valign="center");
-    translate([6.5,  6.5, 0]) linear_extrude(T * 0.7)
+    translate([6.5,  3.5, 0]) linear_extrude(T * 0.7)
         text(LI,    size=2.2, font=FR, halign="left", valign="center");
 
     // Vertical rule — contact | QR
