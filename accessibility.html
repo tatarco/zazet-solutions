@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Statement — ZaZet Solutions</title>
+  <style>
+    :root {
+      --bg: #0d0d1a; --surface: #111828; --border: rgba(255,255,255,0.07);
+      --text: #f0f0f5; --text2: rgba(240,240,245,0.70); --text3: rgba(240,240,245,0.50);
+      --blue: #7ac8ff; --gold: #f5d84a; --navh: 62px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    .skip-link { position: absolute; top: -100px; left: 1rem; z-index: 9999; background: var(--blue); color: #000; font-weight: 700; font-size: .9rem; padding: .75rem 1.5rem; border-radius: 0 0 10px 10px; text-decoration: none; transition: top .15s; }
+    .skip-link:focus { top: 0; }
+    nav { position: fixed; top: 0; left: 0; right: 0; height: var(--navh); display: flex; align-items: center; background: rgba(13,13,26,.95); border-bottom: 1px solid var(--border); backdrop-filter: blur(18px); z-index: 100; padding: 0 2rem; }
+    nav a { font-size: .88rem; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+    nav a:hover { color: var(--text); }
+    .nav-logo { font-size: 1.4rem; font-weight: 900; letter-spacing: -.04em; background: linear-gradient(180deg, var(--blue) 0%, var(--blue) 30%, var(--gold) 30%, #c8a020 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    main { max-width: 720px; margin: 0 auto; padding: calc(var(--navh) + 3rem) 2rem 5rem; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: .5rem; }
+    .meta { font-size: .82rem; color: var(--text3); margin-bottom: 3rem; }
+    h2 { font-size: 1.1rem; font-weight: 700; margin: 2.5rem 0 .75rem; padding-top: .25rem; border-top: 1px solid var(--border); }
+    p, li { font-size: .96rem; color: var(--text2); margin-bottom: .75rem; }
+    ul { padding-left: 1.25rem; }
+    li { margin-bottom: .4rem; }
+    .status-badge { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .25rem .75rem; border-radius: 100px; background: rgba(122,200,255,.12); color: var(--blue); border: 1px solid rgba(122,200,255,.25); margin-bottom: 1.5rem; }
+    .contact-box { margin-top: 1.5rem; padding: 1.5rem; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,.02); }
+    .contact-box p { margin: 0; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); font-size: .72rem; color: var(--text3); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<nav aria-label="Site navigation">
+  <a href="/" aria-label="ZaZet Solutions — home">
+    <span class="nav-logo" aria-hidden="true">ZaZet</span>
+    <span style="font-size:.75rem;color:var(--text3);margin-left:.25rem">← Back to site</span>
+  </a>
+</nav>
+
+<main id="main-content">
+  <h1>Accessibility Statement</h1>
+  <p class="meta">ZaZet Solutions · Last updated: May 2026</p>
+
+  <span class="status-badge">Partially conformant — actively improving</span>
+
+  <h2>Our commitment</h2>
+  <p>ZaZet Solutions is committed to making this website accessible to all users, including people with disabilities. We are working to meet the requirements of:</p>
+  <ul>
+    <li><strong>Israeli Standard IS 5568</strong> — based on WCAG 2.0 Level AA, under Israel's Equal Rights for Persons with Disabilities Law</li>
+    <li><strong>European Accessibility Act (EAA)</strong> — implemented in Croatia as NN 89/2025, requiring WCAG 2.1 Level AA conformance (in force since 28 June 2025)</li>
+  </ul>
+
+  <h2>Conformance status</h2>
+  <p>This website is <strong>partially conformant</strong> with WCAG 2.1 Level AA. Partial conformance means that some parts of the content do not fully conform to the accessibility standard. We are actively working to resolve all known issues.</p>
+
+  <h2>Known issues being addressed</h2>
+  <ul>
+    <li>Colour contrast for some secondary text elements is being improved</li>
+    <li>Mobile navigation has been updated with an accessible hamburger menu</li>
+    <li>Focus indicators have been added across all interactive elements</li>
+    <li>All decorative images and icons have been hidden from assistive technologies</li>
+    <li>Skip-to-content navigation has been added</li>
+  </ul>
+
+  <h2>Technical specifications</h2>
+  <p>This website relies on the following technologies for conformance:</p>
+  <ul>
+    <li>HTML5</li>
+    <li>CSS3</li>
+    <li>JavaScript (ES2020)</li>
+    <li>SVG (for logo and icons)</li>
+  </ul>
+  <p>The site has been tested with VoiceOver (macOS/iOS) and is designed to work with major screen readers including NVDA and JAWS.</p>
+
+  <h2>Feedback and contact</h2>
+  <p>We welcome feedback on the accessibility of this website. If you experience any barriers or have suggestions for improvement, please contact us:</p>
+  <div class="contact-box">
+    <p><strong>Email:</strong> <a href="mailto:gal@zazet-solutions.hr">gal@zazet-solutions.hr</a></p>
+    <p style="margin-top:.5rem"><strong>Response time:</strong> We aim to respond within 5 business days.</p>
+  </div>
+
+  <h2>Enforcement</h2>
+  <p>If you are not satisfied with our response to your accessibility complaint, you may contact:</p>
+  <ul>
+    <li><strong>Israel:</strong> The Commission for Equal Rights of Persons with Disabilities, Ministry of Justice</li>
+    <li><strong>Croatia / EU:</strong> The Ministry of Labour, Pension System, Family and Social Policy (Ministarstvo rada, mirovinskoga sustava, obitelji i socijalne politike)</li>
+  </ul>
+</main>
+
+<footer>
+  <p>© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Croatia</p>
+</footer>
+
+</body>
+</html>
