@@ -1,51 +1,30 @@
 // ═══════════════════════════════════════════════════════════════════
-// ZaZet Solutions — 3D Printed Business Card  v2
+// ZaZet Solutions — 3D Printed Business Card  v3
 // ═══════════════════════════════════════════════════════════════════
 //
 //  Standard ISO 7810 ID-1: 85.6 × 54 mm  |  Total: 1.6 mm thick
 //
 //  THREE COLORS — AMS / multi-material:
 //    COLOR 1  Navy blue  — card base  (z 0 → 0.8 mm)
-//    COLOR 2  Gold       — all raised text + logo bottom 70%
-//    COLOR 3  Blue       — logo "ZaZet" top 30%  ← faithful brand split
+//    COLOR 2  Gold       — all raised text + logo bottom 70% + QR code
+//    COLOR 3  Blue       — logo "ZaZet" top 30%
 //
-//  How the logo split works:
-//    The real ZaZet brand gradient is 30% blue (top) / 70% gold (bottom).
-//    We cut the raised "ZaZet" wordmark at that y-axis ratio:
-//      gold object  = bottom 70% of cap height
-//      blue object  = top  30% of cap height
-//    Both sit at z = 0.8 → 1.6 mm; the AMS switches color within the
-//    same layer — exactly what AMS multi-color printing does.
-//
-//  Slicer settings (Bambu Studio / OrcaSlicer):
-//    Layer height : 0.2 mm
-//    Nozzle       : 0.4 mm
-//    Infill       : 100%
-//    Supports     : none
-//    Filament assignment:
-//      Object "Navy Base"   → AMS slot 1
-//      Object "Gold Raised" → AMS slot 2
-//      Object "Blue Logo"   → AMS slot 3
+//  QR code links to: https://zazet-solutions.hr
+//  Bottom-right corner, 18×18 mm (25×25 modules @ 0.72 mm each)
 // ═══════════════════════════════════════════════════════════════════
 
-// ── Export control ───────────────────────────────────────────────
-// Set COLOR = 1 / 2 / 3 before rendering / exporting each STL.
-// Or call with:  openscad -D COLOR=2 -o gold.stl zazet-business-card.scad
-COLOR = 1;
+COLOR = 1; // ← 1=navy  2=gold  3=blue
 
-// ── Dimensions ──────────────────────────────────────────────────
 CARD_W = 85.6;
 CARD_H = 54.0;
-T      = 0.8;   // layer thickness per color (total = 1.6 mm)
-CR     = 3.2;   // corner radius
-e      = 0.01;  // epsilon
+T      = 0.8;
+CR     = 3.2;
+e      = 0.01;
 
-// ── Fonts ────────────────────────────────────────────────────────
 FB  = "Liberation Sans:style=Bold";
 FR  = "Liberation Sans:style=Regular";
 FI  = "Liberation Sans:style=Italic";
 
-// ── Content ──────────────────────────────────────────────────────
 NAME    = "Gal Tidhar";
 TITLE1  = "Software Engineer";
 TITLE2  = "& Builder";
@@ -54,20 +33,18 @@ EMAIL   = "gal@zazet-solutions.hr";
 WEB     = "zazet-solutions.hr";
 LI      = "linkedin.com/in/galtidhar";
 
-// ── Logo geometry ────────────────────────────────────────────────
-// "ZaZet" wordmark position and colour-split parameters
-LX      = 6.5;    // left margin for logo
-LY      = 33.5;   // baseline y of "ZaZet"
-LSIZE   = 11;     // font size (≈ em height in mm)
-// Liberation Sans Bold cap height ≈ 72% of em size
-LCAP    = LSIZE * 0.72;            // ≈ 7.92 mm
-LSPLIT  = LY + LCAP * 0.70;       // y where gold ends / blue begins ≈ 39.1
+LX      = 6.5;
+LY      = 33.5;
+LSIZE   = 11;
+LCAP    = LSIZE * 0.72;
+LSPLIT  = LY + LCAP * 0.70;   // ≈ 39.1 — y where gold ends / blue starts
 
+// QR code position (bottom-right)
+QR_X    = 59.0;   // left edge of QR
+QR_Y    = 4.5;    // bottom edge of QR
+QR_H    = T;      // same height as all raised elements
 
 // ─────────────────────────────────────────────────────────────────
-// MODULES
-// ─────────────────────────────────────────────────────────────────
-
 module card_outline(h) {
     hull()
         for (x = [CR, CARD_W-CR], y = [CR, CARD_H-CR])
@@ -75,7 +52,6 @@ module card_outline(h) {
                 cylinder(r=CR, h=h, $fn=64);
 }
 
-// "ZaZet" clipped to y < LSPLIT  →  gold (bottom 70%)
 module zazet_gold() {
     intersection() {
         translate([LX, LY, 0])
@@ -86,7 +62,6 @@ module zazet_gold() {
     }
 }
 
-// "ZaZet" clipped to y ≥ LSPLIT  →  blue (top 30%)
 module zazet_blue() {
     intersection() {
         translate([LX, LY, 0])
@@ -98,69 +73,399 @@ module zazet_blue() {
     }
 }
 
-// All gold text and decorative elements (excluding logo wordmark)
 module gold_text() {
-    // "SOLUTIONS" subtitle under ZaZet
+    // "SOLUTIONS" subtitle
     translate([LX, 28.2, 0])
         linear_extrude(T * 0.7)
             text("SOLUTIONS", size=3.0, font=FB, spacing=1.35,
                  halign="left", valign="bottom");
 
-    // Vertical rule separating logo from name
-    translate([43.5, 26.5, 0])
-        cube([0.55, 23.5, T * 0.65]);
+    // Vertical rule — logo | name
+    translate([43.5, 26.5, 0]) cube([0.55, 23.5, T * 0.65]);
 
     // Name
     translate([46.5, 44.0, 0])
         linear_extrude(T)
-            text(NAME, size=5.0, font=FB,
-                 halign="left", valign="center");
+            text(NAME, size=5.0, font=FB, halign="left", valign="center");
 
-    // Title (two lines)
+    // Title
     translate([46.5, 38.0, 0])
         linear_extrude(T)
-            text(TITLE1, size=2.5, font=FR,
-                 halign="left", valign="center");
+            text(TITLE1, size=2.5, font=FR, halign="left", valign="center");
     translate([46.5, 34.5, 0])
         linear_extrude(T)
-            text(TITLE2, size=2.5, font=FR,
-                 halign="left", valign="center");
+            text(TITLE2, size=2.5, font=FR, halign="left", valign="center");
 
     // Main horizontal rule
-    translate([6.5, 25.5, 0])
-        cube([CARD_W - 13, 0.5, T * 0.55]);
+    translate([6.5, 25.5, 0]) cube([CARD_W - 13, 0.5, T * 0.55]);
 
-    // Tagline — centered, italic
-    translate([CARD_W/2, 20.5, 0])
+    // Tagline — left-aligned below rule, italic
+    translate([6.5, 21.5, 0])
         linear_extrude(T * 0.75)
-            text(TAGLINE, size=2.9, font=FI,
-                 halign="center", valign="center");
+            text(TAGLINE, size=2.8, font=FI, halign="left", valign="center");
 
-    // Secondary rule
-    translate([6.5, 15.5, 0])
-        cube([CARD_W - 13, 0.32, T * 0.45]);
+    // Thin rule between tagline and contact
+    translate([6.5, 18.2, 0]) cube([47.5, 0.32, T * 0.45]);
 
-    // Contact info
-    translate([6.5, 12.0, 0]) linear_extrude(T * 0.7)
+    // Contact info (left column, 3 lines)
+    translate([6.5, 14.5, 0]) linear_extrude(T * 0.7)
         text(EMAIL, size=2.2, font=FR, halign="left", valign="center");
-    translate([6.5,  8.0, 0]) linear_extrude(T * 0.7)
+    translate([6.5, 10.5, 0]) linear_extrude(T * 0.7)
         text(WEB,   size=2.2, font=FR, halign="left", valign="center");
-    translate([6.5,  4.0, 0]) linear_extrude(T * 0.7)
+    translate([6.5,  6.5, 0]) linear_extrude(T * 0.7)
         text(LI,    size=2.2, font=FR, halign="left", valign="center");
+
+    // Vertical rule — contact | QR
+    translate([56.0, 4.0, 0]) cube([0.45, 21.0, T * 0.55]);
+
+    // QR code — bottom right corner
+    qr_code(QR_X, QR_Y, QR_H);
 }
 
+// ─────────────────────────────────────────────────────────────────
+// Auto-generated QR code — https://zazet-solutions.hr
+// Version 2, 25×25 modules, 0.72mm per module
+module qr_code(x0, y0, h, e=0.01) {
+  translate([x0, y0, 0]) {
+  translate([0.0000,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([0.7200,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,17.2800,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,16.5600,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,15.8400,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,15.1200,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,14.4000,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,13.6800,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([0.7200,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,12.9600,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,12.2400,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,12.2400,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,12.2400,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,12.2400,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,12.2400,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,12.2400,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([5.0400,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,11.5200,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([5.0400,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,10.8000,0]) cube([0.72,0.72,h+e]);
+  translate([0.7200,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([5.0400,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,10.0800,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([5.0400,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,9.3600,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([5.0400,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,8.6400,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,7.9200,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([0.7200,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,7.2000,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([5.0400,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,6.4800,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,5.7600,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,5.0400,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([0.7200,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,4.3200,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,3.6000,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,2.8800,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,2.1600,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([7.2000,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([7.9200,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([9.3600,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([12.2400,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,1.4400,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([6.4800,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([10.8000,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([13.6800,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([14.4000,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([15.8400,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([16.5600,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,0.7200,0]) cube([0.72,0.72,h+e]);
+  translate([0.0000,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([0.7200,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([1.4400,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([2.1600,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([2.8800,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([3.6000,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([4.3200,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([5.7600,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([8.6400,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([10.0800,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([11.5200,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([12.9600,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([15.1200,0.0000,0]) cube([0.72,0.72,h+e]);
+  translate([17.2800,0.0000,0]) cube([0.72,0.72,h+e]);
+  }
+}
 
 // ─────────────────────────────────────────────────────────────────
-// ASSEMBLY  (select via COLOR variable)
+// ASSEMBLY
 // ─────────────────────────────────────────────────────────────────
 
 if (COLOR == 1) {
-    // ── Navy base ───────────────────────────────────────────────
     card_outline(T);
 }
-
 if (COLOR == 2) {
-    // ── Gold raised layer ────────────────────────────────────────
     translate([0, 0, T])
         intersection() {
             union() {
@@ -170,9 +475,7 @@ if (COLOR == 2) {
             translate([0, 0, -e]) card_outline(T + 2*e);
         }
 }
-
 if (COLOR == 3) {
-    // ── Blue logo accent (ZaZet top 30%) ────────────────────────
     translate([0, 0, T])
         intersection() {
             zazet_blue();
