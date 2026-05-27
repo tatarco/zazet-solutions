@@ -2,879 +2,337 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ZaZet — Liquid Letters Enhanced</title>
+  <title>ZaZet — SOLUTIONS Placement</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0a0a18;
-      color: #fff;
-    }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #0a0a18; color: #fff; }
     .header { background: rgba(255,255,255,0.04); padding: 0.6rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
     .header h1 { font-size: 0.85rem; font-weight: 500; color: #86868b; }
-
-    #content { padding: 2rem; max-width: 1200px; margin: 0 auto; }
-
-    h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .subtitle { color: #86868b; margin-bottom: 0.4rem; font-size: 0.88rem; }
-    .note { font-size: 0.78rem; color: #d4b060; background: rgba(212,176,96,0.08); border: 1px solid rgba(212,176,96,0.2); border-radius: 8px; padding: 0.5rem 1rem; margin-bottom: 2rem; }
-
-    .section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #86868b; margin: 2.5rem 0 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
-
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
-
+    #content { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+    h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .subtitle { color: #86868b; margin-bottom: 2rem; font-size: 0.88rem; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .card { border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
-    .stage { display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 1.5rem; }
-    .stage-tall { height: 260px; }
-    .stage-hero { height: 320px; }
-    .stage-sm { height: 180px; }
+    .stage { display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; background: #0d0d1a; }
     .info { padding: 1rem 1.25rem; border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
-    .num { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #86868b; margin-bottom: 0.25rem; }
-    .info h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.2rem; color: #fff; }
+    .num { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5ab0f0; margin-bottom: 0.25rem; }
+    .info h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
     .info p { font-size: 0.78rem; color: #86868b; line-height: 1.5; }
-
-    /* Context: nav bar */
-    .nav-mock { background: rgba(10,10,24,0.95); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; width: 100%; }
-    .nav-links { display: flex; gap: 1.5rem; }
-    .nav-links span { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
-
-    /* Context: hero */
-    .hero-mock { background: linear-gradient(160deg, #0d0d1a 0%, #111830 100%); border-radius: 16px; border: 1px solid rgba(255,255,255,0.06); padding: 3rem 2rem; text-align: center; width: 100%; }
-    .hero-mock .tagline { font-size: 1rem; color: rgba(255,255,255,0.45); margin-top: 1rem; letter-spacing: 0.02em; }
-    .hero-mock .cta { display: inline-block; margin-top: 1.5rem; padding: 0.65rem 2rem; border-radius: 100px; background: rgba(90,176,240,0.15); border: 1px solid rgba(90,176,240,0.35); color: #8dd0ff; font-size: 0.82rem; letter-spacing: 0.05em; }
-
-    /* Context: business card */
-    .card-mock { width: 320px; height: 180px; background: linear-gradient(135deg, #0d0d1a 0%, #141428 100%); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 1.5rem; }
-    .card-back { background: linear-gradient(135deg, #0a0a16 0%, #101020 100%); }
-    .card-name { font-size: 0.92rem; font-weight: 600; color: rgba(255,255,255,0.9); }
-    .card-title { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
-    .card-email { font-size: 0.68rem; color: rgba(90,176,240,0.7); }
-
-    /* Context: social avatar */
-    .avatar-row { display: flex; gap: 1.5rem; align-items: center; }
-    .avatar-wrap { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-    .avatar-label { font-size: 0.6rem; color: #86868b; text-transform: uppercase; letter-spacing: 0.08em; }
+    .section-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: #86868b; margin: 2.5rem 0 1rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.5rem; }
   </style>
 </head>
 <body>
-  <div class="header"><h1>ZaZet Solutions — Liquid Letters Enhanced</h1></div>
+  <div class="header"><h1>ZaZet Solutions — SOLUTIONS Placement Study</h1></div>
   <div id="content">
+    <h2>Where does "SOLUTIONS" live?</h2>
+    <p class="subtitle">V1 Canonical base · Two directions: inside the Z, or horizontal below</p>
 
-    <h2>Liquid Letters — Enhanced Exploration</h2>
-    <p class="subtitle">Concept 09: "ZaZet" as the glass — letterforms filled with gemišt. Blue water on top, Graševina gold below, white mineral bubbles rising through.</p>
-    <div class="note">The letters ARE the bačvica. The liquid boundary runs through the middle of every glyph. Bubbles rise through the gold and collect in the blue. No separate icon needed — the name is the logo.</div>
-
-    <!-- ═══════════════════════════════════════════ -->
-    <div class="section-title">Hero Scale — The Full Statement</div>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <div style="background:#0d0d1a; border-radius:18px; border:1px solid rgba(255,255,255,0.08); padding:2rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
-      <svg width="640" height="160" viewBox="0 0 640 160" style="max-width:100%; height:auto;">
-        <defs>
-          <!-- Wave surface for top of liquid -->
-          <linearGradient id="hl-blue" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#7ac8ff" stop-opacity="0.95"/>
-            <stop offset="100%" stop-color="#1a60d8" stop-opacity="0.88"/>
-          </linearGradient>
-          <linearGradient id="hl-gold" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#f5d84a" stop-opacity="0.96"/>
-            <stop offset="100%" stop-color="#9a7010" stop-opacity="0.90"/>
-          </linearGradient>
-          <!-- Text clip -->
-          <clipPath id="hl-clip">
-            <text x="20" y="128" font-size="138" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="-6">ZaZet</text>
-          </clipPath>
-          <!-- Subtle inner glow for letters -->
-          <filter id="hl-glow" x="-5%" y="-5%" width="110%" height="110%">
-            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
-            <feFlood flood-color="#5ab0f0" flood-opacity="0.3" result="color"/>
-            <feComposite in="color" in2="blur" operator="in" result="shadow"/>
-            <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!-- Ghost fill — letters as silhouette -->
-        <text x="20" y="128" font-size="138" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="-6" fill="rgba(255,255,255,0.04)">ZaZet</text>
-
-        <!-- Liquid fill clipped to letterforms -->
-        <g clip-path="url(#hl-clip)">
-          <!-- Air zone: top 30% = y:10→52 (height 138, text baseline 128, ascender ~138, top ~-10) -->
-          <!-- Liquid surface at ~30% from top of glyph box: y≈42 -->
-          <!-- Blue (25% of liquid): y=42→66 -->
-          <rect x="0" y="0" width="640" height="42" fill="rgba(255,255,255,0.02)"/>
-          <!-- Wavy surface line for blue -->
-          <path d="M0 42 Q80 38 160 42 Q240 46 320 42 Q400 38 480 42 Q560 46 640 42 L640 66 Q560 69 480 65 Q400 61 320 65 Q240 69 160 65 Q80 61 0 66 Z" fill="url(#hl-blue)"/>
-          <!-- Gold (75% of liquid): y=66→160 -->
-          <path d="M0 66 Q80 63 160 67 Q240 71 320 67 Q400 63 480 67 Q560 71 640 67 L640 160 L0 160 Z" fill="url(#hl-gold)"/>
-
-          <!-- Liquid/air interface highlight -->
-          <path d="M0 42 Q80 38 160 42 Q240 46 320 42 Q400 38 480 42 Q560 46 640 42" stroke="rgba(200,230,255,0.4)" stroke-width="1.5" fill="none"/>
-          <!-- Blue/gold seam -->
-          <path d="M0 66 Q80 63 160 67 Q240 71 320 67 Q400 63 480 67 Q560 71 640 67" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" fill="none"/>
-
-          <!-- White mineral bubbles — dense cluster rising through gold, collecting in blue -->
-          <!-- In gold, rising: -->
-          <circle cx="48"  cy="105" r="3.8" fill="white" opacity="0.30"/>
-          <circle cx="72"  cy="88"  r="3.0" fill="white" opacity="0.36"/>
-          <circle cx="95"  cy="112" r="3.2" fill="white" opacity="0.28"/>
-          <circle cx="135" cy="92"  r="2.8" fill="white" opacity="0.32"/>
-          <circle cx="168" cy="108" r="3.5" fill="white" opacity="0.28"/>
-          <circle cx="205" cy="85"  r="2.5" fill="white" opacity="0.35"/>
-          <circle cx="240" cy="100" r="3.0" fill="white" opacity="0.30"/>
-          <circle cx="278" cy="90"  r="2.8" fill="white" opacity="0.32"/>
-          <circle cx="315" cy="115" r="3.2" fill="white" opacity="0.26"/>
-          <circle cx="355" cy="88"  r="2.5" fill="white" opacity="0.35"/>
-          <circle cx="390" cy="105" r="3.0" fill="white" opacity="0.30"/>
-          <circle cx="428" cy="82"  r="2.8" fill="white" opacity="0.33"/>
-          <circle cx="462" cy="100" r="3.5" fill="white" opacity="0.28"/>
-          <circle cx="498" cy="112" r="2.5" fill="white" opacity="0.32"/>
-          <circle cx="535" cy="90"  r="3.0" fill="white" opacity="0.30"/>
-          <circle cx="570" cy="108" r="2.8" fill="white" opacity="0.28"/>
-          <circle cx="605" cy="85"  r="3.2" fill="white" opacity="0.32"/>
-          <!-- Collected in blue zone, bright -->
-          <circle cx="55"  cy="56"  r="4.2" fill="white" opacity="0.88"/>
-          <circle cx="105" cy="50"  r="3.2" fill="white" opacity="0.82"/>
-          <circle cx="148" cy="57"  r="3.8" fill="white" opacity="0.86"/>
-          <circle cx="195" cy="48"  r="2.8" fill="white" opacity="0.80"/>
-          <circle cx="245" cy="55"  r="4.0" fill="white" opacity="0.85"/>
-          <circle cx="295" cy="50"  r="3.0" fill="white" opacity="0.78"/>
-          <circle cx="340" cy="58"  r="3.5" fill="white" opacity="0.83"/>
-          <circle cx="385" cy="49"  r="2.8" fill="white" opacity="0.80"/>
-          <circle cx="435" cy="56"  r="4.0" fill="white" opacity="0.87"/>
-          <circle cx="480" cy="51"  r="3.2" fill="white" opacity="0.82"/>
-          <circle cx="525" cy="57"  r="3.8" fill="white" opacity="0.85"/>
-          <circle cx="575" cy="50"  r="3.0" fill="white" opacity="0.80"/>
-          <circle cx="615" cy="56"  r="3.5" fill="white" opacity="0.83"/>
-          <!-- Tiny micro bubbles -->
-          <circle cx="78"  cy="72"  r="1.8" fill="white" opacity="0.55"/>
-          <circle cx="160" cy="75"  r="1.5" fill="white" opacity="0.50"/>
-          <circle cx="220" cy="70"  r="2.0" fill="white" opacity="0.52"/>
-          <circle cx="360" cy="73"  r="1.8" fill="white" opacity="0.55"/>
-          <circle cx="500" cy="70"  r="2.0" fill="white" opacity="0.50"/>
-        </g>
-
-        <!-- Letter outlines — subtle -->
-        <text x="20" y="128" font-size="138" font-weight="900" font-family="system-ui, -apple-system, sans-serif" letter-spacing="-6" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.8">ZaZet</text>
-      </svg>
-      <div style="font-size:0.75rem; color:rgba(255,255,255,0.2); letter-spacing:4px; text-transform:uppercase;">Solutions</div>
-    </div>
-
-
-    <!-- ═══════════════════════════════════════════ -->
-    <div class="section-title">10 Variants — Liquid Letters Direction</div>
-    <!-- ═══════════════════════════════════════════ -->
-
+    <div class="section-label">Option 1 — Inside the second Z</div>
     <div class="grid">
 
-      <!-- V1 · CANONICAL — dark bg, exact colors -->
+      <!-- A: Diagonal inside the Z -->
       <div class="card">
-        <div class="stage stage-tall" style="background:#0d0d1a;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
+        <div class="stage">
+          <svg width="480" height="100" viewBox="0 0 480 100">
             <defs>
-              <linearGradient id="v1-b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="a-b" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
               </linearGradient>
-              <linearGradient id="v1-g" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="a-g" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
               </linearGradient>
-              <clipPath id="v1c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
+              <clipPath id="ac">
+                <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
               </clipPath>
             </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#v1c)">
-              <rect x="0" y="0" width="300" height="26" fill="rgba(255,255,255,0.02)"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 45 150 41 Q75 37 0 41 Z" fill="url(#v1-b)"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v1-g)"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26" stroke="rgba(180,225,255,0.35)" stroke-width="1" fill="none"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none"/>
-              <circle cx="30"  cy="35" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="65"  cy="31" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="100" cy="35" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="142" cy="30" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="178" cy="35" r="2.8" fill="white" opacity="0.85"/>
-              <circle cx="218" cy="31" r="2.2" fill="white" opacity="0.80"/>
-              <circle cx="255" cy="35" r="2.5" fill="white" opacity="0.83"/>
-              <circle cx="285" cy="30" r="2.0" fill="white" opacity="0.78"/>
-              <circle cx="45"  cy="58" r="2.0" fill="white" opacity="0.38"/>
-              <circle cx="100" cy="65" r="1.8" fill="white" opacity="0.32"/>
-              <circle cx="160" cy="55" r="2.2" fill="white" opacity="0.35"/>
-              <circle cx="220" cy="62" r="2.0" fill="white" opacity="0.30"/>
-              <circle cx="270" cy="70" r="1.8" fill="white" opacity="0.28"/>
-            </g>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V1 — Canonical</div>
-          <h3>Pure Gemišt</h3>
-          <p>Exact blue + Graševina gold. The 30/70 liquid ratio runs through every letter. White bubbles concentrated in the blue zone. This is the base.</p>
-        </div>
-      </div>
-
-      <!-- V2 · NIGHT GLOW — dark with luminous letters -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#050508;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v2-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#9ae0ff"/><stop offset="100%" stop-color="#2878f0"/>
-              </linearGradient>
-              <linearGradient id="v2-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#ffe070"/><stop offset="100%" stop-color="#c08a00"/>
-              </linearGradient>
-              <filter id="v2-glow" x="-10%" y="-10%" width="120%" height="120%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
-                <feFlood flood-color="#5ab0f0" flood-opacity="0.4" result="c"/>
-                <feComposite in="c" in2="blur" operator="in" result="s"/>
-                <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-              <clipPath id="v2c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.03)">ZaZet</text>
-            <g clip-path="url(#v2c)" filter="url(#v2-glow)">
-              <rect x="0" y="0" width="300" height="26" fill="rgba(255,255,255,0.01)"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v2-b)" opacity="0.92"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v2-g)" opacity="0.90"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26" stroke="rgba(200,240,255,0.5)" stroke-width="1.2" fill="none"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none"/>
-              <circle cx="30"  cy="35" r="3.0" fill="white" opacity="0.95"/>
-              <circle cx="68"  cy="30" r="2.4" fill="white" opacity="0.90"/>
-              <circle cx="108" cy="35" r="2.8" fill="white" opacity="0.93"/>
-              <circle cx="148" cy="29" r="2.0" fill="white" opacity="0.88"/>
-              <circle cx="185" cy="35" r="3.0" fill="white" opacity="0.92"/>
-              <circle cx="228" cy="30" r="2.4" fill="white" opacity="0.88"/>
-              <circle cx="268" cy="35" r="2.8" fill="white" opacity="0.90"/>
-              <circle cx="42"  cy="56" r="2.0" fill="white" opacity="0.45"/>
-              <circle cx="108" cy="62" r="1.8" fill="white" opacity="0.40"/>
-              <circle cx="175" cy="52" r="2.2" fill="white" opacity="0.42"/>
-              <circle cx="255" cy="68" r="1.8" fill="white" opacity="0.35"/>
-            </g>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(90,176,240,0.15)" stroke-width="0.8">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V2 — Night Glow</div>
-          <h3>Lit from Within</h3>
-          <p>Near-black background. The liquid zones glow outward — a halo of blue light from the letters. Like reading a neon sign through a rainy window.</p>
-        </div>
-      </div>
-
-      <!-- V3 · OUTLINED GLASS — stroke letterforms, liquid visible between strokes -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#0d0d1a;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v3-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#6ab8f7"/><stop offset="100%" stop-color="#1255c8"/>
-              </linearGradient>
-              <linearGradient id="v3-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#e8c848"/><stop offset="100%" stop-color="#8a6008"/>
-              </linearGradient>
-              <clipPath id="v3c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
+            <!-- Ghost -->
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
             <!-- Liquid fill -->
-            <g clip-path="url(#v3c)">
-              <rect x="0" y="0" width="300" height="26" fill="rgba(255,255,255,0.02)"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v3-b)" opacity="0.78"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v3-g)" opacity="0.82"/>
-              <circle cx="30"  cy="35" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="80"  cy="31" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="140" cy="35" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="190" cy="30" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="245" cy="35" r="2.8" fill="white" opacity="0.85"/>
-              <circle cx="55"  cy="58" r="2.0" fill="white" opacity="0.38"/>
-              <circle cx="160" cy="65" r="1.8" fill="white" opacity="0.32"/>
-              <circle cx="248" cy="58" r="2.2" fill="white" opacity="0.35"/>
+            <g clip-path="url(#ac)">
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26 L480 42 Q360 46 240 42 Q120 38 0 42 Z" fill="url(#a-b)" opacity="0.88"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42 L480 100 L0 100 Z" fill="url(#a-g)" opacity="0.90"/>
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+              <!-- Bubbles -->
+              <circle cx="38"  cy="36" r="3.0" fill="white" opacity="0.88"/>
+              <circle cx="95"  cy="31" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="148" cy="36" r="2.8" fill="white" opacity="0.86"/>
+              <circle cx="205" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="258" cy="36" r="3.0" fill="white" opacity="0.85"/>
+              <circle cx="318" cy="31" r="2.5" fill="white" opacity="0.81"/>
+              <circle cx="372" cy="36" r="2.8" fill="white" opacity="0.84"/>
+              <circle cx="428" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="468" cy="36" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="60"  cy="65" r="2.0" fill="white" opacity="0.38"/>
+              <circle cx="175" cy="72" r="1.8" fill="white" opacity="0.32"/>
+              <circle cx="290" cy="60" r="2.2" fill="white" opacity="0.36"/>
+              <circle cx="400" cy="75" r="1.8" fill="white" opacity="0.30"/>
             </g>
-            <!-- Bold stroke outline on top — glass wall effect -->
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2.5">ZaZet</text>
+            <!-- Letter outline -->
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
+
+            <!-- SOLUTIONS diagonal inside the second Z -->
+            <!-- Second Z starts ~x=248, width ~80px, spans y=14 to y=82 -->
+            <!-- Diagonal of Z goes from upper-right to lower-left, angle ~-52deg -->
+            <!-- Center of Z: x≈288, y≈48 -->
+            <text
+              x="288" y="54"
+              font-size="9.5"
+              font-weight="700"
+              font-family="system-ui"
+              letter-spacing="2.5"
+              fill="rgba(255,255,255,0.55)"
+              text-anchor="middle"
+              transform="rotate(-52, 288, 54)"
+            >SOLUTIONS</text>
           </svg>
         </div>
         <div class="info">
-          <div class="num">V3 — Glass Wall</div>
-          <h3>Letter Outlines as Glass Rim</h3>
-          <p>The letter strokes become the glass walls. Liquid visible through the transparent letters. White outline = frosted glass rim. Sophisticated, architectural.</p>
+          <div class="num">Option A · Diagonal in Z</div>
+          <h3>Along the slash of the second Z</h3>
+          <p>SOLUTIONS follows the diagonal stroke of the Zet's Z — sitting right inside the letter. Discovers itself on close inspection. The Z hides a word inside its slash.</p>
         </div>
       </div>
 
-      <!-- V4 · THREE LAYERS — mineral / Graševina / red -->
+      <!-- B: Bottom bar of the Z -->
       <div class="card">
-        <div class="stage stage-tall" style="background:#0d0d1a;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
+        <div class="stage">
+          <svg width="480" height="100" viewBox="0 0 480 100">
             <defs>
-              <linearGradient id="v4-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#7ac0ff"/><stop offset="100%" stop-color="#2068d8"/>
-              </linearGradient>
-              <linearGradient id="v4-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f0d860"/><stop offset="100%" stop-color="#c09020"/>
-              </linearGradient>
-              <linearGradient id="v4-r" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#e84060"/><stop offset="100%" stop-color="#800a28"/>
-              </linearGradient>
-              <clipPath id="v4c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.03)">ZaZet</text>
-            <g clip-path="url(#v4c)">
-              <!-- air: y=0→18 -->
-              <!-- blue 20% of liquid: y=18→32 -->
-              <path d="M0 18 Q150 14 300 18 L300 32 Q150 36 0 32 Z" fill="url(#v4-b)" opacity="0.85"/>
-              <!-- gold 30%: y=32→56 -->
-              <path d="M0 32 Q150 28 300 32 L300 56 L0 56 Z" fill="url(#v4-g)" opacity="0.88"/>
-              <!-- red 50%: y=56→100 -->
-              <path d="M0 56 L300 56 L300 100 L0 100 Z" fill="url(#v4-r)" opacity="0.84"/>
-              <path d="M0 18 Q150 14 300 18" stroke="rgba(180,225,255,0.4)" stroke-width="1" fill="none"/>
-              <path d="M0 32 Q150 28 300 32" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none"/>
-              <path d="M0 56 L300 56" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-              <!-- bubbles through all 3 zones -->
-              <circle cx="35"  cy="26" r="2.8" fill="white" opacity="0.90"/>
-              <circle cx="95"  cy="23" r="2.2" fill="white" opacity="0.84"/>
-              <circle cx="155" cy="27" r="2.5" fill="white" opacity="0.88"/>
-              <circle cx="215" cy="22" r="2.0" fill="white" opacity="0.82"/>
-              <circle cx="272" cy="26" r="2.8" fill="white" opacity="0.86"/>
-              <circle cx="58"  cy="44" r="2.0" fill="white" opacity="0.55"/>
-              <circle cx="138" cy="41" r="1.8" fill="white" opacity="0.50"/>
-              <circle cx="210" cy="44" r="2.2" fill="white" opacity="0.52"/>
-              <circle cx="70"  cy="72" r="2.2" fill="white" opacity="0.38"/>
-              <circle cx="175" cy="68" r="1.8" fill="white" opacity="0.32"/>
-              <circle cx="255" cy="75" r="2.0" fill="white" opacity="0.35"/>
-            </g>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V4 — Three Nations</div>
-          <h3>Blue / Gold / Red</h3>
-          <p>Israeli mineral blue on top, Graševina gold in the middle, Croatian wine red at the bottom. Three layers, three identities — all inside one word.</p>
-        </div>
-      </div>
-
-      <!-- V5 · LIGHT MODE — for paper / invoices -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#f5f0e8;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v5-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#a8d4f8"/><stop offset="100%" stop-color="#3a88e0"/>
-              </linearGradient>
-              <linearGradient id="v5-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f5e288"/><stop offset="100%" stop-color="#c8960a"/>
-              </linearGradient>
-              <clipPath id="v5c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(0,0,0,0.05)">ZaZet</text>
-            <g clip-path="url(#v5c)">
-              <rect x="0" y="0" width="300" height="26" fill="rgba(0,0,0,0.02)"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v5-b)" opacity="0.68"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v5-g)" opacity="0.72"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26" stroke="rgba(80,160,240,0.4)" stroke-width="1" fill="none"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43" stroke="rgba(0,0,0,0.1)" stroke-width="1" fill="none"/>
-              <!-- White bubbles visible on light bg -->
-              <circle cx="30"  cy="35" r="2.8" fill="white" stroke="rgba(0,0,0,0.15)" stroke-width="0.8" opacity="0.9"/>
-              <circle cx="78"  cy="30" r="2.2" fill="white" stroke="rgba(0,0,0,0.12)" stroke-width="0.6" opacity="0.85"/>
-              <circle cx="138" cy="35" r="2.5" fill="white" stroke="rgba(0,0,0,0.12)" stroke-width="0.7" opacity="0.88"/>
-              <circle cx="192" cy="29" r="2.0" fill="white" stroke="rgba(0,0,0,0.10)" stroke-width="0.6" opacity="0.82"/>
-              <circle cx="248" cy="35" r="2.8" fill="white" stroke="rgba(0,0,0,0.12)" stroke-width="0.7" opacity="0.86"/>
-              <circle cx="55"  cy="56" r="2.0" fill="white" stroke="rgba(0,0,0,0.08)" stroke-width="0.5" opacity="0.55"/>
-              <circle cx="165" cy="62" r="1.8" fill="white" stroke="rgba(0,0,0,0.06)" stroke-width="0.5" opacity="0.48"/>
-            </g>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="1.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V5 — Light Mode</div>
-          <h3>Ink on Parchment</h3>
-          <p>Business docs, letterhead, invoices. Pastel blue and soft gold — still readable, still beautiful. Dark outline makes it crisp at any resolution.</p>
-        </div>
-      </div>
-
-      <!-- V6 · LARGE Z SMALL AZET — mixed scale weight -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#0d0d1a;">
-          <svg width="300" height="120" viewBox="0 0 300 120">
-            <defs>
-              <linearGradient id="v6-b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="b-b" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
               </linearGradient>
-              <linearGradient id="v6-g" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="b-g" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
               </linearGradient>
-              <clipPath id="v6cZ">
-                <text x="8" y="100" font-size="108" font-weight="900" font-family="system-ui">Z</text>
-              </clipPath>
-              <clipPath id="v6ca">
-                <text x="105" y="100" font-size="68" font-weight="900" font-family="system-ui">aZet</text>
+              <clipPath id="bc">
+                <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
               </clipPath>
             </defs>
-            <!-- Big Z -->
-            <text x="8" y="100" font-size="108" font-weight="900" font-family="system-ui" fill="rgba(255,255,255,0.04)">Z</text>
-            <g clip-path="url(#v6cZ)">
-              <path d="M0 32 Q48 28 96 32 L96 48 Q48 52 0 48 Z" fill="url(#v6-b)" opacity="0.88"/>
-              <path d="M0 48 Q48 44 96 48 L96 120 L0 120 Z" fill="url(#v6-g)" opacity="0.90"/>
-              <circle cx="22" cy="41" r="3.2" fill="white" opacity="0.90"/>
-              <circle cx="48" cy="36" r="2.5" fill="white" opacity="0.84"/>
-              <circle cx="72" cy="41" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="32" cy="68" r="2.2" fill="white" opacity="0.38"/>
-              <circle cx="65" cy="78" r="2.0" fill="white" opacity="0.32"/>
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
+            <g clip-path="url(#bc)">
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26 L480 42 Q360 46 240 42 Q120 38 0 42 Z" fill="url(#b-b)" opacity="0.88"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42 L480 100 L0 100 Z" fill="url(#b-g)" opacity="0.90"/>
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+              <circle cx="38"  cy="36" r="3.0" fill="white" opacity="0.88"/>
+              <circle cx="95"  cy="31" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="148" cy="36" r="2.8" fill="white" opacity="0.86"/>
+              <circle cx="205" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="258" cy="36" r="3.0" fill="white" opacity="0.85"/>
+              <circle cx="318" cy="31" r="2.5" fill="white" opacity="0.81"/>
+              <circle cx="372" cy="36" r="2.8" fill="white" opacity="0.84"/>
+              <circle cx="428" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="468" cy="36" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="60"  cy="65" r="2.0" fill="white" opacity="0.38"/>
+              <circle cx="175" cy="72" r="1.8" fill="white" opacity="0.32"/>
+              <circle cx="290" cy="60" r="2.2" fill="white" opacity="0.36"/>
+              <circle cx="400" cy="75" r="1.8" fill="white" opacity="0.30"/>
             </g>
-            <text x="8" y="100" font-size="108" font-weight="900" font-family="system-ui" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">Z</text>
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
 
-            <!-- small aZet -->
-            <text x="105" y="100" font-size="68" font-weight="900" font-family="system-ui" fill="rgba(255,255,255,0.04)">aZet</text>
-            <g clip-path="url(#v6ca)">
-              <path d="M105 52 Q195 48 295 52 L295 67 Q195 71 105 67 Z" fill="url(#v6-b)" opacity="0.78"/>
-              <path d="M105 67 Q195 63 295 67 L295 120 L105 120 Z" fill="url(#v6-g)" opacity="0.84"/>
-              <circle cx="122" cy="61" r="2.5" fill="white" opacity="0.88"/>
-              <circle cx="160" cy="57" r="2.0" fill="white" opacity="0.82"/>
-              <circle cx="200" cy="61" r="2.2" fill="white" opacity="0.85"/>
-              <circle cx="248" cy="57" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="278" cy="62" r="2.2" fill="white" opacity="0.83"/>
-              <circle cx="140" cy="82" r="1.8" fill="white" opacity="0.35"/>
-              <circle cx="218" cy="78" r="1.8" fill="white" opacity="0.30"/>
-            </g>
-            <text x="105" y="100" font-size="68" font-weight="900" font-family="system-ui" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5">aZet</text>
+            <!-- SOLUTIONS on the bottom bar of the second Z -->
+            <!-- Bottom bar of the Z sits around y=78–82, x=248 to x=330 -->
+            <!-- Place SOLUTIONS centered in that bottom bar zone -->
+            <text
+              x="289" y="79"
+              font-size="8"
+              font-weight="700"
+              font-family="system-ui"
+              letter-spacing="1.8"
+              fill="rgba(255,255,255,0.60)"
+              text-anchor="middle"
+            >SOLUTIONS</text>
           </svg>
         </div>
         <div class="info">
-          <div class="num">V6 — Hierarchical</div>
-          <h3>Za at Capital Scale</h3>
-          <p>Big Z carries the liquid. The "aZet" follows at 2/3 scale. Creates visual weight and hierarchy inside the name itself. The "Za" part dominates — Zagreb, Zagorje.</p>
-        </div>
-      </div>
-
-      <!-- V7 · COPPER LINE — luxury metallic outline -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#080808;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v7-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#5aaaf5"/><stop offset="100%" stop-color="#0a3888"/>
-              </linearGradient>
-              <linearGradient id="v7-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#e8c040"/><stop offset="100%" stop-color="#784800"/>
-              </linearGradient>
-              <linearGradient id="v7-copper" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#e0a030"/><stop offset="50%" stop-color="#f8cc60"/><stop offset="100%" stop-color="#c08020"/>
-              </linearGradient>
-              <clipPath id="v7c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.03)">ZaZet</text>
-            <g clip-path="url(#v7c)">
-              <rect x="0" y="0" width="300" height="26" fill="rgba(255,255,255,0.01)"/>
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v7-b)" opacity="0.75"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v7-g)" opacity="0.80"/>
-              <circle cx="30"  cy="35" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="88"  cy="30" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="150" cy="35" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="208" cy="30" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="268" cy="35" r="2.8" fill="white" opacity="0.84"/>
-              <circle cx="58"  cy="60" r="1.8" fill="white" opacity="0.38"/>
-              <circle cx="178" cy="65" r="2.0" fill="white" opacity="0.32"/>
-            </g>
-            <!-- Copper metallic stroke -->
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="url(#v7-copper)" stroke-width="2.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V7 — Copper Rim</div>
-          <h3>Metallic Letter Walls</h3>
-          <p>The letter outlines are copper-gold — like the rim of an engraved bačvica. Liquid inside, precious metal on the edges. Premium, artisanal feel.</p>
-        </div>
-      </div>
-
-      <!-- V8 · ANIMATED BUBBLES (CSS) — subtle motion -->
-      <div class="card">
-        <style>
-          @keyframes rise1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-          @keyframes rise2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-          @keyframes rise3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-          @keyframes waver { 0%,100%{d:path("M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z")} 50%{d:path("M0 28 Q75 24 150 27 Q225 31 300 28 L300 43 Q225 47 150 43 Q75 39 0 43 Z")} }
-          .b1 { animation: rise1 2.8s ease-in-out infinite; transform-origin: 30px 35px; }
-          .b2 { animation: rise2 3.4s ease-in-out infinite 0.6s; transform-origin: 100px 35px; }
-          .b3 { animation: rise3 2.5s ease-in-out infinite 1.2s; transform-origin: 195px 35px; }
-          .b4 { animation: rise1 3.2s ease-in-out infinite 0.3s; transform-origin: 268px 35px; }
-          .b5 { animation: rise2 2.9s ease-in-out infinite 1.8s; transform-origin: 55px 60px; }
-          .b6 { animation: rise3 3.6s ease-in-out infinite 0.9s; transform-origin: 178px 65px; }
-        </style>
-        <div class="stage stage-tall" style="background:#0d0d1a;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v8-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
-              </linearGradient>
-              <linearGradient id="v8-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
-              </linearGradient>
-              <clipPath id="v8c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#v8c)">
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v8-b)"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v8-g)"/>
-              <circle class="b1" cx="30"  cy="35" r="2.8" fill="white" opacity="0.88"/>
-              <circle class="b2" cx="100" cy="35" r="2.5" fill="white" opacity="0.86"/>
-              <circle class="b3" cx="195" cy="30" r="2.2" fill="white" opacity="0.82"/>
-              <circle class="b4" cx="268" cy="35" r="2.8" fill="white" opacity="0.84"/>
-              <circle class="b5" cx="55"  cy="60" r="2.0" fill="white" opacity="0.42"/>
-              <circle class="b6" cx="178" cy="65" r="1.8" fill="white" opacity="0.36"/>
-            </g>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V8 — Animated</div>
-          <h3>Living Bubbles</h3>
-          <p>Bubbles rise through the liquid in the letters — slowly, gently. Pure CSS animation. The logo breathes. Works beautifully as a loading state or hero element.</p>
-        </div>
-      </div>
-
-      <!-- V9 · MONOCHROME NAVY — brand color -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#f0ede8;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v9-top" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0.7"/>
-              </linearGradient>
-              <linearGradient id="v9-bot" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#1a1a2e"/>
-              </linearGradient>
-              <clipPath id="v9c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <g clip-path="url(#v9c)">
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v9-top)"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v9-bot)"/>
-              <circle cx="30"  cy="35" r="2.8" fill="white" opacity="0.88"/>
-              <circle cx="95"  cy="30" r="2.2" fill="white" opacity="0.82"/>
-              <circle cx="155" cy="35" r="2.5" fill="white" opacity="0.86"/>
-              <circle cx="218" cy="30" r="2.0" fill="white" opacity="0.80"/>
-              <circle cx="272" cy="35" r="2.8" fill="white" opacity="0.84"/>
-            </g>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="#1a1a2e" stroke-width="1.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V9 — Brand Navy</div>
-          <h3>Single Color, Official</h3>
-          <p>Brand navy (#1a1a2e) only. For monochrome print, embossed business cards, dark embroidery. The liquid/air zones read as tonal variation, not color contrast.</p>
-        </div>
-      </div>
-
-      <!-- V10 · MINIMAL — just the liquid seam, very subtle -->
-      <div class="card">
-        <div class="stage stage-tall" style="background:#0d0d1a;">
-          <svg width="300" height="100" viewBox="0 0 300 100">
-            <defs>
-              <linearGradient id="v10-b" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#4898d8"/><stop offset="100%" stop-color="#0c3880"/>
-              </linearGradient>
-              <linearGradient id="v10-g" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#d8b828"/><stop offset="100%" stop-color="#785808"/>
-              </linearGradient>
-              <clipPath id="v10c">
-                <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
-              </clipPath>
-            </defs>
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#v10c)">
-              <path d="M0 26 Q75 22 150 26 Q225 30 300 26 L300 42 Q225 46 150 42 Q75 38 0 42 Z" fill="url(#v10-b)" opacity="0.55"/>
-              <path d="M0 42 Q75 39 150 43 Q225 47 300 43 L300 100 L0 100 Z" fill="url(#v10-g)" opacity="0.60"/>
-              <!-- Only 3 very minimal bubbles -->
-              <circle cx="55"  cy="35" r="2.5" fill="white" opacity="0.72"/>
-              <circle cx="155" cy="33" r="2.0" fill="white" opacity="0.65"/>
-              <circle cx="258" cy="36" r="2.2" fill="white" opacity="0.68"/>
-            </g>
-            <!-- Crisp solid text outline for legibility -->
-            <text x="12" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5">ZaZet</text>
-          </svg>
-        </div>
-        <div class="info">
-          <div class="num">V10 — Ultra Minimal</div>
-          <h3>Whisper Version</h3>
-          <p>Liquid barely visible — just a hint of color and 3 bubbles. The white letter outline does the work. Works at any size. Most readable of all versions.</p>
+          <div class="num">Option B · Bottom bar of Z</div>
+          <h3>Sitting on the Z's base stroke</h3>
+          <p>SOLUTIONS rides the bottom horizontal of the second Z — horizontal, tight, embedded in the Graševina gold zone. Subtle but perfectly placed. The Z "stamps" it.</p>
         </div>
       </div>
 
     </div>
 
+    <div class="section-label">Option 2 — Horizontal below the wordmark</div>
+    <div class="grid">
 
-    <!-- ═══════════════════════════════════════════ -->
-    <div class="section-title">In Context — Navigation Bar</div>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <div class="card" style="border-radius:14px;">
-      <div class="stage" style="background:#0a0a18; padding:1.25rem 2rem; height:auto;">
-        <div class="nav-mock">
-          <svg width="120" height="40" viewBox="0 0 120 40">
+      <!-- C: Centered below, spaced out -->
+      <div class="card">
+        <div class="stage">
+          <svg width="480" height="120" viewBox="0 0 480 120">
             <defs>
-              <linearGradient id="nc-b" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="c-b" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
               </linearGradient>
-              <linearGradient id="nc-g" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="c-g" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
               </linearGradient>
-              <clipPath id="ncc">
-                <text x="4" y="32" font-size="33" font-weight="900" font-family="system-ui" letter-spacing="-1">ZaZet</text>
+              <clipPath id="cc">
+                <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
               </clipPath>
             </defs>
-            <text x="4" y="32" font-size="33" font-weight="900" font-family="system-ui" letter-spacing="-1" fill="rgba(255,255,255,0.04)">ZaZet</text>
-            <g clip-path="url(#ncc)">
-              <path d="M0 11 Q60 8 120 11 L120 17 Q60 20 0 17 Z" fill="url(#nc-b)" opacity="0.85"/>
-              <path d="M0 17 Q60 14 120 17 L120 40 L0 40 Z" fill="url(#nc-g)" opacity="0.88"/>
-              <circle cx="12" cy="15" r="1.8" fill="white" opacity="0.90"/>
-              <circle cx="36" cy="13" r="1.4" fill="white" opacity="0.84"/>
-              <circle cx="62" cy="15" r="1.6" fill="white" opacity="0.88"/>
-              <circle cx="88" cy="12" r="1.4" fill="white" opacity="0.82"/>
-              <circle cx="108" cy="15" r="1.8" fill="white" opacity="0.86"/>
-              <circle cx="22" cy="25" r="1.2" fill="white" opacity="0.38"/>
-              <circle cx="78" cy="27" r="1.0" fill="white" opacity="0.32"/>
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
+            <g clip-path="url(#cc)">
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26 L480 42 Q360 46 240 42 Q120 38 0 42 Z" fill="url(#c-b)" opacity="0.88"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42 L480 100 L0 100 Z" fill="url(#c-g)" opacity="0.90"/>
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+              <circle cx="38"  cy="36" r="3.0" fill="white" opacity="0.88"/>
+              <circle cx="95"  cy="31" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="148" cy="36" r="2.8" fill="white" opacity="0.86"/>
+              <circle cx="205" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="258" cy="36" r="3.0" fill="white" opacity="0.85"/>
+              <circle cx="318" cy="31" r="2.5" fill="white" opacity="0.81"/>
+              <circle cx="372" cy="36" r="2.8" fill="white" opacity="0.84"/>
+              <circle cx="428" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="468" cy="36" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="60"  cy="65" r="2.0" fill="white" opacity="0.38"/>
+              <circle cx="175" cy="72" r="1.8" fill="white" opacity="0.32"/>
+              <circle cx="290" cy="60" r="2.2" fill="white" opacity="0.36"/>
+              <circle cx="400" cy="75" r="1.8" fill="white" opacity="0.30"/>
             </g>
-            <text x="4" y="32" font-size="33" font-weight="900" font-family="system-ui" letter-spacing="-1" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5">ZaZet</text>
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
+
+            <!-- Thin separator line -->
+            <line x1="14" y1="92" x2="466" y2="92" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+            <!-- SOLUTIONS centered below -->
+            <text
+              x="240" y="108"
+              font-size="11"
+              font-weight="600"
+              font-family="system-ui"
+              letter-spacing="5"
+              fill="rgba(255,255,255,0.38)"
+              text-anchor="middle"
+            >SOLUTIONS</text>
           </svg>
-          <div class="nav-links">
-            <span>Services</span>
-            <span>About</span>
-            <span>Work</span>
-            <span>Contact</span>
-          </div>
-          <div style="font-size:0.75rem; background:rgba(90,176,240,0.12); border:1px solid rgba(90,176,240,0.3); color:#8dd0ff; padding:0.4rem 1.1rem; border-radius:100px;">Hire me</div>
+        </div>
+        <div class="info">
+          <div class="num">Option C · Below, centered</div>
+          <h3>Full width, hair-line separator</h3>
+          <p>SOLUTIONS spans the full width of the wordmark below a thin rule. Wide letter-spacing at 38% opacity. Clean, balanced, classic wordmark logic — ZaZet is the name, Solutions is the descriptor.</p>
         </div>
       </div>
+
+      <!-- D: Right-aligned under the "et" tail -->
+      <div class="card">
+        <div class="stage">
+          <svg width="480" height="120" viewBox="0 0 480 120">
+            <defs>
+              <linearGradient id="d-b" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
+              </linearGradient>
+              <linearGradient id="d-g" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
+              </linearGradient>
+              <clipPath id="dc">
+                <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
+              </clipPath>
+            </defs>
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
+            <g clip-path="url(#dc)">
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26 L480 42 Q360 46 240 42 Q120 38 0 42 Z" fill="url(#d-b)" opacity="0.88"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42 L480 100 L0 100 Z" fill="url(#d-g)" opacity="0.90"/>
+              <path d="M0 26 Q120 22 240 26 Q360 30 480 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
+              <path d="M0 42 Q120 38 240 42 Q360 46 480 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+              <circle cx="38"  cy="36" r="3.0" fill="white" opacity="0.88"/>
+              <circle cx="95"  cy="31" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="148" cy="36" r="2.8" fill="white" opacity="0.86"/>
+              <circle cx="205" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="258" cy="36" r="3.0" fill="white" opacity="0.85"/>
+              <circle cx="318" cy="31" r="2.5" fill="white" opacity="0.81"/>
+              <circle cx="372" cy="36" r="2.8" fill="white" opacity="0.84"/>
+              <circle cx="428" cy="30" r="2.2" fill="white" opacity="0.80"/>
+              <circle cx="468" cy="36" r="2.5" fill="white" opacity="0.82"/>
+              <circle cx="60"  cy="65" r="2.0" fill="white" opacity="0.38"/>
+              <circle cx="175" cy="72" r="1.8" fill="white" opacity="0.32"/>
+              <circle cx="290" cy="60" r="2.2" fill="white" opacity="0.36"/>
+              <circle cx="400" cy="75" r="1.8" fill="white" opacity="0.30"/>
+            </g>
+            <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
+
+            <!-- SOLUTIONS right-aligned, flush with right edge of wordmark -->
+            <text
+              x="466" y="108"
+              font-size="11"
+              font-weight="600"
+              font-family="system-ui"
+              letter-spacing="4"
+              fill="rgba(255,255,255,0.38)"
+              text-anchor="end"
+            >SOLUTIONS</text>
+            <!-- Short gold tick on left -->
+            <line x1="14" y1="97" x2="14" y2="112" stroke="rgba(245,216,74,0.45)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="info">
+          <div class="num">Option D · Below, right-aligned</div>
+          <h3>Flush right, gold tick on left</h3>
+          <p>SOLUTIONS aligns to the right edge of the wordmark with a small gold vertical tick on the left. Creates visual tension — asymmetric but intentional. The gold tick echoes the Graševina color.</p>
+        </div>
+      </div>
+
     </div>
 
+    <!-- ═══════════════════════ BONUS: A+C combined ═══════════ -->
+    <div class="section-label">Bonus — Best of both: diagonal Z + clean below</div>
 
-    <!-- ═══════════════════════════════════════════ -->
-    <div class="section-title">In Context — Hero Section</div>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <div class="hero-mock">
-      <svg width="480" height="120" viewBox="0 0 480 120" style="max-width:100%;height:auto;">
-        <defs>
-          <linearGradient id="hc-b" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
-          </linearGradient>
-          <linearGradient id="hc-g" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
-          </linearGradient>
-          <clipPath id="hcc">
-            <text x="14" y="98" font-size="108" font-weight="900" font-family="system-ui" letter-spacing="-5">ZaZet</text>
-          </clipPath>
-        </defs>
-        <text x="14" y="98" font-size="108" font-weight="900" font-family="system-ui" letter-spacing="-5" fill="rgba(255,255,255,0.04)">ZaZet</text>
-        <g clip-path="url(#hcc)">
-          <path d="M0 31 Q120 27 240 31 Q360 35 480 31 L480 50 Q360 54 240 50 Q120 46 0 50 Z" fill="url(#hc-b)" opacity="0.88"/>
-          <path d="M0 50 Q120 46 240 50 Q360 54 480 50 L480 120 L0 120 Z" fill="url(#hc-g)" opacity="0.90"/>
-          <path d="M0 31 Q120 27 240 31 Q360 35 480 31" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
-          <path d="M0 50 Q120 46 240 50 Q360 54 480 50" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
-          <circle cx="38"  cy="42" r="3.5" fill="white" opacity="0.88"/>
-          <circle cx="95"  cy="37" r="2.8" fill="white" opacity="0.82"/>
-          <circle cx="148" cy="43" r="3.2" fill="white" opacity="0.86"/>
-          <circle cx="205" cy="36" r="2.5" fill="white" opacity="0.80"/>
-          <circle cx="258" cy="43" r="3.5" fill="white" opacity="0.85"/>
-          <circle cx="315" cy="37" r="2.8" fill="white" opacity="0.81"/>
-          <circle cx="368" cy="42" r="3.2" fill="white" opacity="0.84"/>
-          <circle cx="425" cy="36" r="2.5" fill="white" opacity="0.80"/>
-          <circle cx="462" cy="43" r="3.0" fill="white" opacity="0.82"/>
-          <circle cx="60"  cy="68" r="2.2" fill="white" opacity="0.40"/>
-          <circle cx="168" cy="75" r="2.0" fill="white" opacity="0.35"/>
-          <circle cx="278" cy="62" r="2.5" fill="white" opacity="0.38"/>
-          <circle cx="392" cy="78" r="2.0" fill="white" opacity="0.32"/>
-        </g>
-        <text x="14" y="98" font-size="108" font-weight="900" font-family="system-ui" letter-spacing="-5" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5">ZaZet</text>
-      </svg>
-      <div class="tagline">Staff Engineer · Full-Stack · Zagreb</div>
-      <div class="cta">Get in touch</div>
-    </div>
-
-
-    <!-- ═══════════════════════════════════════════ -->
-    <div class="section-title">In Context — Business Card</div>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
-      <!-- Front -->
-      <div class="card-mock">
-        <svg width="100" height="34" viewBox="0 0 100 34">
+    <div class="card" style="border-radius:18px;">
+      <div class="stage" style="padding:2.5rem 3rem;">
+        <svg width="480" height="120" viewBox="0 0 480 120">
           <defs>
-            <linearGradient id="cc-b" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="e-b" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/>
             </linearGradient>
-            <linearGradient id="cc-g" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient id="e-g" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/>
             </linearGradient>
-            <clipPath id="ccc">
-              <text x="3" y="27" font-size="29" font-weight="900" font-family="system-ui" letter-spacing="-1">ZaZet</text>
+            <clipPath id="ec">
+              <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3">ZaZet</text>
             </clipPath>
           </defs>
-          <text x="3" y="27" font-size="29" font-weight="900" font-family="system-ui" letter-spacing="-1" fill="rgba(255,255,255,0.04)">ZaZet</text>
-          <g clip-path="url(#ccc)">
-            <path d="M0 9 Q50 6 100 9 L100 14 Q50 17 0 14 Z" fill="url(#cc-b)" opacity="0.88"/>
-            <path d="M0 14 Q50 11 100 14 L100 34 L0 34 Z" fill="url(#cc-g)" opacity="0.90"/>
-            <circle cx="10" cy="12" r="1.5" fill="white" opacity="0.90"/>
-            <circle cx="30" cy="10" r="1.2" fill="white" opacity="0.84"/>
-            <circle cx="52" cy="12" r="1.4" fill="white" opacity="0.88"/>
-            <circle cx="72" cy="10" r="1.2" fill="white" opacity="0.82"/>
-            <circle cx="90" cy="12" r="1.5" fill="white" opacity="0.86"/>
+          <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="rgba(255,255,255,0.04)">ZaZet</text>
+          <g clip-path="url(#ec)">
+            <path d="M0 26 Q120 22 240 26 Q360 30 480 26 L480 42 Q360 46 240 42 Q120 38 0 42 Z" fill="url(#e-b)" opacity="0.88"/>
+            <path d="M0 42 Q120 38 240 42 Q360 46 480 42 L480 100 L0 100 Z" fill="url(#e-g)" opacity="0.90"/>
+            <path d="M0 26 Q120 22 240 26 Q360 30 480 26" stroke="rgba(180,225,255,0.3)" stroke-width="1" fill="none"/>
+            <path d="M0 42 Q120 38 240 42 Q360 46 480 42" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="none"/>
+            <circle cx="38"  cy="36" r="3.0" fill="white" opacity="0.88"/>
+            <circle cx="95"  cy="31" r="2.5" fill="white" opacity="0.82"/>
+            <circle cx="148" cy="36" r="2.8" fill="white" opacity="0.86"/>
+            <circle cx="205" cy="30" r="2.2" fill="white" opacity="0.80"/>
+            <circle cx="258" cy="36" r="3.0" fill="white" opacity="0.85"/>
+            <circle cx="318" cy="31" r="2.5" fill="white" opacity="0.81"/>
+            <circle cx="372" cy="36" r="2.8" fill="white" opacity="0.84"/>
+            <circle cx="428" cy="30" r="2.2" fill="white" opacity="0.80"/>
+            <circle cx="468" cy="36" r="2.5" fill="white" opacity="0.82"/>
+            <circle cx="60"  cy="65" r="2.0" fill="white" opacity="0.38"/>
+            <circle cx="175" cy="72" r="1.8" fill="white" opacity="0.32"/>
+            <circle cx="290" cy="60" r="2.2" fill="white" opacity="0.36"/>
+            <circle cx="400" cy="75" r="1.8" fill="white" opacity="0.30"/>
           </g>
-          <text x="3" y="27" font-size="29" font-weight="900" font-family="system-ui" letter-spacing="-1" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.4">ZaZet</text>
-        </svg>
-        <div>
-          <div class="card-name">Gal Tidhar</div>
-          <div class="card-title">Staff Software Engineer</div>
-          <div class="card-email">gal@zazet-solutions.hr</div>
-        </div>
-      </div>
+          <text x="14" y="82" font-size="88" font-weight="900" font-family="system-ui" letter-spacing="-3" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.5">ZaZet</text>
 
-      <!-- Back -->
-      <div class="card-mock card-back" style="align-items:center; justify-content:center;">
-        <svg width="220" height="74" viewBox="0 0 220 74">
-          <defs>
-            <linearGradient id="cb-b" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#7ac8ff" stop-opacity="0.6"/><stop offset="100%" stop-color="#1a60d8" stop-opacity="0.6"/>
-            </linearGradient>
-            <linearGradient id="cb-g" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#f5d84a" stop-opacity="0.55"/><stop offset="100%" stop-color="#9a7010" stop-opacity="0.55"/>
-            </linearGradient>
-            <clipPath id="cbc">
-              <text x="10" y="60" font-size="65" font-weight="900" font-family="system-ui" letter-spacing="-2">ZaZet</text>
-            </clipPath>
-          </defs>
-          <text x="10" y="60" font-size="65" font-weight="900" font-family="system-ui" letter-spacing="-2" fill="rgba(255,255,255,0.03)">ZaZet</text>
-          <g clip-path="url(#cbc)">
-            <path d="M0 20 Q110 16 220 20 L220 32 Q110 36 0 32 Z" fill="url(#cb-b)"/>
-            <path d="M0 32 Q110 28 220 32 L220 74 L0 74 Z" fill="url(#cb-g)"/>
-            <circle cx="22"  cy="27" r="2.5" fill="white" opacity="0.88"/>
-            <circle cx="62"  cy="23" r="2.0" fill="white" opacity="0.82"/>
-            <circle cx="108" cy="27" r="2.2" fill="white" opacity="0.86"/>
-            <circle cx="155" cy="22" r="2.0" fill="white" opacity="0.80"/>
-            <circle cx="198" cy="27" r="2.5" fill="white" opacity="0.84"/>
-          </g>
-          <text x="10" y="60" font-size="65" font-weight="900" font-family="system-ui" letter-spacing="-2" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.4">ZaZet</text>
-        </svg>
-        <div style="font-size:0.6rem; color:rgba(255,255,255,0.2); letter-spacing:3px; text-transform:uppercase; margin-top:0.5rem;">Solutions</div>
-      </div>
-    </div>
+          <!-- Diagonal inside Z — easter egg -->
+          <text x="288" y="54" font-size="9.5" font-weight="700" font-family="system-ui" letter-spacing="2.5"
+            fill="rgba(255,255,255,0.42)" text-anchor="middle" transform="rotate(-52, 288, 54)">SOLUTIONS</text>
 
-
-    <!-- ═══════════════════════════════════════════ -->
-    <div class="section-title">Size Cascade — 200px → 32px</div>
-    <!-- ═══════════════════════════════════════════ -->
-
-    <div style="background:#0d0d1a; border-radius:16px; border:1px solid rgba(255,255,255,0.06); padding:2rem; display:flex; flex-direction:column; gap:2.5rem; align-items:flex-start;">
-
-      <!-- 200px -->
-      <div style="display:flex; align-items:center; gap:1.5rem;">
-        <div style="font-size:0.65rem; color:#86868b; width:40px; text-align:right; flex-shrink:0;">200px</div>
-        <svg width="200" height="67" viewBox="0 0 200 67">
-          <defs>
-            <linearGradient id="s1-b" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient>
-            <linearGradient id="s1-g" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient>
-            <clipPath id="s1c"><text x="8" y="55" font-size="58" font-weight="900" font-family="system-ui" letter-spacing="-2">ZaZet</text></clipPath>
-          </defs>
-          <text x="8" y="55" font-size="58" font-weight="900" font-family="system-ui" letter-spacing="-2" fill="rgba(255,255,255,0.04)">ZaZet</text>
-          <g clip-path="url(#s1c)">
-            <path d="M0 17 Q100 13 200 17 L200 28 Q100 32 0 28 Z" fill="url(#s1-b)" opacity="0.88"/>
-            <path d="M0 28 Q100 24 200 28 L200 67 L0 67 Z" fill="url(#s1-g)" opacity="0.90"/>
-            <circle cx="18" cy="24" r="2.5" fill="white" opacity="0.90"/>
-            <circle cx="52" cy="20" r="2.0" fill="white" opacity="0.84"/>
-            <circle cx="98" cy="24" r="2.2" fill="white" opacity="0.88"/>
-            <circle cx="142" cy="20" r="2.0" fill="white" opacity="0.82"/>
-            <circle cx="182" cy="24" r="2.5" fill="white" opacity="0.86"/>
-            <circle cx="35"  cy="42" r="1.6" fill="white" opacity="0.38"/>
-            <circle cx="118" cy="46" r="1.5" fill="white" opacity="0.32"/>
-          </g>
-          <text x="8" y="55" font-size="58" font-weight="900" font-family="system-ui" letter-spacing="-2" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="0.4">ZaZet</text>
+          <!-- AND: smaller, ghosted below — for the nav/condensed use case -->
+          <line x1="14" y1="92" x2="466" y2="92" stroke="rgba(255,255,255,0.06)" stroke-width="0.8"/>
+          <text x="240" y="108" font-size="11" font-weight="600" font-family="system-ui" letter-spacing="5"
+            fill="rgba(255,255,255,0.22)" text-anchor="middle">SOLUTIONS</text>
         </svg>
       </div>
-
-      <!-- 120px -->
-      <div style="display:flex; align-items:center; gap:1.5rem;">
-        <div style="font-size:0.65rem; color:#86868b; width:40px; text-align:right; flex-shrink:0;">120px</div>
-        <svg width="120" height="40" viewBox="0 0 120 40">
-          <defs>
-            <linearGradient id="s2-b" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient>
-            <linearGradient id="s2-g" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient>
-            <clipPath id="s2c"><text x="4" y="32" font-size="33" font-weight="900" font-family="system-ui" letter-spacing="-1">ZaZet</text></clipPath>
-          </defs>
-          <text x="4" y="32" font-size="33" font-weight="900" font-family="system-ui" letter-spacing="-1" fill="rgba(255,255,255,0.04)">ZaZet</text>
-          <g clip-path="url(#s2c)">
-            <path d="M0 10 Q60 7 120 10 L120 16 Q60 19 0 16 Z" fill="url(#s2-b)" opacity="0.88"/>
-            <path d="M0 16 Q60 13 120 16 L120 40 L0 40 Z" fill="url(#s2-g)" opacity="0.90"/>
-            <circle cx="12" cy="14" r="1.8" fill="white" opacity="0.90"/>
-            <circle cx="36" cy="11" r="1.4" fill="white" opacity="0.84"/>
-            <circle cx="62" cy="14" r="1.6" fill="white" opacity="0.88"/>
-            <circle cx="88" cy="11" r="1.4" fill="white" opacity="0.82"/>
-            <circle cx="108" cy="14" r="1.8" fill="white" opacity="0.86"/>
-          </g>
-          <text x="4" y="32" font-size="33" font-weight="900" font-family="system-ui" letter-spacing="-1" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.4">ZaZet</text>
-        </svg>
+      <div class="info">
+        <div class="num">Bonus E · Diagonal Z + Ghost below</div>
+        <h3>Hidden easter egg + clean layout anchor</h3>
+        <p>The diagonal inside the Z is the "secret" — for those who look closely. The ghost below gives the wordmark a stable bottom edge at full opacity contexts. Use either or both depending on context.</p>
       </div>
-
-      <!-- 64px -->
-      <div style="display:flex; align-items:center; gap:1.5rem;">
-        <div style="font-size:0.65rem; color:#86868b; width:40px; text-align:right; flex-shrink:0;">64px</div>
-        <svg width="64" height="21" viewBox="0 0 64 21">
-          <defs>
-            <linearGradient id="s3-b" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient>
-            <linearGradient id="s3-g" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient>
-            <clipPath id="s3c"><text x="2" y="17" font-size="18" font-weight="900" font-family="system-ui" letter-spacing="-0.5">ZaZet</text></clipPath>
-          </defs>
-          <text x="2" y="17" font-size="18" font-weight="900" font-family="system-ui" letter-spacing="-0.5" fill="rgba(255,255,255,0.04)">ZaZet</text>
-          <g clip-path="url(#s3c)">
-            <path d="M0 5 Q32 3 64 5 L64 9 Q32 11 0 9 Z" fill="url(#s3-b)" opacity="0.88"/>
-            <path d="M0 9 Q32 7 64 9 L64 21 L0 21 Z" fill="url(#s3-g)" opacity="0.90"/>
-            <circle cx="8"  cy="7" r="1.2" fill="white" opacity="0.90"/>
-            <circle cx="24" cy="6" r="1.0" fill="white" opacity="0.84"/>
-            <circle cx="42" cy="7" r="1.1" fill="white" opacity="0.88"/>
-            <circle cx="58" cy="6" r="1.0" fill="white" opacity="0.82"/>
-          </g>
-          <text x="2" y="17" font-size="18" font-weight="900" font-family="system-ui" letter-spacing="-0.5" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.4">ZaZet</text>
-        </svg>
-      </div>
-
-      <!-- 32px -->
-      <div style="display:flex; align-items:center; gap:1.5rem;">
-        <div style="font-size:0.65rem; color:#86868b; width:40px; text-align:right; flex-shrink:0;">32px</div>
-        <svg width="32" height="11" viewBox="0 0 32 11">
-          <defs>
-            <linearGradient id="s4-b" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#7ac8ff"/><stop offset="100%" stop-color="#1a60d8"/></linearGradient>
-            <linearGradient id="s4-g" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f5d84a"/><stop offset="100%" stop-color="#9a7010"/></linearGradient>
-            <clipPath id="s4c"><text x="1" y="8.5" font-size="9" font-weight="900" font-family="system-ui" letter-spacing="-0.2">ZaZet</text></clipPath>
-          </defs>
-          <g clip-path="url(#s4c)">
-            <path d="M0 2.5 Q16 1 32 2.5 L32 5 Q16 6.5 0 5 Z" fill="url(#s4-b)" opacity="0.88"/>
-            <path d="M0 5 Q16 3.5 32 5 L32 11 L0 11 Z" fill="url(#s4-g)" opacity="0.90"/>
-            <circle cx="5"  cy="4" r="0.8" fill="white" opacity="0.90"/>
-            <circle cx="16" cy="3" r="0.7" fill="white" opacity="0.84"/>
-            <circle cx="27" cy="4" r="0.8" fill="white" opacity="0.86"/>
-          </g>
-          <text x="1" y="8.5" font-size="9" font-weight="900" font-family="system-ui" letter-spacing="-0.2" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.5">ZaZet</text>
-        </svg>
-        <span style="font-size:0.65rem; color:#86868b; opacity:0.6;">— still legible</span>
-      </div>
-
     </div>
 
     <p style="margin-top:2rem; font-size:0.82rem; color:#86868b; max-width:640px;">
-      Pick your variant(s) — V1–V10 plus the hero and context shots. We'll refine the winner into the final mark and then build the site around it.
+      A–D are standalone options. E is a combo. Pick one and we lock the final logo — then straight to building the site.
     </p>
 
   </div>
