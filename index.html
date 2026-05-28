@@ -441,6 +441,22 @@
       letter-spacing: .08em; text-transform: uppercase;
     }
 
+    /* ── Hero gemišt game ── */
+    .hero-gemist {
+      display: flex; flex-direction: column; align-items: center;
+      gap: .6rem; margin: .5rem 0 1.5rem;
+    }
+    .hero-gemist-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--text3);
+    }
+    .hero-gemist-btns {
+      display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center;
+    }
+    .hero-gemist-btns .gemist-btn {
+      font-size: .75rem; padding: .35rem .85rem;
+    }
+
     /* ── Davor tribute ── */
     .davor-tribute {
       margin-top: 4rem;
@@ -838,6 +854,16 @@
           letter-spacing="5" fill="url(#hg)"
           text-anchor="middle" y="109">SOLUTIONS</text>
       </svg>
+    </div>
+
+    <!-- Gemišt game — hero placement -->
+    <div class="hero-gemist" aria-label="Gemišt ratio game">
+      <span class="hero-gemist-label" data-i18n="game.label">How do you take your gemišt?</span>
+      <div class="hero-gemist-btns">
+        <button class="gemist-btn" data-ratio="75" data-i18n="game.tourist">25/75 ☁️</button>
+        <button class="gemist-btn" data-ratio="50" data-i18n="game.half">50/50</button>
+        <button class="gemist-btn active" data-ratio="20" data-i18n="game.prst">Prst Prst 🍷</button>
+      </div>
     </div>
 
     <h1 class="hero-tagline" data-i18n-html="hero.tagline">
@@ -1679,29 +1705,63 @@
 
 /* ── Gemišt logo game + confetti ── */
 (function() {
-  const btns  = document.querySelectorAll('.gemist-btn');
   const toast = document.getElementById('gemist-toast');
   let toastTimer = null;
 
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const ratio = parseInt(btn.dataset.ratio, 10);
-      btns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  // Hero SVG animated dividing line
+  let heroY = 34, heroYTarget = 34, heroRAF = null;
+  const heroYMap = { 20: 34, 50: 55, 75: 70 };
 
-      // Update logo gradient
-      document.documentElement.style.setProperty('--gemist-split', ratio + '%');
+  function updateHeroPaths(y) {
+    const hbz = document.getElementById('hbz');
+    const hgz = document.getElementById('hgz');
+    const hlm = document.getElementById('hlm');
+    if (!hbz) return;
+    hbz.setAttribute('d', `M0 26 Q80 22 160 26 Q240 30 320 26 L320 ${y} Q240 ${y+4} 160 ${y} Q80 ${y-4} 0 ${y} Z`);
+    hgz.setAttribute('d', `M0 ${y} Q80 ${y-4} 160 ${y} Q240 ${y+4} 320 ${y} L320 100 L0 100 Z`);
+    hlm.setAttribute('d', `M0 ${y} Q80 ${y-4} 160 ${y} Q240 ${y+4} 320 ${y}`);
+  }
 
-      if (ratio === 20) {
-        launchConfetti();
-        if (toastTimer) clearTimeout(toastTimer);
-        toast.classList.add('show');
-        toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
-      } else {
-        toast.classList.remove('show');
-      }
-    });
-  });
+  function animateHero() {
+    heroY += (heroYTarget - heroY) * 0.12;
+    if (Math.abs(heroY - heroYTarget) < 0.3) heroY = heroYTarget;
+    updateHeroPaths(heroY);
+    heroRAF = heroY !== heroYTarget ? requestAnimationFrame(animateHero) : null;
+  }
+
+  function setHeroRatio(ratio) {
+    heroYTarget = heroYMap[ratio] || 42;
+    if (!heroRAF) animateHero();
+  }
+
+  function setGemist(ratio) {
+    // Sync all button sets
+    document.querySelectorAll('.gemist-btn').forEach(b =>
+      b.classList.toggle('active', parseInt(b.dataset.ratio, 10) === ratio));
+
+    // Nav logo CSS var
+    document.documentElement.style.setProperty('--gemist-split', ratio + '%');
+
+    // Hero SVG
+    setHeroRatio(ratio);
+
+    // Toast + confetti for prst prst
+    if (ratio === 20) {
+      launchConfetti();
+      if (toastTimer) clearTimeout(toastTimer);
+      toast.classList.add('show');
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
+    } else {
+      toast.classList.remove('show');
+    }
+  }
+
+  // Init to prst prst (20)
+  updateHeroPaths(34);
+
+  // Wire all buttons
+  document.querySelectorAll('.gemist-btn').forEach(btn =>
+    btn.addEventListener('click', () => setGemist(parseInt(btn.dataset.ratio, 10))));
 
   /* ── Confetti ── */
   function launchConfetti() {
@@ -1709,13 +1769,11 @@
     const ctx    = canvas.getContext('2d');
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
-
     const colors = ['#f5d84a','#7ac8ff','#fff','#e94560','#3a90f0','#c8a020'];
     const pieces = Array.from({ length: 160 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * -canvas.height * 0.5,
-      w: 8 + Math.random() * 8,
-      h: 5 + Math.random() * 5,
+      w: 8 + Math.random() * 8, h: 5 + Math.random() * 5,
       r: Math.random() * Math.PI * 2,
       dr: (Math.random() - .5) * .15,
       vx: (Math.random() - .5) * 3,
@@ -1723,28 +1781,23 @@
       color: colors[Math.floor(Math.random() * colors.length)],
       alpha: 1,
     }));
-
     let frame;
     const tick = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       let alive = false;
       pieces.forEach(p => {
-        p.x  += p.vx;
-        p.y  += p.vy;
-        p.r  += p.dr;
-        p.vy += .08;
+        p.x += p.vx; p.y += p.vy; p.r += p.dr; p.vy += .08;
         if (p.y > canvas.height * .7) p.alpha -= .025;
-        if (p.alpha > 0) { alive = true; }
+        if (p.alpha > 0) alive = true;
         ctx.save();
         ctx.globalAlpha = Math.max(0, p.alpha);
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.r);
+        ctx.translate(p.x, p.y); ctx.rotate(p.r);
         ctx.fillStyle = p.color;
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
         ctx.restore();
       });
-      if (alive) { frame = requestAnimationFrame(tick); }
-      else { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+      if (alive) frame = requestAnimationFrame(tick);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
     cancelAnimationFrame(frame);
     tick();
