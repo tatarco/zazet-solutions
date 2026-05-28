@@ -38,8 +38,8 @@
   </style>
   <script>
     const CAL_USERNAME = 'gal-tidhar';
-    const CAL_EVENT    = '15min';
-    const CAL_NS       = '15min';
+    const CAL_EVENT    = 'discovery';
+    const CAL_NS       = 'discovery';
     (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const ns=ar[1];api.q=api.q||[];if(typeof ns==="string"){cal.ns[ns]=cal.ns[ns]||api;p(cal.ns[ns],ar);p(cal,[L,api])}else p(cal,ar);return}p(cal,ar)};})(window,"https://app.cal.com/embed/embed.js","init");
     Cal("init", CAL_NS, { origin: "https://cal.com" });
     Cal.ns[CAL_NS]("ui", { layout: "month_view", theme: "dark" });
@@ -83,7 +83,7 @@
     <div id="cal-inline" aria-label="Book a call"></div>
     <p class="fallback" id="cal-fallback">
       Calendar didn't load?
-      <a href="https://cal.com/gal-tidhar/15min" target="_blank" rel="noopener">Open on Cal.com →</a>
+      <a href="https://cal.com/gal-tidhar/discovery" target="_blank" rel="noopener">Open on Cal.com →</a>
     </p>
   </div>
 </body>
