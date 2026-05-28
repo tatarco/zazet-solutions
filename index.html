@@ -975,8 +975,8 @@
 
   // Back to top
   const backTop = document.getElementById('back-top');
-  addEventListener('scroll', () => backTop.classList.toggle('visible', scrollY > 400), {passive:true});
-  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+  addEventListener('scroll', () => backTop && backTop.classList.toggle('visible', scrollY > 400), {passive:true});
+  if (backTop) backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
   // Active nav section highlighting
   const allNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
