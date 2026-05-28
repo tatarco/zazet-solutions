@@ -146,8 +146,12 @@
         radial-gradient(ellipse 80% 55% at 50% 25%, rgba(26,96,216,.09) 0%, transparent 70%),
         radial-gradient(ellipse 55% 35% at 75% 85%, rgba(245,216,74,.05) 0%, transparent 60%);
     }
-    .hero-inner { position: relative; z-index: 1; }
-    .hero-pre   { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); margin-bottom: 2.25rem; }
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      width: 100%; max-width: 680px; margin: 0 auto;
+    }
+    .hero-pre   { font-size: .72rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--text3); margin-bottom: 2.25rem; text-align: center; width: 100%; }
     .hero-svg-wrap {
       margin-bottom: .75rem; position: relative;
       display: flex; justify-content: center; width: 100%;
@@ -161,7 +165,7 @@
     .hero-inner:has(.hero-gemist--intro) .hero-svg-wrap::after {
       opacity: .55; animation: gemistBounce 2s ease-in-out infinite;
     }
-    #hero-svg { width: min(92vw, 660px); height: auto; display: block; margin: 0 auto; }
+    #hero-svg { width: min(92vw, 560px); height: auto; display: block; margin: 0 auto; overflow: hidden; }
     .hero-tagline {
       font-size: clamp(1.15rem, 3vw, 1.65rem); font-weight: 300;
       color: var(--text2); max-width: 520px; margin: 0 auto 1rem; line-height: 1.5;
@@ -178,10 +182,8 @@
     }
     .hero-scroll-line { width: 1px; height: 38px; background: linear-gradient(to bottom, rgba(255,255,255,.28), transparent); }
     @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
-    @keyframes riseA { 0%{transform:translateY(0);opacity:0} 12%{opacity:.88} 88%{opacity:.22} 100%{transform:translateY(-32px);opacity:0} }
-    @keyframes riseB { 0%{transform:translateY(0);opacity:0} 18%{opacity:.30} 82%{opacity:.07} 100%{transform:translateY(-24px);opacity:0} }
-    @keyframes waterBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-2px)} }
-    #hclip-group { animation:waterBob 8s ease-in-out infinite; transform-origin:center top; }
+    @keyframes riseA { 0%{transform:translateY(0);opacity:0} 20%{opacity:.55} 80%{opacity:.15} 100%{transform:translateY(-14px);opacity:0} }
+    @keyframes riseB { 0%{transform:translateY(0);opacity:0} 18%{opacity:.22} 82%{opacity:.05} 100%{transform:translateY(-12px);opacity:0} }
 
     /* ── Services ── */
     #services { background: var(--surface); }
@@ -456,7 +458,7 @@
     /* ── Hero gemišt game ── */
     .hero-gemist {
       display: flex; flex-direction: column; align-items: center;
-      gap: .55rem; margin: 0 0 1.75rem; max-width: 520px;
+      gap: .55rem; margin: 0 0 1.75rem; width: min(92vw, 560px);
       padding: .85rem 1rem 1rem;
       border: 1px solid rgba(245,216,74,.22);
       border-radius: 16px;
@@ -936,7 +938,7 @@
     <div class="hero-pre" data-i18n="hero.pre">Shopify · Siemens · dozens of small businesses · 10 years</div>
 
     <div class="hero-svg-wrap">
-      <svg id="hero-svg" viewBox="0 0 300 118" xmlns="http://www.w3.org/2000/svg" aria-label="ZaZet Solutions">
+      <svg id="hero-svg" viewBox="0 0 300 118" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-label="ZaZet Solutions">
         <defs>
           <linearGradient id="hb" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stop-color="#7ac8ff"/>
@@ -947,38 +949,27 @@
             <stop offset="100%" stop-color="#9a7010"/>
           </linearGradient>
           <clipPath id="hclip">
-            <text id="htxt" x="10" y="82" font-size="88" font-weight="900"
+            <text id="htxt" x="0" y="82" font-size="88" font-weight="900"
               font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif"
               letter-spacing="-3">ZaZet</text>
           </clipPath>
         </defs>
-        <text x="10" y="82" font-size="88" font-weight="900"
-          font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif"
-          letter-spacing="-3" fill="rgba(255,255,255,0.035)">ZaZet</text>
-        <g id="hclip-group" clip-path="url(#hclip)">
-          <path id="hbz" d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#hb)" opacity=".88"/>
-          <path id="hgz" d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#hg)" opacity=".90"/>
-          <path id="hlt" d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/>
-          <path id="hlm" d="M0 42 Q80 38 160 42 Q240 46 320 42" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/>
-          <circle class="bbl" cx="28"  cy="35" r="2.9" fill="white" style="animation:riseA 4.2s 0.0s ease-in-out infinite"/>
-          <circle class="bbl" cx="65"  cy="30" r="2.3" fill="white" style="animation:riseA 3.8s 0.7s ease-in-out infinite"/>
-          <circle class="bbl" cx="102" cy="35" r="2.7" fill="white" style="animation:riseA 4.5s 1.4s ease-in-out infinite"/>
-          <circle class="bbl" cx="138" cy="30" r="2.1" fill="white" style="animation:riseA 3.6s 0.3s ease-in-out infinite"/>
-          <circle class="bbl" cx="174" cy="35" r="2.9" fill="white" style="animation:riseA 4.1s 1.8s ease-in-out infinite"/>
-          <circle class="bbl" cx="210" cy="30" r="2.3" fill="white" style="animation:riseA 3.9s 0.5s ease-in-out infinite"/>
-          <circle class="bbl" cx="247" cy="35" r="2.7" fill="white" style="animation:riseA 4.3s 1.1s ease-in-out infinite"/>
-          <circle class="bbl" cx="283" cy="30" r="2.1" fill="white" style="animation:riseA 3.7s 2.1s ease-in-out infinite"/>
-          <circle cx="45"  cy="63" r="1.9" fill="white" opacity=".28" style="animation:riseB 5.5s 0.2s ease-in-out infinite"/>
-          <circle cx="120" cy="71" r="1.7" fill="white" opacity=".24" style="animation:riseB 6.0s 1.3s ease-in-out infinite"/>
-          <circle cx="197" cy="59" r="2.1" fill="white" opacity=".26" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/>
-          <circle cx="270" cy="75" r="1.7" fill="white" opacity=".22" style="animation:riseB 5.8s 0.8s ease-in-out infinite"/>
+        <g id="hero-logo">
+          <g id="hclip-group" clip-path="url(#hclip)">
+            <path id="hbz" d="M0 26 Q80 22 160 26 Q240 30 320 26 L320 42 Q240 46 160 42 Q80 38 0 42 Z" fill="url(#hb)" opacity=".88"/>
+            <path id="hgz" d="M0 42 Q80 38 160 42 Q240 46 320 42 L320 100 L0 100 Z" fill="url(#hg)" opacity=".90"/>
+            <path id="hlt" d="M0 26 Q80 22 160 26 Q240 30 320 26" stroke="rgba(180,225,255,.32)" stroke-width="1" fill="none"/>
+            <path id="hlm" d="M0 42 Q80 38 160 42 Q240 46 320 42" stroke="rgba(255,255,255,.16)" stroke-width="1" fill="none"/>
+            <circle class="bbl-gold" cx="45"  cy="63" r="1.6" fill="white" opacity=".22" style="animation:riseB 5.5s 0.2s ease-in-out infinite"/>
+            <circle class="bbl-gold" cx="120" cy="71" r="1.4" fill="white" opacity=".20" style="animation:riseB 6.0s 1.3s ease-in-out infinite"/>
+            <circle class="bbl-gold" cx="197" cy="59" r="1.6" fill="white" opacity=".22" style="animation:riseB 5.2s 2.5s ease-in-out infinite"/>
+            <circle class="bbl-gold" cx="270" cy="75" r="1.4" fill="white" opacity=".18" style="animation:riseB 5.8s 0.8s ease-in-out infinite"/>
+          </g>
+          <line id="hsep" x1="0" x2="280" y1="91" y2="91" stroke="rgba(245,216,74,0.25)" stroke-width=".7"/>
+          <text id="hsol" x="140" y="109" font-size="11" font-weight="800"
+            font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif"
+            letter-spacing="4" fill="url(#hg)" text-anchor="middle">SOLUTIONS</text>
         </g>
-        <!-- SOLUTIONS: gold, bold, centered below — positioned by JS -->
-        <line id="hsep" x1="10" x2="290" y1="91" y2="91" stroke="rgba(245,216,74,0.2)" stroke-width=".7"/>
-        <text id="hsol" x="150" font-size="11" font-weight="800"
-          font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif"
-          letter-spacing="5" fill="url(#hg)"
-          text-anchor="middle" y="109">SOLUTIONS</text>
       </svg>
     </div>
 
@@ -1546,48 +1537,59 @@
     }
   });
 
-  // Hero logo: measure glyphs, center in viewBox, align SOLUTIONS
+  // Hero logo: measure, center block, align waves to ZaZet width
   function layoutHeroLogo() {
     const svg = document.getElementById('hero-svg');
+    const logo = document.getElementById('hero-logo');
     const txt = document.getElementById('htxt');
     const sol = document.getElementById('hsol');
     const sep = document.getElementById('hsep');
-    if (!svg || !txt || !sol || !sep) return;
+    if (!svg || !logo || !txt || !sol || !sep) return;
 
     try {
+      logo.removeAttribute('transform');
+
       const zbb = txt.getBBox();
       const zMid = zbb.x + zbb.width / 2;
       sol.setAttribute('x', zMid);
       sol.setAttribute('text-anchor', 'middle');
 
       const solbb = sol.getBBox();
-      const pad = 18;
-      const left = Math.min(zbb.x, solbb.x) - pad;
-      const right = Math.max(zbb.x + zbb.width, solbb.x + solbb.width) + pad;
-      const vbW = right - left;
+      const blockLeft = Math.min(zbb.x, solbb.x);
+      const blockRight = Math.max(zbb.x + zbb.width, solbb.x + solbb.width);
+      const blockW = blockRight - blockLeft;
+      const pad = 20;
+      const vbW = blockW + pad * 2;
+      const shiftX = pad - blockLeft;
 
-      svg.setAttribute('viewBox', `${left} 0 ${vbW} 118`);
-      svg.dataset.waveX = String(left);
-      svg.dataset.waveW = String(vbW);
+      logo.setAttribute('transform', `translate(${shiftX}, 0)`);
+      svg.setAttribute('viewBox', `0 0 ${vbW} 118`);
 
-      const wave = (y, w, x0) => {
-        const q1 = x0 + w * 0.25, q2 = x0 + w * 0.5, q3 = x0 + w * 0.75, x1 = x0 + w;
-        return { top: `M${x0} 26 Q${q1} 22 ${q2} 26 Q${q3} 30 ${x1} 26 L${x1} ${y} Q${q3} ${y+4} ${q2} ${y} Q${q1} ${y-4} ${x0} ${y} Z`, mid: `M${x0} ${y} Q${q1} ${y-4} ${q2} ${y} Q${q3} ${y+4} ${x1} ${y}`, x0, x1 };
-      };
+      const wx0 = zbb.x;
+      const wx1 = zbb.x + zbb.width;
+      const ww = wx1 - wx0;
+      svg.dataset.waveX = String(wx0);
+      svg.dataset.waveW = String(ww);
 
       const y = parseFloat(svg.dataset.heroY || '34');
-      const w = wave(y, vbW, left);
-      document.getElementById('hbz').setAttribute('d', w.top);
-      document.getElementById('hgz').setAttribute('d', `${w.mid} L${w.x1} 100 L${left} 100 Z`);
-      document.getElementById('hlt').setAttribute('d', `M${left} 26 Q${left + vbW * 0.25} 22 ${left + vbW * 0.5} 26 Q${left + vbW * 0.75} 30 ${left + vbW} 26`);
-      document.getElementById('hlm').setAttribute('d', w.mid);
+      const q = (t) => wx0 + ww * t;
+      document.getElementById('hbz').setAttribute('d',
+        `M${wx0} 26 Q${q(.25)} 22 ${q(.5)} 26 Q${q(.75)} 30 ${wx1} 26 L${wx1} ${y} Q${q(.75)} ${y+4} ${q(.5)} ${y} Q${q(.25)} ${y-4} ${wx0} ${y} Z`);
+      document.getElementById('hgz').setAttribute('d',
+        `M${wx0} ${y} Q${q(.25)} ${y-4} ${q(.5)} ${y} Q${q(.75)} ${y+4} ${wx1} ${y} L${wx1} 100 L${wx0} 100 Z`);
+      document.getElementById('hlt').setAttribute('d',
+        `M${wx0} 26 Q${q(.25)} 22 ${q(.5)} 26 Q${q(.75)} 30 ${wx1} 26`);
+      document.getElementById('hlm').setAttribute('d',
+        `M${wx0} ${y} Q${q(.25)} ${y-4} ${q(.5)} ${y} Q${q(.75)} ${y+4} ${wx1} ${y}`);
 
-      const bbls = svg.querySelectorAll('.bbl');
-      const step = zbb.width / (bbls.length - 1);
-      bbls.forEach((b, i) => b.setAttribute('cx', zbb.x + step * i));
+      svg.querySelectorAll('.bbl-gold').forEach((b, i, all) => {
+        const step = ww / (all.length - 1);
+        b.setAttribute('cx', wx0 + step * i);
+      });
 
-      sep.setAttribute('x1', solbb.x);
-      sep.setAttribute('x2', solbb.x + solbb.width);
+      const solbb2 = sol.getBBox();
+      sep.setAttribute('x1', solbb2.x);
+      sep.setAttribute('x2', solbb2.x + solbb2.width);
 
       window.dispatchEvent(new CustomEvent('heroLogoLayout'));
     } catch (e) {}
@@ -1874,15 +1876,18 @@
     const hbz = document.getElementById('hbz');
     const hgz = document.getElementById('hgz');
     const hlm = document.getElementById('hlm');
+    const hlt = document.getElementById('hlt');
     const svg = document.getElementById('hero-svg');
     if (!hbz || !svg) return;
-    const x0 = parseFloat(svg.dataset.waveX || '0');
-    const w  = parseFloat(svg.dataset.waveW || '320');
+    const wx0 = parseFloat(svg.dataset.waveX || '0');
+    const ww  = parseFloat(svg.dataset.waveW || '280');
+    const wx1 = wx0 + ww;
     svg.dataset.heroY = String(y);
-    const q1 = x0 + w * 0.25, q2 = x0 + w * 0.5, q3 = x0 + w * 0.75, x1 = x0 + w;
-    hbz.setAttribute('d', `M${x0} 26 Q${q1} 22 ${q2} 26 Q${q3} 30 ${x1} 26 L${x1} ${y} Q${q3} ${y+4} ${q2} ${y} Q${q1} ${y-4} ${x0} ${y} Z`);
-    hgz.setAttribute('d', `M${x0} ${y} Q${q1} ${y-4} ${q2} ${y} Q${q3} ${y+4} ${x1} ${y} L${x1} 100 L${x0} 100 Z`);
-    hlm.setAttribute('d', `M${x0} ${y} Q${q1} ${y-4} ${q2} ${y} Q${q3} ${y+4} ${x1} ${y}`);
+    const q = (t) => wx0 + ww * t;
+    hbz.setAttribute('d', `M${wx0} 26 Q${q(.25)} 22 ${q(.5)} 26 Q${q(.75)} 30 ${wx1} 26 L${wx1} ${y} Q${q(.75)} ${y+4} ${q(.5)} ${y} Q${q(.25)} ${y-4} ${wx0} ${y} Z`);
+    hgz.setAttribute('d', `M${wx0} ${y} Q${q(.25)} ${y-4} ${q(.5)} ${y} Q${q(.75)} ${y+4} ${wx1} ${y} L${wx1} 100 L${wx0} 100 Z`);
+    hlt.setAttribute('d', `M${wx0} 26 Q${q(.25)} 22 ${q(.5)} 26 Q${q(.75)} 30 ${wx1} 26`);
+    hlm.setAttribute('d', `M${wx0} ${y} Q${q(.25)} ${y-4} ${q(.5)} ${y} Q${q(.75)} ${y+4} ${wx1} ${y}`);
   }
 
   function animateHero() {
