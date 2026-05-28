@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zazet-solutions.hr/sitemap.xml
+
+# AI training crawlers — allow (being cited by AI drives brand awareness)
+# Uncomment below to block training without blocking search indexing:
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: Bytespider
+# Disallow: /
+# User-agent: ClaudeBot
+# Disallow: /
+# Note: blocking Google-Extended prevents Gemini training but NOT Google Search indexing

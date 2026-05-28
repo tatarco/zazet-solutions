@@ -1,0 +1,39 @@
+# ZaZet Solutions — Gal Tidhar
+
+> Zagreb-based software engineer and consultant helping businesses automate processes, build websites, and create custom systems.
+
+## Who I am
+
+Gal Tidhar — Israeli software engineer, resident of Zagreb, Croatia. 10+ years of engineering experience at companies including Shopify, Siemens, and multiple startups. Father of Adam and Ella. "Zagorski Zet" — the foreigner who married into a Zagorje family and never left.
+
+## What I do
+
+- **Business Automation**: Invoices, follow-ups, spreadsheet updates, WhatsApp/email workflows, Make.com, custom scripts
+- **Websites**: Clean, fast, mobile-first websites for Croatian small businesses
+- **Custom Systems**: Order management, booking flows, client portals
+- **Full-Stack Engineering**: TypeScript, Node.js, React, Java — enterprise grade
+- **Performance & Cost Optimization**: AWS cost reduction, query tuning, caching strategy (46% infra cost reduction in 6 months)
+- **Engineering Leadership**: Interim staff engineer, technical roadmap, team mentorship
+- **AI Tools & Vibe Coding**: Base44, Claude Code, AI-assisted development
+
+## Notable results
+
+- Reduced CI build time by 78%, dev overhead by 90% (Sedric)
+- Reduced deployment delays by 70% (Shopify/Flexport)
+- Reduced infrastructure costs by 46% (Wochit)
+- Built a 4-language boat taxi booking system in 4 hours for €50 (Croatian island client)
+
+## Location
+
+Zagreb, Croatia (serving Croatian businesses and international remote clients)
+
+## Contact
+
+- Website: https://zazet-solutions.hr
+- Email: gal@zazet-solutions.hr
+
+## Languages
+
+- English (professional)
+- Croatian (conversational)
+- Hebrew (native)
