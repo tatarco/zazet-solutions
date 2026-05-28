@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a call · ZaZet Solutions</title>
+  <meta name="robots" content="noindex">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0d0d1a; color: #f0f0f5;
+      min-height: 100svh; padding: 2rem 1.25rem 3rem;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; }
+    .back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .85rem; font-weight: 600; color: #7ac8ff;
+      text-decoration: none; margin-bottom: 1.5rem;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: clamp(1.35rem, 4vw, 1.75rem); font-weight: 800;
+      letter-spacing: -.02em; margin-bottom: .5rem;
+    }
+    .lead {
+      font-size: .92rem; color: rgba(240,240,245,.62);
+      line-height: 1.6; margin-bottom: 1.5rem;
+    }
+    #cal-inline {
+      min-height: 560px; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .fallback { margin-top: 1rem; font-size: .85rem; color: rgba(240,240,245,.55); display: none; }
+    .fallback.is-visible { display: block; }
+    .fallback a { color: #7ac8ff; font-weight: 600; }
+  </style>
+  <script>
+    const CAL_USERNAME = 'gal-tidhar';
+    const CAL_EVENT    = '15min';
+    const CAL_NS       = '15min';
+    (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const ns=ar[1];api.q=api.q||[];if(typeof ns==="string"){cal.ns[ns]=cal.ns[ns]||api;p(cal.ns[ns],ar);p(cal,[L,api])}else p(cal,ar);return}p(cal,ar)};})(window,"https://app.cal.com/embed/embed.js","init");
+    Cal("init", CAL_NS, { origin: "https://cal.com" });
+    Cal.ns[CAL_NS]("ui", { layout: "month_view", theme: "dark" });
+    Cal.ns[CAL_NS]("on", {
+      action: "bookingSuccessfulV2",
+      callback: function(e) {
+        var d = (e && e.detail && e.detail.data) || {};
+        if (!d.uid && !(d.email && d.startTime)) return;
+        var q = new URLSearchParams();
+        if (d.uid) q.set("uid", d.uid);
+        if (d.email) q.set("email", d.email);
+        if (d.startTime) q.set("startTime", d.startTime);
+        if (d.title) q.set("title", d.title);
+        try {
+          var lang = localStorage.getItem("langPref");
+          if (lang) q.set("lang", lang);
+        } catch(err) {}
+        location.href = "/booked.html?" + q.toString();
+      }
+    });
+    Cal.ns[CAL_NS]("on", {
+      action: "linkFailed",
+      callback: function() {
+        document.getElementById("cal-fallback").classList.add("is-visible");
+      }
+    });
+    addEventListener("load", function() {
+      Cal.ns[CAL_NS]("inline", {
+        elementOrSelector: "#cal-inline",
+        calLink: CAL_USERNAME + "/" + CAL_EVENT,
+        config: { layout: "month_view", theme: "dark" }
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <a href="/" class="back">← ZaZet Solutions</a>
+    <h1>Book a free call</h1>
+    <p class="lead">Pick a time that works for you. No commitment — just a conversation.</p>
+    <div id="cal-inline" aria-label="Book a call"></div>
+    <p class="fallback" id="cal-fallback">
+      Calendar didn't load?
+      <a href="https://cal.com/gal-tidhar/15min" target="_blank" rel="noopener">Open on Cal.com →</a>
+    </p>
+  </div>
+</body>
+</html>
