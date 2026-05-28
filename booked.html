@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potvrda rezervacije · ZaZet Solutions</title>
   <meta name="robots" content="noindex">
-  <!-- Google tag (gtag.js) — conversion fires on this page -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -38,16 +37,56 @@
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" id="card" hidden>
     <div class="check">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <polyline points="20 6 9 17 4 12"/>
       </svg>
     </div>
-    <h1>Rezervacija potvrđena!</h1>
-    <p>Vidimo se uskoro. Detalji su poslani na vašu email adresu.<br><br>
-    Do tada — ako imate pitanja, slobodno mi pišite na WhatsApp ili email.</p>
-    <a href="https://zazet-solutions.hr" class="back">← Povratak na ZaZet Solutions</a>
+    <h1 id="title"></h1>
+    <p id="body"></p>
+    <a href="https://zazet-solutions.hr/" class="back" id="back"></a>
   </div>
+  <script>
+    (function() {
+      var q = new URLSearchParams(location.search);
+      var uid = q.get('uid');
+      var email = q.get('email');
+      var startTime = q.get('startTime');
+      var hasBooking = !!(uid || (email && startTime));
+
+      if (!hasBooking) {
+        location.replace('https://zazet-solutions.hr/#contact');
+        return;
+      }
+
+      var lang = (q.get('lang') || localStorage.getItem('langPref') || 'hr').slice(0, 2);
+      if (lang !== 'en' && lang !== 'hr') lang = 'hr';
+
+      var copy = {
+        hr: {
+          title: 'Rezervacija potvrđena!',
+          body: 'Vidimo se uskoro. Detalji su poslani na vašu email adresu.<br><br>Do tada — ako imate pitanja, slobodno mi pišite na WhatsApp ili email.',
+          back: '← Povratak na ZaZet Solutions'
+        },
+        en: {
+          title: 'Booking confirmed!',
+          body: 'See you soon. Details have been sent to your email.<br><br>Until then — if you have questions, feel free to reach out on WhatsApp or email.',
+          back: '← Back to ZaZet Solutions'
+        }
+      }[lang];
+
+      document.documentElement.lang = lang;
+      document.title = copy.title + ' · ZaZet Solutions';
+      document.getElementById('title').textContent = copy.title;
+      document.getElementById('body').innerHTML = copy.body;
+      document.getElementById('back').textContent = copy.back;
+      document.getElementById('card').hidden = false;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', { send_to: 'AW-CONVERSION_ID/BOOKING' });
+      }
+    })();
+  </script>
 </body>
 </html>
