@@ -1676,9 +1676,14 @@
     const storedLang = localStorage.getItem('langPref');
     initLang = (urlLang && T[urlLang]) ? urlLang : (storedLang && T[storedLang]) ? storedLang : 'hr';
   } catch(e) {}
-  try { setLang(initLang); } catch(e) {}
+  function refreshI18n() { try { setLang(initLang); } catch(e) {} }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', refreshI18n);
+  } else {
+    refreshI18n();
+  }
   document.querySelectorAll('.lang-btn').forEach(b =>
-    b.addEventListener('click', () => setLang(b.dataset.lang)));
+    b.addEventListener('click', () => { initLang = b.dataset.lang; setLang(initLang); }));
 </script>
 <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
@@ -1712,13 +1717,13 @@
     <button type="button" class="gemist-modal-close" id="gemist-modal-close" aria-label="Close">×</button>
     <h2 class="gemist-modal-title" id="gemist-modal-title" data-i18n="game.modal.title">What's gemišt?</h2>
     <div class="gemist-modal-body">
-      <div data-i18n-html="game.modal.intro"></div>
+      <div data-i18n-html="game.modal.intro"><p><strong>Gemišt</strong> is Croatia's summer drink: dry white wine mixed with sparkling water.</p></div>
       <ul class="gemist-modal-choices">
-        <li data-i18n-html="game.modal.tourist"></li>
-        <li data-i18n-html="game.modal.half"></li>
-        <li data-i18n-html="game.modal.prst"></li>
+        <li data-i18n-html="game.modal.tourist"><strong>25/75 — Tourist pour ☁️</strong><br>Mostly water, light on the wine.</li>
+        <li data-i18n-html="game.modal.half"><strong>50/50 — Half &amp; half</strong><br>The safe middle ground.</li>
+        <li data-i18n-html="game.modal.prst"><strong>Prst Prst 🍷 — Real Zagorac</strong><br>Strong pour — mostly wine.</li>
       </ul>
-      <p class="gemist-modal-foot" data-i18n-html="game.modal.link"></p>
+      <p class="gemist-modal-foot" data-i18n-html="game.modal.link"><a href="https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/" target="_blank" rel="noopener">Read more on Zagorje International →</a></p>
     </div>
   </div>
 </div>
