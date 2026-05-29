@@ -7,11 +7,10 @@
   <meta name="description" content="Softverski inženjer iz Zagreba koji pomaže tvrtkama automatizirati poslovanje, izgraditi web stranice i prilagođene sustave. 10+ godina iskustva (Shopify, Siemens). Uštedit ćete ponedjeljke.">
   <link rel="canonical" href="https://zazet-solutions.hr/">
   <link rel="alternate" hreflang="hr" href="https://zazet-solutions.hr/">
-  <link rel="alternate" hreflang="en" href="https://zazet-solutions.hr/?lang=en">
   <link rel="alternate" hreflang="x-default" href="https://zazet-solutions.hr/">
   <meta property="og:title" content="Gal Tidhar · ZaZet Solutions — Automatizacija, Web, Sustavi">
   <meta property="og:description" content="Zagreb-based software engineer. Automating invoices, websites, and custom business systems. 10 years at Shopify, Siemens, and startups.">
-  <meta property="og:image" content="https://zazet-solutions.hr/gal-photo.jpg">
+  <meta property="og:image" content="https://zazet-solutions.hr/gal-photo.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
@@ -21,35 +20,44 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Gal Tidhar · ZaZet Solutions">
   <meta name="twitter:description" content="Zagreb-based software engineer. Automation, websites, custom systems. 10+ years at Shopify, Siemens.">
-  <meta name="twitter:image" content="https://zazet-solutions.hr/gal-photo.jpg">
+  <meta name="twitter:image" content="https://zazet-solutions.hr/gal-photo.webp">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="preload" as="image" href="gal-photo.webp" fetchpriority="high">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230d0d1a'/><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='30%25' stop-color='%237ac8ff'/><stop offset='30%25' stop-color='%23f5d84a'/></linearGradient></defs><text x='3' y='27' font-size='28' font-weight='900' font-family='system-ui' fill='url(%23g)'>Z</text></svg>">
   <style>
     :root {
-      --bg:       #0d0d1a;
-      --surface:  #111828;
-      --surface2: #161f30;
-      --border:   rgba(255,255,255,0.07);
-      --borderh:  rgba(255,255,255,0.14);
-      --text:     #f0f0f5;
-      --text2:    rgba(240,240,245,0.55);
-      --text3:    rgba(240,240,245,0.50);
-      --blue:     #7ac8ff;
-      --bluemid:  #3a90f0;
-      --bluedeep: #1a60d8;
-      --gold:     #f5d84a;
-      --goldmid:  #c8a020;
-      --golddeep: #9a7010;
-      --red:      #e94560;
-      --navh:     62px;
-      --max:      1080px;
-      --r:        14px;
+      --bg:              #0b0b18;
+      --surface:         #111827;
+      --surface2:        #171d2e;
+      --surface-hover:   #1e2540;
+      --surface-overlay: #222940;
+      --border:          #1f2a3d;
+      --borderh:         #2e3d56;
+      --text:            #eef0f5;
+      --text2:           #8fa3be;
+      --text3:           #566880;
+      --blue:            #58b8f5;
+      --bluemid:         #2e7fd4;
+      --bluedeep:        #1a5db8;
+      --blue-glow:       rgba(46,127,212,.22);
+      --gold:            #d4a72a;
+      --goldmid:         #b8911e;
+      --gold-text:       rgba(212,167,42,.75);
+      --red:             #d94055;
+      --green:           #25d366;
+      --navh: 62px;
+      --max:  1080px;
+      --r:    12px;
+      --r-sm: 6px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--navh); }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--bg); color: var(--text);
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      font-size: 17px; line-height: 1.65; letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
 
@@ -60,12 +68,12 @@
 
     .eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--text3); margin-bottom: .75rem; }
     .h2      { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.15; margin-bottom: 1rem; }
-    .lead    { font-size: 1.05rem; color: var(--text2); line-height: 1.7; max-width: 500px; }
+    .lead    { font-size: 1.05rem; color: var(--text2); line-height: 1.7; max-width: 500px; max-width: 62ch; }
 
     .btn {
       display: inline-flex; align-items: center; gap: .5rem;
       font-size: .88rem; font-weight: 600; padding: .72rem 1.65rem;
-      border-radius: 100px; border: none; cursor: pointer;
+      border-radius: 8px; border: none; cursor: pointer;
       transition: transform .18s, box-shadow .18s, background .18s; text-decoration: none;
     }
     .btn-primary {
@@ -111,27 +119,22 @@
     }
     .lang-btn.active             { color: var(--text); border-color: var(--borderh); }
     .lang-btn:hover:not(.active) { color: var(--text2); }
-    .nav-cta {
-      font-size: .76rem; font-weight: 700; letter-spacing: .06em;
-      color: var(--gold); border: 1px solid rgba(245,216,74,.3);
-      padding: .32rem .8rem; border-radius: 6px; text-decoration: none;
-      transition: background .2s, border-color .2s; white-space: nowrap;
-    }
-    .nav-cta:hover { background: rgba(245,216,74,.08); border-color: var(--gold); color: var(--gold) !important; }
+    .nav-cta { font-size:.76rem; font-weight:700; letter-spacing:.05em; color:var(--blue); border:1px solid rgba(88,184,245,.28); padding:.32rem .9rem; border-radius:6px; transition:background .15s,border-color .15s; text-decoration:none; }
+    .nav-cta:hover { background:rgba(88,184,245,.08); border-color:var(--blue); }
     .nav-links a.nav-active { color: var(--text); }
-    .nav-links a.nav-active::after { content: ''; display: block; height: 2px; background: var(--gold); border-radius: 1px; margin-top: 2px; }
+    .nav-links a.nav-active::after { content: ''; display: block; height: 2px; background: var(--blue); border-radius: 1px; margin-top: 2px; }
     /* Back to top */
     #back-top {
       position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 200;
       width: 40px; height: 40px; border-radius: 50%;
-      background: var(--gold); color: #0a0a1a; border: none; cursor: pointer;
+      background: var(--surface2); color: var(--text2); border: 1px solid var(--borderh); cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       opacity: 0; transform: translateY(12px); pointer-events: none;
       transition: opacity .3s, transform .3s;
       box-shadow: 0 4px 16px rgba(0,0,0,.35);
     }
     #back-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    #back-top:hover { background: var(--goldmid); }
+    #back-top:hover { background: var(--surface-hover); }
     @media (max-width: 768px) { .nav-cta { display: none; } }
 
     /* ── Hero ── */
@@ -190,9 +193,9 @@
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.15rem; margin-top: 3rem; }
     .svc-card {
       padding: 1.75rem; border-radius: var(--r); border: 1px solid var(--border);
-      background: rgba(255,255,255,.02); transition: border-color .2s, background .2s;
+      background: var(--surface2); transition: border-color .2s, background .2s;
     }
-    .svc-card:hover { border-color: var(--borderh); background: rgba(255,255,255,.04); }
+    .svc-card:hover { border-color: var(--borderh); background: var(--surface-hover); }
     .svc-icon { width: 38px; height: 38px; border-radius: 9px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
     .svc-icon-b { background: rgba(122,200,255,.1); }
     .svc-icon-g { background: rgba(245,216,74,.1); }
@@ -210,7 +213,7 @@
     .about-avatar svg { opacity: .18; }
     .about-chips { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
     .chip { font-size: .73rem; padding: .35rem .85rem; border-radius: 100px; border: 1px solid var(--border); color: var(--text2); }
-    .about-body p { font-size: .97rem; color: var(--text2); line-height: 1.78; margin-bottom: 1.2rem; }
+    .about-body p { font-size: .97rem; color: var(--text2); line-height: 1.78; margin-bottom: 1.2rem; max-width: 65ch; }
     .about-body p:last-child { margin-bottom: 0; }
     .about-body strong { color: var(--text); }
     .pull-quote {
@@ -234,7 +237,7 @@
     .cl-dot-g    { background: var(--gold); box-shadow: 0 0 0 3px rgba(245,216,74,.15); }
     .cl-company  { font-size: 1.05rem; font-weight: 800; letter-spacing: -.01em; margin-bottom: .2rem; }
     .cl-role     { font-size: .8rem; font-weight: 600; color: var(--blue); margin-bottom: .6rem; }
-    .cl-role-g   { color: var(--gold); }
+    .cl-role-g   { color: var(--text2); }
     .cl-desc     { font-size: .87rem; color: var(--text2); line-height: 1.65; }
     .cl-tags     { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .75rem; }
     .cl-tag      { font-size: .63rem; font-weight: 700; letter-spacing: .05em; padding: .18rem .55rem; border-radius: 4px; background: rgba(255,255,255,.05); color: var(--text3); text-transform: uppercase; }
@@ -265,7 +268,7 @@
     #oss { background: var(--surface); }
     .oss-card {
       margin-top: 3rem; padding: 2.5rem; border-radius: var(--r);
-      border: 1px solid var(--borderh); background: rgba(255,255,255,.02);
+      border: 1px solid var(--borderh); background: var(--surface2);
       display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem;
     }
     .oss-name  { font-size: 1.5rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .4rem; }
@@ -284,9 +287,9 @@
       display: flex; align-items: center; gap: .55rem;
       font-size: .85rem; font-weight: 600; padding: .7rem 1.4rem;
       border-radius: 10px; border: 1px solid var(--borderh);
-      color: var(--text2); background: rgba(255,255,255,.03); transition: all .2s;
+      color: var(--text2); background: var(--surface2); transition: all .2s;
     }
-    .contact-link:hover { border-color: rgba(122,200,255,.4); color: var(--blue); background: rgba(122,200,255,.06); }
+    .contact-link:hover { border-color: rgba(88,184,245,.4); color: var(--blue); background: rgba(88,184,245,.06); }
     .contact-link-wa:hover { border-color: rgba(37,211,102,.4); color: #25d366; background: rgba(37,211,102,.06); }
 
     /* ── Footer ── */
@@ -386,10 +389,10 @@
     .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.15rem; margin-top: 3rem; }
     .proj-card {
       padding: 1.75rem; border-radius: var(--r); border: 1px solid var(--border);
-      background: rgba(255,255,255,.02); display: flex; flex-direction: column;
+      background: var(--surface2); display: flex; flex-direction: column;
       transition: border-color .2s, background .2s;
     }
-    .proj-card:hover { border-color: var(--borderh); background: rgba(255,255,255,.04); }
+    .proj-card:hover { border-color: var(--borderh); background: var(--surface-hover); }
     .proj-card-cta { border-style: dashed; border-color: rgba(122,200,255,.2); background: rgba(122,200,255,.03); }
     .proj-card-cta:hover { border-color: rgba(122,200,255,.4); background: rgba(122,200,255,.06); }
     .proj-tag { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: .75rem; }
@@ -426,10 +429,10 @@
     .social-link-row {
       display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem;
       border-radius: var(--r); border: 1px solid var(--border);
-      background: rgba(255,255,255,.02); transition: all .2s;
+      background: var(--surface2); transition: all .2s;
     }
-    .social-link-row:hover { border-color: var(--borderh); background: rgba(255,255,255,.04); }
-    .social-link-icon { width: 36px; height: 36px; border-radius: 9px; background: rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .social-link-row:hover { border-color: var(--borderh); background: var(--surface-hover); }
+    .social-link-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--surface-overlay); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .social-link-body { flex: 1; }
     .social-link-label { font-size: .88rem; font-weight: 600; }
     .social-link-sub { font-size: .73rem; color: var(--text3); }
@@ -453,8 +456,8 @@
     .cal-inline {
       width: 100%; max-width: 640px; min-height: 520px; margin-top: 1.5rem;
       border-radius: 16px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.02);
+      border: 1px solid var(--border);
+      background: var(--surface);
     }
     .cal-inline-fallback {
       display: none; margin-top: 1rem; font-size: .85rem; color: var(--text2);
@@ -805,6 +808,49 @@
         margin-top: 1px;
       }
     }
+
+    /* ── Hero microcopy ── */
+    .hero { min-height: 100svh; padding-bottom: 80px; }
+    .hero-microcopy { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: .4rem; margin-bottom: 1.5rem; }
+
+    /* ── How It Works ── */
+    .steps-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; list-style:none; padding:0; margin-top:2.5rem; }
+    .step-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:28px 24px; position:relative; }
+    .step-num { display:block; font-size:2.5rem; font-weight:800; color:var(--gold); line-height:1; margin-bottom:12px; }
+    .step-title { font-size:1.05rem; font-weight:700; margin-bottom:10px; color:var(--text); }
+    .step-desc { font-size:.9rem; color:var(--text2); line-height:1.65; }
+    @media (min-width:768px) {
+      .step-card:not(:last-child)::after { content:'→'; position:absolute; right:-16px; top:40px; color:var(--blue); font-size:1.2rem; }
+    }
+
+    /* ── Enterprise toggle ── */
+    .enterprise-toggle > summary {
+      display:flex; align-items:center; justify-content:space-between;
+      cursor:pointer; padding:16px 20px; background:var(--surface);
+      border:1px solid var(--border); border-radius:8px; margin-top:32px;
+      list-style:none; min-height:44px; font-size:16px; color:var(--text2);
+    }
+    .enterprise-toggle > summary::-webkit-details-marker { display:none; }
+    .toggle-hint { font-size:13px; color:var(--blue); }
+    .enterprise-grid { margin-top:16px; }
+
+    /* ── FAQ ── */
+    .faq-list { margin-top:2rem; display:flex; flex-direction:column; gap:8px; }
+    .faq-item { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+    .faq-item[open] { border-color:var(--borderh); }
+    .faq-q { display:flex; align-items:center; justify-content:space-between; cursor:pointer; padding:18px 20px; list-style:none; font-size:.95rem; font-weight:600; color:var(--text); min-height:44px; }
+    .faq-q::-webkit-details-marker { display:none; }
+    .faq-q::after { content:'↓'; color:var(--blue); font-size:.85rem; flex-shrink:0; }
+    .faq-item[open] .faq-q::after { content:'↑'; }
+    .faq-a { padding:0 20px 18px; font-size:.88rem; color:var(--text2); line-height:1.65; }
+
+    /* ── Sticky mobile CTA ── */
+    .sticky-cta { position:fixed; bottom:0; left:0; right:0; background:rgba(11,11,24,.94); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-top:1px solid var(--border); padding:12px 20px; display:none; z-index:90; justify-content:center; }
+    .sticky-cta-btn { width:100%; max-width:400px; text-align:center; }
+    @media (min-width:768px) { .sticky-cta { display:none !important; } }
+
+    /* ── Davor bridge ── */
+    .davor-bridge { font-style:italic; color:var(--text2); margin-top:1rem; }
   </style>
   <!-- Cal.com embed — CAL_EVENT must not have a pre-booking redirect in Cal dashboard -->
   <script>
@@ -857,7 +903,7 @@
       "jobTitle": "Software Engineer & Consultant",
       "description": "Zagreb-based software engineer with 10+ years of experience at Shopify, Siemens, and startups. Helping businesses automate processes, build websites, and create custom systems.",
       "url": "https://zazet-solutions.hr",
-      "image": "https://zazet-solutions.hr/gal-photo.jpg",
+      "image": "https://zazet-solutions.hr/gal-photo.webp",
       "email": "gal@zazet-solutions.hr",
       "nationality": "Israeli",
       "address": {
@@ -880,7 +926,7 @@
       "name": "ZaZet Solutions",
       "description": "Software engineering consultancy specialising in business automation, custom web development, and scalable systems. Serving Croatian small businesses and international tech companies.",
       "url": "https://zazet-solutions.hr",
-      "image": "https://zazet-solutions.hr/gal-photo.jpg",
+      "image": "https://zazet-solutions.hr/gal-photo.webp",
       "email": "gal@zazet-solutions.hr",
       "founder": {
         "@type": "Person",
@@ -891,6 +937,14 @@
         "addressLocality": "Zagreb",
         "addressCountry": "HR"
       },
+      "telephone": "+385991904995",
+      "geo": { "@type": "GeoCoordinates", "latitude": "45.8150", "longitude": "15.9819" },
+      "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" }],
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Invoice, Bank Transfer",
+      "knowsLanguage": ["hr", "en"],
+      "serviceArea": { "@type": "City", "name": "Zagreb" },
       "areaServed": ["HR", "IL", "GB", "US"],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -917,6 +971,29 @@
       }
     }
   ]
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Koliko košta izrada web stranice za malo poduzeće?", "acceptedAnswer": { "@type": "Answer", "text": "Cijena tipične web stranice za malo poduzeće kreće se od 500€ do 2.000€, ovisno o složenosti. Kontaktirajte me za besplatnu procjenu." } },
+      { "@type": "Question", "name": "Koliko dugo traje automatizacija poslovnih procesa?", "acceptedAnswer": { "@type": "Answer", "text": "Jednostavne automatizacije (fakture, podsjetnici, tablice) mogu biti gotove za 1–3 radna dana. Složeniji prilagođeni sustavi traju 2–6 tjedana." } },
+      { "@type": "Question", "name": "Radite li s malim poduzetnicima ili samo s korporacijama?", "acceptedAnswer": { "@type": "Answer", "text": "Primarno radim s malim i srednjim poduzećima u Hrvatskoj. Razumijem ograničenja budžeta i isporučujem sustave koji daju mjerljive rezultate." } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Kako funkcionira suradnja s ZaZet Solutions",
+    "step": [
+      { "@type": "HowToStep", "name": "Razgovaramo o vašem problemu", "text": "Besplatan 30-minutni razgovor u kojemu definiramo što vam troši previše vremena." },
+      { "@type": "HowToStep", "name": "Izgradimo prilagođeni sustav", "text": "Razvijam rješenje za vaš specifični proces, najčešće u 1–2 tjedna." },
+      { "@type": "HowToStep", "name": "Predajemo sustav vašem timu", "text": "Isporuka s dokumentacijom i obukom. Vaš tim radi odmah, neovisno." }
+    ]
+  }
   </script>
 </head>
 <body>
@@ -1001,6 +1078,19 @@
       </svg>
     </div>
 
+    <h1 class="hero-tagline" data-i18n-html="hero.tagline">
+      Vraćam vam vaše <strong>ponedjeljke</strong>.
+    </h1>
+    <div class="hero-meta" data-i18n="hero.meta">Invoices, follow-ups, spreadsheets, reports — if you do it every week, I can automate it.</div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1"
+         data-cal-namespace="discovery"
+         data-cal-link="gal-tidhar/discovery"
+         data-cal-config='{"layout":"month_view"}'>What's eating your time? →</a>
+      <a href="#projects" class="btn btn-ghost" data-i18n="hero.cta2">See my work</a>
+    </div>
+    <p class="hero-microcopy" data-i18n="hero.micro">Bez obveze. 15 minuta. Odgovaram isti dan.</p>
+
     <!-- Gemišt game — hero placement -->
     <div class="hero-gemist hero-gemist--intro" id="hero-gemist" aria-label="Gemišt ratio game">
       <div class="hero-gemist-head">
@@ -1017,18 +1107,6 @@
         🎉 <span data-i18n="game.toast">You're a real Zagorac! Prst prst! 🍷</span>
       </div>
     </div>
-
-    <h1 class="hero-tagline" data-i18n-html="hero.tagline">
-      Vraćam vam vaše <strong>ponedjeljke</strong>.
-    </h1>
-    <div class="hero-meta" data-i18n="hero.meta">Invoices, follow-ups, spreadsheets, reports — if you do it every week, I can automate it.</div>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1"
-         data-cal-namespace="discovery"
-         data-cal-link="gal-tidhar/discovery"
-         data-cal-config='{"layout":"month_view"}'>What's eating your time? →</a>
-      <a href="#projects" class="btn btn-ghost" data-i18n="hero.cta2">See my work</a>
-    </div>
   </div>
   <div class="hero-scroll" aria-hidden="true">
     <div class="hero-scroll-line"></div>
@@ -1038,49 +1116,84 @@
 
 <div class="divider"></div>
 
+<!-- ══ HOW IT WORKS ══════════════════════════════════════ -->
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="eyebrow" data-i18n="how.eyebrow">Kako funkcionira</div>
+    <h2 class="h2" data-i18n="how.h2">Od problema do rješenja za 2 tjedna</h2>
+    <ol class="steps-list">
+      <li class="step-card">
+        <span class="step-num">01</span>
+        <h3 class="step-title" data-i18n="how.s1.title">Razgovaramo o vašem problemu</h3>
+        <p class="step-desc" data-i18n="how.s1.desc">Opišite mi što vam troši najviše vremena — fakture, praćenje narudžbi, ručno slanje e-maila. Odmah vam kažem može li se to automatizirati i što bi to koštalo.</p>
+      </li>
+      <li class="step-card">
+        <span class="step-num">02</span>
+        <h3 class="step-title" data-i18n="how.s2.title">Izgradimo sustav za vaše poslovanje</h3>
+        <p class="step-desc" data-i18n="how.s2.desc">Ne koristim gotove predloške. Svaki sustav gradim za vaš specifični proces — najčešće u 1–2 tjedna, bez korporativnih cijena i dugačkih ugovora.</p>
+      </li>
+      <li class="step-card">
+        <span class="step-num">03</span>
+        <h3 class="step-title" data-i18n="how.s3.title">Vi vozite — mi smo tu ako zatreba</h3>
+        <p class="step-desc" data-i18n="how.s3.desc">Svaki sustav dolazi s dokumentacijom i kratkom obukom. Vaš tim preuzima odmah, bez ovisnosti o meni.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ══ SERVICES ═════════════════════════════════════════ -->
 <section id="services" class="section">
   <div class="container">
     <div class="eyebrow" data-i18n="svc.eyebrow">What I do</div>
-    <h2 class="h2" data-i18n="svc.h2">What I'll build for you</h2>
+    <h2 class="h2" data-i18n="svc.h2">Automatizacija poslovanja i izrada web stranica u Zagrebu</h2>
     <p class="lead" data-i18n="svc.lead">From automating the stuff that eats your Mondays to building the system your whole operation runs on.</p>
     <div class="services-grid">
       <div class="svc-card">
         <div class="svc-icon svc-icon-g">🔄</div>
-        <div class="svc-title" data-i18n="svc.auto.t">Automate the repetitive stuff</div>
+        <h3 class="svc-title" data-i18n="svc.auto.t">Automate the repetitive stuff</h3>
         <p class="svc-desc" data-i18n="svc.auto.d">Invoices, follow-ups, spreadsheet updates — if you do it every week, we can automate it. WhatsApp, email, Make.com, custom scripts.</p>
       </div>
       <div class="svc-card">
         <div class="svc-icon svc-icon-b">🌐</div>
-        <div class="svc-title" data-i18n="svc.web.t">Websites that work</div>
+        <h3 class="svc-title" data-i18n="svc.web.t">Websites that work</h3>
         <p class="svc-desc" data-i18n="svc.web.d">Clean, fast, mobile-first websites for small businesses. No templates that look like half the internet.</p>
       </div>
       <div class="svc-card">
         <div class="svc-icon svc-icon-b">🛠️</div>
-        <div class="svc-title" data-i18n="svc.sys.t">Custom systems</div>
+        <h3 class="svc-title" data-i18n="svc.sys.t">Custom systems</h3>
         <p class="svc-desc" data-i18n="svc.sys.d">Need something that doesn't exist yet? Order management, booking flows, client portals — built around how your business actually works.</p>
       </div>
       <div class="svc-card">
-        <div class="svc-icon svc-icon-g">🔗</div>
-        <div class="svc-title" data-i18n="svc.fs.t">Full-Stack Engineering</div>
-        <p class="svc-desc" data-i18n="svc.fs.d">TypeScript · Node.js · React · Java. From database schema to UI, no gaps between layers.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon svc-icon-r">📉</div>
-        <div class="svc-title" data-i18n="svc.perf.t">Performance &amp; Cost</div>
-        <p class="svc-desc" data-i18n="svc.perf.d">AWS cost optimisation, query tuning, caching strategy, load profiling. Delivered 46% infra cost reduction in under 6 months.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon svc-icon-r">🧭</div>
-        <div class="svc-title" data-i18n="svc.lead2.t">Engineering Leadership</div>
-        <p class="svc-desc" data-i18n="svc.lead2.d">Interim staff engineer — setting technical priorities, team structure, and mentoring experienced engineers.</p>
-      </div>
-      <div class="svc-card">
         <div class="svc-icon svc-icon-b">🤖</div>
-        <div class="svc-title" data-i18n="svc.ai.t">AI Tools &amp; Vibe Coding</div>
+        <h3 class="svc-title" data-i18n="svc.ai.t">AI Tools &amp; Vibe Coding</h3>
         <p class="svc-desc" data-i18n="svc.ai.d">I help businesses and individuals build with Base44, Claude Code, and AI tools. What used to cost €20,000 and months now takes an afternoon. I'll show you how.</p>
       </div>
     </div>
+    <details class="enterprise-toggle">
+      <summary class="enterprise-summary">
+        <span data-i18n="svc.tech.label">Za tech timove</span>
+        <span class="toggle-hint" data-i18n="svc.tech.hint">Prikaži 3 usluge ↓</span>
+      </summary>
+      <div class="services-grid enterprise-grid">
+        <div class="svc-card">
+          <div class="svc-icon svc-icon-g">🔗</div>
+          <h3 class="svc-title" data-i18n="svc.fs.t">Full-Stack Engineering</h3>
+          <p class="svc-desc" data-i18n="svc.fs.d">TypeScript · Node.js · React · Java. From database schema to UI, no gaps between layers.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon svc-icon-r">📉</div>
+          <h3 class="svc-title" data-i18n="svc.perf.t">Performance &amp; Cost</h3>
+          <p class="svc-desc" data-i18n="svc.perf.d">AWS cost optimisation, query tuning, caching strategy, load profiling. Delivered 46% infra cost reduction in under 6 months.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon svc-icon-r">🧭</div>
+          <h3 class="svc-title" data-i18n="svc.lead2.t">Engineering Leadership</h3>
+          <p class="svc-desc" data-i18n="svc.lead2.d">Interim staff engineer — setting technical priorities, team structure, and mentoring experienced engineers.</p>
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -1093,7 +1206,7 @@
     <h2 class="h2" data-i18n="about.h2">About</h2>
     <div class="about-grid">
       <div>
-        <img src="gal-photo.jpg" alt="Gal Tidhar with Adam and Ella" class="about-avatar-photo">
+        <img src="gal-photo.webp" alt="Gal Tidhar — softverski konzultant u Zagrebu" class="about-avatar-photo" fetchpriority="high" loading="eager" width="260" height="310">
         <div class="about-chips">
           <span class="chip" data-i18n="about.c1">📍 Zagreb, Croatia</span>
           <span class="chip" data-i18n="about.c2">🇮🇱 Israeli</span>
@@ -1124,7 +1237,7 @@
       <h3 class="davor-title" data-i18n="davor.title">How I became a Zagorski Zet</h3>
       <div class="davor-grid">
         <div class="davor-cover" id="davor-gallery-trigger" role="button" tabindex="0" aria-label="Open photo gallery of Davor Kolarić">
-          <img src="davor-wedding.jpg" alt="Gal and Davor Kolarić at the wedding" loading="lazy">
+          <img src="davor-wedding.webp" alt="Gal and Davor Kolarić at the wedding" loading="lazy">
           <div class="davor-cover-overlay">
             <div class="davor-cover-label">
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><rect x="1" y="3" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="7.5" cy="8" r="2.2" stroke="currentColor" stroke-width="1.4"/><path d="M5 3l.8-1.5h3.4L10 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1138,6 +1251,7 @@
           <p data-i18n-html="davor.p2">Davor ran <em>Konoba Ankora</em> in Kustošija. His family came from Zagorje, and he ran his birtija the only way that counts — your drink before your coat came off, regulars on their stools, strangers leaving as friends. He was my father-in-law, but never once made me feel like a foreigner. A gemišt was waiting when I sat down; another on the bar. As he'd say: <em>"Jedan gemišt je kak ništ."</em> The only way to stop was to slip away before he caught you.</p>
           <p data-i18n-html="davor.p3">They called him <strong>Medo</strong> — Bear — and he earned it. Over countless evenings he taught me how a real Zagorac lives: <em>spek</em>, wine, rakija, how to fill a room and send everyone home happy. And how to order a gemišt — not the tourist 50/50. <strong>Prst prst.</strong> Two fingers. Wine on top, just enough water.</p>
           <p data-i18n-html="davor.p4">Davor passed away from lung cancer. I miss him every day. If he were here for <strong>ZaZet Solutions</strong>, two gemišts would hit the counter before I opened my mouth. In his family I was the <em>Zagorski Zet</em> — the Zagorje son-in-law — and <strong>ZaZet</strong> is the name this company was always going to carry. On every project I try to bring what he brought everyone who walked into that birtija: make them feel at home, earn their trust, and do it right — not the tourist version.</p>
+          <p data-i18n-html="davor.bridge" class="davor-bridge"></p>
           <div class="davor-memorial">
             <span>🕯️</span>
             <span data-i18n="davor.memorial">In memory of Davor Kolarić</span>
@@ -1346,13 +1460,13 @@
 <section id="projects" class="section">
   <div class="container">
     <div class="eyebrow" data-i18n="proj.eyebrow">Work</div>
-    <h2 class="h2" data-i18n="proj.h2">Projects</h2>
+    <h2 class="h2" data-i18n="proj.h2">Nedavni projekti</h2>
     <p class="lead" data-i18n="proj.lead">Selected projects and client work.</p>
     <div class="proj-grid">
 
       <div class="proj-card">
         <div class="proj-tag">Open Source · 34k+ ⭐</div>
-        <div class="proj-name">Novu</div>
+        <h3 class="proj-name">Novu</h3>
         <p class="proj-desc">Notification infrastructure platform used by <strong>34,000+ developers</strong> worldwide. Full-stack contributions: notification engine, multi-step workflow builder, and provider integrations layer.</p>
         <div class="proj-meta">TypeScript · NestJS · React · MongoDB</div>
         <a href="https://github.com/novuhq/novu" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
@@ -1360,7 +1474,7 @@
 
       <div class="proj-card">
         <div class="proj-tag proj-tag-g">Platform Engineering</div>
-        <div class="proj-name">Developer Platform @ Sedric.ai</div>
+        <h3 class="proj-name">Developer Platform @ Sedric.ai</h3>
         <p class="proj-desc">Rebuilt the engineering platform from scratch. CI build time down <strong>78%</strong>. Dev overhead down <strong>90%</strong>. Architected the AI-native product delivery layer that the whole company now ships on.</p>
         <div class="proj-meta">AWS · TypeScript · Node.js · CI/CD · AI</div>
         <a href="https://sedric.ai" target="_blank" rel="noopener" class="proj-link">Visit Sedric.ai →</a>
@@ -1368,7 +1482,7 @@
 
       <div class="proj-card">
         <div class="proj-tag proj-tag-r">Infrastructure</div>
-        <div class="proj-name">Video Platform Infrastructure @ Wochit</div>
+        <h3 class="proj-name">Video Platform Infrastructure @ Wochit</h3>
         <p class="proj-desc">Led full engineering for a video creation and publishing platform. Rebuilt the cloud infrastructure, cutting AWS costs by <strong>46%</strong> through strategic caching and architecture redesign.</p>
         <div class="proj-meta">AWS · Node.js · React · Video processing</div>
         <a href="https://wochit.com" target="_blank" rel="noopener" class="proj-link">Visit Wochit →</a>
@@ -1376,19 +1490,63 @@
 
       <div class="proj-card">
         <div class="proj-tag proj-tag-g">Small Business · Croatia</div>
-        <div class="proj-name" data-i18n="proj.boat.name">Boat Taxi — Croatian Island</div>
+        <h3 class="proj-name" data-i18n="proj.boat.name">Boat Taxi — Croatian Island</h3>
         <p class="proj-desc" data-i18n="proj.boat.d">Built a booking system and marina berth management in 2 hours for €50 for a small boat-taxi operator on a Croatian island. From idea to a 4-language production system in 4 hours — that's what building with AI looks like.</p>
         <div class="proj-meta">Base44 · AI · Vibe Coding</div>
         <a href="https://www.linkedin.com/feed/update/urn:li:activity:7334994345407713280/" target="_blank" rel="noopener" class="proj-link" data-i18n="proj.boat.link">Read the story →</a>
       </div>
 
+      <div class="proj-card">
+        <div class="proj-tag" data-i18n="proj.jebo.tag">Tehnološka tvrtka · Njemačka</div>
+        <h3 class="proj-name" data-i18n="proj.jebo.name">Payroll &amp; HR backoffice, Jebo GmbH</h3>
+        <p class="proj-desc" data-i18n="proj.jebo.d">Payroll i HR sustav za 30-osobnu tvrtku u Njemačkoj — uklonili smo ručno upravljanje tabličnim kalkulatorima i zamijenili ih jednim integriranim backofficom. Obrada plaća smanjena s dana na sate.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-tag" data-i18n="proj.ismb.tag">Malo poduzeće · Izrael</div>
+        <h3 class="proj-name" data-i18n="proj.ismb.name">Poslovni operativni sustav, izraelski SMB</h3>
+        <p class="proj-desc" data-i18n="proj.ismb.d">Zamijenio tablice prilagođenom operativnom platformom izgrađenom oko stvarnog toka rada tvrtke. Svaki odjel radi u jednom sustavu umjesto zasebnih datoteka.</p>
+      </div>
+
       <div class="proj-card proj-card-cta">
         <div class="proj-tag">Your business</div>
-        <div class="proj-name" data-i18n="proj.cta.t">Let's build something</div>
+        <h3 class="proj-name" data-i18n="proj.cta.t">Let's build something</h3>
         <p class="proj-desc" data-i18n="proj.cta.d">Got a process that's eating too much time? A website that isn't working hard enough? A system that doesn't quite fit? Let's talk about it.</p>
         <a href="#contact" class="proj-link" data-i18n="proj.cta.link">Get in touch →</a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ FAQ ═══════════════════════════════════════════════ -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="eyebrow" data-i18n="faq.eyebrow">Često pitana pitanja</div>
+    <h2 class="h2" data-i18n="faq.h2">Imate pitanje?</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q1">Koliko košta izrada web stranice za malo poduzeće?</summary>
+        <p class="faq-a" data-i18n="faq.a1">Cijena ovisi o složenosti, ali tipična web stranica za malo poduzeće kreće se od 500€ do 2.000€. Razgovarajmo — u 30 minuta možemo procijeniti što vam treba i koliko bi to koštalo.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q2">Koliko dugo traje automatizacija poslovnih procesa?</summary>
+        <p class="faq-a" data-i18n="faq.a2">Jednostavne automatizacije — fakture, podsjetnici, ažuriranje tablica — mogu biti gotove za 1–3 radna dana. Složeniji prilagođeni sustavi traju 2–6 tjedana.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q3">Radite li s malim poduzetnicima ili samo s korporacijama?</summary>
+        <p class="faq-a" data-i18n="faq.a3">Primarno radim s malim i srednjim poduzećima u Hrvatskoj. Razumijem ograničenja budžeta i isporučujem sustave koji daju mjerljive rezultate bez korporativnih troškova.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q4">Koje alate koristite za automatizaciju?</summary>
+        <p class="faq-a" data-i18n="faq.a4">Make.com, WhatsApp Business API, Google Sheets integracije, prilagođene skripte u Node.js i Pythonu. Biram alate koji odgovaraju vašem budžetu i tehničkim mogućnostima.</p>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q" data-i18n="faq.q5">Mogu li izgraditi sustav koji drugi programer može preuzeti i održavati?</summary>
+        <p class="faq-a" data-i18n="faq.a5">Da — pišem čist, dokumentiran kod koji vaš in-house tim ili drugi developer može preuzeti bez problema. Nema zaključavanja na mene kao jedinu osobu koja sustav razumije.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -1404,7 +1562,7 @@
 
       <div class="linkedin-card">
         <div class="linkedin-hd">
-          <img src="gal-photo.jpg" alt="Gal Tidhar" class="linkedin-photo">
+          <img src="gal-photo.webp" alt="Gal Tidhar" class="linkedin-photo" loading="lazy">
           <div>
             <div class="linkedin-name">Gal Tidhar</div>
             <div class="linkedin-role">Staff Software Engineer · Automation &amp; Systems · Zagreb</div>
@@ -1626,7 +1784,7 @@
   addEventListener('resize', () => { clearTimeout(window._heroLogoResize); window._heroLogoResize = setTimeout(layoutHeroLogo, 120); });
 
   // ── i18n ──────────────────────────────────────────────
-  const T = {"en":{"mob.home":"Home","davor.eyebrow":"The Founding Story","davor.title":"How I became a Zagorski Zet","davor.gallery":"Open gallery","davor.p1":"I arrived in Croatia knowing no one and speaking no Croatian. The person who changed that — who changed everything — was <strong>Davor Kolarić</strong>.","davor.p2":"Davor ran <em>Konoba Ankora</em> in Kustošija. His family came from Zagorje, and he ran his birtija the only way that counts — your drink before your coat came off, regulars on their stools, strangers leaving as friends. He was my father-in-law, but never once made me feel like a foreigner. A gemišt was waiting when I sat down; another on the bar. As he'd say: <em>\"Jedan gemišt je kak ništ.\"</em> The only way to stop was to slip away before he caught you.","davor.p3":"They called him <strong>Medo</strong> — Bear — and he earned it. Over countless evenings he taught me how a real Zagorac lives: <em>spek</em>, wine, rakija, how to fill a room and send everyone home happy. And how to order a gemišt — not the tourist 50/50. <strong>Prst prst.</strong> Two fingers. Wine on top, just enough water.","davor.p4":"Davor passed away from lung cancer. I miss him every day. If he were here for <strong>ZaZet Solutions</strong>, two gemišts would hit the counter before I opened my mouth. In his family I was the <em>Zagorski Zet</em> — the Zagorje son-in-law — and <strong>ZaZet</strong> is the name this company was always going to carry. On every project I try to bring what he brought everyone who walked into that birtija: make them feel at home, earn their trust, and do it right — not the tourist version.","davor.memorial":"In memory of Davor Kolarić","game.label":"How do you drink your gemišt?","game.hint":"White wine + sparkling water — tap a ratio and watch the logo above refill ↑","game.info":"What's gemišt?","game.modal.title":"What's gemišt?","game.modal.intro":"<p><strong>Gemišt</strong> (GEM-isht) is Croatia's summer drink: dry white wine mixed with sparkling water. In Zagorje — the hills north of Zagreb — how you pour it is a small personality test.</p><p><strong>Prst prst</strong> means \"finger finger.\" At the bar you hold up two fingers: one vertical (wine), one horizontal (just a splash of water). Locals pour about 80% wine, 20% water.</p><p>The ZaZet logo is the same joke: blue water on top, gold wine below. Change the mix and the logo refills.</p>","game.modal.tourist":"<strong>25/75 — Tourist pour ☁️</strong><br>Mostly water, light on the wine. For people who just arrived and aren't ready to commit.","game.modal.half":"<strong>50/50 — Half & half</strong><br>The safe middle ground. Everyone gets it, nobody fights about it.","game.modal.prst":"<strong>Prst Prst 🍷 — Real Zagorac</strong><br>Strong pour — mostly wine, water just to stay legal. What my father-in-law Davor would pour before you sat down. Pick this one for confetti.","game.modal.link":"<a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">Read more on Zagorje International →</a>","game.tourist":"25/75 — Tourist ☁️","game.half":"50/50 — Half & half","game.prst":"Prst Prst 🍷 — Real Zagorac","game.toast":"You're a real Zagorac! Prst prst! 🍷","game.scrollup":"Tell us how you drink your gemišt ↑","nav.services":"Services","nav.about":"About","nav.projects":"Projects","nav.work":"Work","nav.contact":"Contact","nav.cta":"Let's talk","hero.pre":"Shopify · Siemens · dozens of small businesses · 10 years","hero.tagline":"I give you back your <strong>Mondays</strong>.","hero.meta":"Invoices, follow-ups, spreadsheets, reports — if you do it every week, I can automate it.","hero.cta1":"What's eating your time? →","hero.cta2":"See my work","hero.scroll":"scroll","svc.eyebrow":"What I do","svc.h2":"What I'll build for you","svc.lead":"From automating the stuff that eats your Mondays to building the system your whole operation runs on.","svc.auto.t":"Automate the repetitive stuff","svc.auto.d":"Invoices, follow-ups, spreadsheet updates — if you do it every week, we can automate it. WhatsApp, email, Make.com, custom scripts.","svc.web.t":"Websites that work","svc.web.d":"Clean, fast, mobile-first websites for small businesses. No templates that look like half the internet.","svc.sys.t":"Custom systems","svc.sys.d":"Need something that doesn’t exist yet? Order management, booking flows, client portals — built around how your business actually works.","svc.fs.t":"Full-Stack Engineering","svc.fs.d":"TypeScript · Node.js · React · Java. From database schema to UI, no gaps between layers.","svc.perf.t":"Performance & Cost","svc.perf.d":"AWS cost optimisation, query tuning, caching strategy, load profiling. Delivered 46% infra cost reduction in under 6 months.","svc.lead2.t":"Engineering Leadership","svc.lead2.d":"Interim staff engineer — setting technical priorities, team structure, and mentoring experienced engineers.","svc.ai.t":"AI Tools & Vibe Coding","svc.ai.d":"I help businesses and individuals build with Base44, Claude Code, and AI tools. What used to cost €20,000 and months now takes an afternoon. I’ll show you how.","about.eyebrow":"Who I am","about.h2":"About","about.c1":"📍 Zagreb, Croatia","about.c2":"🇮🇱 Israeli","about.c3":"👨‍👧‍👦 Father of Adam & Ella","about.c4":"10 yrs experience","about.c5":"🤝 Available for projects","about.p1":"<strong>Gal Tidhar</strong> — an Israeli software engineer who landed in Zagreb, married a Zagorka, and stayed for good. Father of <strong>Adam</strong> and <strong>Ella</strong>. For over a decade I've built systems that work — from Siemens and Shopify to early-stage startups.","about.p2":"Today I help businesses work smarter — automating what eats your Mondays, building websites that actually bring in customers, and systems built around how you really operate.","about.p3":"<strong>ZaZet</strong> carries the nickname Davor gave me — <em>Zagorski Zet</em>, the Zagorje son-in-law. I brought the engineering. Croatia gave me everything else, including the two best kids in the world.","about.pq":"In Zagorje, ordering a gemišt isn't just picking a drink. You hold up two fingers. One <strong>vertical</strong> — the wine. One <strong>horizontal</strong> — the water, just enough to get by. That ratio, <em>prst prst</em>, is what locals call the strong pour: 8 parts wine, 2 parts water. Not the tourist version. The real one. <a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">What's gemišt? →</a><br><br>Look at the ZaZet logo. Blue at the top — precise, technical, the 20%. Gold fills the rest — warm, direct, what actually counts. That's the mix I bring to your project.","career.eyebrow":"Experience","career.h2":"Career Changelog","career.lead":"10 years. Seven companies. Same story every time: build systems that have to work — and do.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Building AI-assisted dev workflows and tooling. Cut CI build time by <strong style=\"color:var(--text)\">78%</strong> and dev overhead by <strong style=\"color:var(--text)\">90%</strong>. Platform architecture for AI-native product delivery.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source notification infrastructure platform. Full-stack feature work across the notification engine, multi-step workflow builder, and provider integrations.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Commerce logistics infrastructure at global scale. Reduced deployment delays by <strong style=\"color:var(--text)\">70%</strong>. Distributed systems spanning supply chain orchestration after Flexport’s acquisition of Shopify Logistics.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Last-mile fulfilment platform acquired by Shopify. Built order routing and warehouse management integrations, then transitioned into the unified Shopify/Flexport engineering org.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Led engineering for the video creation and publishing platform. Full-stack from video processing pipeline to React editor. Reduced infrastructure cost by <strong style=\"color:var(--text)\">46%</strong> through caching and cloud optimisation.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM software. Java backend and web frontend for manufacturing lifecycle tools. Introduced modern JavaScript tooling into legacy systems serving global manufacturing customers.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"First engineering role — built full-stack web applications from scratch. Transitioned from junior to mid-level while shipping production systems used across Germany and Austria.","num.eyebrow":"By the numbers","num.ci":"faster CI<br>builds","num.ov":"dev overhead<br>reduced","num.dep":"fewer deploy<br>delays","num.cost":"infra cost<br>cut","num.yrs":"years<br>experience","num.co":"companies<br>scaled","stack.eyebrow":"Tools","stack.h2":"Tech Stack","stack.lang":"Languages","stack.fw":"Frameworks","stack.cloud":"Cloud & Infra","stack.db":"Databases","stack.prac":"Practices","stack.design":"System Design","stack.dx":"DX Engineering","stack.review":"Code Review","stack.mentor":"Mentorship","stack.write":"Tech Writing","oss.eyebrow":"Open Source","oss.h2":"What I’ve shipped publicly","oss.novu.d":"Open-source notification infrastructure for developers — multi-channel (email, SMS, push, in-app), workflow-driven, with a growing ecosystem of provider integrations. Contributed full-stack features to the core engine, workflow builder, and integration layer.","oss.stars":"GitHub stars","oss.prod":"<strong>Production</strong> at scale","proj.eyebrow":"Work","proj.h2":"Projects","proj.lead":"Selected projects and client work.","proj.boat.name":"Boat Taxi — Croatian Island","proj.boat.d":"Built a booking system and marina berth management in 2 hours for €50 for a small boat-taxi operator on a Croatian island. From idea to a 4-language production system in 4 hours — that's what building with AI looks like.","proj.boat.link":"Read the story →","proj.cta.t":"Let’s build something","proj.cta.d":"Got a process that’s eating too much time? A website that isn’t working hard enough? A system that doesn’t quite fit? Let’s talk about it.","proj.cta.link":"Get in touch →","social.eyebrow":"Connect","social.h2":"Find me online","social.linkedin.bio":"Professional updates, engineering takes, and occasional Zagorje wine recommendations.","contact.eyebrow":"Let’s work together","contact.h2":"Get in touch","contact.lead":"What's eating too much of your time? Tell me. No pitch — just a conversation.","contact.email":"Email","contact.book.cta":"Book a free 30-min call →","contact.book.sub":"No commitment · pick a slot that works for you","contact.or":"or reach me directly","footer.copy":"© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Croatia","footer.a11y":"Accessibility Statement"},"hr":{"mob.home":"Početna","davor.eyebrow":"Osnivačka priča","davor.title":"Kako sam postao Zagorski Zet","davor.gallery":"Otvori galeriju","davor.p1":"Stigao sam u Hrvatsku ne znajući nikoga i bez ijedne riječi hrvatskog. Čovjek koji je promijenio sve to — i puno više od toga — bio je <strong>Davor Kolarić</strong>.","davor.p2":"Davor je vodio <em>Konobu Ankoru</em> u Kustošiji. Obitelj mu je bila iz Zagorja, a birtiju je vodio kako i treba — piće prije nego skineš kaput, stalni na svojim mjestima, stranci odlaze kao prijatelji. Bio je moj punac, ali nikad se nisam osjećao kao stranac. Gemišt čeka kad sjedneš; drugi već na šanku. Kako je znao reći: <em>\"Jedan gemišt je kak ništ.\"</em> Jedini način da prestaneš — pobjeći prije nego te uhvati.","davor.p3":"Nadimak mu je bio <strong>Medo</strong> — i zaslužio ga je. Kroz bezbroj večeri naučio me kako pravi Zagorac živi: <em>spek</em>, vino, rakija, kako napuniti prostoriju i poslati sve kući sretne. I kako naručiti gemišt — ne ono turističko 50/50. <strong>Prst prst.</strong> Dva prsta. Vino dominira, voda samo toliko da prođe.","davor.p4":"Davor je preminuo od raka pluća. Nedostaje mi svaki dan. Da je ovdje zbog <strong>ZaZet Solutions</strong>, dva gemišta bi već bila na šanku prije nego otvorim usta. U obitelji sam bio <em>Zagorski Zet</em> — zagorski zet — a <strong>ZaZet</strong> je ime koje je ova tvrtka uvijek trebala nositi. Na svakom projektu pokušavam donijeti ono što je on donosio svakome tko uđe u birtiju: osjećaj doma, povjerenje i da se napravi kako treba — ne turističku verziju.","davor.memorial":"U spomen Davora Kolarića","game.label":"Kako pijete vaš gemišt?","game.hint":"Bijelo vino + gazirana voda — odaberite omjer i pogledajte kako se logo iznad puni ↑","game.info":"Što je gemišt?","game.modal.title":"Što je gemišt?","game.modal.intro":"<p><strong>Gemišt</strong> je ljetno piće u Hrvatskoj: bijelo vino s gaziranom vodom. U Zagorju — brdima sjeverno od Zagreba — omjer otkriva tko ste.</p><p><strong>Prst prst</strong> znači \"prst prst.\" Na šanku podignete dva prsta: jedan okomito (vino), jedan vodoravno (samo malo vode). Pravi Zagorci naručuju otprilike 80% vina, 20% vode.</p><p>ZaZet logo je ista šala: plava voda gore, zlatno vino dolje. Promijenite omjer — logo se ponovno napuni.</p>","game.modal.tourist":"<strong>25/75 — Turistički ☁️</strong><br>Pretežno voda, malo vina. Za one koji su tek stigli i još ne znaju.","game.modal.half":"<strong>50/50 — Na pola</strong><br>Sigurna sredina. Svi razumiju, nitko se ne svađa.","game.modal.prst":"<strong>Prst Prst 🍷 — Pravi Zagorac</strong><br>Jači omjer — puno vina, vode samo da prođe. Ono što bi mi punac Davor natočio prije nego sjednete. Odaberite za confetti.","game.modal.link":"<a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">Pročitajte više na Zagorje International →</a>","game.tourist":"25/75 — Turistički ☁️","game.half":"50/50 — Na pola","game.prst":"Prst Prst 🍷 — Pravi Zagorac","game.toast":"Vi ste pravi Zagorac! Prst prst! 🍷","game.scrollup":"Recite nam kako pijete vaš gemišt ↑","nav.services":"Usluge","nav.about":"O meni","nav.projects":"Projekti","nav.work":"Iskustvo","nav.contact":"Kontakt","nav.cta":"Razgovarajmo","hero.pre":"Shopify · Siemens · desetine malih poduzeća · 10 godina","hero.tagline":"Vraćam vam vaše <strong>ponedjeljke</strong>.","hero.meta":"Fakture, podsjetnici, tablice, izvještaji — ako to radite svaki tjedan, mogu to automatizirati.","hero.cta1":"Što vam troši vrijeme? →","hero.cta2":"Pogledajte moj rad","hero.scroll":"nastavi","svc.eyebrow":"Što radim","svc.h2":"Što ću izgraditi za vas","svc.lead":"Od automatizacije svakodnevnih sitnica do sustava na kojemu se vrti cijelo vaše poslovanje.","svc.auto.t":"Automatizirajte ponavljajuće zadatke","svc.auto.d":"Fakture, podsjetnici, ažuriranje tablica — ako to radite svaki tjedan, možemo to automatizirati. WhatsApp, email, Make.com, prilagođene skripte.","svc.web.t":"Web stranice koje donose rezultate","svc.web.d":"Čiste, brze web stranice prilagođene mobilnim uređajima za male tvrtke. Bez generičkih predložaka koji izgledaju kao pola weba.","svc.sys.t":"Prilagođeni sustavi","svc.sys.d":"Trebate nešto što ne postoji? Upravljanje narudžbama, sustavi rezervacija, portali za klijente — izgrađeno za vaš način rada.","svc.fs.t":"Full-Stack inženjerstvo","svc.fs.d":"TypeScript · Node.js · React · Java. Od sheme baze podataka do korisničkog sučelja, bez rupa između slojeva.","svc.perf.t":"Performanse i troškovi","svc.perf.d":"Optimizacija AWS troškova, podešavanje upita, strategija cachea, profiliranje opterećenja. Smanjio troškove infrastrukture za 46% u manje od 6 mjeseci.","svc.lead2.t":"Inženjersko vodstvo","svc.lead2.d":"Privremeni angažman kao staff inženjer — postavljanje tehničkih prioriteta, struktura tima i mentorstvo za iskusne inženjere.","svc.ai.t":"AI alati i vibe coding","svc.ai.d":"Pomažem tvrtkama i pojedincima da grade s Base44, Claude Code i AI alatima. Ono što je nekad koštalo 20.000€ i trajalo mjesecima, sada traje jedno poslijepodne. Pokazat ću vam kako.","about.eyebrow":"Tko sam","about.h2":"O meni","about.c1":"📍 Zagreb, Hrvatska","about.c2":"🇮🇱 Izraelac","about.c3":"👨‍👧‍👦 Otac Adama i Elle","about.c4":"10 god. iskustva","about.c5":"🤝 Dostupan za projekte","about.p1":"<strong>Gal Tidhar</strong> — izraelski softverski inženjer koji je stigao u Zagreb, oženio Zagorku i ostao zauvijek. Tata <strong>Adama</strong> i <strong>Elle</strong>. Više od deset godina gradim sustave koji rade — od Siemensa i Shopifyja do ranih startupova.","about.p2":"Danas pomažem tvrtkama da rade pametnije. Automatiziram ono što vam oduzima ponedjeljke, gradim web stranice koje rade za vas, i sustave koji odgovaraju načinu na koji zapravo poslujete.","about.p3":"ZaZet Solutions nosi moje ime. <em>Zagorski Zet</em> — zagorski zet, onaj koji je ušao u obitelj iz Zagorja i ostao. Donio sam inženjerstvo. Hrvatska mi je dala sve ostalo — i dvoje najljepše djece na svijetu.","about.pq":"U Zagorju, naručivanje gemišta nije samo odabir pića. Dignete dva prsta. Jedan <strong>vertikalni</strong> — vino. Jedan <strong>horizontalni</strong> — voda, samo toliko da prođe. Taj omjer zove se <em>prst prst</em> — 8 dijelova vina, 2 vode. Ne ona turistička. Prava stvar. <a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">Što je gemišt? →</a><br><br>Pogledajte ZaZet logo. Plava je gore — precizna, tehnička, tih 20%. Zlatna ispunjava ostatak — topla, izravna, ono što zaista vrijedi. U tom omjeru radim i ja.","career.eyebrow":"Iskustvo","career.h2":"Karijera","career.lead":"10 godina. Sedam tvrtki. Uvijek isto: graditi sustave koji moraju raditi — i rade.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Gradnja AI-potpomognutih razvojnih procesa i alata za razvojni tim. Smanjio CI build za <strong style=\"color:var(--text)\">78%</strong> i razvojno opterećenje za <strong style=\"color:var(--text)\">90%</strong>. Arhitektura platforme za AI-nativni razvoj.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source platforma za notifikacijsku infrastrukturu. Full-stack rad na notifikacijskom motoru, graditelju multi-step workflowa i integracijama s pružateljima.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Infrastruktura za logistiku trgovine na globalnoj razini. Smanjio kašnjenja pri deployu za <strong style=\"color:var(--text)\">70%</strong>. Distribuirani sustavi koji obuhvaćaju orkestraciju opskrbnog lanca nakon akvizicije Shopify Logistics od strane Flexporta.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Platforma za isporuku posljednje milje koju je preuzeo Shopify. Izgradio integracije za usmjeravanje narudžbi i upravljanje skladištem, zatim se pridružio zajedničkom inženjerskom timu Shopifyja i Flexporta.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Vodio inženjerstvo za platformu za izradu i objavljivanje videa. Full-stack od video processing pipelinea do React editora. Smanjio infrastrukturne troškove za <strong style=\"color:var(--text)\">46%</strong> kroz caching i optimizaciju oblaka.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM softver. Java backend i web sučelje za alate upravljanja životnim ciklusom u proizvodnji. Uveo moderne JavaScript alate u naslijeđene sustave koji opslužuju globalne proizvodne klijente.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"Prva inženjerska uloga — izgradnja full-stack web aplikacija od nule. Napredovao od juniora do mid-levela isporučujući sustave u produkciji koji se koriste u Njemačkoj i Austriji.","num.eyebrow":"Brojevi govore","num.ci":"brži CI<br>buildovi","num.ov":"razvojno opterećenje<br>smanjeno","num.dep":"manje deploy<br>kašnjenja","num.cost":"ušteda na<br>infrastrukturi","num.yrs":"godina<br>iskustva","num.co":"skaliranih<br>tvrtki","stack.eyebrow":"Alati","stack.h2":"Tech Stack","stack.lang":"Jezici","stack.fw":"Frameworks","stack.cloud":"Cloud i Infra","stack.db":"Baze podataka","stack.prac":"Prakse","stack.design":"Dizajn sustava","stack.dx":"DX inženjerstvo","stack.review":"Pregled koda","stack.mentor":"Mentorstvo","stack.write":"Tehnička dokumentacija","oss.eyebrow":"Otvoreni kod","oss.h2":"Što sam javno objavio","oss.novu.d":"Open-source notifikacijska infrastruktura za developere — višekanalna (e-mail, SMS, push, in-app), workflow-orijentirana, s rastućim ekosustavom integracija pružatelja. Doprinio full-stack značajkama u jezgru motora, graditelju workflowa i integracijskom sloju.","oss.stars":"GitHub zvjezdice","oss.prod":"<strong>Produkcija</strong> na velikoj skali","proj.eyebrow":"Rad","proj.h2":"Projekti","proj.lead":"Odabrani projekti i klijentski rad.","proj.boat.name":"Brodski taksi — hrvatski otok","proj.boat.d":"Izgradio sustav rezervacija i upravljanje vezovima u marini u 2 sata za 50€ za malog poduzetnika na hrvatskom otoku. Od ideje do produkcijskog sustava na 4 jezika za 4 sata ukupno — ovako izgleda gradnja s AI-jem.","proj.boat.link":"Pročitajte priču →","proj.cta.t":"Izgradimo nešto zajedno","proj.cta.d":"Imate proces koji oduzima previše vremena? Web stranicu koja ne donosi dovoljno? Sustav koji ne odgovara vašim potrebama? Razgovarajmo.","proj.cta.link":"Javite se →","social.eyebrow":"Povežimo se","social.h2":"Pronađite me online","social.linkedin.bio":"Stručne objave, inženjerske perspektive i povremene preporuke zagorskih vina.","contact.eyebrow":"Radimo zajedno","contact.h2":"Javite se","contact.lead":"Što vam troši previše vremena? Opišite mi problem. Bez prodajnog govora — samo razgovor.","contact.email":"E-mail","contact.book.cta":"Rezervirajte besplatan razgovor (30 min) →","contact.book.sub":"Bez obaveza · odaberite termin koji vam odgovara","contact.or":"ili me kontaktirajte direktno","footer.copy":"© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Hrvatska","footer.a11y":"Izjava o pristupačnosti"}};
+  const T = {"en":{"mob.home":"Home","davor.eyebrow":"The Founding Story","davor.title":"How I became a Zagorski Zet","davor.gallery":"Open gallery","davor.p1":"I arrived in Croatia knowing no one and speaking no Croatian. The person who changed that — who changed everything — was <strong>Davor Kolarić</strong>.","davor.p2":"Davor ran <em>Konoba Ankora</em> in Kustošija. His family came from Zagorje, and he ran his birtija the only way that counts — your drink before your coat came off, regulars on their stools, strangers leaving as friends. He was my father-in-law, but never once made me feel like a foreigner. A gemišt was waiting when I sat down; another on the bar. As he'd say: <em>\"Jedan gemišt je kak ništ.\"</em> The only way to stop was to slip away before he caught you.","davor.p3":"They called him <strong>Medo</strong> — Bear — and he earned it. Over countless evenings he taught me how a real Zagorac lives: <em>spek</em>, wine, rakija, how to fill a room and send everyone home happy. And how to order a gemišt — not the tourist 50/50. <strong>Prst prst.</strong> Two fingers. Wine on top, just enough water.","davor.p4":"Davor passed away from lung cancer. I miss him every day. If he were here for <strong>ZaZet Solutions</strong>, two gemišts would hit the counter before I opened my mouth. In his family I was the <em>Zagorski Zet</em> — the Zagorje son-in-law — and <strong>ZaZet</strong> is the name this company was always going to carry. On every project I try to bring what he brought everyone who walked into that birtija: make them feel at home, earn their trust, and do it right — not the tourist version.","davor.memorial":"In memory of Davor Kolarić","game.label":"How do you drink your gemišt?","game.hint":"White wine + sparkling water — tap a ratio and watch the logo above refill ↑","game.info":"What's gemišt?","game.modal.title":"What's gemišt?","game.modal.intro":"<p><strong>Gemišt</strong> (GEM-isht) is Croatia's summer drink: dry white wine mixed with sparkling water. In Zagorje — the hills north of Zagreb — how you pour it is a small personality test.</p><p><strong>Prst prst</strong> means \"finger finger.\" At the bar you hold up two fingers: one vertical (wine), one horizontal (just a splash of water). Locals pour about 80% wine, 20% water.</p><p>The ZaZet logo is the same joke: blue water on top, gold wine below. Change the mix and the logo refills.</p>","game.modal.tourist":"<strong>25/75 — Tourist pour ☁️</strong><br>Mostly water, light on the wine. For people who just arrived and aren't ready to commit.","game.modal.half":"<strong>50/50 — Half & half</strong><br>The safe middle ground. Everyone gets it, nobody fights about it.","game.modal.prst":"<strong>Prst Prst 🍷 — Real Zagorac</strong><br>Strong pour — mostly wine, water just to stay legal. What my father-in-law Davor would pour before you sat down. Pick this one for confetti.","game.modal.link":"<a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">Read more on Zagorje International →</a>","game.tourist":"25/75 — Tourist ☁️","game.half":"50/50 — Half & half","game.prst":"Prst Prst 🍷 — Real Zagorac","game.toast":"You're a real Zagorac! Prst prst! 🍷","game.scrollup":"Tell us how you drink your gemišt ↑","nav.services":"Services","nav.about":"About","nav.projects":"Projects","nav.work":"Work","nav.contact":"Contact","nav.cta":"Let's talk","hero.pre":"Shopify · Siemens · dozens of small businesses · 10 years","hero.tagline":"I give you back your <strong>Mondays</strong>.","hero.meta":"Invoices, follow-ups, spreadsheets, reports — if you do it every week, I can automate it.","hero.cta1":"What's eating your time? →","hero.cta2":"See my work","hero.scroll":"scroll","hero.micro":"No commitment. 15 minutes. I reply same day.","how.eyebrow":"How it works","how.h2":"From problem to solution in 2 weeks","how.s1.title":"We talk about your problem","how.s1.desc":"Tell me what takes up the most time — invoices, order tracking, sending emails manually. I'll tell you right away if it can be automated and what it would cost.","how.s2.title":"We build a system for your business","how.s2.desc":"I don't use templates. Every system is built for your specific process — usually in 1–2 weeks, without corporate pricing and long contracts.","how.s3.title":"You drive — we're here if needed","how.s3.desc":"Every system comes with documentation and a short training. Your team takes over immediately, without dependency on me.","svc.eyebrow":"What I do","svc.h2":"Business automation and web development in Zagreb","svc.tech.label":"For tech teams","svc.tech.hint":"Show 3 services ↓","svc.lead":"From automating the stuff that eats your Mondays to building the system your whole operation runs on.","svc.auto.t":"Automate the repetitive stuff","svc.auto.d":"Invoices, follow-ups, spreadsheet updates — if you do it every week, we can automate it. WhatsApp, email, Make.com, custom scripts.","svc.web.t":"Websites that work","svc.web.d":"Clean, fast, mobile-first websites for small businesses. No templates that look like half the internet.","svc.sys.t":"Custom systems","svc.sys.d":"Need something that doesn’t exist yet? Order management, booking flows, client portals — built around how your business actually works.","svc.fs.t":"Full-Stack Engineering","svc.fs.d":"TypeScript · Node.js · React · Java. From database schema to UI, no gaps between layers.","svc.perf.t":"Performance & Cost","svc.perf.d":"AWS cost optimisation, query tuning, caching strategy, load profiling. Delivered 46% infra cost reduction in under 6 months.","svc.lead2.t":"Engineering Leadership","svc.lead2.d":"Interim staff engineer — setting technical priorities, team structure, and mentoring experienced engineers.","svc.ai.t":"AI Tools & Vibe Coding","svc.ai.d":"I help businesses and individuals build with Base44, Claude Code, and AI tools. What used to cost €20,000 and months now takes an afternoon. I’ll show you how.","about.eyebrow":"Who I am","about.h2":"About","about.c1":"📍 Zagreb, Croatia","about.c2":"🇮🇱 Israeli","about.c3":"👨‍👧‍👦 Father of Adam & Ella","about.c4":"10 yrs experience","about.c5":"🤝 Available for projects","about.p1":"<strong>Gal Tidhar</strong> — an Israeli software engineer who landed in Zagreb, married a Zagorka, and stayed for good. Father of <strong>Adam</strong> and <strong>Ella</strong>. For over a decade I've built systems that work — from Siemens and Shopify to early-stage startups.","about.p2":"Today I help businesses work smarter — automating what eats your Mondays, building websites that actually bring in customers, and systems built around how you really operate.","about.p3":"<strong>ZaZet</strong> carries the nickname Davor gave me — <em>Zagorski Zet</em>, the Zagorje son-in-law. I brought the engineering. Croatia gave me everything else, including the two best kids in the world.","about.pq":"In Zagorje, ordering a gemišt isn't just picking a drink. You hold up two fingers. One <strong>vertical</strong> — the wine. One <strong>horizontal</strong> — the water, just enough to get by. That ratio, <em>prst prst</em>, is what locals call the strong pour: 8 parts wine, 2 parts water. Not the tourist version. The real one. <a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">What's gemišt? →</a><br><br>Look at the ZaZet logo. Blue at the top — precise, technical, the 20%. Gold fills the rest — warm, direct, what actually counts. That's the mix I bring to your project.","career.eyebrow":"Experience","career.h2":"Career Changelog","career.lead":"10 years. Seven companies. Same story every time: build systems that have to work — and do.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Building AI-assisted dev workflows and tooling. Cut CI build time by <strong style=\"color:var(--text)\">78%</strong> and dev overhead by <strong style=\"color:var(--text)\">90%</strong>. Platform architecture for AI-native product delivery.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source notification infrastructure platform. Full-stack feature work across the notification engine, multi-step workflow builder, and provider integrations.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Commerce logistics infrastructure at global scale. Reduced deployment delays by <strong style=\"color:var(--text)\">70%</strong>. Distributed systems spanning supply chain orchestration after Flexport’s acquisition of Shopify Logistics.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Last-mile fulfilment platform acquired by Shopify. Built order routing and warehouse management integrations, then transitioned into the unified Shopify/Flexport engineering org.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Led engineering for the video creation and publishing platform. Full-stack from video processing pipeline to React editor. Reduced infrastructure cost by <strong style=\"color:var(--text)\">46%</strong> through caching and cloud optimisation.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM software. Java backend and web frontend for manufacturing lifecycle tools. Introduced modern JavaScript tooling into legacy systems serving global manufacturing customers.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"First engineering role — built full-stack web applications from scratch. Transitioned from junior to mid-level while shipping production systems used across Germany and Austria.","num.eyebrow":"By the numbers","num.ci":"faster CI<br>builds","num.ov":"dev overhead<br>reduced","num.dep":"fewer deploy<br>delays","num.cost":"infra cost<br>cut","num.yrs":"years<br>experience","num.co":"companies<br>scaled","stack.eyebrow":"Tools","stack.h2":"Tech Stack","stack.lang":"Languages","stack.fw":"Frameworks","stack.cloud":"Cloud & Infra","stack.db":"Databases","stack.prac":"Practices","stack.design":"System Design","stack.dx":"DX Engineering","stack.review":"Code Review","stack.mentor":"Mentorship","stack.write":"Tech Writing","oss.eyebrow":"Open Source","oss.h2":"What I’ve shipped publicly","oss.novu.d":"Open-source notification infrastructure for developers — multi-channel (email, SMS, push, in-app), workflow-driven, with a growing ecosystem of provider integrations. Contributed full-stack features to the core engine, workflow builder, and integration layer.","oss.stars":"GitHub stars","oss.prod":"<strong>Production</strong> at scale","proj.eyebrow":"Work","proj.h2":"Recent Work","proj.lead":"Selected projects and client work.","proj.boat.name":"Boat Taxi — Croatian Island","proj.boat.d":"Built a booking system and marina berth management in 2 hours for €50 for a small boat-taxi operator on a Croatian island. From idea to a 4-language production system in 4 hours — that's what building with AI looks like.","proj.boat.link":"Read the story →","proj.jebo.tag":"Tech company · Germany","proj.jebo.name":"Payroll & HR backoffice, Jebo GmbH","proj.jebo.d":"Payroll and HR system for a 30-person company in Germany — removed manual spreadsheet management and replaced it with a single integrated backoffice. Payroll processing reduced from days to hours.","proj.ismb.tag":"Small business · Israel","proj.ismb.name":"Business operating system, Israeli SMB","proj.ismb.d":"Replaced spreadsheets with a custom operating platform built around the company’s actual workflow. Every department works in one system instead of separate files.","proj.cta.t":"Let’s build something","proj.cta.d":"Got a process that’s eating too much time? A website that isn’t working hard enough? A system that doesn’t quite fit? Let’s talk about it.","proj.cta.link":"Get in touch →","faq.eyebrow":"Frequently asked questions","faq.h2":"Have a question?","faq.q1":"How much does a website for a small business cost?","faq.a1":"Price depends on complexity, but a typical small business website ranges from €500 to €2,000. Let’s talk — in 30 minutes we can estimate what you need and what it would cost.","faq.q2":"How long does business process automation take?","faq.a2":"Simple automations — invoices, reminders, spreadsheet updates — can be done in 1–3 business days. More complex custom systems take 2–6 weeks.","faq.q3":"Do you work with small businesses or only corporations?","faq.a3":"I primarily work with small and medium businesses in Croatia. I understand budget constraints and deliver systems that give measurable results without corporate costs.","faq.q4":"What tools do you use for automation?","faq.a4":"Make.com, WhatsApp Business API, Google Sheets integrations, custom scripts in Node.js and Python. I choose tools that fit your budget and technical capabilities.","faq.q5":"Can you build a system another developer can take over and maintain?","faq.a5":"Yes — I write clean, documented code that your in-house team or another developer can pick up without problems. No lock-in to me as the only person who understands the system.","davor.bridge":"That’s why I work the way I do: show up, explain it plainly, and make sure you understand what you’re getting before you pay anything.","social.eyebrow":"Connect","social.h2":"Find me online","social.linkedin.bio":"Professional updates, engineering takes, and occasional Zagorje wine recommendations.","contact.eyebrow":"Let’s work together","contact.h2":"Get in touch","contact.lead":"What's eating too much of your time? Tell me. No pitch — just a conversation.","contact.email":"Email","contact.book.cta":"Book a free 30-min call →","contact.book.sub":"No commitment · pick a slot that works for you","contact.or":"or reach me directly","footer.copy":"© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Croatia","footer.a11y":"Accessibility Statement"},"hr":{"mob.home":"Početna","davor.eyebrow":"Osnivačka priča","davor.title":"Kako sam postao Zagorski Zet","davor.gallery":"Otvori galeriju","davor.p1":"Stigao sam u Hrvatsku ne znajući nikoga i bez ijedne riječi hrvatskog. Čovjek koji je promijenio sve to — i puno više od toga — bio je <strong>Davor Kolarić</strong>.","davor.p2":"Davor je vodio <em>Konobu Ankoru</em> u Kustošiji. Obitelj mu je bila iz Zagorja, a birtiju je vodio kako i treba — piće prije nego skineš kaput, stalni na svojim mjestima, stranci odlaze kao prijatelji. Bio je moj punac, ali nikad se nisam osjećao kao stranac. Gemišt čeka kad sjedneš; drugi već na šanku. Kako je znao reći: <em>\"Jedan gemišt je kak ništ.\"</em> Jedini način da prestaneš — pobjeći prije nego te uhvati.","davor.p3":"Nadimak mu je bio <strong>Medo</strong> — i zaslužio ga je. Kroz bezbroj večeri naučio me kako pravi Zagorac živi: <em>spek</em>, vino, rakija, kako napuniti prostoriju i poslati sve kući sretne. I kako naručiti gemišt — ne ono turističko 50/50. <strong>Prst prst.</strong> Dva prsta. Vino dominira, voda samo toliko da prođe.","davor.p4":"Davor je preminuo od raka pluća. Nedostaje mi svaki dan. Da je ovdje zbog <strong>ZaZet Solutions</strong>, dva gemišta bi već bila na šanku prije nego otvorim usta. U obitelji sam bio <em>Zagorski Zet</em> — zagorski zet — a <strong>ZaZet</strong> je ime koje je ova tvrtka uvijek trebala nositi. Na svakom projektu pokušavam donijeti ono što je on donosio svakome tko uđe u birtiju: osjećaj doma, povjerenje i da se napravi kako treba — ne turističku verziju.","davor.memorial":"U spomen Davora Kolarića","game.label":"Kako pijete vaš gemišt?","game.hint":"Bijelo vino + gazirana voda — odaberite omjer i pogledajte kako se logo iznad puni ↑","game.info":"Što je gemišt?","game.modal.title":"Što je gemišt?","game.modal.intro":"<p><strong>Gemišt</strong> je ljetno piće u Hrvatskoj: bijelo vino s gaziranom vodom. U Zagorju — brdima sjeverno od Zagreba — omjer otkriva tko ste.</p><p><strong>Prst prst</strong> znači \"prst prst.\" Na šanku podignete dva prsta: jedan okomito (vino), jedan vodoravno (samo malo vode). Pravi Zagorci naručuju otprilike 80% vina, 20% vode.</p><p>ZaZet logo je ista šala: plava voda gore, zlatno vino dolje. Promijenite omjer — logo se ponovno napuni.</p>","game.modal.tourist":"<strong>25/75 — Turistički ☁️</strong><br>Pretežno voda, malo vina. Za one koji su tek stigli i još ne znaju.","game.modal.half":"<strong>50/50 — Na pola</strong><br>Sigurna sredina. Svi razumiju, nitko se ne svađa.","game.modal.prst":"<strong>Prst Prst 🍷 — Pravi Zagorac</strong><br>Jači omjer — puno vina, vode samo da prođe. Ono što bi mi punac Davor natočio prije nego sjednete. Odaberite za confetti.","game.modal.link":"<a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">Pročitajte više na Zagorje International →</a>","game.tourist":"25/75 — Turistički ☁️","game.half":"50/50 — Na pola","game.prst":"Prst Prst 🍷 — Pravi Zagorac","game.toast":"Vi ste pravi Zagorac! Prst prst! 🍷","game.scrollup":"Recite nam kako pijete vaš gemišt ↑","nav.services":"Usluge","nav.about":"O meni","nav.projects":"Projekti","nav.work":"Iskustvo","nav.contact":"Kontakt","nav.cta":"Razgovarajmo","hero.pre":"Shopify · Siemens · desetine malih poduzeća · 10 godina","hero.tagline":"Vraćam vam vaše <strong>ponedjeljke</strong>.","hero.meta":"Fakture, podsjetnici, tablice, izvještaji — ako to radite svaki tjedan, mogu to automatizirati.","hero.cta1":"Rezervirajte besplatni razgovor →","hero.cta2":"Pogledajte moj rad","hero.scroll":"nastavi","hero.micro":"Bez obveze. 15 minuta. Odgovaram isti dan.","how.eyebrow":"Kako funkcionira","how.h2":"Od problema do rješenja za 2 tjedna","how.s1.title":"Razgovaramo o vašem problemu","how.s1.desc":"Opišite mi što vam troši najviše vremena — fakture, praćenje narudžbi, ručno slanje e-maila. Odmah vam kažem može li se to automatizirati i što bi to koštalo.","how.s2.title":"Izgradimo sustav za vaše poslovanje","how.s2.desc":"Ne koristim gotove predloške. Svaki sustav gradim za vaš specifični proces — najčešće u 1–2 tjedna, bez korporativnih cijena i dugačkih ugovora.","how.s3.title":"Vi vozite — mi smo tu ako zatreba","how.s3.desc":"Svaki sustav dolazi s dokumentacijom i kratkom obukom. Vaš tim preuzima odmah, bez ovisnosti o meni.","svc.eyebrow":"Što radim","svc.h2":"Automatizacija poslovanja i izrada web stranica u Zagrebu","svc.tech.label":"Za tech timove","svc.tech.hint":"Prikaži 3 usluge ↓","svc.lead":"Od automatizacije svakodnevnih sitnica do sustava na kojemu se vrti cijelo vaše poslovanje.","svc.auto.t":"Automatizirajte ponavljajuće zadatke","svc.auto.d":"Fakture, podsjetnici, ažuriranje tablica — ako to radite svaki tjedan, možemo to automatizirati. WhatsApp, email, Make.com, prilagođene skripte.","svc.web.t":"Web stranice koje donose rezultate","svc.web.d":"Čiste, brze web stranice prilagođene mobilnim uređajima za male tvrtke. Bez generičkih predložaka koji izgledaju kao pola weba.","svc.sys.t":"Prilagođeni sustavi","svc.sys.d":"Trebate nešto što ne postoji? Upravljanje narudžbama, sustavi rezervacija, portali za klijente — izgrađeno za vaš način rada.","svc.fs.t":"Full-Stack inženjerstvo","svc.fs.d":"TypeScript · Node.js · React · Java. Od sheme baze podataka do korisničkog sučelja, bez rupa između slojeva.","svc.perf.t":"Performanse i troškovi","svc.perf.d":"Optimizacija AWS troškova, podešavanje upita, strategija cachea, profiliranje opterećenja. Smanjio troškove infrastrukture za 46% u manje od 6 mjeseci.","svc.lead2.t":"Inženjersko vodstvo","svc.lead2.d":"Privremeni angažman kao staff inženjer — postavljanje tehničkih prioriteta, struktura tima i mentorstvo za iskusne inženjere.","svc.ai.t":"AI alati i vibe coding","svc.ai.d":"Pomažem tvrtkama i pojedincima da grade s Base44, Claude Code i AI alatima. Ono što je nekad koštalo 20.000€ i trajalo mjesecima, sada traje jedno poslijepodne. Pokazat ću vam kako.","about.eyebrow":"Tko sam","about.h2":"O meni","about.c1":"📍 Zagreb, Hrvatska","about.c2":"🇮🇱 Izraelac","about.c3":"👨‍👧‍👦 Otac Adama i Elle","about.c4":"10 god. iskustva","about.c5":"🤝 Dostupan za projekte","about.p1":"<strong>Gal Tidhar</strong> — izraelski softverski inženjer koji je stigao u Zagreb, oženio Zagorku i ostao zauvijek. Tata <strong>Adama</strong> i <strong>Elle</strong>. Više od deset godina gradim sustave koji rade — od Siemensa i Shopifyja do ranih startupova.","about.p2":"Danas pomažem tvrtkama da rade pametnije. Automatiziram ono što vam oduzima ponedjeljke, gradim web stranice koje rade za vas, i sustave koji odgovaraju načinu na koji zapravo poslujete.","about.p3":"ZaZet Solutions nosi moje ime. <em>Zagorski Zet</em> — zagorski zet, onaj koji je ušao u obitelj iz Zagorja i ostao. Donio sam inženjerstvo. Hrvatska mi je dala sve ostalo — i dvoje najljepše djece na svijetu.","about.pq":"U Zagorju, naručivanje gemišta nije samo odabir pića. Dignete dva prsta. Jedan <strong>vertikalni</strong> — vino. Jedan <strong>horizontalni</strong> — voda, samo toliko da prođe. Taj omjer zove se <em>prst prst</em> — 8 dijelova vina, 2 vode. Ne ona turistička. Prava stvar. <a href=\"https://zagorje-international.hr/2025/02/28/njegovo-velicanstvo-gemist-ovo-su-najpopularniji-omjeri-vina-i-vode/\" target=\"_blank\" rel=\"noopener\">Što je gemišt? →</a><br><br>Pogledajte ZaZet logo. Plava je gore — precizna, tehnička, tih 20%. Zlatna ispunjava ostatak — topla, izravna, ono što zaista vrijedi. U tom omjeru radim i ja.","career.eyebrow":"Iskustvo","career.h2":"Karijera","career.lead":"10 godina. Sedam tvrtki. Uvijek isto: graditi sustave koji moraju raditi — i rade.","career.sedric.r":"Staff Software Engineer","career.sedric.d":"Gradnja AI-potpomognutih razvojnih procesa i alata za razvojni tim. Smanjio CI build za <strong style=\"color:var(--text)\">78%</strong> i razvojno opterećenje za <strong style=\"color:var(--text)\">90%</strong>. Arhitektura platforme za AI-nativni razvoj.","career.novu.r":"Senior Software Engineer","career.novu.d":"Open-source platforma za notifikacijsku infrastrukturu. Full-stack rad na notifikacijskom motoru, graditelju multi-step workflowa i integracijama s pružateljima.","career.shopify.r":"Senior Software Engineer","career.shopify.d":"Infrastruktura za logistiku trgovine na globalnoj razini. Smanjio kašnjenja pri deployu za <strong style=\"color:var(--text)\">70%</strong>. Distribuirani sustavi koji obuhvaćaju orkestraciju opskrbnog lanca nakon akvizicije Shopify Logistics od strane Flexporta.","career.deliverr.r":"Senior Software Engineer","career.deliverr.d":"Platforma za isporuku posljednje milje koju je preuzeo Shopify. Izgradio integracije za usmjeravanje narudžbi i upravljanje skladištem, zatim se pridružio zajedničkom inženjerskom timu Shopifyja i Flexporta.","career.wochit.r":"Lead Software Engineer","career.wochit.d":"Vodio inženjerstvo za platformu za izradu i objavljivanje videa. Full-stack od video processing pipelinea do React editora. Smanjio infrastrukturne troškove za <strong style=\"color:var(--text)\">46%</strong> kroz caching i optimizaciju oblaka.","career.siemens.r":"Software Engineer","career.siemens.d":"Enterprise PLM softver. Java backend i web sučelje za alate upravljanja životnim ciklusom u proizvodnji. Uveo moderne JavaScript alate u naslijeđene sustave koji opslužuju globalne proizvodne klijente.","career.jebo.r":"Full-Stack Developer","career.jebo.d":"Prva inženjerska uloga — izgradnja full-stack web aplikacija od nule. Napredovao od juniora do mid-levela isporučujući sustave u produkciji koji se koriste u Njemačkoj i Austriji.","num.eyebrow":"Brojevi govore","num.ci":"brži CI<br>buildovi","num.ov":"razvojno opterećenje<br>smanjeno","num.dep":"manje deploy<br>kašnjenja","num.cost":"ušteda na<br>infrastrukturi","num.yrs":"godina<br>iskustva","num.co":"skaliranih<br>tvrtki","stack.eyebrow":"Alati","stack.h2":"Tech Stack","stack.lang":"Jezici","stack.fw":"Frameworks","stack.cloud":"Cloud i Infra","stack.db":"Baze podataka","stack.prac":"Prakse","stack.design":"Dizajn sustava","stack.dx":"DX inženjerstvo","stack.review":"Pregled koda","stack.mentor":"Mentorstvo","stack.write":"Tehnička dokumentacija","oss.eyebrow":"Otvoreni kod","oss.h2":"Što sam javno objavio","oss.novu.d":"Open-source notifikacijska infrastruktura za developere — višekanalna (e-mail, SMS, push, in-app), workflow-orijentirana, s rastućim ekosustavom integracija pružatelja. Doprinio full-stack značajkama u jezgru motora, graditelju workflowa i integracijskom sloju.","oss.stars":"GitHub zvjezdice","oss.prod":"<strong>Produkcija</strong> na velikoj skali","proj.eyebrow":"Rad","proj.h2":"Nedavni projekti","proj.lead":"Odabrani projekti i klijentski rad.","proj.boat.name":"Brodski taksi — hrvatski otok","proj.boat.d":"Izgradio sustav rezervacija i upravljanje vezovima u marini u 2 sata za 50€ za malog poduzetnika na hrvatskom otoku. Od ideje do produkcijskog sustava na 4 jezika za 4 sata ukupno — ovako izgleda gradnja s AI-jem.","proj.boat.link":"Pročitajte priču →","proj.jebo.tag":"Tehnološka tvrtka · Njemačka","proj.jebo.name":"Payroll &amp; HR backoffice, Jebo GmbH","proj.jebo.d":"Payroll i HR sustav za 30-osobnu tvrtku u Njemačkoj — uklonili smo ručno upravljanje tabličnim kalkulatorima i zamijenili ih jednim integriranim backofficom. Obrada plaća smanjena s dana na sate.","proj.ismb.tag":"Malo poduzeće · Izrael","proj.ismb.name":"Poslovni operativni sustav, izraelski SMB","proj.ismb.d":"Zamijenio tablice prilagođenom operativnom platformom izgrađenom oko stvarnog toka rada tvrtke. Svaki odjel radi u jednom sustavu umjesto zasebnih datoteka.","proj.cta.t":"Izgradimo nešto zajedno","proj.cta.d":"Imate proces koji oduzima previše vremena? Web stranicu koja ne donosi dovoljno? Sustav koji ne odgovara vašim potrebama? Razgovarajmo.","proj.cta.link":"Javite se →","faq.eyebrow":"Često pitana pitanja","faq.h2":"Imate pitanje?","faq.q1":"Koliko košta izrada web stranice za malo poduzeće?","faq.a1":"Cijena ovisi o složenosti, ali tipična web stranica za malo poduzeće kreće se od 500€ do 2.000€. Razgovarajmo — u 30 minuta možemo procijeniti što vam treba i koliko bi to koštalo.","faq.q2":"Koliko dugo traje automatizacija poslovnih procesa?","faq.a2":"Jednostavne automatizacije — fakture, podsjetnici, ažuriranje tablica — mogu biti gotove za 1–3 radna dana. Složeniji prilagođeni sustavi traju 2–6 tjedana.","faq.q3":"Radite li s malim poduzetnicima ili samo s korporacijama?","faq.a3":"Primarno radim s malim i srednjim poduzećima u Hrvatskoj. Razumijem ograničenja budžeta i isporučujem sustave koji daju mjerljive rezultate bez korporativnih troškova.","faq.q4":"Koje alate koristite za automatizaciju?","faq.a4":"Make.com, WhatsApp Business API, Google Sheets integracije, prilagođene skripte u Node.js i Pythonu. Biram alate koji odgovaraju vašem budžetu i tehničkim mogućnostima.","faq.q5":"Mogu li izgraditi sustav koji drugi programer može preuzeti i održavati?","faq.a5":"Da — pišem čist, dokumentiran kod koji vaš in-house tim ili drugi developer može preuzeti bez problema. Nema zaključavanja na mene kao jedinu osobu koja sustav razumije.","davor.bridge":"Zato radim kako radim: dođem, objasnim jasno, i pobrinem se da razumijete što dobivate — prije nego što platite išta.","social.eyebrow":"Povežimo se","social.h2":"Pronađite me online","social.linkedin.bio":"Stručne objave, inženjerske perspektive i povremene preporuke zagorskih vina.","contact.eyebrow":"Radimo zajedno","contact.h2":"Javite se","contact.lead":"Što vam troši previše vremena? Opišite mi problem. Bez prodajnog govora — samo razgovor.","contact.email":"E-mail","contact.book.cta":"Rezervirajte besplatan razgovor (30 min) →","contact.book.sub":"Bez obaveza · odaberite termin koji vam odgovara","contact.or":"ili me kontaktirajte direktno","footer.copy":"© 2026 ZaZet Solutions · Gal Tidhar · Zagreb, Hrvatska","footer.a11y":"Izjava o pristupačnosti"}};
 
   const META = {
     en: {
@@ -1805,19 +1963,19 @@
 /* ── Photo gallery ── */
 (function() {
   const photos = [
-    { src: 'davor-wedding.jpg',  alt: 'Gal and Davor at the wedding' },
-    { src: 'davor-2015.jpg',     alt: 'Davor 2015' },
-    { src: 'davor-2017.jpg',     alt: 'Davor August 2017' },
-    { src: 'davor-2018a.jpg',    alt: 'Davor January 2018' },
-    { src: 'davor-2018b.jpg',    alt: 'Davor September 2018' },
-    { src: 'davor-2018c.jpg',    alt: 'Davor September 2018' },
-    { src: 'davor-2018d.jpg',    alt: 'Davor September 2018' },
-    { src: 'davor-2019a.jpg',    alt: 'Davor February 2019' },
-    { src: 'davor-2020.jpg',     alt: 'Davor March 2020' },
-    { src: 'davor-g8.jpg',       alt: 'Davor — family photo' },
-    { src: 'davor-g9.jpg',       alt: 'Davor — family photo' },
-    { src: 'davor-g10.jpg',      alt: 'Davor — family photo' },
-    { src: 'davor-g11.jpg',      alt: 'Davor — family photo' },
+    { src: 'davor-wedding.webp',  alt: 'Gal and Davor at the wedding' },
+    { src: 'davor-2015.webp',     alt: 'Davor 2015' },
+    { src: 'davor-2017.webp',     alt: 'Davor August 2017' },
+    { src: 'davor-2018a.webp',    alt: 'Davor January 2018' },
+    { src: 'davor-2018b.webp',    alt: 'Davor September 2018' },
+    { src: 'davor-2018c.webp',    alt: 'Davor September 2018' },
+    { src: 'davor-2018d.webp',    alt: 'Davor September 2018' },
+    { src: 'davor-2019a.webp',    alt: 'Davor February 2019' },
+    { src: 'davor-2020.webp',     alt: 'Davor March 2020' },
+    { src: 'davor-g8.webp',       alt: 'Davor — family photo' },
+    { src: 'davor-g9.webp',       alt: 'Davor — family photo' },
+    { src: 'davor-g10.webp',      alt: 'Davor — family photo' },
+    { src: 'davor-g11.webp',      alt: 'Davor — family photo' },
   ];
 
   const overlay   = document.getElementById('gallery-overlay');
@@ -2051,10 +2209,25 @@
 })();
 </script>
 
+<div id="sticky-cta" class="sticky-cta" role="complementary" aria-label="Quick contact">
+  <a href="#contact" class="btn btn-primary sticky-cta-btn" data-i18n="hero.cta1">Rezervirajte besplatni razgovor →</a>
+</div>
+
 <button id="back-top" aria-label="Back to top" title="Back to top">
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
     <path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
 </button>
+<script>
+(function() {
+  var hero = document.getElementById('hero');
+  var bar  = document.getElementById('sticky-cta');
+  if (!hero || !bar) return;
+  var obs = new IntersectionObserver(function(entries) {
+    bar.style.display = entries[0].isIntersecting ? 'none' : 'flex';
+  }, { threshold: 0 });
+  obs.observe(hero);
+})();
+</script>
 </body>
 </html>

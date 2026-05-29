@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /book.html
+Disallow: /booked.html
 
 Sitemap: https://zazet-solutions.hr/sitemap.xml
 
