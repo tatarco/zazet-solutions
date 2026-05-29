@@ -531,6 +531,20 @@
       .hero-gemist--intro, .hero-gemist--intro .hero-gemist-btns .gemist-btn,
       .hero-inner:has(.hero-gemist--intro) .hero-svg-wrap::after { animation: none !important; }
     }
+    @media (min-width: 768px) {
+      .hero-gemist {
+        width: min(92vw, 760px);
+        padding: 1.5rem 2rem 1.75rem;
+        gap: 1rem;
+        border-radius: 20px;
+      }
+      .hero-gemist-head { gap: 1rem; }
+      .hero-gemist-label { font-size: .85rem; letter-spacing: .2em; }
+      .gemist-info-link { font-size: .88rem; }
+      .hero-gemist-hint { font-size: 1rem; max-width: 44ch; line-height: 1.55; }
+      .hero-gemist-btns { gap: .75rem; }
+      .hero-gemist-btns .gemist-btn { font-size: .95rem; padding: .65rem 1.4rem; }
+    }
 
     /* ── Davor tribute ── */
     .davor-tribute {
