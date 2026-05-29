@@ -522,11 +522,16 @@
     .hero-gemist-btns .gemist-btn {
       font-size: .75rem; padding: .45rem .95rem;
     }
-    .hero-gemist--intro .hero-gemist-btns .gemist-btn {
-      animation: gemistBtnPulse 2.4s ease-in-out infinite;
+    /* Sequential shimmer sweep draws attention to the buttons */
+    @keyframes gemistShimmer {
+      0%, 70%, 100% { box-shadow: none; border-color: var(--border); color: var(--text2); }
+      35% { box-shadow: 0 0 12px rgba(245,216,74,.35), 0 0 0 1px rgba(245,216,74,.45); border-color: rgba(245,216,74,.6); color: var(--text); }
     }
-    .hero-gemist--intro .hero-gemist-btns .gemist-btn:nth-child(2) { animation-delay: .25s; }
-    .hero-gemist--intro .hero-gemist-btns .gemist-btn:nth-child(3) { animation-delay: .5s; }
+    .hero-gemist--intro .hero-gemist-btns .gemist-btn {
+      animation: gemistBtnPulse 2.4s ease-in-out infinite, gemistShimmer 3.6s ease-in-out infinite;
+    }
+    .hero-gemist--intro .hero-gemist-btns .gemist-btn:nth-child(2) { animation-delay: .25s, 1.2s; }
+    .hero-gemist--intro .hero-gemist-btns .gemist-btn:nth-child(3) { animation-delay: .5s, 2.4s; }
     @media (prefers-reduced-motion: reduce) {
       .hero-gemist--intro, .hero-gemist--intro .hero-gemist-btns .gemist-btn,
       .hero-inner:has(.hero-gemist--intro) .hero-svg-wrap::after { animation: none !important; }
@@ -1117,7 +1122,7 @@
       <div class="hero-gemist-btns" role="group" aria-label="Gemišt wine-to-water ratio">
         <button type="button" class="gemist-btn" data-ratio="75" data-i18n="game.tourist">25/75 — Tourist ☁️</button>
         <button type="button" class="gemist-btn" data-ratio="50" data-i18n="game.half">50/50 — Half &amp; half</button>
-        <button type="button" class="gemist-btn active" data-ratio="20" data-i18n="game.prst">Prst Prst 🍷 — Real Zagorac</button>
+        <button type="button" class="gemist-btn" data-ratio="20" data-i18n="game.prst">Prst Prst 🍷 — Real Zagorac</button>
       </div>
       <div class="gemist-toast" id="gemist-toast" aria-live="polite">
         🎉 <span data-i18n="game.toast">You're a real Zagorac! Prst prst! 🍷</span>
@@ -2076,7 +2081,7 @@
   let toastTimer = null;
 
   // Hero SVG animated dividing line
-  let heroY = 34, heroYTarget = 34, heroRAF = null;
+  let heroY = 88, heroYTarget = 88, heroRAF = null;
   const heroYMap = { 20: 34, 50: 55, 75: 70 };
 
   function updateHeroPaths(y) {
@@ -2143,8 +2148,8 @@
     }
   } catch(e) {}
 
-  // Init to prst prst (20) after logo layout
-  addEventListener('load', () => updateHeroPaths(34));
+  // Start with logo nearly empty — no button pre-selected
+  addEventListener('load', () => updateHeroPaths(88));
   window.addEventListener('heroLogoLayout', () => updateHeroPaths(heroY));
 
   // Wire all buttons
