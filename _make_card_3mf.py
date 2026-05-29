@@ -14,13 +14,13 @@ import qrcode
 
 # ─── personalisation ─────────────────────────────────────────────────────────
 PHONE    = "+385 99 190 4995"
-EMAIL    = "GAL@ZAZET-SOLUTIONS.HR"
-WEBSITE  = "ZAZET-SOLUTIONS.HR"
+EMAIL    = "gal@zazet-solutions.hr"
+WEBSITE  = "zazet-solutions.hr"
 TAGLINE  = "8 parts impact. 2 parts code."
 QR_URL   = "https://zazet-solutions.hr"
 # ─────────────────────────────────────────────────────────────────────────────
 
-OUT = Path(__file__).parent / "zazet_business_card.3mf"
+OUT = Path(__file__).parent / "zazet_business_card-v3.3mf"
 
 # card geometry
 CW, CH, CT = 88.9, 50.8, 0.6
@@ -86,11 +86,12 @@ Y_WEBSITE  = Y_EMAIL   - 4.0
 PARTS = [
     # (name, extruder, scad)
     ("Card Base", 1,
-     f"$fn={FN}; CW={CW}; CH={CH}; CT={CT}; CR={CR}; HD={HOLE_D};\n"
+     f"$fn={FN}; CW={CW}; CH={CH}; CT={CT}; CR={CR}; HD={HOLE_D}; FD={FD}; FT={FT};\n"
      f"difference() {{\n"
      f"  translate([0,0,CT/2]) linear_extrude(CT,center=true)\n"
      f"  offset(r=CR) square([CW-2*CR,CH-2*CR],center=true);\n"
      f"  translate([0,0,-1]) cylinder(h=CT+2,d=HD);\n"
+     f"  translate([0,0,CT-FT]) cylinder(h=FT+0.01,d=FD);\n"
      f"}}"),
 
     ("Buttons", 1,
@@ -104,7 +105,7 @@ PARTS = [
      f"  translate([0,0,FT]) cylinder(h=CH,d=TOD);\n"
      f"}}"),
 
-    ("Name", 2,       txt("GAL TIDHAR",  7.0, Y_NAME,    bold_mult=1.0)),
+    ("Name", 2,       txt("Gal Tidhar",  7.0, Y_NAME,    bold_mult=1.0)),
     ("Company", 2,    txt("ZaZet Solutions", 4.2, Y_COMPANY, bold_mult=1.0)),
     ("Tagline", 2,    txt(TAGLINE,        2.6, Y_TAGLINE,  bold_mult=0.8)),
 

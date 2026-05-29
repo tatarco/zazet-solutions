@@ -12,11 +12,11 @@
    ============================================================ */
 
 /* [ Customization: Text ] */
-Name    = "GAL TIDHAR";
+Name    = "Gal Tidhar";
 Title   = "ZaZet Solutions";
 Tagline = "8 parts impact. 2 parts code.";
-Phone   = "ZAZET-SOLUTIONS.HR";
-Email   = "GAL@ZAZET-SOLUTIONS.HR";
+Phone   = "zazet-solutions.hr";
+Email   = "gal@zazet-solutions.hr";
 
 /* [ Customization: Colors ] */
 Base_Color = "Black";   // [White, Black, Red, Blue, Green, Yellow, Orange, Purple, Gray]
@@ -91,6 +91,10 @@ module Card_Body() {
             // Center Spinner Hole (608 bearing: 22mm OD, 8mm ID — hole fits inner race)
             translate([0, 0, -1])
             cylinder(h = Card_T + 2, d = Center_Hole_D);
+
+            // Counterbore — recess for button flange to sit flush
+            translate([0, 0, Card_T - Flange_T])
+            cylinder(h = Flange_T + 0.01, d = Flange_D);
         }
 
         // 2. Top Left — Name & Company
