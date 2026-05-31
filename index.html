@@ -599,6 +599,22 @@ table.services tr.highlight td:first-child {
   letter-spacing: 0.08em;
 }
 
+.project-metric {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0.75rem 0 0.2rem;
+  line-height: 1.1;
+}
+.project-metric-label {
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
 /* ─── FAQ ───────────────────────────────────────────────────────── */
 .faq-grid {
   display: grid;
@@ -1042,22 +1058,28 @@ footer {
     <p class="eyebrow" style="margin-bottom:0.5rem;">Recent Work</p>
     <div class="projects-grid">
       <div class="project-card">
-        <p class="project-tag">Automation · Zagreb</p>
-        <p class="project-headline">Invoice &amp; Follow-up Engine for a 3-Person Agency</p>
-        <p class="project-desc">Replaced 6 hours of weekly admin with a fully automated billing and chaser system. Built in four days, zero maintenance since.</p>
-        <p class="project-location">📍 Zagreb, Croatia</p>
+        <p class="project-tag">Mobile App · Dalmatia</p>
+        <p class="project-headline">Water Taxi Bookings Up 4× After Replacing WhatsApp Chaos</p>
+        <p class="project-desc">Mobile-first booking system for a water taxi operator running between Split and the outer islands. Customers book and pay in the app; the captain sees a live manifest, manages the fleet, and collects digital receipts — no missed messages, no double-bookings.</p>
+        <p class="project-metric">2,400+</p>
+        <p class="project-metric-label">Bookings handled · first full season</p>
+        <p class="project-location">📍 Dalmatia, Croatia</p>
       </div>
       <div class="project-card">
-        <p class="project-tag">Website · Varaždin</p>
-        <p class="project-headline">New Website Tripled Inquiry Rate for Local Craftsman</p>
-        <p class="project-desc">Stripped back, fast-loading site with a single CTA. Organic inquiries up 3× in the first month after launch.</p>
-        <p class="project-location">📍 Varaždin, Croatia</p>
+        <p class="project-tag">Operations System · Adriatic</p>
+        <p class="project-headline">Marina Mooring Management — 180 Berths, One Screen</p>
+        <p class="project-desc">End-to-end marina platform: real-time berth availability, automated check-in/check-out flows, invoicing, and a seasonal occupancy dashboard. Replaced paper arrival logs, a whiteboard, and three separate spreadsheets that hadn't agreed with each other in years.</p>
+        <p class="project-metric">€220k</p>
+        <p class="project-metric-label">Seasonal revenue tracked · 180 berths managed</p>
+        <p class="project-location">📍 Croatian Adriatic</p>
       </div>
       <div class="project-card">
-        <p class="project-tag">AI Tools · Remote</p>
-        <p class="project-headline">AI Email Triage Cuts Morning Admin by 80%</p>
-        <p class="project-desc">Custom GPT-powered classifier and drafter for a consultant receiving 50+ client emails a day. Now handled in 20 minutes.</p>
-        <p class="project-location">📍 Remote client</p>
+        <p class="project-tag">Backoffice Suite · Multi-location</p>
+        <p class="project-headline">Payroll &amp; Commission Engine for 60-Agent Direct Sales Network</p>
+        <p class="project-desc">Full backoffice for a distributed direct sales business: agent onboarding, hierarchy-aware commission calculation, monthly payroll export, and a live team-performance dashboard for managers. Replaced three legacy tools and a mountain of Excel files that payroll week had turned into a nightmare.</p>
+        <p class="project-metric">€380k</p>
+        <p class="project-metric-label">Commissions processed · 60 agents · 0 payroll disputes</p>
+        <p class="project-location">📍 Israel / Remote</p>
       </div>
     </div>
   </div>
