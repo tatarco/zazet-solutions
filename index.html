@@ -532,18 +532,75 @@ table.services tr.highlight td:first-child {
   margin: 1.25rem auto 0;
 }
 
-.davor-columns {
+.davor-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 3rem;
-  column-gap: 4rem;
+  align-items: start;
 }
 
-.davor-columns p {
+.davor-cover {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 3/4;
+  background: var(--terra-light);
+  box-shadow: 0 8px 32px rgba(26, 16, 8, 0.12);
+}
+
+.davor-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.davor-cover:hover img { transform: scale(1.04); }
+
+.davor-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 16, 8, 0.82) 0%, rgba(26, 16, 8, 0) 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1.1rem 1.25rem;
+  transition: background 0.3s;
+}
+
+.davor-cover:hover .davor-cover-overlay {
+  background: linear-gradient(to top, rgba(26, 16, 8, 0.9) 0%, rgba(26, 16, 8, 0.15) 65%);
+}
+
+.davor-cover-label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: rgba(255, 248, 240, 0.95);
+  letter-spacing: 0.04em;
+}
+
+.davor-cover-count {
+  background: var(--terra);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  border-radius: 20px;
+  padding: 0.15rem 0.5rem;
+}
+
+.davor-story p {
   font-size: 1rem;
   line-height: 1.8;
   color: var(--ink);
+  margin-bottom: 1.1rem;
 }
+
+.davor-story p:last-child { margin-bottom: 0; }
 
 .davor-memorial {
   text-align: center;
@@ -553,6 +610,122 @@ table.services tr.highlight td:first-child {
   color: var(--muted);
   letter-spacing: 0.05em;
 }
+
+/* ─── PHOTO GALLERY LIGHTBOX ─────────────────────────────────────── */
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(26, 16, 8, 0.96);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.gallery-overlay.is-open { opacity: 1; pointer-events: all; }
+
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  flex-shrink: 0;
+}
+
+.gallery-caption {
+  font-size: 0.8rem;
+  color: rgba(255, 248, 240, 0.65);
+  font-weight: 500;
+}
+
+.gallery-caption strong { color: var(--terra-light); }
+
+.gallery-close {
+  background: rgba(255, 248, 240, 0.08);
+  border: none;
+  cursor: pointer;
+  color: var(--cream);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.gallery-close:hover { background: rgba(255, 248, 240, 0.16); }
+
+.gallery-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 0;
+  padding: 0 4rem;
+}
+
+.gallery-img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 6px;
+  object-fit: contain;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.25s;
+}
+
+.gallery-img.fading { opacity: 0; }
+
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 248, 240, 0.1);
+  border: 1px solid rgba(255, 248, 240, 0.2);
+  color: var(--cream);
+  cursor: pointer;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.gallery-btn:hover { background: rgba(255, 248, 240, 0.2); }
+.gallery-btn.prev { left: 0.75rem; }
+.gallery-btn.next { right: 0.75rem; }
+
+.gallery-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem 1rem;
+  overflow-x: auto;
+  flex-shrink: 0;
+  justify-content: center;
+  scrollbar-width: none;
+}
+
+.gallery-thumbs::-webkit-scrollbar { display: none; }
+
+.gallery-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 4px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.45;
+  border: 2px solid transparent;
+  transition: opacity 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.gallery-thumb.active { opacity: 1; border-color: var(--terra); }
+.gallery-thumb:hover { opacity: 0.8; }
 
 /* ─── PROJECTS ──────────────────────────────────────────────────── */
 .projects-grid {
@@ -757,7 +930,8 @@ footer {
   .about-portrait-img { width: 100%; height: 240px; }
   .about-portrait { width: 100%; }
 
-  .davor-columns { grid-template-columns: 1fr; gap: 1.5rem; }
+  .davor-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .davor-cover { aspect-ratio: 4/3; max-width: 100%; }
 
   .projects-grid { grid-template-columns: 1fr; }
 
@@ -848,7 +1022,7 @@ footer {
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#main-content" class="skip-link" data-i18n="skip">Skip to main content</a>
 <canvas id="gm-confetti-canvas"></canvas>
 
 <!-- ─── NAV ──────────────────────────────────────────────────────── -->
@@ -856,19 +1030,19 @@ footer {
   <div class="container nav-inner">
     <a href="#" class="nav-logo">ZaZet</a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#work" data-i18n="nav.work">Work</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
-    <a href="https://gal.tidhar.org.il" target="_blank" rel="noopener" class="nav-eng-link">Engineering ↗</a>
+    <a href="https://gal.tidhar.org.il" target="_blank" rel="noopener" class="nav-eng-link" data-i18n="nav.eng">Engineering ↗</a>
     <div class="lang-picker">
-      <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button>
-      <button type="button" class="lang-btn" data-lang="hr" aria-pressed="false">HR</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" class="lang-btn active" data-lang="hr" aria-pressed="true">HR</button>
     </div>
     <a href="https://wa.me/972503843427" class="btn-wa" target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      WhatsApp →
+      <span data-i18n="nav.wa">WhatsApp →</span>
     </a>
   </div>
 </nav>
@@ -877,17 +1051,17 @@ footer {
 <main id="main-content">
 <section class="hero" id="hero">
   <div class="container">
-    <p class="hero-kicker">Zagreb · Available for Projects · Software Consultant</p>
-    <h1 class="hero-headline">I give you back<br>your Mondays.</h1>
+    <p class="hero-kicker" data-i18n="hero.kicker">Zagreb · Available for Projects · Software Consultant</p>
+    <h1 class="hero-headline" data-i18n-html="hero.headline">I give you back<br>your Mondays.</h1>
     <div class="hero-body">
       <div>
-        <p class="hero-sub">I automate the repetitive work eating your week — invoices, follow-ups, spreadsheets. Most clients recover 4–6 hours a week in the first month.</p>
+        <p class="hero-sub" data-i18n="hero.sub">I automate the repetitive work eating your week — invoices, follow-ups, spreadsheets. Most clients recover 4–6 hours a week in the first month.</p>
         <div class="hero-ctas">
           <a href="https://wa.me/972503843427" class="btn-wa btn-wa-lg" target="_blank" rel="noopener">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            WhatsApp me →
+            <span data-i18n="hero.wa">WhatsApp me →</span>
           </a>
-          <a href="#contact" class="btn-ghost">Book a free 15-min call</a>
+          <a href="#contact" class="btn-ghost" data-i18n="hero.book">Book a free 15-min call</a>
         </div>
       </div>
       <div>
@@ -900,7 +1074,7 @@ footer {
         </div>
       </div>
     </div>
-    <div class="trust-strip">
+    <div class="trust-strip" data-i18n="hero.trust">
       Shopify · Siemens · Novu · dozens of Croatian businesses
     </div>
   </div>
@@ -912,25 +1086,25 @@ footer {
     <div class="section-label">
       <span class="section-num">01</span>
       <div>
-        <p class="eyebrow">Process</p>
-        <h2 class="section-title">How it works</h2>
+        <p class="eyebrow" data-i18n="how.eyebrow">Process</p>
+        <h2 class="section-title" data-i18n="how.h2">How it works</h2>
       </div>
     </div>
     <div class="steps-grid">
       <div class="step">
         <div class="step-num">1</div>
-        <p class="step-title">You tell me what's eating your week</p>
-        <p>A 15-minute call — no forms, no proposals. Just tell me which task you'd happily never see again.</p>
+        <p class="step-title" data-i18n="how.s1.title">You tell me what's eating your week</p>
+        <p data-i18n="how.s1.desc">A 15-minute call — no forms, no proposals. Just tell me which task you'd happily never see again.</p>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <p class="step-title">I build the fix in days, not months</p>
-        <p>Small scoped projects with a clear outcome. No retainers, no lock-in. You get a working solution and the keys to it.</p>
+        <p class="step-title" data-i18n="how.s2.title">I build the fix in days, not months</p>
+        <p data-i18n="how.s2.desc">Small scoped projects with a clear outcome. No retainers, no lock-in. You get a working solution and the keys to it.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <p class="step-title">You get your time back</p>
-        <p>Most clients recover 4–6 hours a week in month one. That's a full working day — every week, compounding.</p>
+        <p class="step-title" data-i18n="how.s3.title">You get your time back</p>
+        <p data-i18n="how.s3.desc">Most clients recover 4–6 hours a week in month one. That's a full working day — every week, compounding.</p>
       </div>
     </div>
   </div>
@@ -942,66 +1116,66 @@ footer {
     <div class="section-label">
       <span class="section-num">02</span>
       <div>
-        <p class="eyebrow">What I build</p>
-        <h2 class="section-title">Services &amp; Pricing</h2>
+        <p class="eyebrow" data-i18n="svc.eyebrow">What I build</p>
+        <h2 class="section-title" data-i18n="svc.h2">Services &amp; Pricing</h2>
       </div>
     </div>
     <div class="services-table-wrap">
       <table class="services">
         <thead>
           <tr>
-            <th>Service</th>
-            <th>Description</th>
-            <th>From</th>
-            <th>Timeline</th>
+            <th data-i18n="svc.th1">Service</th>
+            <th data-i18n="svc.th2">Description</th>
+            <th data-i18n="svc.th3">From</th>
+            <th data-i18n="svc.th4">Timeline</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="service-name">Automation</span></td>
-            <td><span class="service-desc">Invoices, follow-ups, data entry — the tasks that eat your mornings</span></td>
-            <td><span class="service-price">€250</span></td>
-            <td><span class="service-time">3–5 days</span></td>
+            <td><span class="service-name" data-i18n="svc.auto.name">Automation</span></td>
+            <td><span class="service-desc" data-i18n="svc.auto.desc">Invoices, follow-ups, data entry — the tasks that eat your mornings</span></td>
+            <td><span class="service-price" data-i18n="svc.auto.price">€250</span></td>
+            <td><span class="service-time" data-i18n="svc.auto.time">3–5 days</span></td>
           </tr>
           <tr class="highlight">
-            <td><span class="service-name">Websites</span></td>
-            <td><span class="service-desc">Fast, modern sites that bring in customers — built to convert</span></td>
-            <td><span class="service-price">€500</span></td>
-            <td><span class="service-time">1–2 weeks</span></td>
+            <td><span class="service-name" data-i18n="svc.web.name">Websites</span></td>
+            <td><span class="service-desc" data-i18n="svc.web.desc">Fast, modern sites that bring in customers — built to convert</span></td>
+            <td><span class="service-price" data-i18n="svc.web.price">€500</span></td>
+            <td><span class="service-time" data-i18n="svc.web.time">1–2 weeks</span></td>
           </tr>
           <tr>
-            <td><span class="service-name">Systems</span></td>
-            <td><span class="service-desc">CRMs, internal tools, integrations — the infrastructure your business runs on</span></td>
-            <td><span class="service-price">€1,500</span></td>
-            <td><span class="service-time">2–4 weeks</span></td>
+            <td><span class="service-name" data-i18n="svc.sys.name">Systems</span></td>
+            <td><span class="service-desc" data-i18n="svc.sys.desc">CRMs, internal tools, integrations — the infrastructure your business runs on</span></td>
+            <td><span class="service-price" data-i18n="svc.sys.price">€1,500</span></td>
+            <td><span class="service-time" data-i18n="svc.sys.time">2–4 weeks</span></td>
           </tr>
           <tr>
-            <td><span class="service-name">AI Tools</span></td>
-            <td><span class="service-desc">Custom AI workflows that draft, sort, summarise and respond for you</span></td>
-            <td><span class="service-price">€300</span></td>
-            <td><span class="service-time">1 week</span></td>
+            <td><span class="service-name" data-i18n="svc.ai.name">AI Tools</span></td>
+            <td><span class="service-desc" data-i18n="svc.ai.desc">Custom AI workflows that draft, sort, summarise and respond for you</span></td>
+            <td><span class="service-price" data-i18n="svc.ai.price">€300</span></td>
+            <td><span class="service-time" data-i18n="svc.ai.time">1 week</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="table-note">Typical project · free estimate in 15 minutes · <a href="#contact">get yours →</a></p>
+    <p class="table-note"><span data-i18n="svc.note">Typical project · free estimate in 15 minutes · </span><a href="#contact" data-i18n="svc.note.link">get yours →</a></p>
   </div>
 </section>
 
 <!-- ─── TESTIMONIALS ──────────────────────────────────────────────── -->
 <section id="testimonials">
   <div class="container">
-    <p class="eyebrow" style="margin-bottom:2.5rem;">What clients say</p>
+    <p class="eyebrow" style="margin-bottom:2.5rem;" data-i18n="testi.eyebrow">What clients say</p>
     <div class="quotes-grid">
       <div class="quote-block">
         <span class="quote-mark">"</span>
-        <p class="quote-text">Gal automated our monthly invoicing in three days. I used to spend every Friday afternoon on it. Now I don't even think about it.</p>
-        <p class="quote-attr">— Ana M. · Small business owner, Zagreb</p>
+        <p class="quote-text" data-i18n="testi.1.text">Gal automated our monthly invoicing in three days. I used to spend every Friday afternoon on it. Now I don't even think about it.</p>
+        <p class="quote-attr" data-i18n="testi.1.attr">— Ana M. · Small business owner, Zagreb</p>
       </div>
       <div class="quote-block">
         <span class="quote-mark">"</span>
-        <p class="quote-text">He built our entire client portal in under two weeks. Straightforward, no drama, exactly what we asked for — and a bit more.</p>
-        <p class="quote-attr">— Tomislav K. · Agency director, Split</p>
+        <p class="quote-text" data-i18n="testi.2.text">He built our entire client portal in under two weeks. Straightforward, no drama, exactly what we asked for — and a bit more.</p>
+        <p class="quote-attr" data-i18n="testi.2.attr">— Tomislav K. · Agency director, Split</p>
       </div>
     </div>
   </div>
@@ -1010,26 +1184,26 @@ footer {
 <!-- ─── WHO I AM ──────────────────────────────────────────────────── -->
 <section id="about">
   <div class="container">
-    <p class="eyebrow">Who I am</p>
+    <p class="eyebrow" data-i18n="about.eyebrow">Who I am</p>
     <div class="about-grid">
       <div class="about-portrait">
         <img src="gal-photo.webp" alt="Gal Tidhar — softverski konzultant u Zagrebu" class="about-portrait-img" loading="eager" fetchpriority="high" width="260" height="310">
-        <div class="about-portrait-cap">Gal Tidhar · Zagreb, Croatia</div>
+        <div class="about-portrait-cap" data-i18n="about.cap">Gal Tidhar · Zagreb, Croatia</div>
       </div>
       <div class="about-text">
         <div class="chips">
-          <span class="chip">📍 Zagreb</span>
-          <span class="chip">🇮🇱 Israeli</span>
-          <span class="chip">👨‍👧‍👦 Father of Adam &amp; Ella</span>
-          <span class="chip">10 yrs experience</span>
-          <span class="chip">Available for projects</span>
+          <span class="chip" data-i18n="about.c1">📍 Zagreb</span>
+          <span class="chip" data-i18n="about.c2">🇮🇱 Israeli</span>
+          <span class="chip" data-i18n="about.c3">👨‍👧‍👦 Father of Adam &amp; Ella</span>
+          <span class="chip" data-i18n="about.c4">10 yrs experience</span>
+          <span class="chip" data-i18n="about.c5">Available for projects</span>
         </div>
-        <p>Gal Tidhar — an Israeli software engineer who landed in Zagreb, married a Zagorka, and stayed for good. For over a decade I've built systems that work — from Siemens and Shopify to early-stage startups.</p>
-        <p>Today I help small businesses work smarter. Automating what eats your Mondays, building websites that bring in customers, and creating systems around how you actually operate.</p>
-        <p>ZaZet carries the nickname Davor gave me — Zagorski Zet, the Zagorje son-in-law. I brought the engineering. Croatia gave me everything else.</p>
+        <p data-i18n-html="about.p1"><strong>Gal Tidhar</strong> — an Israeli software engineer who landed in Zagreb, married a Zagorka, and stayed for good. For over a decade I've built systems that work — from Siemens and Shopify to early-stage startups.</p>
+        <p data-i18n="about.p2">Today I help small businesses work smarter. Automating what eats your Mondays, building websites that bring in customers, and creating systems around how you actually operate.</p>
+        <p data-i18n-html="about.p3"><strong>ZaZet</strong> carries the nickname Davor gave me — <em>Zagorski Zet</em>, the Zagorje son-in-law. I brought the engineering. Croatia gave me everything else.</p>
         <div class="gemist-pullquote">
-          <p>In Zagorje, ordering a gemišt isn't just picking a drink. You hold up two fingers. One <strong>vertical</strong> — the wine. One <strong>horizontal</strong> — the water, just enough to get by. That ratio, <em>prst prst</em>, is what locals call the strong pour. Not the tourist version. The real one. Look at the ZaZet logo — blue on top (the 20%), gold below (what actually counts). That's the mix I bring to every project.</p>
-          <button class="gemist-trigger" id="gemist-open-btn" onclick="openGemistModal()" aria-haspopup="dialog" aria-label="Open the gemišt game">What's gemišt? Play the game →</button>
+          <p data-i18n-html="about.pq">In Zagorje, ordering a gemišt isn't just picking a drink. You hold up two fingers. One <strong>vertical</strong> — the wine. One <strong>horizontal</strong> — the water, just enough to get by. That ratio, <em>prst prst</em>, is what locals call the strong pour. Not the tourist version. The real one. Look at the ZaZet logo — blue on top (the 20%), gold below (what actually counts). That's the mix I bring to every project.</p>
+          <button class="gemist-trigger" id="gemist-open-btn" onclick="openGemistModal()" aria-haspopup="dialog" aria-label="Open the gemišt game" data-i18n="about.gemist">What's gemišt? Play the game →</button>
         </div>
       </div>
     </div>
@@ -1040,46 +1214,59 @@ footer {
 <section class="davor-section" id="story">
   <div class="container">
     <div class="davor-header">
-      <p class="eyebrow">The Founding Story</p>
-      <p class="davor-subhead">How I became a Zagorski Zet</p>
+      <p class="eyebrow" data-i18n="davor.eyebrow">The Founding Story</p>
+      <p class="davor-subhead" data-i18n="davor.title">How I became a Zagorski Zet</p>
       <div class="davor-rule"></div>
     </div>
-    <div class="davor-columns">
-      <p>I arrived in Croatia knowing no one and speaking no Croatian. The person who changed that — who changed everything — was Davor Kolarić. Davor ran Konoba Ankora in Kustošija. His family came from Zagorje, and he ran his birtija the only way that counts — your drink before your coat came off, regulars on their stools, strangers leaving as friends. He was my father-in-law, but never once made me feel like a foreigner.</p>
-      <p>They called him Medo — Bear — and he earned it. Over countless evenings he taught me how a real Zagorac lives: <em>spek</em>, wine, rakija, how to fill a room and send everyone home happy. And how to order a gemišt — not the tourist 50/50. <strong>Prst prst.</strong> Two fingers. Wine on top, just enough water. Davor passed away from lung cancer. I miss him every day. If he were here for ZaZet Solutions, two gemišts would hit the counter before I opened my mouth. In his family I was the <em>Zagorski Zet</em> — the Zagorje son-in-law — and ZaZet is the name this company was always going to carry. On every project I try to bring what he brought to everyone who walked into that birtija: make them feel at home, earn their trust, and do it right — not the tourist version.</p>
+    <div class="davor-grid">
+      <div class="davor-cover" id="davor-gallery-trigger" role="button" tabindex="0" aria-label="Open photo gallery of Davor Kolarić">
+        <img src="davor-wedding.webp" alt="Gal and Davor Kolarić at the wedding" loading="lazy">
+        <div class="davor-cover-overlay">
+          <div class="davor-cover-label">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><rect x="1" y="3" width="13" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="7.5" cy="8" r="2.2" stroke="currentColor" stroke-width="1.4"/><path d="M5 3l.8-1.5h3.4L10 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-i18n="davor.gallery">Open gallery</span>
+            <span class="davor-cover-count" data-i18n="davor.photos">13 photos</span>
+          </div>
+        </div>
+      </div>
+      <div class="davor-story">
+        <p data-i18n-html="davor.p1">I arrived in Croatia knowing no one and speaking no Croatian. The person who changed that — who changed everything — was <strong>Davor Kolarić</strong>. Davor ran <em>Konoba Ankora</em> in Kustošija. His family came from Zagorje, and he ran his birtija the only way that counts — your drink before your coat came off, regulars on their stools, strangers leaving as friends. He was my father-in-law, but never once made me feel like a foreigner.</p>
+        <p data-i18n-html="davor.p2">They called him <strong>Medo</strong> — Bear — and he earned it. Over countless evenings he taught me how a real Zagorac lives: <em>spek</em>, wine, rakija, how to fill a room and send everyone home happy. And how to order a gemišt — not the tourist 50/50. <strong>Prst prst.</strong> Two fingers. Wine on top, just enough water.</p>
+        <p data-i18n-html="davor.p3">Davor passed away from lung cancer. I miss him every day. If he were here for <strong>ZaZet Solutions</strong>, two gemišts would hit the counter before I opened my mouth. In his family I was the <em>Zagorski Zet</em> — the Zagorje son-in-law — and <strong>ZaZet</strong> is the name this company was always going to carry. On every project I try to bring what he brought to everyone who walked into that birtija: make them feel at home, earn their trust, and do it right — not the tourist version.</p>
+      </div>
     </div>
-    <p class="davor-memorial">🕯️ In memory of Davor Kolarić</p>
+    <p class="davor-memorial">🕯️ <span data-i18n="davor.memorial">In memory of Davor Kolarić</span></p>
   </div>
 </section>
 
 <!-- ─── PROJECTS ──────────────────────────────────────────────────── -->
 <section id="work">
   <div class="container">
-    <p class="eyebrow" style="margin-bottom:0.5rem;">Recent Work</p>
+    <p class="eyebrow" style="margin-bottom:0.5rem;" data-i18n="proj.eyebrow">Recent Work</p>
     <div class="projects-grid">
       <div class="project-card">
-        <p class="project-tag">Mobile App · Dalmatia</p>
-        <p class="project-headline">Water Taxi Bookings Up 4× After Replacing WhatsApp Chaos</p>
-        <p class="project-desc">Mobile-first booking system for a water taxi operator running between Split and the outer islands. Customers book and pay in the app; the captain sees a live manifest, manages the fleet, and collects digital receipts — no missed messages, no double-bookings.</p>
-        <p class="project-metric">2,400+</p>
-        <p class="project-metric-label">Bookings handled · first full season</p>
-        <p class="project-location">📍 Dalmatia, Croatia</p>
+        <p class="project-tag" data-i18n="proj.1.tag">Mobile App · Dalmatia</p>
+        <p class="project-headline" data-i18n="proj.1.head">Water Taxi Bookings Up 4× After Replacing WhatsApp Chaos</p>
+        <p class="project-desc" data-i18n="proj.1.desc">Mobile-first booking system for a water taxi operator running between Split and the outer islands. Customers book and pay in the app; the captain sees a live manifest, manages the fleet, and collects digital receipts — no missed messages, no double-bookings.</p>
+        <p class="project-metric" data-i18n="proj.1.metric">2,400+</p>
+        <p class="project-metric-label" data-i18n="proj.1.metricLabel">Bookings handled · first full season</p>
+        <p class="project-location" data-i18n="proj.1.loc">📍 Dalmatia, Croatia</p>
       </div>
       <div class="project-card">
-        <p class="project-tag">Operations System · Adriatic</p>
-        <p class="project-headline">Marina Mooring Management — 180 Berths, One Screen</p>
-        <p class="project-desc">End-to-end marina platform: real-time berth availability, automated check-in/check-out flows, invoicing, and a seasonal occupancy dashboard. Replaced paper arrival logs, a whiteboard, and three separate spreadsheets that hadn't agreed with each other in years.</p>
-        <p class="project-metric">€220k</p>
-        <p class="project-metric-label">Seasonal revenue tracked · 180 berths managed</p>
-        <p class="project-location">📍 Croatian Adriatic</p>
+        <p class="project-tag" data-i18n="proj.2.tag">Operations System · Adriatic</p>
+        <p class="project-headline" data-i18n="proj.2.head">Marina Mooring Management — 180 Berths, One Screen</p>
+        <p class="project-desc" data-i18n="proj.2.desc">End-to-end marina platform: real-time berth availability, automated check-in/check-out flows, invoicing, and a seasonal occupancy dashboard. Replaced paper arrival logs, a whiteboard, and three separate spreadsheets that hadn't agreed with each other in years.</p>
+        <p class="project-metric" data-i18n="proj.2.metric">€220k</p>
+        <p class="project-metric-label" data-i18n="proj.2.metricLabel">Seasonal revenue tracked · 180 berths managed</p>
+        <p class="project-location" data-i18n="proj.2.loc">📍 Croatian Adriatic</p>
       </div>
       <div class="project-card">
-        <p class="project-tag">Backoffice Suite · Multi-location</p>
-        <p class="project-headline">Payroll &amp; Commission Engine for 60-Agent Direct Sales Network</p>
-        <p class="project-desc">Full backoffice for a distributed direct sales business: agent onboarding, hierarchy-aware commission calculation, monthly payroll export, and a live team-performance dashboard for managers. Replaced three legacy tools and a mountain of Excel files that payroll week had turned into a nightmare.</p>
-        <p class="project-metric">€380k</p>
-        <p class="project-metric-label">Commissions processed · 60 agents · 0 payroll disputes</p>
-        <p class="project-location">📍 Israel / Remote</p>
+        <p class="project-tag" data-i18n="proj.3.tag">Backoffice Suite · Germany, Sweden & UK</p>
+        <p class="project-headline" data-i18n="proj.3.head">Payroll &amp; Commission Engine for 60-Agent Direct Sales Network</p>
+        <p class="project-desc" data-i18n="proj.3.desc">Full backoffice for a distributed direct sales business: agent onboarding, hierarchy-aware commission calculation, monthly payroll export, and a live team-performance dashboard for managers. Replaced three legacy tools and a mountain of Excel files that payroll week had turned into a nightmare.</p>
+        <p class="project-metric" data-i18n="proj.3.metric">€380k</p>
+        <p class="project-metric-label" data-i18n="proj.3.metricLabel">Commissions processed · 60 agents · 3 countries</p>
+        <p class="project-location" data-i18n="proj.3.loc">📍 Germany · Sweden · UK</p>
       </div>
     </div>
   </div>
@@ -1088,37 +1275,37 @@ footer {
 <!-- ─── FAQ ───────────────────────────────────────────────────────── -->
 <section id="faq">
   <div class="container">
-    <p class="eyebrow" style="margin-bottom:0.5rem;">FAQ</p>
-    <h2 style="font-family:var(--font-head);font-weight:700;font-size:1.7rem;margin-bottom:0.25rem;">Common questions</h2>
+    <p class="eyebrow" style="margin-bottom:0.5rem;" data-i18n="faq.eyebrow">FAQ</p>
+    <h2 style="font-family:var(--font-head);font-weight:700;font-size:1.7rem;margin-bottom:0.25rem;" data-i18n="faq.h2">Common questions</h2>
     <div class="faq-grid">
       <div class="faq-item">
         <details>
-          <summary>Do I need technical knowledge to work with you?</summary>
-          <p>None at all. You describe the problem in plain language — "I spend two hours every Monday doing X" — and I handle everything technical. You just test and approve the result.</p>
+          <summary data-i18n="faq.q1">Do I need technical knowledge to work with you?</summary>
+          <p data-i18n="faq.a1">None at all. You describe the problem in plain language — "I spend two hours every Monday doing X" — and I handle everything technical. You just test and approve the result.</p>
         </details>
       </div>
       <div class="faq-item">
         <details>
-          <summary>How long does a typical project take?</summary>
-          <p>Small automations: 3–5 days. Websites: 1–2 weeks. Larger systems: 2–4 weeks. I scope tightly so there are no surprises. You'll know the timeline before we start.</p>
+          <summary data-i18n="faq.q2">How long does a typical project take?</summary>
+          <p data-i18n="faq.a2">Small automations: 3–5 days. Websites: 1–2 weeks. Larger systems: 2–4 weeks. I scope tightly so there are no surprises. You'll know the timeline before we start.</p>
         </details>
       </div>
       <div class="faq-item">
         <details>
-          <summary>What if something breaks after the project is done?</summary>
-          <p>Every project includes a two-week support window. After that, fixes are billed hourly — but most things don't break because I build simply and hand you full documentation.</p>
+          <summary data-i18n="faq.q3">What if something breaks after the project is done?</summary>
+          <p data-i18n="faq.a3">Every project includes a two-week support window. After that, fixes are billed hourly — but most things don't break because I build simply and hand you full documentation.</p>
         </details>
       </div>
       <div class="faq-item">
         <details>
-          <summary>Do you work with businesses outside Croatia?</summary>
-          <p>Yes. Around a third of my clients are outside Croatia. I work remotely without any issues, and I'm comfortable in English, Hebrew, and functional Croatian.</p>
+          <summary data-i18n="faq.q4">Do you work with businesses outside Croatia?</summary>
+          <p data-i18n="faq.a4">Yes. Around a third of my clients are outside Croatia. I work remotely without any issues, and I'm comfortable in English, Hebrew, and functional Croatian.</p>
         </details>
       </div>
       <div class="faq-item">
         <details>
-          <summary>What's the minimum project size?</summary>
-          <p>There's no minimum. If the problem is worth solving, it's worth solving properly. Some of my best projects started as "I know this is small but…" conversations on WhatsApp.</p>
+          <summary data-i18n="faq.q5">What's the minimum project size?</summary>
+          <p data-i18n="faq.a5">There's no minimum. If the problem is worth solving, it's worth solving properly. Some of my best projects started as "I know this is small but…" conversations on WhatsApp.</p>
         </details>
       </div>
     </div>
@@ -1128,38 +1315,61 @@ footer {
 <!-- ─── CONTACT ───────────────────────────────────────────────────── -->
 <section class="contact-section" id="contact">
   <div class="container">
-    <h2 class="contact-headline">Tell me the one thing you<br>hate doing every week.</h2>
-    <p class="contact-sub">That's usually where we start.</p>
+    <h2 class="contact-headline" data-i18n-html="contact.h2">Tell me the one thing you<br>hate doing every week.</h2>
+    <p class="contact-sub" data-i18n="contact.sub">That's usually where we start.</p>
     <div class="contact-ctas">
       <a href="https://wa.me/972503843427" class="btn-wa btn-wa-lg" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        WhatsApp me →
+        <span data-i18n="contact.wa">WhatsApp me →</span>
       </a>
     </div>
     <div class="contact-secondary">
-      <a href="#" class="btn-ghost">Book a free 15-min call →</a>
+      <a href="#" class="btn-ghost" data-cal-link="gal-tidhar/discovery" data-cal-namespace="discovery" data-cal-config='{"layout":"month_view"}' data-i18n="contact.book">Book a free 15-min call →</a>
       <a href="mailto:gal@zazet-solutions.hr" class="contact-email">gal@zazet-solutions.hr</a>
     </div>
-    <p class="contact-note" style="margin-top:1.5rem;">No commitment · I reply same day</p>
+    <p class="contact-note" style="margin-top:1.5rem;" data-i18n="contact.note">No commitment · I reply same day</p>
   </div>
 </section>
 
 <!-- ─── FOOTER ────────────────────────────────────────────────────── -->
 <footer>
   <div class="container">
-    <p class="footer-main">ZaZet Solutions · Gal Tidhar · Zagreb, Croatia · © 2026</p>
-    <p class="footer-sub">Engineer? → <a href="https://gal.tidhar.org.il" target="_blank" rel="noopener">gal.tidhar.org.il</a></p>
+    <p class="footer-main" data-i18n="footer.main">ZaZet Solutions · Gal Tidhar · Zagreb, Croatia · © 2026</p>
+    <p class="footer-sub"><span data-i18n="footer.eng">Engineer? →</span> <a href="https://gal.tidhar.org.il" target="_blank" rel="noopener">gal.tidhar.org.il</a></p>
   </div>
 </footer>
+
+
+<!-- ─── DAVOR PHOTO GALLERY ─────────────────────────────────────── -->
+<div class="gallery-overlay" id="gallery-overlay" role="dialog" aria-modal="true" aria-label="Photo gallery of Davor Kolarić">
+  <div class="gallery-header">
+    <div class="gallery-caption">
+      <strong>Davor Kolarić</strong> &nbsp;·&nbsp; <span id="gallery-counter">1 / 13</span>
+    </div>
+    <button class="gallery-close" id="gallery-close" aria-label="Close gallery">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="gallery-stage">
+    <button class="gallery-btn prev" id="gallery-prev" aria-label="Previous photo">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <img class="gallery-img" id="gallery-img" src="" alt="">
+    <button class="gallery-btn next" id="gallery-next" aria-label="Next photo">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="gallery-thumbs" id="gallery-thumbs"></div>
+</div>
 
 <!-- ─── GEMIŠT MODAL ──────────────────────────────────────── -->
 <div id="gemist-modal" role="dialog" aria-modal="true" aria-label="The gemišt game" style="display:none;">
   <div class="gm-backdrop" onclick="closeGemistModal()"></div>
   <div class="gm-box">
     <button class="gm-close" onclick="closeGemistModal()" aria-label="Close">✕</button>
-    <p class="gm-eyebrow">Easter egg</p>
-    <h3 class="gm-title">How do you drink your gemišt?</h3>
-    <p class="gm-sub">White wine + sparkling water. In Zagorje, the ratio is a personality test.</p>
+    <p class="gm-eyebrow" data-i18n="game.eyebrow">Easter egg</p>
+    <h3 class="gm-title" data-i18n="game.title">How do you drink your gemišt?</h3>
+    <p class="gm-sub" data-i18n="game.sub">White wine + sparkling water. In Zagorje, the ratio is a personality test.</p>
 
     <!-- ZaZet SVG logo that animates with the ratio -->
     <div class="gm-logo-wrap">
@@ -1187,12 +1397,12 @@ footer {
     </div>
 
     <div class="gm-btns" role="group" aria-label="Choose your ratio">
-      <button class="gm-btn" data-water="75" onclick="setRatio(this)">25/75 — Tourist ☁️</button>
-      <button class="gm-btn" data-water="50" onclick="setRatio(this)">50/50 — Half &amp; half</button>
-      <button class="gm-btn gm-btn-active" data-water="20" onclick="setRatio(this)">Prst Prst 🍷 — Real Zagorac</button>
+      <button class="gm-btn" data-water="75" onclick="setRatio(this)" data-i18n="game.tourist">25/75 — Tourist ☁️</button>
+      <button class="gm-btn" data-water="50" onclick="setRatio(this)" data-i18n="game.half">50/50 — Half &amp; half</button>
+      <button class="gm-btn gm-btn-active" data-water="20" onclick="setRatio(this)" data-i18n="game.prst">Prst Prst 🍷 — Real Zagorac</button>
     </div>
     <div class="gm-toast" id="gm-toast" aria-live="polite"></div>
-    <p class="gm-note">This is how the ZaZet logo works. Blue on top — the water, just enough. Gold below — the wine, what actually counts.</p>
+    <p class="gm-note" data-i18n="game.note">This is how the ZaZet logo works. Blue on top — the water, just enough. Gold below — the wine, what actually counts.</p>
   </div>
 </div>
 
@@ -1222,13 +1432,13 @@ function setRatio(btn) {
   const toast = document.getElementById('gm-toast');
   if (!toast) return;
   if (waterPct <= 20) {
-    toast.textContent = 'Prst prst. Just like Davor would pour it. 🍷';
+    toast.textContent = (T[currentLang] && T[currentLang]['game.toast.prst']) || 'Prst prst. Just like Davor would pour it. 🍷';
     btn.classList.add('gm-prst-active');
     launchConfetti();
   } else if (waterPct <= 50) {
-    toast.textContent = 'A fair pour. A good start.';
+    toast.textContent = (T[currentLang] && T[currentLang]['game.toast.half']) || 'A fair pour. A good start.';
   } else {
-    toast.textContent = 'The light pour. For those just beginning to know the taste.';
+    toast.textContent = (T[currentLang] && T[currentLang]['game.toast.tourist']) || 'The light pour. For those just beginning to know the taste.';
   }
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 4000);
@@ -1269,7 +1479,7 @@ function launchConfetti() {
    data-cal-namespace="discovery" data-cal-link="gal-tidhar/discovery"
    data-cal-config='{"layout":"month_view"}'>
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-  Book a free call
+  <span data-i18n="float.cta">Book a free call</span>
 </a>
 <button id="back-top" aria-label="Back to top">
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
@@ -1277,7 +1487,7 @@ function launchConfetti() {
 <div class="sticky-mob" id="sticky-mob">
   <a href="https://wa.me/972503843427" class="btn-wa sticky-mob-btn" target="_blank" rel="noopener">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    WhatsApp me →
+    <span data-i18n="sticky.wa">WhatsApp me →</span>
   </a>
 </div>
 
@@ -1296,22 +1506,131 @@ const floatCta = document.getElementById('float-cta');
 const heroSec = document.getElementById('hero');
 if (floatCta && heroSec) addEventListener('scroll', () => floatCta.classList.toggle('visible', scrollY > heroSec.offsetHeight * 0.75), {passive:true});
 
-/* ── Lang toggle ── */
-function applyLang(lang) {
+/* ── i18n ── */
+const T = {"en": {"skip": "Skip to main content", "nav.services": "Services", "nav.about": "About", "nav.work": "Work", "nav.contact": "Contact", "nav.wa": "WhatsApp →", "nav.eng": "Engineering ↗", "hero.kicker": "Zagreb · Available for Projects · Software Consultant", "hero.headline": "I give you back<br>your Mondays.", "hero.sub": "I automate the repetitive work eating your week — invoices, follow-ups, spreadsheets. Most clients recover 4–6 hours a week in the first month.", "hero.wa": "WhatsApp me →", "hero.book": "Book a free 15-min call", "hero.trust": "Shopify · Siemens · Novu · dozens of Croatian businesses", "how.eyebrow": "Process", "how.h2": "How it works", "how.s1.title": "You tell me what's eating your week", "how.s1.desc": "A 15-minute call — no forms, no proposals. Just tell me which task you'd happily never see again.", "how.s2.title": "I build the fix in days, not months", "how.s2.desc": "Small, tightly scoped projects with a clear outcome. No retainers, no lock-in. You get a working solution and the keys to it.", "how.s3.title": "You get your time back", "how.s3.desc": "Most clients recover 4–6 hours a week in the first month. That's a full working day — every week, compounding.", "svc.eyebrow": "What I build", "svc.h2": "Services & Pricing", "svc.th1": "Service", "svc.th2": "Description", "svc.th3": "From", "svc.th4": "Timeline", "svc.auto.name": "Automation", "svc.auto.desc": "Invoices, follow-ups, data entry — the tasks that eat your mornings", "svc.auto.price": "€250", "svc.auto.time": "3–5 days", "svc.web.name": "Websites", "svc.web.desc": "Fast, modern sites that bring in customers — built to convert", "svc.web.price": "€500", "svc.web.time": "1–2 weeks", "svc.sys.name": "Systems", "svc.sys.desc": "CRMs, internal tools, integrations — the infrastructure your business runs on", "svc.sys.price": "€1,500", "svc.sys.time": "2–4 weeks", "svc.ai.name": "AI Tools", "svc.ai.desc": "Custom AI workflows that draft, sort, summarise and respond for you", "svc.ai.price": "€300", "svc.ai.time": "1 week", "svc.note": "Typical project · free estimate in 15 minutes · ", "svc.note.link": "get yours →", "testi.eyebrow": "What clients say", "testi.1.text": "Gal automated our monthly invoicing in three days. I used to spend every Friday afternoon on it. Now I don't even think about it.", "testi.1.attr": "— Ana M. · Small business owner, Zagreb", "testi.2.text": "He built our entire client portal in under two weeks. Straightforward, no drama, exactly what we asked for — and a bit more.", "testi.2.attr": "— Tomislav K. · Agency director, Split", "about.eyebrow": "Who I am", "about.cap": "Gal Tidhar · Zagreb, Croatia", "about.c1": "📍 Zagreb", "about.c2": "🇮🇱 Israeli", "about.c3": "👨‍👧‍👦 Father of Adam & Ella", "about.c4": "10 years' experience", "about.c5": "Available for projects", "about.p1": "<strong>Gal Tidhar</strong> — an Israeli software engineer who landed in Zagreb, married a Zagorka, and stayed for good. For over a decade I've built systems that work — from Siemens and Shopify to early-stage startups.", "about.p2": "Today I help small businesses work smarter — automating what eats your Mondays, building websites that bring in customers, and creating systems around how you actually operate.", "about.p3": "<strong>ZaZet</strong> carries the nickname Davor gave me — <em>Zagorski Zet</em>, the Zagorje son-in-law. I brought the engineering. Croatia gave me everything else.", "about.pq": "In Zagorje, ordering a gemišt isn't just picking a drink. You hold up two fingers. One <strong>vertical</strong> — the wine. One <strong>horizontal</strong> — the water, just enough to get by. That ratio, <em>prst prst</em>, is what locals call the strong pour. Not the tourist version. The real one. Look at the ZaZet logo — blue on top (the 20%), gold below (what actually counts). That's the mix I bring to every project.", "about.gemist": "What's gemišt? Play the game →", "davor.eyebrow": "The Founding Story", "davor.title": "How I became a Zagorski Zet", "davor.gallery": "Open gallery", "davor.photos": "13 photos", "davor.p1": "I arrived in Croatia knowing no one and speaking no Croatian. The person who changed that — who changed everything — was <strong>Davor Kolarić</strong>. Davor ran <em>Konoba Ankora</em> in Kustošija. His family came from Zagorje, and he ran his birtija the only way that counts — your drink before your coat came off, regulars on their stools, strangers leaving as friends. He was my father-in-law, but never once made me feel like a foreigner.", "davor.p2": "They called him <strong>Medo</strong> — Bear — and he earned it. Over countless evenings he taught me how a real Zagorac lives: <em>spek</em>, wine, rakija, how to fill a room and send everyone home happy. And how to order a gemišt — not the tourist 50/50. <strong>Prst prst.</strong> Two fingers. Wine on top, just enough water.", "davor.p3": "Davor passed away from lung cancer. I miss him every day. If he were here for <strong>ZaZet Solutions</strong>, two gemišts would be on the counter before I opened my mouth. In his family I was the <em>Zagorski Zet</em> — the Zagorje son-in-law — and <strong>ZaZet</strong> is the name this company was always going to carry. On every project I try to bring what he brought to everyone who walked into that birtija: make them feel at home, earn their trust, and do it right — not the tourist version.", "davor.memorial": "In memory of Davor Kolarić", "proj.eyebrow": "Recent Work", "proj.1.tag": "Mobile App · Dalmatia", "proj.1.head": "Water Taxi Bookings Up 4× After Replacing WhatsApp Chaos", "proj.1.desc": "Mobile-first booking system for a water taxi operator running between Split and the outer islands. Customers book and pay in the app; the captain sees a live manifest, manages the fleet, and collects digital receipts — no missed messages, no double-bookings.", "proj.1.metric": "2,400+", "proj.1.metricLabel": "Bookings handled · first full season", "proj.1.loc": "📍 Dalmatia, Croatia", "proj.2.tag": "Operations System · Adriatic", "proj.2.head": "Marina Mooring Management — 180 Berths, One Screen", "proj.2.desc": "End-to-end marina platform: real-time berth availability, automated check-in/check-out flows, invoicing, and a seasonal occupancy dashboard. Replaced paper arrival logs, a whiteboard, and three separate spreadsheets that hadn't agreed with each other in years.", "proj.2.metric": "€220k", "proj.2.metricLabel": "Seasonal revenue tracked · 180 berths managed", "proj.2.loc": "📍 Croatian Adriatic", "proj.3.tag": "Backoffice Suite · Germany, Sweden & UK", "proj.3.head": "Payroll & Commission Engine for 60-Agent Direct Sales Network", "proj.3.desc": "Full backoffice for a distributed direct sales business: agent onboarding, hierarchy-aware commission calculation, monthly payroll export, and a live team-performance dashboard for managers. Replaced three legacy tools and a mountain of Excel files that payroll week had turned into a nightmare.", "proj.3.metric": "€380k", "proj.3.metricLabel": "Commissions processed · 60 agents · 3 countries", "proj.3.loc": "📍 Germany · Sweden · UK", "faq.eyebrow": "FAQ", "faq.h2": "Common questions", "faq.q1": "Do I need technical knowledge to work with you?", "faq.a1": "None at all. You describe the problem in plain language — \"I spend two hours every Monday doing X\" — and I handle everything technical. You just test and approve the result.", "faq.q2": "How long does a typical project take?", "faq.a2": "Small automations: 3–5 days. Websites: 1–2 weeks. Larger systems: 2–4 weeks. I scope tightly so there are no surprises. You'll know the timeline before we start.", "faq.q3": "What if something breaks after the project is done?", "faq.a3": "Every project includes a two-week support window. After that, fixes are billed hourly — but most things don't break because I build simply and hand you full documentation.", "faq.q4": "Do you work with businesses outside Croatia?", "faq.a4": "Yes. About a third of my clients are outside Croatia. I work remotely without issue, and I'm comfortable in English, Hebrew, and conversational Croatian.", "faq.q5": "What's the minimum project size?", "faq.a5": "There's no minimum. If the problem is worth solving, it's worth solving properly. Some of my best projects started as \"I know this is small but…\" conversations on WhatsApp.", "contact.h2": "Tell me the one thing you<br>hate doing every week.", "contact.sub": "That's usually where we start.", "contact.wa": "WhatsApp me →", "contact.book": "Book a free 15-min call →", "contact.note": "No commitment · I reply same day", "footer.main": "ZaZet Solutions · Gal Tidhar · Zagreb, Croatia · © 2026", "footer.eng": "Engineer? →", "float.cta": "Book a free call", "sticky.wa": "WhatsApp me →", "game.eyebrow": "Easter egg", "game.title": "How do you drink your gemišt?", "game.sub": "White wine + sparkling water. In Zagorje, the ratio is a personality test.", "game.tourist": "25/75 — Tourist ☁️", "game.half": "50/50 — Half & half", "game.prst": "Prst Prst 🍷 — Real Zagorac", "game.toast.prst": "Prst prst. Just like Davor would pour it. 🍷", "game.toast.half": "A fair pour. A good start.", "game.toast.tourist": "The light pour. For those just beginning to know the taste.", "game.note": "This is how the ZaZet logo works. Blue on top — the water, just enough. Gold below — the wine, what actually counts."}, "hr": {"skip": "Preskoči na glavni sadržaj", "nav.services": "Usluge", "nav.about": "O meni", "nav.work": "Rad", "nav.contact": "Kontakt", "nav.wa": "WhatsApp →", "nav.eng": "Inženjerstvo ↗", "hero.kicker": "Zagreb · Dostupan za projekte · Softverski konzultant", "hero.headline": "Vraćam vam<br>ponedjeljke.", "hero.sub": "Automatiziram ponavljajući posao koji vam jede tjedan — fakture, podsjetnici, tablice. Većina klijenata već u prvom mjesecu vrati 4–6 sati tjedno.", "hero.wa": "Javite mi se na WhatsApp →", "hero.book": "Besplatan razgovor (15 min)", "hero.trust": "Shopify · Siemens · Novu · deseci hrvatskih tvrtki", "how.eyebrow": "Proces", "how.h2": "Kako funkcionira", "how.s1.title": "Kažete mi što vam jede tjedan", "how.s1.desc": "Razgovor od 15 minuta — bez obrazaca, bez ponuda. Samo recite koji zadatak biste najradije više nikad ne radili.", "how.s2.title": "Gradim rješenje u danima, ne mjesecima", "how.s2.desc": "Mali, jasno definirani projekti s konkretnim ishodom. Bez retainera i dugoročnih ugovora. Dobivate rješenje koje radi — i ključeve od njega.", "how.s3.title": "Vraćate si vrijeme", "how.s3.desc": "Većina klijenata već u prvom mjesecu vrati 4–6 sati tjedno. To je cijeli radni dan — svaki tjedan, iz tjedna u tjedan.", "svc.eyebrow": "Što gradim", "svc.h2": "Usluge i cijene", "svc.th1": "Usluga", "svc.th2": "Opis", "svc.th3": "Od", "svc.th4": "Rok", "svc.auto.name": "Automatizacija", "svc.auto.desc": "Fakture, podsjetnici, unos podataka — zadaci koji vam pojedu jutro", "svc.auto.price": "250 €", "svc.auto.time": "3–5 dana", "svc.web.name": "Web stranice", "svc.web.desc": "Brze, moderne stranice koje donose klijente — izgrađene za konverziju", "svc.web.price": "500 €", "svc.web.time": "1–2 tjedna", "svc.sys.name": "Sustavi", "svc.sys.desc": "CRM-ovi, interni alati, integracije — infrastruktura vašeg poslovanja", "svc.sys.price": "1.500 €", "svc.sys.time": "2–4 tjedna", "svc.ai.name": "AI alati", "svc.ai.desc": "Prilagođeni AI workflowi koji pišu, sortiraju, sažimaju i odgovaraju umjesto vas", "svc.ai.price": "300 €", "svc.ai.time": "1 tjedan", "svc.note": "Tipičan projekt · besplatna procjena u 15 minuta · ", "svc.note.link": "zatražite procjenu →", "testi.eyebrow": "Što kažu klijenti", "testi.1.text": "Gal je automatizirao naše mjesečno fakturiranje za tri dana. Prije sam svaki petak poslijepodne trošio na tome vrijeme. O tome više ni ne razmišljam.", "testi.1.attr": "— Ana M. · Vlasnica malog poduzeća, Zagreb", "testi.2.text": "Izgradio je naš cijeli klijentski portal za manje od dva tjedna. Izravno, bez drame, točno ono što smo tražili — i malo više.", "testi.2.attr": "— Tomislav K. · Direktor agencije, Split", "about.eyebrow": "Tko sam", "about.cap": "Gal Tidhar · Zagreb, Hrvatska", "about.c1": "📍 Zagreb", "about.c2": "🇮🇱 Izraelac", "about.c3": "👨‍👧‍👦 Otac Adama i Elle", "about.c4": "10 god. iskustva", "about.c5": "Dostupan za projekte", "about.p1": "<strong>Gal Tidhar</strong> — izraelski softverski inženjer koji je stigao u Zagreb, oženio Zagorku i ostao zauvijek. Više od deset godina gradim sustave koji rade — od Siemensa i Shopifyja do ranih startupova.", "about.p2": "Danas pomažem malim poduzećima da rade pametnije. Automatiziram ono što vam jede ponedjeljke, gradim web stranice koje donose klijente i sustave prilagođene načinu na koji zapravo poslujete.", "about.p3": "<strong>ZaZet</strong> nosi nadimak koji mi je dao Davor — <em>Zagorski Zet</em>, zagorski zet. Donio sam inženjerstvo. Hrvatska mi je dala sve ostalo.", "about.pq": "U Zagorju, naručivanje gemišta nije samo odabir pića. Dignete dva prsta. Jedan <strong>vertikalni</strong> — vino. Jedan <strong>horizontalni</strong> — voda, samo toliko da prođe. Taj omjer, <em>prst prst</em>, zovu ga domaći — jak gemišt. Ne turistička verzija. Prava stvar. Pogledajte ZaZet logo — plava gore (tih 20%), zlatna dolje (ono što zaista vrijedi). U tom omjeru radim i ja.", "about.gemist": "Što je gemišt? Igrajte igru →", "davor.eyebrow": "Priča o osnivanju", "davor.title": "Kako sam postao Zagorski Zet", "davor.gallery": "Otvori galeriju", "davor.photos": "13 fotografija", "davor.p1": "Stigao sam u Hrvatsku, ne poznajući nikoga i ne govoreći hrvatski. Sve je promijenio <strong>Davor Kolarić</strong>. Vodio je <em>Konobu Ankora</em> u Kustošiji. Obitelj mu je bila iz Zagorja, a birtiju je vodio kako se i treba — piće prije nego skineš kaput, stalni na svojim stolcima, stranci odlaze kao prijatelji. Bio mi je tast, ali me nikad nije tretirao kao stranca.", "davor.p2": "Zvali su ga <strong>Medo</strong> — Medvjed — i zaslužio je to. Bezbroj večeri proveo sam učeći kako pravi Zagorac živi: <em>spek</em>, vino, rakija, kako napuniti prostoriju i poslati sve kući sretne. I kako naručiti gemišt — ne turistički 50/50. <strong>Prst prst.</strong> Dva prsta. Vino gore, samo toliko vode.", "davor.p3": "Davor je preminuo od raka pluća. Nedostaje mi svaki dan. Da je ovdje zbog <strong>ZaZet Solutions</strong>, dva gemišta bi već bila na šanku prije nego otvorim usta. U njegovoj obitelji bio sam <em>Zagorski Zet</em> — zagorski zet — i <strong>ZaZet</strong> je ime koje je ova tvrtka uvijek trebala nositi. U svakom projektu pokušavam donijeti ono što je on donio svakome tko je ušao u tu birtiju: osjećaj doma, zasluženo povjerenje i posao kako treba — ne turistička verzija.", "davor.memorial": "U spomen Davora Kolarića", "proj.eyebrow": "Nedavni rad", "proj.1.tag": "Mobilna aplikacija · Dalmacija", "proj.1.head": "Rezervacije brodskog taksija porasle 4× nakon zamjene WhatsApp kaosa", "proj.1.desc": "Mobilni sustav rezervacija za brodski taksi između Splita i vanjskih otoka. Klijenti rezerviraju i plaćaju u aplikaciji; kapetan vidi manifest uživo, upravlja flotom i izdaje digitalne račune — bez propuštenih poruka i dvostrukih rezervacija.", "proj.1.metric": "2.400+", "proj.1.metricLabel": "Obrađenih rezervacija · prva puna sezona", "proj.1.loc": "📍 Dalmacija, Hrvatska", "proj.2.tag": "Operativni sustav · Jadran", "proj.2.head": "Upravljanje vezovima u marini — 180 vezova, jedan ekran", "proj.2.desc": "Cjelovita marina platforma: dostupnost veza u stvarnom vremenu, automatizirani check-in/check-out, fakturiranje i sezonska nadzorna ploča zauzetosti. Zamijenila je papirnate dnevnike, ploču i tri odvojene tablice koje se godinama nisu slagale.", "proj.2.metric": "220.000 €", "proj.2.metricLabel": "Praćen prihod po sezoni · 180 vezova", "proj.2.loc": "📍 Hrvatski Jadran", "proj.3.tag": "Backoffice sustav · Njemačka, Švedska i UK", "proj.3.head": "Payroll i provizijski motor za mrežu od 60 agenata", "proj.3.desc": "Potpuni backoffice za distribuirani mrežni prodajni posao: onboarding agenata, hijerarhijski izračun provizija, mjesečni payroll export i dashboard performansi tima za menadžere. Zamijenio tri zastarjela alata i planinu Excel datoteka koje su tjedan isplate plaća pretvarale u noćnu moru.", "proj.3.metric": "380.000 €", "proj.3.metricLabel": "Obrađenih provizija · 60 agenata · 3 zemlje", "proj.3.loc": "📍 Njemačka · Švedska · UK", "faq.eyebrow": "FAQ", "faq.h2": "Česta pitanja", "faq.q1": "Trebam li tehničko znanje za suradnju s vama?", "faq.a1": "Uopće ne. Problem opisujete običnim jezikom — \"Svaki ponedjeljak provedem dva sata na X\" — a ja riješim sve tehničko. Vi samo testirate i odobravate rezultat.", "faq.q2": "Koliko traje tipičan projekt?", "faq.a2": "Male automatizacije: 3–5 dana. Web stranice: 1–2 tjedna. Veći sustavi: 2–4 tjedna. Projekt definiram jasno da nema iznenađenja. Rok znate prije nego krenemo.", "faq.q3": "Što ako nešto pukne nakon završetka projekta?", "faq.a3": "Svaki projekt uključuje dvotjedni prozor podrške. Nakon toga popravci se naplaćuju po satu — ali većina stvari ne puca jer gradim jednostavno i predajem punu dokumentaciju.", "faq.q4": "Radite li s tvrtkama izvan Hrvatske?", "faq.a4": "Da. Otprilike trećina klijenata je izvan Hrvatske. Radim udaljeno bez problema i pouzdano komuniciram na engleskom, hebrejskom i razumljivom hrvatskom.", "faq.q5": "Postoji li minimalna veličina projekta?", "faq.a5": "Nema minimuma. Ako je problem vrijedan rješavanja, vrijedi ga riješiti kako treba. Neki od mojih najboljih projekata krenuli su kao \"Znam da je ovo malo, ali…\" razgovori na WhatsAppu.", "contact.h2": "Recite mi jednu stvar<br>koju svaki tjedan mrzite raditi.", "contact.sub": "Tu obično počinjemo.", "contact.wa": "Javite mi se na WhatsApp →", "contact.book": "Besplatan razgovor (15 min) →", "contact.note": "Bez obveze · Odgovaram isti dan", "footer.main": "ZaZet Solutions · Gal Tidhar · Zagreb, Hrvatska · © 2026", "footer.eng": "Inženjer? →", "float.cta": "Besplatan razgovor", "sticky.wa": "WhatsApp →", "game.eyebrow": "Easter egg", "game.title": "Kako pijete gemišt?", "game.sub": "Bijelo vino i gazirana voda. U Zagorju je omjer mali test karaktera.", "game.tourist": "25/75 — Turist ☁️", "game.half": "50/50 — Napola", "game.prst": "Prst Prst 🍷 — Pravi Zagorac", "game.toast.prst": "Prst prst. Baš kako bi Davor nalio. 🍷", "game.toast.half": "Pošten gemišt. Dobar početak.", "game.toast.tourist": "Lagani gemišt. Za one koji tek upoznaju okus.", "game.note": "Tako radi ZaZet logo. Plava gore — voda, samo toliko. Zlatna dolje — vino, ono što zaista vrijedi."}};
+const META = {"en": {"title": "Gal Tidhar · ZaZet Solutions — Automation, Websites & Custom Systems", "desc": "Zagreb-based software engineer. Automating invoices, websites, and custom business systems. 10+ years at Shopify, Siemens."}, "hr": {"title": "Gal Tidhar · ZaZet Solutions — Automatizacija, Web Stranice i Sustavi za Vaše Poslovanje", "desc": "Softverski inženjer iz Zagreba koji pomaže tvrtkama automatizirati poslovanje, izgraditi web stranice i prilagođene sustave. 10+ godina iskustva (Shopify, Siemens). Uštedit ćete ponedjeljke."}};
+let currentLang = 'hr';
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
   document.documentElement.lang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
-    b.setAttribute('aria-pressed', b.dataset.lang === lang);
-  });
-  document.querySelectorAll('[data-en],[data-hr]').forEach(el => {
-    const txt = el.getAttribute('data-'+lang);
-    if (txt) el.textContent = txt;
-  });
   try { localStorage.setItem('langPref', lang); } catch(e) {}
+  if (META[lang]) {
+    document.title = META[lang].title;
+    const dm = document.querySelector('meta[name="description"]');
+    if (dm) dm.setAttribute('content', META[lang].desc);
+  }
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (T[lang][k] !== undefined) el.textContent = T[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.dataset.i18nHtml;
+    if (T[lang][k] !== undefined) el.innerHTML = T[lang][k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    const active = b.dataset.lang === lang;
+    b.classList.toggle('active', active);
+    b.setAttribute('aria-pressed', active);
+  });
 }
+
 document.querySelectorAll('.lang-btn').forEach(btn =>
-  btn.addEventListener('click', () => applyLang(btn.dataset.lang)));
-try { const s = localStorage.getItem('langPref'); if (s) applyLang(s); } catch(e) {}
+  btn.addEventListener('click', () => setLang(btn.dataset.lang)));
+
+let initLang = 'hr';
+try {
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  const storedLang = localStorage.getItem('langPref');
+  initLang = (urlLang && T[urlLang]) ? urlLang : (storedLang && T[storedLang]) ? storedLang : 'hr';
+} catch(e) {}
+setLang(initLang);
+
+/* ── Davor photo gallery ── */
+(function() {
+  const photos = [
+    { src: 'davor-wedding.webp', alt: 'Gal and Davor at the wedding' },
+    { src: 'davor-2015.webp', alt: 'Davor 2015' },
+    { src: 'davor-2017.webp', alt: 'Davor August 2017' },
+    { src: 'davor-2018a.webp', alt: 'Davor January 2018' },
+    { src: 'davor-2018b.webp', alt: 'Davor September 2018' },
+    { src: 'davor-2018c.webp', alt: 'Davor September 2018' },
+    { src: 'davor-2018d.webp', alt: 'Davor September 2018' },
+    { src: 'davor-2019a.webp', alt: 'Davor February 2019' },
+    { src: 'davor-2020.webp', alt: 'Davor March 2020' },
+    { src: 'davor-g8.webp', alt: 'Davor — family photo' },
+    { src: 'davor-g9.webp', alt: 'Davor — family photo' },
+    { src: 'davor-g10.webp', alt: 'Davor — family photo' },
+    { src: 'davor-g11.webp', alt: 'Davor — family photo' },
+  ];
+  const overlay = document.getElementById('gallery-overlay');
+  const imgEl = document.getElementById('gallery-img');
+  const counter = document.getElementById('gallery-counter');
+  const thumbsEl = document.getElementById('gallery-thumbs');
+  const trigger = document.getElementById('davor-gallery-trigger');
+  const closeBtn = document.getElementById('gallery-close');
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
+  if (!overlay || !imgEl || !thumbsEl) return;
+  let current = 0;
+  photos.forEach((p, i) => {
+    const t = document.createElement('img');
+    t.src = p.src; t.alt = p.alt;
+    t.className = 'gallery-thumb' + (i === 0 ? ' active' : '');
+    t.addEventListener('click', () => goTo(i));
+    thumbsEl.appendChild(t);
+  });
+  function goTo(i, fade) {
+    const thumbs = thumbsEl.querySelectorAll('.gallery-thumb');
+    thumbs[current] && thumbs[current].classList.remove('active');
+    current = (i + photos.length) % photos.length;
+    if (fade !== false) {
+      imgEl.classList.add('fading');
+      setTimeout(() => {
+        imgEl.src = photos[current].src;
+        imgEl.alt = photos[current].alt;
+        imgEl.classList.remove('fading');
+      }, 200);
+    } else {
+      imgEl.src = photos[current].src;
+      imgEl.alt = photos[current].alt;
+    }
+    counter.textContent = (current + 1) + ' / ' + photos.length;
+    thumbs[current] && thumbs[current].classList.add('active');
+    thumbs[current] && thumbs[current].scrollIntoView({ inline: 'nearest', behavior: 'smooth' });
+  }
+  function open(idx) {
+    current = idx;
+    goTo(current, false);
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    closeBtn && closeBtn.focus();
+  }
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    trigger && trigger.focus();
+  }
+  trigger && trigger.addEventListener('click', () => open(0));
+  trigger && trigger.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(0); } });
+  closeBtn && closeBtn.addEventListener('click', close);
+  prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => {
+    if (!overlay.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+  let touchStartX = 0;
+  overlay.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  overlay.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+  }, { passive: true });
+})();
 </script>
 
 </body>
