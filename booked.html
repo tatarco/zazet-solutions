@@ -35,6 +35,31 @@
     }
     .back:hover { gap: .6rem; }
   </style>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+    function loadAnalytics(lang) {
+      if (window.__analyticsLoaded) return;
+      window.__analyticsLoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-Q0JMCN6F5T';
+      document.head.appendChild(s);
+      s.onload = function() {
+        gtag('js', new Date());
+        gtag('config', 'G-Q0JMCN6F5T', { interface_language: lang || 'hr' });
+      };
+    }
+    function trackBookingConfirmed(lang, params) {
+      try {
+        if (localStorage.getItem('analyticsConsent') !== 'granted') return;
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        loadAnalytics(lang);
+        gtag('event', 'book_call_confirmed', Object.assign({ interface_language: lang || 'hr' }, params || {}));
+      } catch (e) {}
+    }
+  </script>
 </head>
 <body>
   <div class="card" id="card" hidden>
@@ -53,6 +78,7 @@
       var uid = q.get('uid');
       var email = q.get('email');
       var startTime = q.get('startTime');
+      var title = q.get('title') || '';
       var hasBooking = !!(uid || (email && startTime));
 
       if (!hasBooking) {
@@ -83,9 +109,11 @@
       document.getElementById('back').textContent = copy.back;
       document.getElementById('card').hidden = false;
 
-      if (typeof gtag === 'function') {
-        gtag('event', 'conversion', { send_to: 'AW-CONVERSION_ID/BOOKING' });
-      }
+      trackBookingConfirmed(lang, {
+        cal_uid: uid || '',
+        booking_source: 'booked_page',
+        event_type: title
+      });
     })();
   </script>
 </body>
