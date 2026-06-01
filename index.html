@@ -1931,8 +1931,9 @@ footer {
           </clipPath>
         </defs>
         <g clip-path="url(#gm-clip)">
+          <!-- Gold wine fills the letters; blue water covers from the top (like a real glass) -->
+          <rect id="gm-wine" x="0" y="0" width="300" height="118" fill="url(#gm-g-wine)" opacity="0.92"/>
           <rect id="gm-water" x="0" y="0" width="300" height="118" fill="url(#gm-b)" opacity="0.9"/>
-          <rect id="gm-wine" x="0" y="118" width="300" height="0" fill="url(#gm-g-wine)" opacity="0.92"/>
         </g>
         <line x1="0" x2="280" y1="91" y2="91" stroke="rgba(245,216,74,0.3)" stroke-width="0.7"/>
         <text id="gm-solutions-text" x="140" y="109" font-size="11" font-weight="800" font-family="system-ui,-apple-system,sans-serif" letter-spacing="4" fill="url(#gm-g-solutions)" text-anchor="middle">SOLUTIONS</text>
@@ -1940,9 +1941,9 @@ footer {
     </div>
 
     <div class="gm-btns gm-btns--pick" id="gm-btns" role="group" data-i18n-aria="a11y.gemist.ratio" aria-label="Odaberite omjer">
-      <button class="gm-btn" data-water="75" onclick="setRatio(this)" data-i18n="game.tourist">25/75 — Tourist ☁️</button>
-      <button class="gm-btn" data-water="50" onclick="setRatio(this)" data-i18n="game.half">50/50 — Half &amp; half</button>
-      <button class="gm-btn" data-water="20" onclick="setRatio(this)" data-i18n="game.prst">Prst Prst 🍷 — Real Zagorac</button>
+      <button class="gm-btn" data-wine="25" onclick="setRatio(this)" data-i18n="game.tourist">25/75 — Tourist ☁️</button>
+      <button class="gm-btn" data-wine="50" onclick="setRatio(this)" data-i18n="game.half">50/50 — Half &amp; half</button>
+      <button class="gm-btn" data-wine="80" onclick="setRatio(this)" data-i18n="game.prst">Prst Prst 🍷 — Real Zagorac</button>
     </div>
     <div class="gm-toast" id="gm-toast" aria-live="polite"></div>
     <p class="gm-note" data-i18n="game.note">This is how the ZaZet logo works. Blue on top — the water, just enough. Gold below — the wine, what actually counts.</p>
@@ -1953,19 +1954,19 @@ footer {
 const GM_LOGO_H = 118;
 
 function applyGemistLogo(waterPct) {
-  const waterH = Math.round(GM_LOGO_H * waterPct / 100);
+  const waterH = Math.round(GM_LOGO_H * Math.min(100, Math.max(0, waterPct)) / 100);
   const wEl = document.getElementById('gm-water');
-  const wineEl = document.getElementById('gm-wine');
   if (wEl) {
+    wEl.setAttribute('x', '0');
     wEl.setAttribute('y', '0');
+    wEl.setAttribute('width', '300');
     wEl.setAttribute('height', waterH);
     wEl.style.transition = 'height .5s ease';
   }
-  if (wineEl) {
-    wineEl.setAttribute('y', waterH);
-    wineEl.setAttribute('height', Math.max(0, GM_LOGO_H - waterH));
-    wineEl.style.transition = 'y .5s ease, height .5s ease';
-  }
+}
+
+function applyGemistLogoFromWine(winePct) {
+  applyGemistLogo(100 - Math.min(100, Math.max(0, winePct)));
 }
 
 function resetGemistGame() {
@@ -2003,15 +2004,15 @@ function setRatio(btn) {
   if (hint) hint.hidden = true;
   document.getElementById('gm-btns')?.classList.remove('gm-btns--pick');
   document.getElementById('gm-logo-wrap')?.classList.remove('gm-logo-wrap--pick');
-  const waterPct = parseInt(btn.dataset.water, 10);
-  applyGemistLogo(waterPct);
+  const winePct = parseInt(btn.dataset.wine, 10);
+  applyGemistLogoFromWine(winePct);
   const toast = document.getElementById('gm-toast');
   if (!toast) return;
-  if (waterPct <= 20) {
+  if (winePct >= 80) {
     toast.textContent = (T[currentLang] && T[currentLang]['game.toast.prst']) || 'Prst prst. Just like Davor would pour it. 🍷';
     btn.classList.add('gm-prst-active');
     launchConfetti();
-  } else if (waterPct <= 50) {
+  } else if (winePct >= 50) {
     toast.textContent = (T[currentLang] && T[currentLang]['game.toast.half']) || 'A fair pour. A good start.';
   } else {
     toast.textContent = (T[currentLang] && T[currentLang]['game.toast.tourist']) || 'The light pour. For those just beginning to know the taste.';
