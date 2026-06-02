@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="hr" data-chrome="cool">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,6 +131,51 @@ function trackEvent(name,params){
 
 .section-alt { background: var(--terra-bg); }
 
+/* ─── CHROME (nav / sticky bar / footer) follows active section ─── */
+html[data-chrome="cool"] {
+  --chrome-bg: #F0F7FC;
+  --chrome-bg-scrolled: rgba(240, 247, 252, 0.96);
+  --chrome-ink: #0A1628;
+  --chrome-muted: #3D5A73;
+  --chrome-border: #012169;
+  --chrome-accent: #012169;
+  --chrome-accent-hover: #011952;
+  --chrome-accent-light: #B8D4E8;
+  --chrome-shadow: rgba(1, 33, 105, 0.08);
+  --chrome-btn-shadow: rgba(1, 33, 105, 0.22);
+}
+html[data-chrome="alt"] {
+  --chrome-bg: #E3EEF8;
+  --chrome-bg-scrolled: rgba(227, 238, 248, 0.96);
+  --chrome-ink: #0A1628;
+  --chrome-muted: #3D5A73;
+  --chrome-border: #012169;
+  --chrome-accent: #012169;
+  --chrome-accent-hover: #011952;
+  --chrome-accent-light: #B8D4E8;
+  --chrome-shadow: rgba(1, 33, 105, 0.1);
+  --chrome-btn-shadow: rgba(1, 33, 105, 0.22);
+}
+html[data-chrome="warm"],
+html[data-chrome="warm-soft"] {
+  --chrome-ink: #1A1008;
+  --chrome-muted: #5C4A3A;
+  --chrome-border: #C84B2F;
+  --chrome-accent: #C84B2F;
+  --chrome-accent-hover: #a83d24;
+  --chrome-accent-light: #F5DDD8;
+  --chrome-shadow: rgba(200, 75, 47, 0.12);
+  --chrome-btn-shadow: rgba(200, 75, 47, 0.28);
+}
+html[data-chrome="warm"] {
+  --chrome-bg: #FFF8F0;
+  --chrome-bg-scrolled: rgba(255, 248, 240, 0.96);
+}
+html[data-chrome="warm-soft"] {
+  --chrome-bg: #FAE8E4;
+  --chrome-bg-scrolled: rgba(250, 232, 228, 0.96);
+}
+
 /* ─── RESET + BASE ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -175,13 +220,14 @@ a:hover { text-decoration: underline; }
 .fraunces { font-family: var(--font-head); }
 
 /* ─── NAV ───────────────────────────────────────────────────────── */
-nav {
+nav.site-nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--cream);
-  border-bottom: 2px solid var(--terra);
+  background: var(--chrome-bg, var(--cream));
+  border-bottom: 2px solid var(--chrome-border, var(--terra));
   padding: 1rem 0;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .nav-inner {
@@ -195,9 +241,10 @@ nav {
   font-family: var(--font-head);
   font-weight: 700;
   font-size: 1.5rem;
-  color: var(--ink);
+  color: var(--chrome-ink, var(--ink));
   text-decoration: none;
   white-space: nowrap;
+  transition: color 0.4s ease;
 }
 
 .nav-links {
@@ -209,18 +256,18 @@ nav {
 }
 
 .nav-links a {
-  color: var(--muted);
+  color: var(--chrome-muted, var(--muted));
   text-decoration: none;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--terra); }
+.nav-links a:hover { color: var(--chrome-accent, var(--terra)); }
 
 .lang-picker { display:flex; align-items:center; gap:2px; }
-.lang-btn { background:none; border:1px solid transparent; cursor:pointer; font-size:.72rem; font-weight:700; letter-spacing:.06em; color:var(--muted); padding:.18rem .42rem; border-radius:3px; transition:all .15s; font-family:inherit; }
-.lang-btn.active { color:var(--terra); border-color:var(--terra); }
-.lang-btn:hover:not(.active) { color:var(--ink); }
+.lang-btn { background:none; border:1px solid transparent; cursor:pointer; font-size:.72rem; font-weight:700; letter-spacing:.06em; color:var(--chrome-muted, var(--muted)); padding:.18rem .42rem; border-radius:3px; transition:all .15s; font-family:inherit; }
+.lang-btn.active { color:var(--chrome-accent, var(--terra)); border-color:var(--chrome-accent, var(--terra)); }
+.lang-btn:hover:not(.active) { color:var(--chrome-ink, var(--ink)); }
 .nav-eng-link {
-  font-size: 0.72rem; color: var(--muted); opacity: 0.6;
+  font-size: 0.72rem; color: var(--chrome-muted, var(--muted)); opacity: 0.6;
   transition: opacity 0.2s; text-decoration: none;
 }
 .nav-eng-link:hover { opacity: 1; }
@@ -231,8 +278,9 @@ nav {
   border: none;
   cursor: pointer;
   padding: 0.35rem;
-  color: var(--ink);
+  color: var(--chrome-ink, var(--ink));
   margin-left: auto;
+  transition: color 0.4s ease;
 }
 .nav-toggle svg { display: block; }
 .nav-backdrop {
@@ -1108,9 +1156,11 @@ details p {
 
 /* ─── FOOTER ────────────────────────────────────────────────────── */
 footer {
-  border-top: 2px solid var(--terra);
+  border-top: 2px solid var(--chrome-border, var(--terra));
+  background: var(--chrome-bg, var(--cream));
   padding: 1.5rem 0;
   text-align: center;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
 
 .footer-main {
@@ -1121,7 +1171,8 @@ footer {
 
 .footer-sub {
   font-size: 0.72rem;
-  color: var(--terra);
+  color: var(--chrome-accent, var(--terra));
+  transition: color 0.4s ease;
 }
 
 .footer-nav {
@@ -1136,8 +1187,8 @@ footer {
   color: var(--muted);
   text-decoration: none;
 }
-.footer-nav a:hover { color: var(--terra); text-decoration: underline; }
-.footer-nav-sep { color: var(--rule); user-select: none; }
+.footer-nav a:hover { color: var(--chrome-accent, var(--terra)); text-decoration: underline; }
+.footer-nav-sep { color: var(--chrome-accent-light, var(--rule)); user-select: none; }
 
 /* ─── RESPONSIVE ────────────────────────────────────────────────── */
 @media (max-width: 768px) {
@@ -1149,8 +1200,8 @@ footer {
     right: 0;
     width: min(300px, 85vw);
     height: 100dvh;
-    background: var(--cream);
-    border-left: 2px solid var(--terra);
+    background: var(--chrome-bg, var(--cream));
+    border-left: 2px solid var(--chrome-border, var(--terra));
     flex-direction: column;
     align-items: stretch;
     padding: 4.5rem 1.5rem 2rem;
@@ -1310,31 +1361,37 @@ footer {
 #gm-confetti-canvas { position:fixed; inset:0; pointer-events:none; z-index:10001; }
 
 /* ─── BACK TO TOP ───────────────────────────────────────── */
-#back-top { position:fixed; bottom:1.75rem; right:1.75rem; z-index:200; width:40px; height:40px; border-radius:50%; background:var(--terra-bg); color:var(--terra); border:1px solid var(--terra-light); cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; transform:translateY(12px); pointer-events:none; transition:opacity .3s,transform .3s; box-shadow:0 4px 16px rgba(1,33,105,.15); }
+#back-top { position:fixed; bottom:1.75rem; right:1.75rem; z-index:200; width:40px; height:40px; border-radius:50%; background:var(--chrome-bg, var(--terra-bg)); color:var(--chrome-accent, var(--terra)); border:1px solid var(--chrome-accent-light, var(--terra-light)); cursor:pointer; display:flex; align-items:center; justify-content:center; opacity:0; transform:translateY(12px); pointer-events:none; transition:opacity .3s,transform .3s,background .4s ease,border-color .4s ease,color .4s ease; box-shadow:0 4px 16px var(--chrome-shadow, rgba(1,33,105,.15)); }
 #back-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
-#back-top:hover { background:var(--terra); color:#fff; }
+#back-top:hover { background:var(--chrome-accent, var(--terra)); color:#fff; }
 
 /* ─── FLOATING CTA (desktop) ───────────────────────────── */
-.float-cta { position:fixed; bottom:5.25rem; right:1.75rem; z-index:200; display:flex; align-items:center; gap:.45rem; padding:.6rem 1.15rem .6rem .9rem; border-radius:100px; background:var(--terra); color:#fff; font-size:.8rem; font-weight:700; letter-spacing:.02em; box-shadow:0 6px 24px rgba(1,33,105,.28); border:none; cursor:pointer; font-family:inherit; text-decoration:none; opacity:0; transform:translateY(12px); pointer-events:none; transition:opacity .3s,transform .3s,box-shadow .18s; }
+.float-cta { position:fixed; bottom:5.25rem; right:1.75rem; z-index:200; display:flex; align-items:center; gap:.45rem; padding:.6rem 1.15rem .6rem .9rem; border-radius:100px; background:var(--chrome-accent, var(--terra)); color:#fff; font-size:.8rem; font-weight:700; letter-spacing:.02em; box-shadow:0 6px 24px var(--chrome-btn-shadow, rgba(1,33,105,.28)); border:none; cursor:pointer; font-family:inherit; text-decoration:none; opacity:0; transform:translateY(12px); pointer-events:none; transition:opacity .3s,transform .3s,background .4s ease,box-shadow .4s ease; }
 .float-cta.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
-.float-cta:hover { box-shadow:0 10px 32px rgba(1,33,105,.38); transform:translateY(-2px) !important; text-decoration:none; color:#fff; }
+.float-cta:hover { background:var(--chrome-accent-hover, var(--terra)); box-shadow:0 10px 32px var(--chrome-btn-shadow, rgba(1,33,105,.38)); transform:translateY(-2px) !important; text-decoration:none; color:#fff; }
 @media (max-width:767px) {
   .float-cta { display:none; }
   #back-top { bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* ─── MOBILE STICKY CTA ─────────────────────────────────── */
-.sticky-mob { position:fixed; bottom:0; left:0; right:0; background:var(--cream); border-top:1px solid var(--terra-light); padding:10px 20px; display:none; z-index:90; justify-content:center; box-shadow:0 -4px 16px rgba(1,33,105,.08); }
+.sticky-mob { position:fixed; bottom:0; left:0; right:0; background:var(--chrome-bg, var(--cream)); border-top:1px solid var(--chrome-accent-light, var(--terra-light)); padding:10px 20px; display:none; z-index:90; justify-content:center; box-shadow:0 -4px 16px var(--chrome-shadow, rgba(1,33,105,.08)); transition:background .4s ease,border-color .4s ease,box-shadow .4s ease; }
 .sticky-mob-btn { width:100%; max-width:400px; text-align:center; padding:.75rem 1.5rem; border-radius:100px; font-size:.95rem; justify-content:center; }
+.sticky-mob .btn-primary {
+  background: var(--chrome-accent, var(--terra));
+  box-shadow: 0 4px 16px var(--chrome-btn-shadow, rgba(1, 33, 105, 0.18));
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+.sticky-mob .btn-primary:hover { background: var(--chrome-accent-hover, var(--terra)); }
 @media (max-width:767px) { .sticky-mob { display:flex; } }
 
 /* ─── NAV SCROLLED ──────────────────────────────────────── */
-.site-nav.scrolled { background:rgba(240,247,252,.96); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--terra-light); }
+.site-nav.scrolled { background:var(--chrome-bg-scrolled, rgba(240,247,252,.96)); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--chrome-accent-light, var(--terra-light)); }
 
 /* ─── SKIP LINK ─────────────────────────────────────────── */
-.skip-link { position:absolute; top:-100px; left:1rem; z-index:9999; background:var(--terra); color:#fff; font-weight:700; font-size:.9rem; padding:.75rem 1.5rem; border-radius:0 0 10px 10px; text-decoration:none; transition:top .15s; }
+.skip-link { position:absolute; top:-100px; left:1rem; z-index:9999; background:var(--chrome-accent, var(--terra)); color:#fff; font-weight:700; font-size:.9rem; padding:.75rem 1.5rem; border-radius:0 0 10px 10px; text-decoration:none; transition:top .15s, background .4s ease; }
 .skip-link:focus { top:0; }
-:focus-visible { outline:2px solid var(--terra); outline-offset:3px; border-radius:3px; }
+:focus-visible { outline:2px solid var(--chrome-accent, var(--terra)); outline-offset:3px; border-radius:3px; }
 
 /* ─── CONSENT BANNER ──────────────────────────────────────── */
 .consent-banner {
@@ -1413,7 +1470,7 @@ footer {
 
 <!-- ─── HERO ──────────────────────────────────────────────────────── -->
 <main id="main-content">
-<section class="hero" id="hero">
+<section class="hero" id="hero" data-chrome-theme="cool">
   <div class="container">
     <p class="hero-kicker" data-i18n="hero.kicker">Zagreb · Za male tvrtke u Hrvatskoj · Automatizacija poslovanja</p>
     <h1 class="hero-headline" data-i18n-html="hero.headline">Zadaci koje mrzite raditi —<br>rade se sami.</h1>
@@ -1438,7 +1495,7 @@ footer {
 </section>
 
 <!-- ─── HOW IT WORKS ──────────────────────────────────────────────── -->
-<section id="how">
+<section id="how" data-chrome-theme="cool">
   <div class="container">
     <div class="section-label">
       <span class="section-num">01</span>
@@ -1468,7 +1525,7 @@ footer {
 </section>
 
 <!-- ─── SERVICES ──────────────────────────────────────────────────── -->
-<section id="services">
+<section id="services" data-chrome-theme="cool">
   <div class="container">
     <div class="section-label">
       <span class="section-num">02</span>
@@ -1521,7 +1578,7 @@ footer {
 </section>
 
 <!-- ─── PROJECTS ──────────────────────────────────────────────────── -->
-<section class="section-alt" id="work">
+<section class="section-alt" id="work" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
       <span class="section-num">03</span>
@@ -1563,7 +1620,7 @@ footer {
 </section>
 
 <!-- ─── TESTIMONIALS ──────────────────────────────────────────────── -->
-<section class="section-alt" id="testimonials">
+<section class="section-alt" id="testimonials" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
       <span class="section-num">04</span>
@@ -1703,7 +1760,7 @@ footer {
 </section>
 
 <!-- ─── WHO I AM ──────────────────────────────────────────────────── -->
-<section class="section-warm" id="about">
+<section class="section-warm" id="about" data-chrome-theme="warm">
   <div class="container">
     <div class="section-label">
       <span class="section-num">05</span>
@@ -1738,7 +1795,7 @@ footer {
 </section>
 
 <!-- ─── DAVOR STORY ───────────────────────────────────────────────── -->
-<section class="davor-section section-warm" id="story">
+<section class="davor-section section-warm" id="story" data-chrome-theme="warm-soft">
   <div class="container">
     <div class="davor-header">
       <div class="section-label">
@@ -1772,7 +1829,7 @@ footer {
 </section>
 
 <!-- ─── FAQ ───────────────────────────────────────────────────────── -->
-<section class="section-alt" id="faq">
+<section class="section-alt" id="faq" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
       <span class="section-num">07</span>
@@ -1841,7 +1898,7 @@ footer {
 </section>
 
 <!-- ─── WHY ZAZET ─────────────────────────────────────────────────── -->
-<section class="why-section" id="why">
+<section class="why-section" id="why" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
       <span class="section-num">08</span>
@@ -1869,7 +1926,7 @@ footer {
 </section>
 
 <!-- ─── CONTACT ───────────────────────────────────────────────────── -->
-<section class="contact-section" id="contact">
+<section class="contact-section" id="contact" data-chrome-theme="cool">
   <div class="container">
     <h2 class="contact-headline" data-i18n-html="contact.h2">Odaberite što vam odgovara —<br>ili rezervirajte 15 minuta.</h2>
     <p class="contact-sub" data-i18n="contact.sub">Većina klijenata prvo prepozna sebe u popisu usluga.</p>
@@ -1898,7 +1955,7 @@ footer {
 </div>
 
 <!-- ─── FOOTER ────────────────────────────────────────────────────── -->
-<footer>
+<footer data-chrome-theme="cool">
   <div class="container">
     <nav class="footer-nav" data-i18n-aria="a11y.footer.nav" aria-label="Podnožje stranice">
       <a href="#how" data-i18n="nav.how">Proces</a>
@@ -2107,6 +2164,61 @@ function launchConfetti() {
 /* ── Nav scroll ── */
 const nav = document.getElementById('site-nav');
 addEventListener('scroll', () => nav && nav.classList.toggle('scrolled', scrollY > 20), {passive:true});
+
+/* ── Chrome theme: nav + sticky bar + footer follow active section ── */
+(function initChromeTheme() {
+  const root = document.documentElement;
+  const sections = Array.from(document.querySelectorAll('[data-chrome-theme]'));
+  if (!sections.length) return;
+
+  let active = root.getAttribute('data-chrome') || 'cool';
+
+  function setChrome(theme) {
+    if (!theme || theme === active) return;
+    active = theme;
+    root.setAttribute('data-chrome', theme);
+  }
+
+  function pickSection() {
+    const probeY = window.innerHeight * 0.22;
+    let best = null;
+    let bestScore = -1;
+    sections.forEach(function(sec) {
+      const r = sec.getBoundingClientRect();
+      if (r.bottom <= probeY || r.top >= window.innerHeight) return;
+      const visible = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+      const score = visible / Math.min(r.height, window.innerHeight);
+      if (score > bestScore) {
+        bestScore = score;
+        best = sec;
+      }
+    });
+    if (best) setChrome(best.dataset.chromeTheme);
+  }
+
+  if (typeof IntersectionObserver !== 'undefined') {
+    const ratios = new Map();
+    const io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        ratios.set(entry.target, entry.intersectionRatio);
+      });
+      let top = null;
+      let topRatio = 0;
+      ratios.forEach(function(ratio, el) {
+        if (ratio > topRatio) {
+          topRatio = ratio;
+          top = el;
+        }
+      });
+      if (top && topRatio > 0) setChrome(top.dataset.chromeTheme);
+    }, { rootMargin: '-12% 0px -52% 0px', threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.65, 0.8, 1] });
+    sections.forEach(function(sec) { io.observe(sec); });
+  }
+
+  pickSection();
+  addEventListener('scroll', pickSection, { passive: true });
+  addEventListener('resize', pickSection, { passive: true });
+})();
 
 /* ── Back to top ── */
 const backTop = document.getElementById('back-top');
