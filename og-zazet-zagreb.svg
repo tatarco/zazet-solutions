@@ -3,9 +3,10 @@
   <rect x="0" y="580" width="1200" height="50" fill="#C84B2F" opacity="0.12"/>
   <line x1="80" y1="120" x2="1120" y2="120" stroke="#D6C4B8" stroke-width="2"/>
   <text x="80" y="95" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#C84B2F" letter-spacing="0.15em">ZAZET SOLUTIONS</text>
-  <text x="80" y="280" font-family="Georgia, serif" font-size="72" font-weight="700" fill="#1A1008">Vraam vam ponedjeljke.</text>
-  <text x="80" y="350" font-family="system-ui, sans-serif" font-size="32" fill="#5C4A3A">Automatizacija poslovanja za male tvrtke u Hrvatskoj</text>
-  <text x="80" y="420" font-family="system-ui, sans-serif" font-size="26" fill="#5C4A3A">Web stranice · Prilagoeni sustavi · Zagreb</text>
+  <text x="80" y="250" font-family="Georgia, serif" font-size="56" font-weight="700" fill="#1A1008">Zadaci koje mrzite raditi —</text>
+  <text x="80" y="320" font-family="Georgia, serif" font-size="56" font-weight="700" fill="#1A1008">rade se sami.</text>
+  <text x="80" y="390" font-family="system-ui, sans-serif" font-size="32" fill="#5C4A3A">Automatizacija poslovanja za male tvrtke u Hrvatskoj</text>
+  <text x="80" y="450" font-family="system-ui, sans-serif" font-size="26" fill="#5C4A3A">Web stranice · Prilago?eni sustavi · Zagreb</text>
   <text x="80" y="540" font-family="system-ui, sans-serif" font-size="24" fill="#C84B2F" font-weight="700">Gal Tidhar · zazet-solutions.hr</text>
   <rect x="920" y="180" width="200" height="200" rx="8" fill="#FAE8E4" stroke="#F5DDD8" stroke-width="3"/>
   <text x="1020" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="120" font-weight="900" fill="#C84B2F">Z</text>
