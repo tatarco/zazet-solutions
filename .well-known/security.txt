@@ -1,0 +1,3 @@
+Contact: mailto:gal@zazet-solutions.hr
+Preferred-Languages: hr, en, he
+Canonical: https://zazet-solutions.hr/.well-known/security.txt
