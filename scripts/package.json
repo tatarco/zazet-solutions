@@ -1,0 +1,8 @@
+{
+  "name": "zazet-seo-tools",
+  "private": true,
+  "description": "Local SEO CLI tools (no global npm install)",
+  "dependencies": {
+    "@nalyk/gsccli": "1.2.1"
+  }
+}

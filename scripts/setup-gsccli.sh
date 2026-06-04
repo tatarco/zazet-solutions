@@ -1,24 +1,35 @@
 #!/usr/bin/env bash
-# One-time Google Search Console CLI setup for gsccli.
-# Run in Terminal (opens browser). After this, the agent can run gsccli for you.
+# Install gsccli locally (avoids broken global Homebrew npm installs).
 set -euo pipefail
 
-echo "Installing gsccli..."
-npm install -g github:nalyk/gsccli
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT"
+
+echo "Cleaning broken global gsccli (if any)..."
+npm uninstall -g @nalyk/gsccli 2>/dev/null || true
+rm -rf /opt/homebrew/lib/node_modules/@nalyk/gsccli 2>/dev/null || true
+
+echo "Installing gsccli locally in scripts/ ..."
+npm install
+
+GSCCLI="$ROOT/node_modules/.bin/gsccli"
+if [[ ! -x "$GSCCLI" ]]; then
+  echo "Install failed — no gsccli binary."
+  exit 1
+fi
 
 echo ""
-echo "=== OAuth setup (recommended) ==="
-echo "1. https://console.cloud.google.com/ → Create/select project"
-echo "2. APIs & Services → Enable: Search Console API, Web Search Indexing API"
-echo "3. Credentials → Create OAuth client → Desktop app → Download JSON"
+echo "Installed: $("$GSCCLI" --version 2>/dev/null || echo ok)"
+echo ""
+echo "=== Next: Google OAuth (one time, ~10 min) ==="
+echo "1. https://console.cloud.google.com/"
+echo "2. Enable APIs: Search Console API + Web Search Indexing API"
+echo "3. Credentials → OAuth client → Desktop → Download JSON"
 echo "4. Run:"
-echo "   gsccli config set oauthClientSecretFile ~/Downloads/client_secret_XXXX.json"
-echo "   npx @nalyk/gsccli auth login"
+echo "   $GSCCLI config set oauthClientSecretFile ~/Downloads/client_secret_XXXX.json"
+echo "   $GSCCLI auth login"
 echo ""
-echo "=== Then tell Cursor: GSC auth done ==="
+echo "Or use the wrapper:"
+echo "   ./scripts/gsc.sh auth login"
 echo ""
-echo "Agent commands:"
-echo "  npx @nalyk/gsccli sitemaps submit https://gal.tidhar.org.il/sitemap.xml --site https://gal.tidhar.org.il/"
-echo "  npx @nalyk/gsccli sitemaps submit https://zazet-solutions.hr/sitemap.xml --site https://zazet-solutions.hr/"
-echo "  npx @nalyk/gsccli inspect url https://gal.tidhar.org.il/"
-echo "  npx @nalyk/gsccli inspect url https://zazet-solutions.hr/"
+echo "When done, tell Cursor: GSC auth done"
