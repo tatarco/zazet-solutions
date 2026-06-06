@@ -19,6 +19,8 @@ print(json.dumps({
   'keyLocation': 'https://$HOST/$KEY.txt',
   'urlList': [
     'https://$HOST/',
+    'https://$HOST/llms.txt',
+    'https://$HOST/llms-full.txt',
     'https://$HOST/accessibility.html'
   ]
 }))
