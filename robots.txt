@@ -5,6 +5,8 @@ Disallow: /booked.html
 
 Sitemap: https://zazet-solutions.hr/sitemap.xml
 
+# LLM-friendly site summary (llmstxt.org): https://zazet-solutions.hr/llms.txt
+
 # AI training crawlers — allow (being cited by AI drives brand awareness)
 # Uncomment below to block training without blocking search indexing:
 # User-agent: GPTBot
