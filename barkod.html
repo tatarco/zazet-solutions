@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hr" data-chrome="cool">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kako smo pretvorili plaćanje školarine u jedan sken · ZaZet Solutions</title>
+<meta name="description" content="Jedna osoba zna IBAN, dvjesto ljudi ga prepisuje. Priča o besplatnom generatoru uplatnica (2D barkod) koji smo izradili za školu — i zašto smo ga napravili baš ovako.">
+<link rel="canonical" href="https://zazet-solutions.hr/barkod.html">
+<meta property="og:title" content="Kako smo pretvorili plaćanje školarine u jedan sken">
+<meta property="og:description" content="Jedna osoba zna IBAN, dvjesto ljudi ga prepisuje. Besplatan generator uplatnica koji smo poklonili školi — i zašto smo ga napravili baš ovako.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zazet-solutions.hr/barkod.html">
+<meta property="og:site_name" content="ZaZet Solutions">
+<meta property="og:locale" content="hr_HR">
+<meta property="og:image" content="https://zazet-solutions.hr/og-zazet-zagreb.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F0F7FC'/><text x='3' y='26' font-size='26' font-weight='900' font-family='system-ui' fill='%23012169'>Z</text></svg>">
+<link rel="stylesheet" href="fonts/fraunces.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kako smo pretvorili plaćanje školarine u jedan sken","description":"Besplatan generator uplatnica (2D barkod) koji smo izradili za školu — i zašto smo ga napravili baš ovako.","inLanguage":"hr-HR","datePublished":"2026-07-20","author":{"@type":"Person","name":"Gal Tidhar","url":"https://zazet-solutions.hr/"},"publisher":{"@type":"Organization","name":"ZaZet Solutions","url":"https://zazet-solutions.hr/"},"mainEntityOfPage":"https://zazet-solutions.hr/barkod.html"}
+</script>
+<style>
+  :root{
+    --cream:#F0F7FC; --ink:#0A1628; --muted:#3D5A73; --terra:#012169;
+    --terra-light:#B8D4E8; --terra-bg:#E3EEF8; --rule:#A8C4D9;
+    --gold:#C9A227; --gold-light:#E8D49A; --gold-bg:#FBF5E6;
+    --font-head:'Fraunces',Georgia,serif; --font-body:system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);
+    line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:44rem;margin:0 auto;padding:0 1.5rem;}
+
+  /* top bar */
+  header.top{border-bottom:1px solid var(--rule);background:rgba(240,247,252,.85);
+    backdrop-filter:blur(8px);position:sticky;top:0;z-index:10;}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:3.6rem;}
+  .brand{font-weight:800;letter-spacing:-.02em;color:var(--terra);font-size:1.1rem;}
+  .brand span{color:var(--gold);}
+  .top a.back{font-size:.82rem;color:var(--muted);font-weight:600;}
+  .top a.back:hover{color:var(--terra);}
+
+  /* hero */
+  .hero{padding:3.5rem 0 2rem;}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--terra);background:var(--terra-bg);
+    border:1px solid var(--terra-light);border-radius:999px;padding:.3rem .8rem;}
+  h1{font-family:var(--font-head);font-weight:700;font-size:clamp(2rem,6vw,3.1rem);
+    line-height:1.08;letter-spacing:-.02em;margin:1.1rem 0 .8rem;}
+  .dek{font-size:1.15rem;color:var(--muted);font-family:var(--font-head);
+    font-style:italic;font-weight:300;}
+  .byline{margin-top:1.4rem;font-size:.82rem;color:var(--muted);
+    border-top:1px solid var(--rule);padding-top:1rem;}
+
+  article{padding:1rem 0 2rem;font-size:1.06rem;}
+  article h2{font-family:var(--font-head);font-weight:700;font-size:1.6rem;
+    letter-spacing:-.01em;margin:2.6rem 0 .6rem;}
+  article p{margin:1rem 0;}
+  article strong{color:var(--terra);}
+  .lead{font-size:1.2rem;color:var(--ink);}
+  em.q{font-style:italic;color:var(--muted);}
+
+  /* pull stat */
+  .pull{border-inline-start:3px solid var(--gold);background:var(--gold-bg);
+    padding:1.1rem 1.3rem;margin:1.8rem 0;border-radius:0 8px 8px 0;}
+  .pull .big{font-family:var(--font-head);font-weight:700;font-size:2.2rem;
+    color:var(--gold);line-height:1;}
+  .pull .lab{font-size:.9rem;color:var(--muted);margin-top:.3rem;}
+
+  /* the two-step diagram */
+  .flow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0;}
+  .flow .card{background:#fff;border:1px solid var(--rule);border-radius:12px;
+    padding:1.2rem 1.2rem 1.3rem;}
+  .flow .who{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--gold);}
+  .flow h3{font-family:var(--font-head);font-weight:700;font-size:1.15rem;margin:.35rem 0 .5rem;}
+  .flow p{font-size:.92rem;color:var(--muted);margin:.3rem 0 0;}
+  @media(max-width:560px){.flow{grid-template-columns:1fr;}}
+
+  /* why list */
+  .why{list-style:none;padding:0;margin:1.2rem 0;}
+  .why li{padding:.9rem 0;border-bottom:1px solid var(--rule);}
+  .why li:last-child{border-bottom:0;}
+  .why b{font-family:var(--font-head);color:var(--ink);}
+  .why span{display:block;color:var(--muted);font-size:.95rem;margin-top:.15rem;}
+
+  /* CTA */
+  .cta{background:var(--terra);color:#fff;border-radius:16px;padding:2rem 1.6rem;
+    margin:2.6rem 0;text-align:center;}
+  .cta h2{color:#fff;margin:.2rem 0 .5rem;}
+  .cta p{color:var(--terra-light);margin:.2rem 0 1.2rem;}
+  .btn{display:inline-block;background:var(--gold);color:#1A1008;font-weight:700;
+    padding:.85rem 1.6rem;border-radius:10px;font-size:1rem;
+    box-shadow:0 4px 16px rgba(1,33,105,.28);transition:transform .12s,background .12s;}
+  .btn:hover{transform:translateY(-1px);background:var(--gold-light);}
+  .cta .small{display:block;margin-top:.9rem;font-size:.82rem;color:var(--terra-light);}
+  .cta .small a{color:#fff;text-decoration:underline;}
+
+  footer{border-top:1px solid var(--rule);padding:2rem 0 3rem;color:var(--muted);
+    font-size:.85rem;text-align:center;}
+  footer a{color:var(--terra);font-weight:600;}
+  a{color:var(--terra);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">ZaZet<span>.</span></a>
+    <a class="back" href="/#work">← Projekti</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="tag">Projekt · Zagreb · Besplatan alat</span>
+    <h1>Jedna osoba zna IBAN. Dvjesto ljudi ga prepisuje.</h1>
+    <p class="dek">Kako smo plaćanje školarine pretvorili u jedan sken — i zašto smo alat napravili baš ovako.</p>
+    <p class="byline">Gal Tidhar · ZaZet Solutions · 20. srpnja 2026.</p>
+  </div>
+
+  <article>
+    <p class="lead">Svakog mjeseca tajništvo škole pošalje istu poruku svim roditeljima: IBAN, model, poziv na broj, iznos, rok — i „u opis upišite ime djeteta“. Onda dvjesto roditelja ručno prepiše sve to u aplikaciju svoje banke. Jedan pogrešno prepisan znak i uplata ode krivo.</p>
+
+    <p>Kad smo dobili takav mail za vlastito dijete, umjesto da ga samo prepišemo, zastali smo na jednom detalju.</p>
+
+    <div class="pull">
+      <div class="big">21 znak</div>
+      <div class="lab">IBAN koji jedna osoba već zna, a dvjesto ljudi tipka iznova svaki mjesec.</div>
+    </div>
+
+    <h2>Cijeli trik je u jednoj asimetriji</h2>
+    <p>Tajništvo ne može generirati dvjesto personaliziranih uplatnica. Ali <strong>sve što treba znati — već zna</strong>. Za svaku obitelj mijenja se točno jedno polje: ime djeteta u opisu plaćanja. Sve ostalo je isto.</p>
+    <p>Znači: neka onaj tko zna podatke ispuni ih <em class="q">jednom</em>, a roditelj neka doda samo ono što tajništvo ne zna.</p>
+
+    <div class="flow">
+      <div class="card">
+        <div class="who">Tajništvo — jednom</div>
+        <h3>Ispuni i podijeli link</h3>
+        <p>Upiše IBAN, iznos, poziv na broj i rok. Dobije 2D barkod, uplatnicu za ispis i kratki link za mail roditeljima.</p>
+      </div>
+      <div class="card">
+        <div class="who">Roditelj — u 10 sekundi</div>
+        <h3>Doda ime, skenira</h3>
+        <p>Otvori link, upiše ime djeteta. Barkod se pojavi. Skenira ga u aplikaciji banke — IBAN i poziv na broj se sami popune.</p>
+      </div>
+    </div>
+
+    <p>Nema računa, nema lozinki, nema baze obitelji. Jedna stranica, dva stanja. Standardni hrvatski <strong>HUB-3</strong> 2D barkod koji čita svaka domaća bankovna aplikacija.</p>
+
+    <h2>Zašto smo išli baš ovako</h2>
+    <p>Svaka odluka je bila u smjeru „manje posla za sve, ništa što može puknuti“:</p>
+
+    <ul class="why">
+      <li><b>Kratki link umjesto duge poruke.</b>
+        <span>Tajništvo zalijepi jedan `barcode.zazet-solutions.hr/p/…` u mjesečni mail. Preživi Outlook, radi na mobitelu, ne istječe — link u sandučiću mora raditi i sljedeći semestar.</span></li>
+      <li><b>Bez prijave, bez servera pred vratima.</b>
+        <span>Roditelj dolazi „hladan“ iz maila. Svaki login-zid bi ubio cijelu poantu, pa ga nema.</span></li>
+      <li><b>Ispis u PDF, ne biblioteka za PDF.</b>
+        <span>Ista stranica se ispiše na jednu uplatnicu ili na dvjesto — jedan po stranici — bez ijedne dodatne ovisnosti. Radi i na papiru.</span></li>
+      <li><b>Ispravnost prije svega.</b>
+        <span>Krivi barkod je uplata na krivo mjesto. IBAN se provjerava kontrolnom znamenkom (mod-97), iznos i model prije nego se išta nacrta. Isti kod koji već koristimo u vlastitoj aplikaciji za fakturiranje.</span></li>
+      <li><b>Grupni način za cijeli razred.</b>
+        <span>Zalijepiš popis imena — dobiješ uplatnicu po djetetu, spremnu za ispis ili slanje.</span></li>
+    </ul>
+
+    <p>Napravili smo ga besplatnim i poklonili školi. Ne zato što je to marketinški potez, nego zato što je bilo <em class="q">očito korisno</em> — a upravo tako izgleda posao kakav volimo: mali, jasan, riješi stvarnu muku i preda ključeve u ruke.</p>
+
+    <div class="cta">
+      <span class="tag" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff;">Isprobajte</span>
+      <h2>Generator uplatnica</h2>
+      <p>Ispunite podatke, dobijete barkod, uplatnicu i link za dijeljenje.</p>
+      <a class="btn" href="https://barcode.zazet-solutions.hr" target="_blank" rel="noopener">Otvori alat →</a>
+      <span class="small">Besplatno, bez registracije · <a href="https://barcode.zazet-solutions.hr">barcode.zazet-solutions.hr</a></span>
+    </div>
+
+    <h2>Imate sličnu muku?</h2>
+    <p>Ako u vašem poslu netko svaki tjedan ručno prepisuje isto — narudžbe, uplatnice, rezervacije — vjerojatno se to da riješiti jednako elegantno. To je doslovno ono što radimo.</p>
+    <p><a href="/#services">Pogledajte usluge →</a> ili nam pišite na <a href="https://wa.me/385991904995">WhatsApp</a>.</p>
+  </article>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    Izradio <a href="/">ZaZet Solutions</a> · Zagreb · Radimo ovakve stvari.
+  </div>
+</footer>
+
+</body>
+</html>
