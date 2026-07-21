@@ -289,6 +289,11 @@ function applyLang(lang) {
     b.classList.toggle("active", on);
   });
   try { localStorage.setItem("langPref", lang); } catch (e) {}
+  // Reflect the language in the address bar so a copied/shared link opens in the same language.
+  // hr is the canonical default (no param); en is explicit.
+  const u = new URL(location.href);
+  if (lang === "hr") u.searchParams.delete("lang"); else u.searchParams.set("lang", lang);
+  history.replaceState(null, "", u);
 }
 
 const urlLang = new URLSearchParams(location.search).get("lang");
