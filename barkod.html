@@ -265,9 +265,15 @@ const T = { en: {
 }};
 
 const SUPPORTED = ["hr", "en"];
+// Snapshot the inline Croatian as a real dict, so switching back to HR restores it
+// (once EN overwrites the DOM, the inline text is gone — there'd be nothing to restore from).
+T.hr = {};
+document.querySelectorAll("[data-i18n]").forEach(el => { T.hr[el.getAttribute("data-i18n")] = el.textContent; });
+document.querySelectorAll("[data-i18n-html]").forEach(el => { T.hr[el.getAttribute("data-i18n-html")] = el.innerHTML; });
+
 function applyLang(lang) {
   if (!SUPPORTED.includes(lang)) lang = "hr";
-  const dict = T[lang]; // undefined for hr -> inline Croatian stays
+  const dict = T[lang];
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const k = el.getAttribute("data-i18n");
     if (dict && dict[k] !== undefined) el.textContent = dict[k];
