@@ -6,19 +6,23 @@
 <title>Kako smo pretvorili plaćanje školarine u jedan sken · ZaZet Solutions</title>
 <meta name="description" content="Jedna osoba zna IBAN, dvjesto ljudi ga prepisuje. Priča o besplatnom generatoru uplatnica (2D barkod) koji smo izradili za školu — i zašto smo ga napravili baš ovako.">
 <link rel="canonical" href="https://zazet-solutions.hr/barkod.html">
+<link rel="alternate" hreflang="hr" href="https://zazet-solutions.hr/barkod.html">
+<link rel="alternate" hreflang="en" href="https://zazet-solutions.hr/barkod.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://zazet-solutions.hr/barkod.html">
 <meta property="og:title" content="Kako smo pretvorili plaćanje školarine u jedan sken">
 <meta property="og:description" content="Jedna osoba zna IBAN, dvjesto ljudi ga prepisuje. Besplatan generator uplatnica koji smo poklonili školi — i zašto smo ga napravili baš ovako.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://zazet-solutions.hr/barkod.html">
 <meta property="og:site_name" content="ZaZet Solutions">
 <meta property="og:locale" content="hr_HR">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="https://zazet-solutions.hr/og-zazet-zagreb.svg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F0F7FC'/><text x='3' y='26' font-size='26' font-weight='900' font-family='system-ui' fill='%23012169'>Z</text></svg>">
 <link rel="stylesheet" href="fonts/fraunces.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kako smo pretvorili plaćanje školarine u jedan sken","description":"Besplatan generator uplatnica (2D barkod) koji smo izradili za školu — i zašto smo ga napravili baš ovako.","inLanguage":"hr-HR","datePublished":"2026-07-20","author":{"@type":"Person","name":"Gal Tidhar","url":"https://zazet-solutions.hr/"},"publisher":{"@type":"Organization","name":"ZaZet Solutions","url":"https://zazet-solutions.hr/"},"mainEntityOfPage":"https://zazet-solutions.hr/barkod.html"}
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Kako smo pretvorili plaćanje školarine u jedan sken","description":"Besplatan generator uplatnica (2D barkod) koji smo izradili za školu — i zašto smo ga napravili baš ovako.","inLanguage":["hr-HR","en"],"datePublished":"2026-07-20","author":{"@type":"Person","name":"Gal Tidhar","url":"https://zazet-solutions.hr/"},"publisher":{"@type":"Organization","name":"ZaZet Solutions","url":"https://zazet-solutions.hr/"},"mainEntityOfPage":"https://zazet-solutions.hr/barkod.html"}
 </script>
 <style>
   :root{
@@ -36,11 +40,18 @@
   /* top bar */
   header.top{border-bottom:1px solid var(--rule);background:rgba(240,247,252,.85);
     backdrop-filter:blur(8px);position:sticky;top:0;z-index:10;}
-  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:3.6rem;}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:3.6rem;gap:1rem;}
   .brand{font-weight:800;letter-spacing:-.02em;color:var(--terra);font-size:1.1rem;}
   .brand span{color:var(--gold);}
-  .top a.back{font-size:.82rem;color:var(--muted);font-weight:600;}
+  .top .right{display:flex;align-items:center;gap:1rem;}
+  .top a.back{font-size:.82rem;color:var(--muted);font-weight:600;white-space:nowrap;}
   .top a.back:hover{color:var(--terra);}
+  .lang-switch{display:flex;gap:.15rem;}
+  .lang-btn{background:none;border:1px solid transparent;cursor:pointer;font-size:.72rem;
+    font-weight:700;letter-spacing:.06em;color:var(--muted);padding:.18rem .42rem;
+    border-radius:3px;transition:all .15s;font-family:inherit;}
+  .lang-btn.active{color:var(--terra);border-color:var(--terra);}
+  .lang-btn:hover:not(.active){color:var(--ink);}
 
   /* hero */
   .hero{padding:3.5rem 0 2rem;}
@@ -109,86 +120,180 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="/">ZaZet<span>.</span></a>
-    <a class="back" href="/#work">← Projekti</a>
+    <div class="right">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn active" data-lang="hr">HR</button>
+      </div>
+      <a class="back" href="/#work" data-i18n="back">← Projekti</a>
+    </div>
   </div>
 </header>
 
 <div class="wrap">
 
   <div class="hero">
-    <span class="tag">Projekt · Zagreb · Besplatan alat</span>
-    <h1>Jedna osoba zna IBAN. Dvjesto ljudi ga prepisuje.</h1>
-    <p class="dek">Kako smo plaćanje školarine pretvorili u jedan sken — i zašto smo alat napravili baš ovako.</p>
-    <p class="byline">Gal Tidhar · ZaZet Solutions · 20. srpnja 2026.</p>
+    <span class="tag" data-i18n="hero.tag">Projekt · Zagreb · Besplatan alat</span>
+    <h1 data-i18n="hero.h1">Jedna osoba zna IBAN. Dvjesto ljudi ga prepisuje.</h1>
+    <p class="dek" data-i18n="hero.dek">Kako smo plaćanje školarine pretvorili u jedan sken — i zašto smo alat napravili baš ovako.</p>
+    <p class="byline" data-i18n="hero.byline">Gal Tidhar · ZaZet Solutions · 20. srpnja 2026.</p>
   </div>
 
   <article>
-    <p class="lead">Svakog mjeseca tajništvo škole pošalje istu poruku svim roditeljima: IBAN, model, poziv na broj, iznos, rok — i „u opis upišite ime djeteta“. Onda dvjesto roditelja ručno prepiše sve to u aplikaciju svoje banke. Jedan pogrešno prepisan znak i uplata ode krivo.</p>
+    <p class="lead" data-i18n="lead">Svakog mjeseca tajništvo škole pošalje istu poruku svim roditeljima: IBAN, model, poziv na broj, iznos, rok — i „u opis upišite ime djeteta“. Onda dvjesto roditelja ručno prepiše sve to u aplikaciju svoje banke. Jedan pogrešno prepisan znak i uplata ode krivo.</p>
 
-    <p>Kad smo dobili takav mail za vlastito dijete, umjesto da ga samo prepišemo, zastali smo na jednom detalju.</p>
+    <p data-i18n="intro">Kad smo dobili takav mail za vlastito dijete, umjesto da ga samo prepišemo, zastali smo na jednom detalju.</p>
 
     <div class="pull">
-      <div class="big">21 znak</div>
-      <div class="lab">IBAN koji jedna osoba već zna, a dvjesto ljudi tipka iznova svaki mjesec.</div>
+      <div class="big" data-i18n="pull.big">21 znak</div>
+      <div class="lab" data-i18n="pull.lab">IBAN koji jedna osoba već zna, a dvjesto ljudi tipka iznova svaki mjesec.</div>
     </div>
 
-    <h2>Cijeli trik je u jednoj asimetriji</h2>
-    <p>Tajništvo ne može generirati dvjesto personaliziranih uplatnica. Ali <strong>sve što treba znati — već zna</strong>. Za svaku obitelj mijenja se točno jedno polje: ime djeteta u opisu plaćanja. Sve ostalo je isto.</p>
-    <p>Znači: neka onaj tko zna podatke ispuni ih <em class="q">jednom</em>, a roditelj neka doda samo ono što tajništvo ne zna.</p>
+    <h2 data-i18n="asym.h">Cijeli trik je u jednoj asimetriji</h2>
+    <p data-i18n-html="asym.p1">Tajništvo ne može generirati dvjesto personaliziranih uplatnica. Ali <strong>sve što treba znati — već zna</strong>. Za svaku obitelj mijenja se točno jedno polje: ime djeteta u opisu plaćanja. Sve ostalo je isto.</p>
+    <p data-i18n-html="asym.p2">Znači: neka onaj tko zna podatke ispuni ih <em class="q">jednom</em>, a roditelj neka doda samo ono što tajništvo ne zna.</p>
 
     <div class="flow">
       <div class="card">
-        <div class="who">Tajništvo — jednom</div>
-        <h3>Ispuni i podijeli link</h3>
-        <p>Upiše IBAN, iznos, poziv na broj i rok. Dobije 2D barkod, uplatnicu za ispis i kratki link za mail roditeljima.</p>
+        <div class="who" data-i18n="flow.office.who">Tajništvo — jednom</div>
+        <h3 data-i18n="flow.office.h">Ispuni i podijeli link</h3>
+        <p data-i18n="flow.office.p">Upiše IBAN, iznos, poziv na broj i rok. Dobije 2D barkod, uplatnicu za ispis i kratki link za mail roditeljima.</p>
       </div>
       <div class="card">
-        <div class="who">Roditelj — u 10 sekundi</div>
-        <h3>Doda ime, skenira</h3>
-        <p>Otvori link, upiše ime djeteta. Barkod se pojavi. Skenira ga u aplikaciji banke — IBAN i poziv na broj se sami popune.</p>
+        <div class="who" data-i18n="flow.parent.who">Roditelj — u 10 sekundi</div>
+        <h3 data-i18n="flow.parent.h">Doda ime, skenira</h3>
+        <p data-i18n="flow.parent.p">Otvori link, upiše ime djeteta. Barkod se pojavi. Skenira ga u aplikaciji banke — IBAN i poziv na broj se sami popune.</p>
       </div>
     </div>
 
-    <p>Nema računa, nema lozinki, nema baze obitelji. Jedna stranica, dva stanja. Standardni hrvatski <strong>HUB-3</strong> 2D barkod koji čita svaka domaća bankovna aplikacija.</p>
+    <p data-i18n-html="hub3">Nema računa, nema lozinki, nema baze obitelji. Jedna stranica, dva stanja. Standardni hrvatski <strong>HUB-3</strong> 2D barkod koji čita svaka domaća bankovna aplikacija.</p>
 
-    <h2>Zašto smo išli baš ovako</h2>
-    <p>Svaka odluka je bila u smjeru „manje posla za sve, ništa što može puknuti“:</p>
+    <h2 data-i18n="why.h">Zašto smo išli baš ovako</h2>
+    <p data-i18n="why.intro">Svaka odluka je bila u smjeru „manje posla za sve, ništa što može puknuti“:</p>
 
     <ul class="why">
-      <li><b>Kratki link umjesto duge poruke.</b>
-        <span>Tajništvo zalijepi jedan `barcode.zazet-solutions.hr/p/…` u mjesečni mail. Preživi Outlook, radi na mobitelu, ne istječe — link u sandučiću mora raditi i sljedeći semestar.</span></li>
-      <li><b>Bez prijave, bez servera pred vratima.</b>
-        <span>Roditelj dolazi „hladan“ iz maila. Svaki login-zid bi ubio cijelu poantu, pa ga nema.</span></li>
-      <li><b>Ispis u PDF, ne biblioteka za PDF.</b>
-        <span>Ista stranica se ispiše na jednu uplatnicu ili na dvjesto — jedan po stranici — bez ijedne dodatne ovisnosti. Radi i na papiru.</span></li>
-      <li><b>Ispravnost prije svega.</b>
-        <span>Krivi barkod je uplata na krivo mjesto. IBAN se provjerava kontrolnom znamenkom (mod-97), iznos i model prije nego se išta nacrta. Isti kod koji već koristimo u vlastitoj aplikaciji za fakturiranje.</span></li>
-      <li><b>Grupni način za cijeli razred.</b>
-        <span>Zalijepiš popis imena — dobiješ uplatnicu po djetetu, spremnu za ispis ili slanje.</span></li>
+      <li>
+        <b data-i18n="why.1.b">Kratki link umjesto duge poruke.</b>
+        <span data-i18n="why.1.s">Tajništvo zalijepi jedan barcode.zazet-solutions.hr/p/… u mjesečni mail. Preživi Outlook, radi na mobitelu, ne istječe — link u sandučiću mora raditi i sljedeći semestar.</span>
+      </li>
+      <li>
+        <b data-i18n="why.2.b">Bez prijave, bez servera pred vratima.</b>
+        <span data-i18n="why.2.s">Roditelj dolazi „hladan“ iz maila. Svaki login-zid bi ubio cijelu poantu, pa ga nema.</span>
+      </li>
+      <li>
+        <b data-i18n="why.3.b">Ispis u PDF, ne biblioteka za PDF.</b>
+        <span data-i18n="why.3.s">Ista stranica se ispiše na jednu uplatnicu ili na dvjesto — jedan po stranici — bez ijedne dodatne ovisnosti. Radi i na papiru.</span>
+      </li>
+      <li>
+        <b data-i18n="why.4.b">Ispravnost prije svega.</b>
+        <span data-i18n="why.4.s">Krivi barkod je uplata na krivo mjesto. IBAN se provjerava kontrolnom znamenkom (mod-97), iznos i model prije nego se išta nacrta. Isti kod koji već koristimo u vlastitoj aplikaciji za fakturiranje.</span>
+      </li>
+      <li>
+        <b data-i18n="why.5.b">Grupni način za cijeli razred.</b>
+        <span data-i18n="why.5.s">Zalijepiš popis imena — dobiješ uplatnicu po djetetu, spremnu za ispis ili slanje.</span>
+      </li>
     </ul>
 
-    <p>Napravili smo ga besplatnim i poklonili školi. Ne zato što je to marketinški potez, nego zato što je bilo <em class="q">očito korisno</em> — a upravo tako izgleda posao kakav volimo: mali, jasan, riješi stvarnu muku i preda ključeve u ruke.</p>
+    <p data-i18n-html="gift">Napravili smo ga besplatnim i poklonili školi. Ne zato što je to marketinški potez, nego zato što je bilo <em class="q">očito korisno</em> — a upravo tako izgleda posao kakav volimo: mali, jasan, riješi stvarnu muku i preda ključeve u ruke.</p>
 
     <div class="cta">
-      <span class="tag" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff;">Isprobajte</span>
-      <h2>Generator uplatnica</h2>
-      <p>Ispunite podatke, dobijete barkod, uplatnicu i link za dijeljenje.</p>
-      <a class="btn" href="https://barcode.zazet-solutions.hr" target="_blank" rel="noopener">Otvori alat →</a>
-      <span class="small">Besplatno, bez registracije · <a href="https://barcode.zazet-solutions.hr">barcode.zazet-solutions.hr</a></span>
+      <span class="tag" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff;" data-i18n="cta.tag">Isprobajte</span>
+      <h2 data-i18n="cta.h">Generator uplatnica</h2>
+      <p data-i18n="cta.p">Ispunite podatke, dobijete barkod, uplatnicu i link za dijeljenje.</p>
+      <a class="btn" href="https://barcode.zazet-solutions.hr" target="_blank" rel="noopener" data-i18n="cta.btn">Otvori alat →</a>
+      <span class="small" data-i18n-html="cta.small">Besplatno, bez registracije · <a href="https://barcode.zazet-solutions.hr">barcode.zazet-solutions.hr</a></span>
     </div>
 
-    <h2>Imate sličnu muku?</h2>
-    <p>Ako u vašem poslu netko svaki tjedan ručno prepisuje isto — narudžbe, uplatnice, rezervacije — vjerojatno se to da riješiti jednako elegantno. To je doslovno ono što radimo.</p>
-    <p><a href="/#services">Pogledajte usluge →</a> ili nam pišite na <a href="https://wa.me/385991904995">WhatsApp</a>.</p>
+    <h2 data-i18n="help.h">Imate sličnu muku?</h2>
+    <p data-i18n="help.p1">Ako u vašem poslu netko svaki tjedan ručno prepisuje isto — narudžbe, uplatnice, rezervacije — vjerojatno se to da riješiti jednako elegantno. To je doslovno ono što radimo.</p>
+    <p data-i18n-html="help.p2"><a href="/#services">Pogledajte usluge →</a> ili nam pišite na <a href="https://wa.me/385991904995">WhatsApp</a>.</p>
   </article>
 
 </div>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap" data-i18n-html="footer">
     Izradio <a href="/">ZaZet Solutions</a> · Zagreb · Radimo ovakve stvari.
   </div>
 </footer>
+
+<script>
+// English strings; Croatian is the inline default (missing key => text stays Croatian).
+const T = { en: {
+  "meta.title": "How we turned paying school fees into a single scan · ZaZet Solutions",
+  "back": "← Projects",
+  "hero.tag": "Project · Zagreb · Free tool",
+  "hero.h1": "One person knows the IBAN. Two hundred retype it.",
+  "hero.dek": "How we turned paying school fees into one scan — and why we built the tool exactly this way.",
+  "hero.byline": "Gal Tidhar · ZaZet Solutions · 20 July 2026",
+  "lead": "Every month the school office sends every parent the same message: IBAN, model, reference number, amount, due date — and “put the child’s name in the description.” Then two hundred parents hand-type all of it into their banking app. One mistyped character and the payment goes to the wrong place.",
+  "intro": "When we got that email for our own child, instead of just copying it out, we stopped on one detail.",
+  "pull.big": "21 characters",
+  "pull.lab": "An IBAN one person already knows, that two hundred people retype every single month.",
+  "asym.h": "The whole trick is one asymmetry",
+  "asym.p1": "The office can’t generate two hundred personalised payment slips. But <strong>everything it needs to know — it already knows</strong>. For each family exactly one field changes: the child’s name in the description. Everything else is identical.",
+  "asym.p2": "So: let the person who knows the details fill them in <em class=\"q\">once</em>, and let the parent add only the one thing the office doesn’t know.",
+  "flow.office.who": "Office — once",
+  "flow.office.h": "Fill in and share a link",
+  "flow.office.p": "Enters the IBAN, amount, reference and due date. Gets a 2D barcode, a printable slip, and a short link for the parent email.",
+  "flow.parent.who": "Parent — in 10 seconds",
+  "flow.parent.h": "Add the name, scan",
+  "flow.parent.p": "Opens the link, types the child’s name. The barcode appears. Scan it in the bank app — the IBAN and reference fill themselves in.",
+  "hub3": "No accounts, no passwords, no database of families. One page, two states. A standard Croatian <strong>HUB-3</strong> 2D barcode that every local banking app reads.",
+  "why.h": "Why we went exactly this way",
+  "why.intro": "Every decision pushed toward “less work for everyone, nothing that can break”:",
+  "why.1.b": "A short link, not a long message.",
+  "why.1.s": "The office pastes one barcode.zazet-solutions.hr/p/… into the monthly email. It survives Outlook, works on a phone, never expires — a link in an inbox has to still work next term.",
+  "why.2.b": "No login, no server at the door.",
+  "why.2.s": "The parent arrives cold from an email. Any login wall would kill the whole point, so there isn’t one.",
+  "why.3.b": "Print to PDF, not a PDF library.",
+  "why.3.s": "The same page prints one slip or two hundred — one per page — with zero extra dependencies. It works on paper too.",
+  "why.4.b": "Correctness first.",
+  "why.4.s": "A wrong barcode is a payment to the wrong place. The IBAN is checked by its control digit (mod-97), the amount and model before anything is drawn. The same code we already use in our own invoicing app.",
+  "why.5.b": "A batch mode for the whole class.",
+  "why.5.s": "Paste a list of names — get one slip per child, ready to print or send.",
+  "gift": "We made it free and gave it to the school. Not as a marketing move, but because it was <em class=\"q\">obviously useful</em> — and that’s exactly what the work we love looks like: small, clear, solves a real annoyance, and hands you the keys.",
+  "cta.tag": "Try it",
+  "cta.h": "Payment barcode generator",
+  "cta.p": "Fill in the details, get a barcode, a slip, and a link to share.",
+  "cta.btn": "Open the tool →",
+  "cta.small": "Free, no sign-up · <a href=\"https://barcode.zazet-solutions.hr\">barcode.zazet-solutions.hr</a>",
+  "help.h": "Got a similar chore?",
+  "help.p1": "If someone in your business hand-retypes the same thing every week — orders, payment slips, bookings — it can probably be solved just as elegantly. That’s literally what we do.",
+  "help.p2": "<a href=\"/#services\">See the services →</a> or message us on <a href=\"https://wa.me/385991904995\">WhatsApp</a>.",
+  "footer": "Built by <a href=\"/\">ZaZet Solutions</a> · Zagreb · We make things like this."
+}};
+
+const SUPPORTED = ["hr", "en"];
+function applyLang(lang) {
+  if (!SUPPORTED.includes(lang)) lang = "hr";
+  const dict = T[lang]; // undefined for hr -> inline Croatian stays
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (dict && dict[k] !== undefined) el.textContent = dict[k];
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    const k = el.getAttribute("data-i18n-html");
+    if (dict && dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.documentElement.lang = lang;
+  if (dict && dict["meta.title"]) document.title = dict["meta.title"];
+  document.querySelectorAll(".lang-btn").forEach(b => {
+    const on = b.getAttribute("data-lang") === lang;
+    b.classList.toggle("active", on);
+  });
+  try { localStorage.setItem("langPref", lang); } catch (e) {}
+}
+
+const urlLang = new URLSearchParams(location.search).get("lang");
+let stored = null;
+try { stored = localStorage.getItem("langPref"); } catch (e) {}
+// The site is trilingual (hr/en/he); this page has hr/en, so a stored 'he' falls back to hr.
+applyLang(urlLang || stored || "hr");
+
+document.querySelectorAll(".lang-btn").forEach(btn =>
+  btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang"))));
+</script>
 
 </body>
 </html>

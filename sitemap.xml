@@ -13,9 +13,12 @@
   </url>
   <url>
     <loc>https://zazet-solutions.hr/barkod.html</loc>
-    <lastmod>2026-07-20T21:00:00+00:00</lastmod>
+    <lastmod>2026-07-21T08:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://zazet-solutions.hr/barkod.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zazet-solutions.hr/barkod.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zazet-solutions.hr/barkod.html"/>
   </url>
   <url>
     <loc>https://zazet-solutions.hr/accessibility.html</loc>
