@@ -21,6 +21,16 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://zazet-solutions.hr/barkod.html"/>
   </url>
   <url>
+    <loc>https://zazet-solutions.hr/humondial.html</loc>
+    <lastmod>2026-08-08T08:00:00+00:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="hr" href="https://zazet-solutions.hr/humondial.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zazet-solutions.hr/humondial.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://zazet-solutions.hr/humondial.html?lang=he"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zazet-solutions.hr/humondial.html"/>
+  </url>
+  <url>
     <loc>https://zazet-solutions.hr/accessibility.html</loc>
     <lastmod>2026-06-04T06:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
