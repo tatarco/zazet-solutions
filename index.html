@@ -765,6 +765,8 @@ table.services tr.highlight td:first-child {
 }
 .client-stat .l { font-size: 0.74rem; color: var(--muted); line-height: 1.45; margin-top: 0.45rem; }
 .client-attr { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+/* let the name block shrink and wrap its text instead of being pushed onto its own row */
+.client-attr > div { flex: 1 1 0; min-width: 0; }
 .client-attr img.face {
   width: 60px; height: 60px; border-radius: 50%; object-fit: cover;
   border: 2px solid var(--gold-light); flex-shrink: 0;
@@ -777,10 +779,29 @@ table.services tr.highlight td:first-child {
 }
 .client-attr .client-cta:hover { border-color: var(--terra); }
 @media (max-width: 700px) {
-  .client-card { padding: 1.6rem 1.25rem; }
-  .client-quote { font-size: 1.12rem; }
-  .client-stats { grid-template-columns: 1fr; gap: 1.1rem; text-align: left; }
+  .client-card { padding: 1.35rem 1.1rem; }
+  .client-who {
+    gap: 0.65rem; padding: 0.8rem 0.9rem; margin-bottom: 1.35rem;
+    border-radius: 4px;
+  }
+  .client-who img { height: 22px; }
+  .client-who p { font-size: 0.78rem; line-height: 1.55; flex-basis: 100%; }
+  .client-quote { font-size: 1.05rem; line-height: 1.45; margin-bottom: 0.8rem; }
+  .client-body { font-size: 0.89rem; line-height: 1.62; margin-bottom: 0.8rem; }
+  /* keep the three numbers on one line — stacking them cost ~200px of scroll */
+  .client-stats {
+    grid-template-columns: repeat(3, 1fr); gap: 0.5rem;
+    margin: 1.35rem 0; padding: 1.05rem 0;
+  }
+  .client-stat .n { font-size: 1.2rem; }
+  .client-stat .l { font-size: 0.63rem; line-height: 1.35; margin-top: 0.3rem; }
+  .client-attr { gap: 0.75rem; }
+  .client-attr img.face { width: 48px; height: 48px; }
   .client-attr .client-cta { margin-inline-start: 0; flex-basis: 100%; }
+}
+@media (max-width: 380px) {
+  .client-stat .n { font-size: 1.05rem; }
+  .client-stat .l { font-size: 0.58rem; }
 }
 
 /* ─── WHO I AM ──────────────────────────────────────────────────── */
