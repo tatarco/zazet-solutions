@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="hr" data-chrome="cool">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sustav za fakturiranje i eRačun — kako smo ga izgradili · ZaZet Solutions</title>
+<meta name="description" content="Priča o skrojenom sustavu za fakturiranje, eRačun i fiskalizaciju 2.0: izdavanje računa, HUB-3 barkod za plaćanje, uparivanje s bankom i praćenje naplate — sve na jednom mjestu.">
+<link rel="canonical" href="https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html">
+<link rel="alternate" hreflang="hr" href="https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html">
+<link rel="alternate" hreflang="en" href="https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html">
+<meta property="og:title" content="Sustav za fakturiranje i eRačun — kako smo ga izgradili">
+<meta property="og:description" content="Izdavanje računa, eRačun, HUB-3 barkod za plaćanje i uparivanje s bankom — skrojen sustav za fakturiranje, ispričan od problema do rješenja.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html">
+<meta property="og:site_name" content="ZaZet Solutions">
+<meta property="og:locale" content="hr_HR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image" content="https://zazet-solutions.hr/og-zazet-zagreb.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23F0F7FC'/><text x='3' y='26' font-size='26' font-weight='900' font-family='system-ui' fill='%23012169'>Z</text></svg>">
+<link rel="stylesheet" href="fonts/fraunces.css">
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+(function(){try{if(localStorage.getItem('analyticsConsent')!=='granted')return;}catch(e){return;}
+gtag('consent','update',{analytics_storage:'granted'});
+var s=document.createElement('script');s.async=true;
+s.src='https://www.googletagmanager.com/gtag/js?id=G-Q0JMCN6F5T';
+document.head.appendChild(s);
+s.onload=function(){gtag('js',new Date());gtag('config','G-Q0JMCN6F5T');};})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Article","headline":"Sustav za fakturiranje i eRačun — kako smo ga izgradili","description":"Skrojeni sustav za fakturiranje, eRačun i fiskalizaciju 2.0: izdavanje računa, HUB-3 barkod, uparivanje s bankom i praćenje naplate.","inLanguage":["hr-HR","en"],"datePublished":"2026-08-09","author":{"@type":"Person","name":"Gal Tidhar","url":"https://zazet-solutions.hr/"},"publisher":{"@type":"Organization","name":"ZaZet Solutions","url":"https://zazet-solutions.hr/"},"mainEntityOfPage":"https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html"},
+{"@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Početna","item":"https://zazet-solutions.hr/"},
+{"@type":"ListItem","position":2,"name":"Sustav za fakturiranje i eRačun","item":"https://zazet-solutions.hr/sustav-za-fakturiranje-eracun.html"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Što je eRačun i fiskalizacija 2.0?","acceptedAnswer":{"@type":"Answer","text":"eRačun je račun u strukturiranom elektroničkom obliku koji se razmjenjuje i evidentira digitalno. Uz fiskalizaciju 2.0 u Hrvatskoj eRačun postaje obavezan za sve više poslovnih transakcija, pa sitni obrti i tvrtke trebaju način da ih izdaju i primaju ispravno."}},
+{"@type":"Question","name":"Trebam li poseban program za eRačun?","acceptedAnswer":{"@type":"Answer","text":"Trebate rješenje koje eRačun izdaje u ispravnom formatu i evidentira ga. To može biti gotov program ili sustav skrojen za vaš posao koji se povezuje s alatima koje već koristite — bez dvostrukog unosa."}},
+{"@type":"Question","name":"Može li se fakturiranje povezati s bankom?","acceptedAnswer":{"@type":"Answer","text":"Da. Sustav može čitati izvode iz banke i automatski uparivati uplate s izdanim računima, pa odmah vidite tko je platio, a tko nije — bez ručnog uspoređivanja."}},
+{"@type":"Question","name":"Što je HUB-3 barkod na računu?","acceptedAnswer":{"@type":"Answer","text":"HUB-3 je hrvatski 2D barkod za plaćanje. Kad je na računu ili uplatnici, platitelj ga samo skenira u aplikaciji banke i svi podaci (IBAN, iznos, model, poziv na broj) se ispune sami — bez ručnog prepisivanja."}}]}
+]}
+</script>
+<style>
+  :root{
+    --cream:#F0F7FC; --ink:#0A1628; --muted:#3D5A73; --terra:#012169;
+    --terra-light:#B8D4E8; --terra-bg:#E3EEF8; --rule:#A8C4D9;
+    --gold:#C9A227; --gold-light:#E8D49A; --gold-bg:#FBF5E6;
+    --font-head:'Fraunces',Georgia,serif; --font-body:system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font-body);
+    line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:44rem;margin:0 auto;padding:0 1.5rem;}
+
+  header.top{border-bottom:1px solid var(--rule);background:rgba(240,247,252,.85);
+    backdrop-filter:blur(8px);position:sticky;top:0;z-index:10;}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:3.6rem;gap:1rem;}
+  .brand{font-weight:800;letter-spacing:-.02em;color:var(--terra);font-size:1.1rem;}
+  .brand span{color:var(--gold);}
+  .top .right{display:flex;align-items:center;gap:1rem;}
+  .top a.back{font-size:.82rem;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .top a.back:hover{color:var(--terra);}
+  .lang-switch{display:flex;gap:.15rem;}
+  .lang-btn{background:none;border:1px solid transparent;cursor:pointer;font-size:.72rem;
+    font-weight:700;letter-spacing:.06em;color:var(--muted);padding:.18rem .42rem;
+    border-radius:3px;transition:all .15s;font-family:inherit;}
+  .lang-btn.active{color:var(--terra);border-color:var(--terra);}
+  .lang-btn:hover:not(.active){color:var(--ink);}
+
+  .hero{padding:3.5rem 0 2rem;}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--terra);background:var(--terra-bg);
+    border:1px solid var(--terra-light);border-radius:999px;padding:.3rem .8rem;}
+  h1{font-family:var(--font-head);font-weight:700;font-size:clamp(2rem,6vw,3.1rem);
+    line-height:1.08;letter-spacing:-.02em;margin:1.1rem 0 .8rem;}
+  .dek{font-size:1.15rem;color:var(--muted);font-family:var(--font-head);
+    font-style:italic;font-weight:300;}
+  .byline{margin-top:1.4rem;font-size:.82rem;color:var(--muted);
+    border-top:1px solid var(--rule);padding-top:1rem;}
+  .hero-cta{margin-top:1.6rem;display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;}
+  .hero-cta .small{font-size:.82rem;color:var(--muted);}
+
+  article{padding:1rem 0 2rem;font-size:1.06rem;}
+  article h2{font-family:var(--font-head);font-weight:700;font-size:1.6rem;
+    letter-spacing:-.01em;margin:2.6rem 0 .6rem;}
+  article p{margin:1rem 0;}
+  article strong{color:var(--terra);}
+  .lead{font-size:1.2rem;color:var(--ink);}
+  em.q{font-style:italic;color:var(--muted);}
+
+  .pull{border-inline-start:3px solid var(--gold);background:var(--gold-bg);
+    padding:1.1rem 1.3rem;margin:1.8rem 0;border-radius:0 8px 8px 0;}
+  .pull .big{font-family:var(--font-head);font-weight:700;font-size:2.2rem;
+    color:var(--gold);line-height:1;}
+  .pull .lab{font-size:.9rem;color:var(--muted);margin-top:.3rem;}
+
+  .why{list-style:none;padding:0;margin:1.2rem 0;}
+  .why li{padding:.9rem 0;border-bottom:1px solid var(--rule);}
+  .why li:last-child{border-bottom:0;}
+  .why b{font-family:var(--font-head);color:var(--ink);}
+  .why span{display:block;color:var(--muted);font-size:.95rem;margin-top:.15rem;}
+
+  .note{background:var(--terra-bg);border:1px solid var(--terra-light);
+    border-radius:12px;padding:1.1rem 1.3rem;margin:1.8rem 0;font-size:.98rem;color:var(--muted);}
+
+  .faq dt{font-family:var(--font-head);font-weight:700;color:var(--ink);
+    margin-top:1.4rem;font-size:1.08rem;}
+  .faq dd{margin:.4rem 0 0;color:var(--muted);}
+
+  .related{background:#fff;border:1px solid var(--rule);border-radius:12px;
+    padding:1.2rem 1.3rem;margin:2rem 0;}
+  .related .who{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+  .related a{display:block;margin-top:.5rem;font-weight:600;}
+
+  .cta{background:var(--terra);color:#fff;border-radius:16px;padding:2rem 1.6rem;
+    margin:2.6rem 0;text-align:center;}
+  .cta h2{color:#fff;margin:.2rem 0 .5rem;}
+  .cta p{color:var(--terra-light);margin:.2rem 0 1.2rem;}
+  .btn{display:inline-block;background:var(--gold);color:#1A1008;font-weight:700;
+    padding:.85rem 1.6rem;border-radius:10px;font-size:1rem;
+    box-shadow:0 4px 16px rgba(1,33,105,.28);transition:transform .12s,background .12s;}
+  .btn:hover{transform:translateY(-1px);background:var(--gold-light);}
+  .cta .small{display:block;margin-top:.9rem;font-size:.82rem;color:var(--terra-light);}
+  .cta .small a{color:#fff;text-decoration:underline;}
+
+  footer{border-top:1px solid var(--rule);padding:2rem 0 3rem;color:var(--muted);
+    font-size:.85rem;text-align:center;}
+  footer a{color:var(--terra);font-weight:600;}
+  a{color:var(--terra);}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">ZaZet<span>.</span></a>
+    <div class="right">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn active" data-lang="hr">HR</button>
+      </div>
+      <a class="back" href="/#work" data-i18n="back">← Projekti</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="tag" data-i18n="hero.tag">Projekt · Zagreb · Fakturiranje i eRačun</span>
+    <h1 data-i18n="hero.h1">Sustav za fakturiranje i eRačun, skrojen za jedan posao</h1>
+    <p class="dek" data-i18n="hero.dek">Izdavanje računa, eRačun, barkod za plaćanje i uparivanje s bankom — sve na jednom mjestu. Priča o tome zašto smo ga napravili baš ovako.</p>
+    <p class="byline" data-i18n="hero.byline">Gal Tidhar · ZaZet Solutions · 9. kolovoza 2026.</p>
+  </div>
+
+  <article>
+    <p class="lead" data-i18n="lead">Fakturiranje zvuči jednostavno dok ga radite ručno: napišeš račun, pošalješ ga, čekaš, provjeravaš izvod banke tko je platio, pišeš podsjetnik, pa još pratiš ulazne račune i troškove. Za jedan mali posao to je nekoliko sati mjesečno na poslu koji ne donosi ništa — samo priliku za pogrešku.</p>
+
+    <h2 data-i18n="era.h">eRačun više nije izbor</h2>
+    <p data-i18n="era.p1">S fiskalizacijom 2.0 u Hrvatskoj <strong>eRačun</strong> postaje obavezan za sve više transakcija. Gotovi programi to rješavaju, ali često nose mjesečne pretplate, suvišne module i tuđi način rada u koji se treba uklopiti. Htjeli smo suprotno: sustav koji radi točno ono što ovaj posao treba, i ništa više.</p>
+    <p data-i18n="era.p2">Zato smo <em class="q">izdavanje računa, eRačun i naplatu</em> spojili u jedan skrojeni sustav — povezan s alatima koji su već bili u upotrebi.</p>
+
+    <h2 data-i18n="build.h">Što sustav radi</h2>
+    <ul class="why">
+      <li><b data-i18n="build.1.b">Izdavanje računa i PDF.</b><span data-i18n="build.1.s">Račun se kreira, finalizira i sprema kao uredan PDF — spreman za slanje u nekoliko sekundi, s ispravnim podacima svaki put.</span></li>
+      <li><b data-i18n="build.2.b">eRačun, ulazni i izlazni.</b><span data-i18n="build.2.s">Izlazni računi izdaju se u ispravnom obliku, a ulazni eRačuni i računi dobavljača evidentiraju se na jednom mjestu — vidite što dugujete i do kada.</span></li>
+      <li><b data-i18n="build.3.b">HUB-3 barkod za plaćanje.</b><span data-i18n="build.3.s">Svaki račun nosi 2D barkod: platitelj ga skenira u aplikaciji banke i podaci za plaćanje se ispune sami, bez prepisivanja IBAN-a i poziva na broj.</span></li>
+      <li><b data-i18n="build.4.b">Uparivanje s bankom.</b><span data-i18n="build.4.s">Sustav čita izvode iz poslovne banke i automatski povezuje uplate s računima — odmah se vidi tko je platio, a tko kasni.</span></li>
+      <li><b data-i18n="build.5.b">Troškovi i mjesečni retaineri.</b><span data-i18n="build.5.s">Ulazni računi i troškovi se prikupljaju, a stalni mjesečni klijenti fakturiraju se automatski — bez ručnog ponavljanja svaki mjesec.</span></li>
+    </ul>
+
+    <div class="pull">
+      <div class="big" data-i18n="pull.big">0 ručnog prepisivanja</div>
+      <div class="lab" data-i18n="pull.lab">IBAN-a, iznosa i uplata. Isti podaci ne putuju dvaput — od računa, preko barkoda, do izvoda banke.</div>
+    </div>
+
+    <h2 data-i18n="why.h">Zašto skrojeno, a ne gotov program</h2>
+    <p data-i18n="why.p">Gotov program je odličan kad vam treba prosjek svih poslova. Ali kad se ista provjera podataka — kontrolna znamenka IBAN-a (mod-97), iznos, model — koristi i za barkod i za eRačun i za uparivanje s bankom, isplati se to napraviti jednom i kako treba. Rezultat je manje koraka, manje pogrešaka i puna kontrola nad vlastitim podacima.</p>
+
+    <div class="note" data-i18n="anon">Napomena: primjer je anonimiziran — bez imena klijenta i osjetljivih podataka. Ista logika (fakture, eRačun, HUB-3 barkod, uparivanje s bankom) prenosiva je na drugi obrt ili tvrtku.</div>
+
+    <h2 data-i18n="faq.h">Česta pitanja</h2>
+    <dl class="faq">
+      <dt data-i18n="faq.q1">Što je eRačun i fiskalizacija 2.0?</dt>
+      <dd data-i18n="faq.a1">eRačun je račun u strukturiranom elektroničkom obliku koji se razmjenjuje i evidentira digitalno. Uz fiskalizaciju 2.0 postaje obavezan za sve više poslovnih transakcija, pa obrti i tvrtke trebaju način da ga ispravno izdaju i primaju.</dd>
+      <dt data-i18n="faq.q2">Trebam li poseban program za eRačun?</dt>
+      <dd data-i18n="faq.a2">Trebate rješenje koje eRačun izdaje u ispravnom formatu i evidentira ga. To može biti gotov program ili sustav skrojen za vaš posao koji se povezuje s alatima koje već koristite — bez dvostrukog unosa.</dd>
+      <dt data-i18n="faq.q3">Može li se fakturiranje povezati s bankom?</dt>
+      <dd data-i18n="faq.a3">Da. Sustav može čitati izvode iz banke i automatski uparivati uplate s izdanim računima, pa odmah vidite tko je platio, a tko nije — bez ručnog uspoređivanja.</dd>
+      <dt data-i18n="faq.q4">Što je HUB-3 barkod na računu?</dt>
+      <dd data-i18n="faq.a4">HUB-3 je hrvatski 2D barkod za plaćanje. Platitelj ga skenira u aplikaciji banke i svi podaci za uplatu se ispune sami — bez ručnog prepisivanja.</dd>
+    </dl>
+
+    <div class="related">
+      <div class="who" data-i18n="rel.who">Povezano</div>
+      <a href="barkod.html" data-i18n="rel.1">Kako smo plaćanje školarine pretvorili u jedan sken (HUB-3 barkod) →</a>
+      <a href="automatizacija-faktura.html" data-i18n="rel.2">Automatizacija faktura za male tvrtke — usluga →</a>
+    </div>
+
+    <div class="cta">
+      <span class="tag" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff" data-i18n="cta.tag">Trebate slično?</span>
+      <h2 data-i18n="cta.h">Fakturiranje i eRačun koji rade za vaš posao</h2>
+      <p data-i18n="cta.p">Ako trošite sate na račune, naplatu i uparivanje s bankom, vjerojatno se to može riješiti jednom i kako treba.</p>
+      <a class="btn" href="https://wa.me/385991904995?text=Bok%20Gal%2C%20zanima%20me%20sustav%20za%20fakturiranje%20i%20eRa%C4%8Dun" data-i18n="cta.btn">Pišite na WhatsApp →</a>
+      <span class="small" data-i18n="cta.small">Zagreb · odgovaram isti dan · možete pisati na hrvatskom · <a href="/#services">pogledajte usluge →</a></span>
+    </div>
+  </article>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span data-i18n="footer">Izradio <a href="/">ZaZet Solutions</a> · Zagreb · Radimo ovakve stvari.</span>
+  </div>
+</footer>
+
+<script>
+const T = {"en": {
+  "meta.title": "Invoicing & e-Invoice system — how we built it · ZaZet Solutions",
+  "back": "← Projects",
+  "hero.tag": "Project · Zagreb · Invoicing & e-Invoice",
+  "hero.h1": "An invoicing & e-Invoice system, tailored to one business",
+  "hero.dek": "Issuing invoices, e-Invoice, a payment barcode and bank matching — all in one place. The story of why we built it this way.",
+  "hero.byline": "Gal Tidhar · ZaZet Solutions · 9 August 2026",
+  "lead": "Invoicing sounds simple until you do it by hand: write the invoice, send it, wait, check the bank statement for who paid, write a reminder, then track incoming bills and expenses too. For a small business that's a few hours a month on work that earns nothing — just a chance to make a mistake.",
+  "era.h": "E-Invoice is no longer optional",
+  "era.p1": "With Croatia's Fiscalization 2.0, the <strong>e-Invoice (eRačun)</strong> is becoming mandatory for more and more transactions. Off-the-shelf software handles it, but often with monthly fees, extra modules and someone else's way of working to conform to. We wanted the opposite: a system that does exactly what this business needs, and nothing more.",
+  "era.p2": "So we combined <em class=\"q\">invoicing, e-Invoice and collection</em> into one tailored system — connected to the tools already in use.",
+  "build.h": "What the system does",
+  "build.1.b": "Issuing invoices and PDFs.",
+  "build.1.s": "An invoice is created, finalized and saved as a clean PDF — ready to send in seconds, with the right details every time.",
+  "build.2.b": "E-Invoice, incoming and outgoing.",
+  "build.2.s": "Outgoing invoices are issued in the correct format, while incoming e-Invoices and supplier bills are logged in one place — you see what you owe and by when.",
+  "build.3.b": "HUB-3 payment barcode.",
+  "build.3.s": "Every invoice carries a 2D barcode: the payer scans it in their banking app and the payment details fill in on their own — no retyping the IBAN or reference number.",
+  "build.4.b": "Bank matching.",
+  "build.4.s": "The system reads statements from the business bank and automatically links payments to invoices — you instantly see who paid and who's late.",
+  "build.5.b": "Expenses and monthly retainers.",
+  "build.5.s": "Incoming bills and expenses are collected, and recurring monthly clients are invoiced automatically — no repeating the same work every month.",
+  "pull.big": "0 manual retyping",
+  "pull.lab": "of IBANs, amounts and payments. The same data never travels twice — from invoice, through barcode, to bank statement.",
+  "why.h": "Why tailored, not off-the-shelf",
+  "why.p": "Off-the-shelf software is great when you need the average of every business. But when the same data check — the IBAN control digit (mod-97), amount, reference — is used for the barcode, the e-Invoice and the bank matching, it pays to build it once and properly. The result: fewer steps, fewer errors, and full control over your own data.",
+  "anon": "Note: this example is anonymized — no client name or sensitive data. The same logic (invoices, e-Invoice, HUB-3 barcode, bank matching) transfers to another business.",
+  "faq.h": "Common questions",
+  "faq.q1": "What is e-Invoice and Fiscalization 2.0?",
+  "faq.a1": "An e-Invoice is an invoice in a structured electronic form, exchanged and recorded digitally. With Fiscalization 2.0 it becomes mandatory for more and more transactions, so businesses need a way to issue and receive it correctly.",
+  "faq.q2": "Do I need special software for e-Invoice?",
+  "faq.a2": "You need a solution that issues the e-Invoice in the correct format and records it. That can be off-the-shelf software or a system tailored to your business that connects to the tools you already use — with no double entry.",
+  "faq.q3": "Can invoicing connect to my bank?",
+  "faq.a3": "Yes. The system can read bank statements and automatically match payments to issued invoices, so you instantly see who paid and who didn't — with no manual comparison.",
+  "faq.q4": "What is the HUB-3 barcode on an invoice?",
+  "faq.a4": "HUB-3 is the Croatian 2D payment barcode. The payer scans it in their banking app and all the payment details fill in automatically — no manual retyping.",
+  "rel.who": "Related",
+  "rel.1": "How we turned tuition payments into a single scan (HUB-3 barcode) →",
+  "rel.2": "Invoice automation for small businesses — service →",
+  "cta.tag": "Need something similar?",
+  "cta.h": "Invoicing and e-Invoice that work for your business",
+  "cta.p": "If you spend hours on invoices, collection and bank matching, it can probably be solved once and properly.",
+  "cta.btn": "Message me on WhatsApp →",
+  "cta.small": "Zagreb · I reply same day · you can write in Croatian · <a href=\"/#services\">see services →</a>",
+  "footer": "Built by <a href=\"/\">ZaZet Solutions</a> · Zagreb · We make things like this."
+}};
+
+const SUPPORTED = ["hr", "en"];
+T.hr = {};
+document.querySelectorAll("[data-i18n]").forEach(el => { T.hr[el.getAttribute("data-i18n")] = el.textContent; });
+document.querySelectorAll("[data-i18n-html]").forEach(el => { T.hr[el.getAttribute("data-i18n-html")] = el.innerHTML; });
+
+function applyLang(lang) {
+  if (!SUPPORTED.includes(lang)) lang = "hr";
+  const dict = T[lang];
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (dict && dict[k] !== undefined) el.textContent = dict[k];
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => {
+    const k = el.getAttribute("data-i18n-html");
+    if (dict && dict[k] !== undefined) el.innerHTML = dict[k];
+  });
+  document.documentElement.lang = lang;
+  if (dict && dict["meta.title"]) document.title = dict["meta.title"];
+  window.currentLang = lang;
+  document.querySelectorAll(".lang-btn").forEach(b => {
+    b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+  });
+  try { localStorage.setItem("langPref", lang); } catch (e) {}
+  const u = new URL(location.href);
+  if (lang === "hr") u.searchParams.delete("lang"); else u.searchParams.set("lang", lang);
+  history.replaceState(null, "", u);
+}
+
+const urlLang = new URLSearchParams(location.search).get("lang");
+let stored = null;
+try { stored = localStorage.getItem("langPref"); } catch (e) {}
+applyLang(urlLang || stored || "hr");
+
+document.querySelectorAll(".lang-btn").forEach(btn =>
+  btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang"))));
+</script>
+
+</body>
+</html>
