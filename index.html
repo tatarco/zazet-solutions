@@ -54,6 +54,12 @@ window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
 window.__analyticsConsent=false;
+var CLARITY_ID='';/* paste Microsoft Clarity project ID here to enable heatmaps + session recordings; empty = disabled */
+function loadClarity(){
+  if(!CLARITY_ID||window.__clarityLoaded)return;
+  window.__clarityLoaded=true;
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',CLARITY_ID);
+}
 function loadAnalytics(){
   if(window.__analyticsLoaded)return;
   window.__analyticsLoaded=true;
@@ -65,6 +71,7 @@ function loadAnalytics(){
     gtag('js',new Date());
     gtag('config','G-Q0JMCN6F5T',{interface_language:(window.currentLang||'hr')});
   };
+  loadClarity();
 }
 function grantAnalyticsConsent(){
   window.__analyticsConsent=true;
@@ -148,17 +155,20 @@ function trackEvent(name,params){
   /* Brand gold (logo wine) — accents on Adriatic sections */
   --gold:        #C9A227;
   --gold-light:  #E8D49A;
+  --gold-text:   #806515;
   --gold-bg:     #FBF5E6;
   /* Warm — story sections (about, Davor, gemišt) */
   --warm-cream:  #FFF8F0;
   --warm-ink:    #1A1008;
   --warm-muted:  #5C4A3A;
   --warm-accent: #C84B2F;
+  --warm-accent-text: #B23A1E;
   --warm-light:  #F5DDD8;
   --warm-bg:     #FAE8E4;
   --warm-rule:   #D6C4B8;
   --wa:          #25D366;
   --wa-dark:     #1DA851;
+  --wa-btn:      #0B7A44;
   --font-head:   'Fraunces', Georgia, serif;
   --font-body:   system-ui, -apple-system, sans-serif;
 }
@@ -167,7 +177,7 @@ function trackEvent(name,params){
   --cream: var(--warm-cream);
   --ink: var(--warm-ink);
   --muted: var(--warm-muted);
-  --terra: var(--warm-accent);
+  --terra: var(--warm-accent-text);
   --terra-light: var(--warm-light);
   --terra-bg: var(--warm-bg);
   --rule: var(--warm-rule);
@@ -341,7 +351,7 @@ nav.site-nav {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: var(--wa);
+  background: var(--wa-btn);
   color: #fff;
   font-weight: 700;
   font-size: 0.875rem;
@@ -351,7 +361,7 @@ nav.site-nav {
   white-space: nowrap;
   transition: background 0.2s;
 }
-.btn-wa:hover { background: var(--wa-dark); text-decoration: none; }
+.btn-wa:hover { background: #095F35; text-decoration: none; }
 .btn-wa-lg {
   font-size: 1rem;
   padding: 0.85rem 1.8rem;
@@ -576,7 +586,7 @@ table.services tr.highlight td:first-child {
 
 .service-name { font-weight: 700; }
 .service-desc { color: var(--muted); font-size: 0.85rem; }
-.service-price { font-family: var(--font-head); font-weight: 700; color: var(--gold); white-space: nowrap; }
+.service-price { font-family: var(--font-head); font-weight: 700; color: var(--gold-text); white-space: nowrap; }
 .service-time { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
 
 .table-note {
@@ -585,11 +595,12 @@ table.services tr.highlight td:first-child {
   color: var(--muted);
   letter-spacing: 0.05em;
 }
+.table-note a { text-decoration: underline; }
 
 .table-note-start {
   margin-top: 0.5rem;
   font-size: 0.82rem;
-  color: var(--gold);
+  color: var(--gold-text);
   font-weight: 600;
 }
 
@@ -1132,7 +1143,7 @@ table.services tr.highlight td:first-child {
   font-family: var(--font-head);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--gold-text);
   margin: 0.75rem 0 0.2rem;
   line-height: 1.1;
 }
@@ -1429,7 +1440,7 @@ footer {
   position: relative; z-index: 1; background: var(--warm-cream);
   border: 2px solid var(--warm-accent); border-radius: 4px;
   --cream: var(--warm-cream); --ink: var(--warm-ink); --muted: var(--warm-muted);
-  --terra: var(--warm-accent); --terra-light: var(--warm-light); --terra-bg: var(--warm-bg); --rule: var(--warm-rule);
+  --terra: var(--warm-accent-text); --terra-light: var(--warm-light); --terra-bg: var(--warm-bg); --rule: var(--warm-rule);
   padding: 2.5rem 2rem; max-width: 520px; width: 100%;
   max-height: min(92svh, 720px); overflow-y: auto;
   text-align: center;
@@ -1623,7 +1634,7 @@ footer {
 <section id="how" data-chrome-theme="cool">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">01</span>
+      <span class="section-num" aria-hidden="true">01</span>
       <div>
         <p class="eyebrow" data-i18n="how.eyebrow">Process</p>
         <h2 class="section-title" data-i18n="how.h2">How it works</h2>
@@ -1653,7 +1664,7 @@ footer {
 <section id="services" data-chrome-theme="cool">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">02</span>
+      <span class="section-num" aria-hidden="true">02</span>
       <div>
         <p class="eyebrow" data-i18n="svc.eyebrow">What I build</p>
         <h2 class="section-title" data-i18n="svc.h2">Services &amp; Pricing</h2>
@@ -1705,7 +1716,7 @@ footer {
 <section class="section-alt" id="work" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">03</span>
+      <span class="section-num" aria-hidden="true">03</span>
       <div>
         <p class="eyebrow" data-i18n="proj.eyebrow">Nedavni rad</p>
         <h2 class="section-title" data-i18n="proj.h2">Nedavni projekti</h2>
@@ -1774,7 +1785,7 @@ footer {
 <section id="client" data-chrome-theme="cool">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">04</span>
+      <span class="section-num" aria-hidden="true">04</span>
       <div>
         <p class="eyebrow" data-i18n="client.eyebrow">Riječ klijenta</p>
         <h2 class="section-title" data-i18n="client.h2">Rok koji se ne pomiče</h2>
@@ -1826,7 +1837,7 @@ footer {
 <section class="section-alt" id="testimonials" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">05</span>
+      <span class="section-num" aria-hidden="true">05</span>
       <div class="testi-header">
         <p class="eyebrow" data-i18n="testi.eyebrow">Što kažu kolege</p>
         <h2 class="section-title" data-i18n="testi.h2">Preporuke s LinkedIna</h2>
@@ -1966,7 +1977,7 @@ footer {
 <section class="section-warm" id="about" data-chrome-theme="warm">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">06</span>
+      <span class="section-num" aria-hidden="true">06</span>
       <div>
         <p class="eyebrow" data-i18n="about.eyebrow">Tko sam</p>
         <h2 class="section-title" data-i18n="about.h2">Gal Tidhar · softverski konzultant iz Zagreba</h2>
@@ -1990,7 +2001,7 @@ footer {
         <p data-i18n-html="about.p3"><strong>ZaZet</strong> carries the nickname Davor gave me — <em>Zagorski Zet</em>, the Zagorje son-in-law. I brought the engineering. Croatia gave me everything else.</p>
         <div class="gemist-pullquote">
           <p data-i18n-html="about.pq">In Zagorje, ordering a gemišt isn't just picking a drink. You hold up two fingers. One <strong>vertical</strong> — the wine. One <strong>horizontal</strong> — the water, just enough to get by. That ratio, <em>prst prst</em>, is what locals call the strong pour. Not the tourist version. The real one. Look at the ZaZet logo — blue on top (the 20%), gold below (what actually counts). That's the mix I bring to every project.</p>
-          <button class="gemist-trigger" id="gemist-open-btn" onclick="openGemistModal()" aria-haspopup="dialog" data-i18n-aria="a11y.gemist.open" aria-label="Otvori igru o gemištu" data-i18n="about.gemist">Što je gemišt? Igrajte igru →</button>
+          <button class="gemist-trigger" id="gemist-open-btn" onclick="openGemistModal()" aria-haspopup="dialog" data-i18n="about.gemist">Što je gemišt? Igrajte igru →</button>
         </div>
       </div>
     </div>
@@ -2002,7 +2013,7 @@ footer {
   <div class="container">
     <div class="davor-header">
       <div class="section-label">
-        <span class="section-num">07</span>
+        <span class="section-num" aria-hidden="true">07</span>
         <div>
           <p class="eyebrow" data-i18n="davor.eyebrow">Priča o osnivanju</p>
           <h2 class="davor-subhead" data-i18n="davor.title">Kako sam postao Zagorski Zet</h2>
@@ -2011,7 +2022,7 @@ footer {
       <div class="davor-rule"></div>
     </div>
     <div class="davor-grid">
-      <div class="davor-cover" id="davor-gallery-trigger" role="button" tabindex="0" data-i18n-aria="a11y.gallery.open" aria-label="Otvori galeriju fotografija Davora Kolarića">
+      <div class="davor-cover" id="davor-gallery-trigger" role="button" tabindex="0">
         <img src="davor-wedding.webp" alt="Gal and Davor Kolarić at the wedding" loading="lazy" decoding="async" fetchpriority="low" width="300" height="375">
         <div class="davor-cover-overlay">
           <div class="davor-cover-label">
@@ -2035,7 +2046,7 @@ footer {
 <section class="section-alt" id="faq" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">08</span>
+      <span class="section-num" aria-hidden="true">08</span>
       <div>
         <p class="eyebrow" data-i18n="faq.eyebrow">FAQ</p>
         <h2 class="section-title" data-i18n="faq.h2">Česta pitanja</h2>
@@ -2098,7 +2109,7 @@ footer {
 <section class="why-section" id="why" data-chrome-theme="alt">
   <div class="container">
     <div class="section-label">
-      <span class="section-num">09</span>
+      <span class="section-num" aria-hidden="true">09</span>
       <div>
         <p class="eyebrow" data-i18n="why.eyebrow">Zašto ZaZet</p>
         <h2 class="section-title" data-i18n="why.h2">Tri razloga zašto vlasnici malih tvrtki biraju mene</h2>
